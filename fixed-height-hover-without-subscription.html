@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Card</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="typography">
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f3f4f6;
+      padding: 1rem;
+    }
+  </style>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'mhc-yellow': '#e3e829',
+            'mhc-dark': '#333333',
+            'mhc-gray-light': '#f4f4f4',
+            'mhc-gray-text': '#666666',
+            'mhc-secondary-btn': '#e6eab8',
+          },
+          borderRadius: {
+            'card': '14px',
+            'control': '9px',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+<article class="bg-white rounded-3xl p-2 sm:p-4 max-w-[500px] w-full shadow-sm" data-purpose="product-card">
+<!-- Inner Bordered Container -->
+<div class="border border-gray-600 rounded-card p-4 flex flex-col relative group overflow-hidden h-[520px]">
+<!-- BEGIN: Left Column - Image Well -->
+<section class="w-full relative flex flex-col justify-center items-center shrink-0 h-[280px] group-hover:h-[140px] transition-all duration-500 ease-in-out mb-4" data-purpose="image-section">
+<!-- Max Potency Badge -->
+<span class="absolute top-0 left-0 bg-mhc-gray-light text-mhc-dark text-xs font-medium px-3 py-1 rounded-full z-10">
+        Max Potency
+      </span>
+<!-- Product Image -->
+<div class="w-full h-full relative transition-all duration-500 ease-in-out py-6">
+<img alt="Rosin Gummies Mixed Berries" class="w-full h-full object-contain transition-transform duration-500 ease-in-out group-hover:scale-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo91CoY8hDPAL6skHAKrBxE0_KtlNE1TGRyb-8iJ5xJwQhu0cN1O-nPkTScegmCOeKb9wl1mhxzG9hTCcZaf_RiVRiqW1uWLO_O13edKj5YUKYJr2aWII68r1IKq3Su3w8H6eyAMAoPx2SpDO-_ybNX1QocAx86EHfvI5UrQdjoIQ-taucluEMYlIaFgoNmkJI5fkFdP7n_Onh4wWYBEx0-R_x6K_1gCfss0bLLEWHyYYK9njXBX_0NrgsY5B6_BdttZF6hx1WtpkQkrM"/>
+</div>
+<!-- B2G1 Badge -->
+<span class="absolute bottom-0 left-0 bg-mhc-yellow border border-gray-600 text-mhc-dark text-sm font-bold px-3 py-1 rounded-full z-10">
+        B2G1
+      </span>
+</section>
+<!-- END: Left Column - Image Well -->
+<!-- BEGIN: Right Column - Content Stack -->
+<section class="w-full flex flex-col flex-1 justify-between" data-purpose="content-section">
+<div class="flex flex-col gap-2">
+<!-- Headers -->
+<header class="flex flex-col">
+<span class="text-sm text-mhc-gray-text font-medium">Pod Kit</span>
+<h2 class="text-xl font-bold text-mhc-dark leading-tight mt-1">THCA LIQUID DIAMONDS</h2>
+<span class="text-sm text-mhc-gray-text mt-1">Modern Herb Co</span>
+</header>
+<!-- Effects Row -->
+<div class="flex flex-wrap gap-2 mt-1" data-purpose="effect-tags">
+<span class="inline-flex items-center gap-1.5 bg-mhc-gray-light px-3 py-1 rounded-full text-sm text-mhc-dark font-medium">
+<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"></path></svg>
+            Indica
+          </span>
+<span class="inline-flex items-center gap-1.5 bg-mhc-gray-light px-3 py-1 rounded-full text-sm text-mhc-dark font-medium">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M2 12h20"></path><path d="M12 2v20"></path><path d="m4.93 4.93 14.14 14.14"></path><path d="m19.07 4.93-14.14 14.14"></path></svg>
+            Hybrid
+          </span>
+<span class="inline-flex items-center gap-1.5 bg-mhc-gray-light px-3 py-1 rounded-full text-sm text-mhc-dark font-medium">
+<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+            Sativa
+          </span>
+</div>
+<!-- Counts Row -->
+<div class="flex flex-wrap gap-2" data-purpose="count-tags">
+<span class="bg-mhc-gray-light px-3 py-1 rounded-full text-sm text-mhc-dark font-medium">1ct</span>
+<span class="bg-mhc-gray-light px-3 py-1 rounded-full text-sm text-mhc-dark font-medium">5ct</span>
+<span class="bg-mhc-gray-light px-3 py-1 rounded-full text-sm text-mhc-dark font-medium">20ct</span>
+</div>
+</div>
+<!-- Expandable Controls Area -->
+<div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+<div class="overflow-hidden">
+<div class="flex flex-col gap-2 pt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out delay-100">
+<!-- Variant Selector Dropdown -->
+<button class="w-full border border-gray-600 rounded-control p-2 flex items-center justify-between hover:bg-gray-50 transition-colors" data-purpose="variant-selector">
+<div class="flex items-center gap-2">
+<div class="bg-mhc-gray-light rounded-full p-1.5">
+<svg class="w-3 h-3 text-mhc-dark" fill="currentColor" viewbox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"></path></svg>
+</div>
+<span class="font-semibold text-mhc-dark">Huckleberry</span>
+<span class="bg-mhc-gray-light px-2 py-0.5 rounded-full text-xs font-medium ml-1">1ct</span>
+</div>
+<div class="flex items-center gap-2 text-mhc-gray-text">
+<span class="">$5</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</button>
+<!-- Action Buttons -->
+<div class="flex gap-2" data-purpose="action-buttons">
+<button class="flex-1 bg-mhc-secondary-btn border border-gray-600 rounded-control py-2.5 text-mhc-dark font-medium hover:bg-opacity-80 transition-opacity">
+                Details
+              </button>
+<button aria-label="Add to cart" class="flex-1 bg-mhc-yellow border border-gray-600 rounded-control py-2.5 flex justify-center items-center hover:bg-opacity-80 transition-opacity">
+<svg class="w-5 h-5 text-mhc-dark" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 9v4m-2-2h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Row (Shipping & Rating) -->
+<footer class="flex items-center justify-between pt-2 mt-1">
+<span class="bg-mhc-gray-light px-3 py-1 rounded-full text-sm text-mhc-dark font-medium">Fast Shipping</span>
+<div class="flex items-center gap-1 text-sm">
+<svg class="w-4 h-4 text-mhc-yellow fill-current" viewbox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+<span class="font-bold text-mhc-dark">4.5</span>
+<span class="text-mhc-gray-text">(2)</span>
+</div>
+</footer>
+</section>
+<!-- END: Right Column - Content Stack -->
+</div>
+</article>
+</body></html>
