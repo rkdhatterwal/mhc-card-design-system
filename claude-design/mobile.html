@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#eeeeee; font-family:'Assistant',system-ui,sans-serif; }
+  a { color:#1a1a1a; text-decoration:none; }
+  a:hover { color:#111827; }
+</style>
+</helmet>
+<div style="min-height:100vh; background:#eeeeee; padding:20px 20px 40px; font-family:'Assistant',system-ui,sans-serif; -webkit-font-smoothing:antialiased">
+  <p style="font-size:13px; color:#6b7280; max-width:420px; margin:0 auto 14px; line-height:1.5">v2 mobile — strength top-LEFT, label top-RIGHT, strain shown as icon-only circles.</p>
+  <div style="max-width:400px; margin:0 auto; background:#ffffff; border-radius:18px; padding:12px">
+    <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; align-items:stretch">
+      <sc-for list="{{ cards }}" as="card" hint-placeholder-count="4">
+        <div style="display:flex; flex-direction:column; height:100%; background:#fff; border:1px solid #e5e7eb; border-radius:14px">
+          <a href="#" style="position:relative; display:block; aspect-ratio:1/1; border-radius:13px 13px 0 0; overflow:hidden; background:#f6f6f7">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background: {{ card.imgBg }}">
+              <div style="width:52%; height:52%; border-radius:50%; background: {{ card.imgDot }}"></div>
+            </div>
+            <sc-if value="{{ card.strength }}" hint-placeholder-val="{{ true }}">
+              <span style="position:absolute; top:9px; left:11px; z-index:3; max-width:52%; display:block; color:#7c5e10; font-size:17px; font-weight:800; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.strength }}</span>
+            </sc-if>
+            <sc-if value="{{ card.label }}" hint-placeholder-val="{{ true }}">
+              <span style="position:absolute; top:8px; right:8px; z-index:3; background:#e3e829; color:#111827; font-weight:800; font-size:12px; line-height:1; letter-spacing:.2px; padding:5px 10px; border-radius:999px; box-shadow:0 1px 4px rgba(0,0,0,.18); max-width:46%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.label }}</span>
+            </sc-if>
+            <sc-if value="{{ card.brand }}" hint-placeholder-val="{{ true }}">
+              <span style="position:absolute; bottom:9px; left:11px; z-index:3; max-width:calc(100% - 22px); display:block; color:#4a4a8a; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.brand }}</span>
+            </sc-if>
+          </a>
+
+          <div style="display:flex; flex-direction:column; flex:1 1 auto; min-width:0; padding:10px; gap:6px">
+            <a href="#" data-fit-title style="display:block; font-size:20px; font-weight:700; color:#1a1a1a; line-height:1.18; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.title }}</a>
+            <sc-if value="{{ card.sub }}" hint-placeholder-val="{{ true }}">
+              <p data-fit-sub style="margin:-4px 0 0; font-size:15px; font-weight:500; color:#6b7280; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.sub }}</p>
+            </sc-if>
+
+            <div style="flex:1 1 auto; min-height:8px; margin:-6px 0"></div>
+
+            <sc-if value="{{ card.hasStrains }}" hint-placeholder-val="{{ true }}">
+              <div aria-label="Strain types" style="display:flex; flex-wrap:wrap; gap:6px">
+                <sc-for list="{{ card.strains }}" as="s" hint-placeholder-count="2">
+                  <span title="{{ s.label }}" style="display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; min-width:28px; flex:0 0 28px; border-radius:50%; background: {{ s.bg }}; color: {{ s.fg }}">{{ s.icon }}</span>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ card.hasSizes }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex; flex-wrap:wrap; gap:5px">
+                <sc-for list="{{ card.sizes }}" as="size" hint-placeholder-count="2">
+                  <span style="font-size:11px; font-weight:600; color:#374151; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:999px; padding:2px 9px; line-height:1.4; white-space:nowrap">{{ size }}</span>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ card.hasVariants }}" hint-placeholder-val="{{ true }}">
+              <div style="position:relative; min-height:40px">
+                <button type="button" onClick="{{ card.toggle }}" aria-haspopup="listbox" style="position:relative; width:100%; display:flex; align-items:center; gap:6px; font-family:inherit; font-size:13px; font-weight:600; color:#1a1a1a; background:#fff; border:1.5px solid #d1d5db; border-radius:9px; padding:8px 30px 8px 10px; cursor:pointer; text-align:left; opacity: {{ card.selOpacity }}">
+                  <span style="display:flex; align-items:center; gap:6px; flex:1 1 auto; min-width:0">
+                    <sc-if value="{{ card.selHasStrain }}" hint-placeholder-val="{{ true }}">
+                      <span style="display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; flex-shrink:0; background: {{ card.selStrainBg }}; color: {{ card.selStrainFg }}">{{ card.selStrainIcon }}</span>
+                    </sc-if>
+                    <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-decoration: {{ card.selDecoration }}">{{ card.selTitle }}</span>
+                  </span>
+                  <span style="font-weight:700; flex-shrink:0; text-decoration: {{ card.selDecoration }}">{{ card.selPrice }}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); pointer-events:none; color:#6b7280"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <sc-if value="{{ card.open }}">
+                  <ul role="listbox" style="list-style:none; margin:0; padding:4px; position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:50; background:#fff; border:1.5px solid #d1d5db; border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.18); max-height:184px; overflow-y:auto">
+                    <sc-for list="{{ card.options }}" as="opt" hint-placeholder-count="3">
+                      <li role="option" onClick="{{ opt.select }}" style="display:flex; align-items:center; gap:7px; padding:9px 8px; border-radius:6px; cursor:pointer; font-size:13px; background: {{ opt.rowBg }}; opacity: {{ opt.rowOpacity }}" style-hover="background:#f6f6f7">
+                        <sc-if value="{{ opt.hasStrain }}" hint-placeholder-val="{{ true }}">
+                          <span style="display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; flex-shrink:0; background: {{ opt.strainBg }}; color: {{ opt.strainFg }}">{{ opt.icon }}</span>
+                        </sc-if>
+                        <span style="flex:1 1 auto; min-width:0; font-weight:600; text-decoration: {{ opt.decoration }}">{{ opt.title }}</span>
+                        <span style="font-weight:700; flex-shrink:0">{{ opt.price }}</span>
+                      </li>
+                    </sc-for>
+                  </ul>
+                </sc-if>
+              </div>
+            </sc-if>
+            <sc-if value="{{ card.noVariants }}">
+              <div aria-hidden="true" style="min-height:40px"></div>
+            </sc-if>
+
+            <div style="display:flex; align-items:stretch; gap:6px">
+              <sc-if value="{{ card.buyable }}" hint-placeholder-val="{{ true }}">
+                <div aria-label="Quantity" style="display:flex; align-items:stretch; border:1.5px solid #d1d5db; border-radius:9px; overflow:hidden; flex-shrink:0">
+                  <button type="button" onClick="{{ card.dec }}" aria-label="Decrease" style="width:30px; border:none; background:#f9fafb; font-size:16px; line-height:1; color:#1a1a1a; cursor:pointer; font-family:inherit" style-hover="background:#f3f4f6">&#8722;</button>
+                  <div style="width:34px; display:flex; align-items:center; justify-content:center; border-left:1px solid #e5e7eb; border-right:1px solid #e5e7eb; font-size:14px; font-weight:600; color:#1a1a1a">{{ card.qty }}</div>
+                  <button type="button" onClick="{{ card.inc }}" aria-label="Increase" style="width:30px; border:none; background:#f9fafb; font-size:16px; line-height:1; color:#1a1a1a; cursor:pointer; font-family:inherit" style-hover="background:#f3f4f6">&#43;</button>
+                </div>
+              </sc-if>
+              <button type="button" onClick="{{ card.add }}" style="flex:1 1 auto; display:inline-flex; align-items:center; justify-content:center; gap:6px; border:2px solid {{ card.atcBorder }}; background: {{ card.atcBg }}; color: {{ card.atcColor }}; font-family:inherit; font-size:13px; font-weight:700; border-radius:9px; padding:8px; min-width:44px; cursor: {{ card.atcCursor }}">
+                <sc-if value="{{ card.buyable }}" hint-placeholder-val="{{ true }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+                </sc-if>
+                <sc-if value="{{ card.soldOut }}"><span>Sold Out</span></sc-if>
+                <sc-if value="{{ card.added }}"><span style="font-size:15px">&#10003;</span></sc-if>
+              </button>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap">
+              <p style="margin:0; font-size:15px; font-weight:700; color:#1a1a1a; line-height:1.2">{{ card.priceRange }}</p>
+              <sc-if value="{{ card.hasRating }}" hint-placeholder-val="{{ true }}">
+                <span style="display:inline-flex; align-items:center; gap:3px; font-size:13px; font-weight:600; color:#1a1a1a; white-space:nowrap">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:#f5a623; flex-shrink:0"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                  <span>{{ card.ratingAvg }}</span>
+                  <span style="color:#6b7280; font-weight:500">{{ card.ratingCount }}</span>
+                </span>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:440,&quot;height&quot;:880}}">
+const STRAIN = {
+  indica: { bg: '#ede9fe', fg: '#4c1d95', label: 'Indica' },
+  hybrid: { bg: '#d1fae5', fg: '#065f46', label: 'Hybrid' },
+  sativa: { bg: '#fef3c7', fg: '#92400e', label: 'Sativa' }
+};
+
+function svg(size, viewBox, children) {
+  return React.createElement('svg', {
+    xmlns: 'http://www.w3.org/2000/svg', width: size, height: size, viewBox,
+    fill: 'none', stroke: 'currentColor', strokeWidth: 1.6,
+    strokeLinecap: 'round', strokeLinejoin: 'round', style: { display: 'block' }
+  }, children);
+}
+function strainIcon(kind, size) {
+  size = size || 14;
+  if (kind === 'indica') {
+    return svg(size, '0 0 16 16', React.createElement('path', { key: 'p', d: 'M11.5 4.5 A5 5 0 1 0 11.5 11.5 A3.5 3.5 0 1 1 11.5 4.5 Z' }));
+  }
+  if (kind === 'sativa') {
+    const rays = [[8,1,8,3],[8,13,8,15],[1,8,3,8],[13,8,15,8],[3.05,3.05,4.46,4.46],[11.54,11.54,12.95,12.95],[12.95,3.05,11.54,4.46],[4.46,11.54,3.05,12.95]]
+      .map((c, i) => React.createElement('line', { key: i, x1: c[0], y1: c[1], x2: c[2], y2: c[3] }));
+    return svg(size, '0 0 16 16', [React.createElement('circle', { key: 'c', cx: 8, cy: 8, r: 2.5 })].concat(rays));
+  }
+  return svg(size, '0 0 24 24', [
+    React.createElement('line', { key: 'a', x1: 12, y1: 3, x2: 12, y2: 20 }),
+    React.createElement('line', { key: 'b', x1: 8, y1: 20, x2: 16, y2: 20 }),
+    React.createElement('line', { key: 'c', x1: 4, y1: 7, x2: 20, y2: 7 }),
+    React.createElement('path', { key: 'd', d: 'M4 11 Q6.5 14 9 11' }),
+    React.createElement('path', { key: 'e', d: 'M15 11 Q17.5 14 20 11' })
+  ]);
+}
+
+const DATA = [
+  {
+    id: 1, label: 'B2G1', strength: 'Mild', brand: 'Modern Herb Co',
+    imgBg: '#e4e0fb', imgDot: '#9b8cf0',
+    title: 'Enhanced Spectrum', sub: 'THC Craft Soda — Grape Kush',
+    strains: ['indica', 'sativa', 'hybrid'], sizes: ['1ct', '5ct', '20ct'],
+    options: [
+      { title: '1ct / Huckleberry', price: '$1.50', strain: 'indica' },
+      { title: '5ct / Sour Apple', price: '$12', strain: 'hybrid' },
+      { title: '20ct / Strawberry', price: '$40', strain: 'sativa' }
+    ],
+    priceRange: '$1.50 – $40', ratingAvg: '4.5', ratingCount: '(2)'
+  },
+  {
+    id: 2, label: 'SALE', strength: 'Strong', brand: 'Modern Herb Co',
+    imgBg: '#fde4cf', imgDot: '#e0954d',
+    title: 'Sleepy Time', sub: 'Indica Gummies',
+    strains: ['indica'], sizes: ['10ct', '30ct'],
+    options: [
+      { title: '10ct', price: '$18', strain: 'indica' },
+      { title: '30ct', price: '$42', strain: 'indica' }
+    ],
+    priceRange: '$18 – $42', ratingAvg: '5.0', ratingCount: '(41)'
+  },
+  {
+    id: 3, label: '', strength: '', brand: '',
+    imgBg: '#e3f4cf', imgDot: '#8fbf4d',
+    title: 'CBD Tincture 1000mg', sub: '',
+    strains: [], sizes: ['15ml', '30ml'],
+    options: [
+      { title: '15ml', price: '$34', strain: '' },
+      { title: '30ml — Sold out', price: '$59', strain: '', soldOut: true }
+    ],
+    priceRange: '$34 – $59', ratingAvg: '', ratingCount: ''
+  },
+  {
+    id: 4, label: 'New!', strength: 'Medium', brand: 'Black Shelf',
+    imgBg: '#fbd5d5', imgDot: '#e06666',
+    title: 'Hybrid Soda', sub: 'Single Size',
+    strains: ['hybrid'], sizes: [],
+    options: [],
+    priceRange: '$6', ratingAvg: '4.0', ratingCount: '(8)'
+  }
+];
+
+class Component extends DCLogic {
+  state = { qty: {}, sel: {}, open: null, added: null };
+
+  componentDidMount() { this.fit(); if (document.fonts) document.fonts.ready.then(() => this.fit()); }
+  componentDidUpdate() { this.fit(); }
+
+  fit() {
+    const shrink = (el, base, min) => {
+      el.style.fontSize = base + 'px';
+      let size = base;
+      while (size > min && el.scrollWidth > el.clientWidth + 1) { size -= 0.5; el.style.fontSize = size + 'px'; }
+    };
+    document.querySelectorAll('[data-fit-title]').forEach(el => shrink(el, 20, 12));
+    document.querySelectorAll('[data-fit-sub]').forEach(el => shrink(el, 15, 10));
+  }
+
+  bump(id, d) {
+    this.setState(s => {
+      const q = Math.max(1, Math.min(999, (s.qty[id] || 1) + d));
+      return { qty: Object.assign({}, s.qty, { [id]: q }) };
+    });
+  }
+
+  pick(id, i) {
+    this.setState(s => ({ sel: Object.assign({}, s.sel, { [id]: i }), open: null }));
+  }
+
+  add(id) {
+    this.setState({ added: id });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ added: null }), 1300);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const cards = DATA.map(c => {
+      const selIdx = s.sel[c.id] || 0;
+      const sel = c.options[selIdx];
+      const selStrain = sel && sel.strain ? STRAIN[sel.strain] : null;
+      const soldOut = c.options.length ? c.options.every(o => o.soldOut) : false;
+      const selSold = sel ? !!sel.soldOut : false;
+      const disabled = soldOut || selSold;
+      return {
+        imgBg: c.imgBg, imgDot: c.imgDot,
+        label: c.label, strength: c.strength, brand: c.brand,
+        title: c.title, sub: c.sub,
+        hasStrains: c.strains.length > 0,
+        strains: c.strains.map(k => ({ bg: STRAIN[k].bg, fg: STRAIN[k].fg, label: STRAIN[k].label, icon: strainIcon(k) })),
+        hasSizes: c.sizes.length > 0, sizes: c.sizes,
+        hasVariants: c.options.length > 0,
+        noVariants: c.options.length === 0,
+        open: s.open === c.id,
+        toggle: () => this.setState(st => ({ open: st.open === c.id ? null : c.id })),
+        selTitle: sel ? sel.title : '',
+        selPrice: sel ? sel.price : '',
+        selOpacity: selSold ? 0.6 : 1,
+        selDecoration: selSold ? 'line-through' : 'none',
+        selHasStrain: !!selStrain,
+        selStrainBg: selStrain ? selStrain.bg : 'transparent',
+        selStrainFg: selStrain ? selStrain.fg : 'inherit',
+        selStrainIcon: selStrain ? strainIcon(sel.strain) : null,
+        options: c.options.map((o, i) => ({
+          title: o.title, price: o.price,
+          hasStrain: !!o.strain,
+          strainBg: o.strain ? STRAIN[o.strain].bg : 'transparent',
+          strainFg: o.strain ? STRAIN[o.strain].fg : 'inherit',
+          icon: o.strain ? strainIcon(o.strain) : null,
+          rowBg: i === selIdx ? '#f3f4f6' : 'transparent',
+          rowOpacity: o.soldOut ? 0.5 : 1,
+          decoration: o.soldOut ? 'line-through' : 'none',
+          select: () => this.pick(c.id, i)
+        })),
+        qty: s.qty[c.id] || 1,
+        inc: () => this.bump(c.id, 1),
+        dec: () => this.bump(c.id, -1),
+        add: () => { if (!disabled) this.add(c.id); },
+        buyable: !disabled,
+        soldOut: disabled,
+        added: s.added === c.id,
+        atcBg: disabled ? '#e5e7eb' : '#e3e829',
+        atcBorder: disabled ? '#d1d5db' : '#111827',
+        atcColor: disabled ? '#9ca3af' : '#111827',
+        atcCursor: disabled ? 'not-allowed' : 'pointer',
+        priceRange: c.priceRange,
+        hasRating: !!c.ratingAvg, ratingAvg: c.ratingAvg, ratingCount: c.ratingCount
+      };
+    });
+    return { cards };
+  }
+}
+
+</script>
+</body>
+</html>

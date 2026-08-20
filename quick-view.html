@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modern Herb Co - Product Detail Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#5f5e5f",
+                        "on-secondary-fixed": "#1c1b1c",
+                        "surface-container-low": "#f4f4f0",
+                        "on-background": "#1b1c1a",
+                        "tertiary-fixed": "#e5e1e2",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#faf9f5",
+                        "on-primary-fixed-variant": "#484a00",
+                        "secondary-fixed": "#e5e1e2",
+                        "tertiary-fixed-dim": "#c9c6c7",
+                        "on-surface": "#1b1c1a",
+                        "secondary-container": "#e5e1e2",
+                        "on-primary-container": "#646700",
+                        "primary-fixed": "#e6eb2d",
+                        "on-secondary-fixed-variant": "#484647",
+                        "inverse-surface": "#2f312e",
+                        "surface-variant": "#e3e2df",
+                        "surface-container": "#efeeea",
+                        "on-primary-fixed": "#1c1d00",
+                        "surface-tint": "#606200",
+                        "primary": "#606200",
+                        "on-secondary-container": "#656465",
+                        "on-error-container": "#93000a",
+                        "beige": "#F9F8F4",
+                        "surface": "#faf9f5",
+                        "stroke-alt": "#807E7F",
+                        "muted-gray": "#9CA3AF",
+                        "on-tertiary-fixed": "#1c1b1c",
+                        "background": "#faf9f5",
+                        "putty": "#F0EAE4",
+                        "outline-variant": "#c9c8ad",
+                        "on-tertiary-fixed-variant": "#474647",
+                        "surface-container-highest": "#e3e2df",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#c9c6c7",
+                        "on-tertiary-container": "#646263",
+                        "on-surface-variant": "#484833",
+                        "effect-balance": "#F0EAE4",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#e2dfe0",
+                        "on-primary": "#ffffff",
+                        "effect-sleep": "#DCEDEC",
+                        "surface-dim": "#dbdad6",
+                        "effect-energy": "#F7F7DD",
+                        "primary-fixed-dim": "#c9ce00",
+                        "primary-container": "#e3e829",
+                        "surface-container-high": "#e9e8e4",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c9ce00",
+                        "outline": "#797861",
+                        "ink": "#393839",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f2f1ed",
+                        "secondary": "#5f5e5f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "8px",
+                        "base": "8px",
+                        "grid-gap": "10px",
+                        "control-inner": "8px",
+                        "card-padding": "12px"
+                    },
+                    "fontFamily": {
+                        "price": ["Poppins"],
+                        "headline-lg": ["Poppins"],
+                        "brand-label": ["Poppins"],
+                        "subtitle": ["Poppins"],
+                        "caption": ["Poppins"],
+                        "ui-label": ["Poppins"],
+                        "metadata": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "price": ["15px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg": ["20px", { "lineHeight": "1.12", "fontWeight": "700" }],
+                        "brand-label": ["15px", { "lineHeight": "1.12", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "subtitle": ["15px", { "lineHeight": "1.12", "fontWeight": "400" }],
+                        "caption": ["9.5px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "ui-label": ["13px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "metadata": ["11px", { "lineHeight": "1.0", "letterSpacing": "1px", "fontWeight": "700" }]
+                    },
+                    "borderWidth": {
+                        "1.5": "1.5px"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #eeeeee; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary span { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="font-subtitle text-on-surface antialiased pb-safe min-h-screen flex flex-col">
+<!-- Top Navigation Placeholder -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-10">
+<div class="absolute inset-0 bg-ink/60 backdrop-blur-sm"></div>
+<div class="relative bg-surface w-full max-w-[1200px] max-h-[90vh] overflow-hidden rounded-[14px] shadow-2xl flex flex-col">
+<button class="absolute top-4 right-4 z-50 w-10 h-10 flex items-center justify-center bg-surface rounded-full border border-surface-container-highest text-ink hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="overflow-y-auto hide-scrollbar p-6 md:p-10">
+<main class="w-full md:grid md:grid-cols-2 md:gap-10 items-start">
+<!-- Column A (Left - Media) -->
+<section class="flex flex-col gap-base w-full">
+<div class="bg-surface w-full aspect-square rounded-[14px] border border-surface-container-highest flex items-center justify-center p-4 relative overflow-hidden">
+<div class="absolute top-4 left-4 font-ui-label text-ui-label text-ink z-10">Max Potency</div>
+<div class="absolute top-4 right-4 z-10">
+<span class="material-symbols-outlined text-stroke-alt" style="font-variation-settings: 'FILL' 0;">share</span>
+</div>
+<img class="w-full h-full object-contain mix-blend-multiply drop-shadow-sm" data-alt="A high-quality 3D render of a product kit packaging for Modern Herb Co, featuring a clean, minimalist design against a sterile white background. The packaging is sharply detailed, highlighting a premium, clinical aesthetic with subtle typography and a sleek, modern finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoJweCC0BJfK_lJtdOMqJV7JM8WJl5y_g3InRRF9swrRtdpbjrOZwCkFKhLhdMF_--ym3mPNRXdcs6R64zUdh8SwrKDodSSgNTX143KVkV40lJKbVmDgPG_QEfCJnnDztM1o5R-RUufbSSnGp3oLV6fmgOdz5_FmlS0f1N0_Ewj-A5W0c98h5hT_EykEL6-Hl-ibctSOla9e3Z2uKceTW2yIjDf-C8l230NVExHfZOwAANlh7XmSq41f9iGKAlYT0iko0"/>
+</div>
+<div class="flex overflow-x-auto gap-base hide-scrollbar py-2">
+<button class="w-20 h-20 flex-shrink-0 bg-surface rounded-[14px] border-1.5 border-ink p-1">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="A high-quality 3D render of a product kit packaging for Modern Herb Co, featuring a clean, minimalist design against a sterile white background. The packaging is sharply detailed, highlighting a premium, clinical aesthetic with subtle typography and a sleek, modern finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPJzHPa4LX0rVy7IG7b91_radyXDZcvyME5_VZFof_AwP314TcJDv6WJOWneoP8C4nGzfmkYESb61b97hzxCGtgdRqaqWTEGhh4daEi4_LiRLfWDmNwKDwz54S9YuTgFaOwc1MDl8llweqdlqWTTqtWheujeFzPIWCmEywpj4DLhFypJuI459b5CNfAp2PVZlRkvAk254fEHB3jAJcFt4kff-B1l0fkOgKcX8IPA50AfEVsbESOyFRxJCssWPGeOrR2pY"/>
+</button>
+<button class="w-20 h-20 flex-shrink-0 bg-surface rounded-[14px] border border-surface-container-highest p-1 opacity-60 hover:opacity-100">
+<div class="bg-cover bg-center w-full h-full rounded-lg" data-alt="Close up detail shot of the product texture, brightly lit in a clean white environment, showcasing premium quality and modern clinical design aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDMoue43BqS2MHODcFUYJQAHKBibgCvDim3ge5tYNnjGjkvjsfrYbfb5WCQXlfWCXY5w_wzzqXh9oSvppxXpG-kaBMuyVtIG47y5VIOQdP65iY4eQqTAZWj6GCV8NvFX631BelWp18ICeIFqszgQH-VP59atgf2QlY_2J8FJ4mNToUFAeAjiOPN-RXSE200mFPqz7ij_BqQt-pj_p4JtyOORsAZWh4a4szmdnB9uRG2BFcVBdJyHYkNQ')"></div>
+</button>
+<button class="w-20 h-20 flex-shrink-0 bg-surface rounded-[14px] border border-surface-container-highest p-1 opacity-60 hover:opacity-100">
+<div class="bg-cover bg-center w-full h-full rounded-lg" data-alt="Lifestyle shot of the product kit placed on a minimalist white table next to a subtle green plant, emphasizing a warm, high-end wellness vibe." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiXmqqgiNEtqvPWJT_8AgDpRlppT92zL_oKl1y_qbcmAiiGVxuQEFzMSXXsimUI7TxCRU37SOctfJpikFp2NrNwX16udOxEBiaIDpu-C0DTJNoXuN30Cdp9X1wJRBLuCar0wJLktjY0QsUtxgM6q8z6W0BO9RXXtTJpCdWxH6mdtQUQLPzyFM6ROw0Nf4ueTg_i2IItoe9XKmwX5iik8VkPIOEy_uvBFngDAfVCOy0B-o48GYZr9Ncww')"></div>
+</button>
+</div>
+</section>
+<!-- Column B (Right - Information) -->
+<section class="flex flex-col gap-6 mt-6 md:mt-0">
+<!-- Heading Stack -->
+<div class="flex flex-col gap-1">
+<div class="font-subtitle text-subtitle text-tertiary">Modern Herb Co</div>
+<h1 class="font-headline-lg text-headline-lg text-ink">THCA LIQUID DIAMONDS</h1>
+<div class="flex items-center justify-between">
+<div class="font-subtitle text-subtitle text-muted-gray">Pod Kit</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="font-ui-label text-ui-label text-ink">5.0 <span class="text-tertiary font-normal">(41)</span></span>
+</div>
+</div>
+</div>
+<div class="h-px bg-surface-container-highest w-full"></div>
+<!-- Flavor Selector -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="font-ui-label text-ui-label text-ink">Flavor: <span class="font-normal">Wedding Cake</span></div>
+</div>
+<div class="grid grid-cols-3 gap-grid-gap">
+<!-- Selected Flavor -->
+<button class="bg-surface rounded-lg border-1.5 border-primary-container p-2 flex flex-col items-center gap-2 relative overflow-hidden text-left">
+<div class="absolute top-1 right-1 bg-effect-sleep text-ink font-caption text-caption px-1.5 py-0.5 rounded-sm flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">nightlight</span>
+                            Indica
+                        </div>
+<div class="w-10 h-10 rounded-full bg-surface-container-low mt-4 flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-cover" data-alt="Small circular swatch showing a pale, creamy white texture representing wedding cake flavor, modern minimalist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdlrJX81lC4m93VeM0IVmnPaaS8tg2HTRVbIaRXloOQcUXxi2GPNrn410k4Nw1CYMh0BulFYxm7_DgZRSWATTYbBj9qpftr7MWzpHVIV9HfrWV5RdLMpldBw5Tqr0NUB5Vb8hV-vfLgLxM2tlOl8wp99avS6W2d-KgG9v73sw-PqXi8McVM9SLcjsRZHqnF2Hoj-wGZXVWnXwXYnRsEoT8fWzpbAUyQoCo1rj0eiHeV9FTWlzyZ2AsQ')"></div>
+</div>
+<span class="font-ui-label text-ui-label text-ink w-full text-center truncate">Wedding Cake</span>
+</button>
+<!-- Unselected Flavor -->
+<button class="bg-surface rounded-lg border border-surface-container-highest p-2 flex flex-col items-center gap-2 relative overflow-hidden text-left hover:border-stroke-alt transition-colors">
+<div class="absolute top-1 right-1 bg-effect-energy text-ink font-caption text-caption px-1.5 py-0.5 rounded-sm flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                            Sativa
+                        </div>
+<div class="w-10 h-10 rounded-full bg-surface-container-low mt-4 flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-cover" data-alt="Small circular swatch showing a bright citrus orange texture representing sour diesel flavor, modern minimalist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPS5n73FXMSCTNaf0tw8wLVsLPIiEfZGZrx6ge7a-JZx46Q_VEehnnLSSodAgMlXIMZtSCtXe2aObUko3pPUvFTpR5BBwbZYwefiKeG5w_u9fKB1wTIzgCT0deOOP3hcg1L6Bb8kKUZhmH1n8gE0_ICZmuBT4pbXcGXmEq0Y8lA3d5sClnwJ9bhwvQ6Iq0w822obJgXClelb0hmbZFMojStwvopP7nKtg87GiFi44wwR0ri8M5-n_TCA')"></div>
+</div>
+<span class="font-ui-label text-ui-label text-ink w-full text-center truncate">Sour Diesel</span>
+</button>
+<!-- Unselected Flavor -->
+<button class="bg-surface rounded-lg border border-surface-container-highest p-2 flex flex-col items-center gap-2 relative overflow-hidden text-left hover:border-stroke-alt transition-colors">
+<div class="absolute top-1 right-1 bg-effect-balance text-ink font-caption text-caption px-1.5 py-0.5 rounded-sm flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">qr_code_2</span>
+                            Hybrid
+                        </div>
+<div class="w-10 h-10 rounded-full bg-surface-container-low mt-4 flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-cover" data-alt="Small circular swatch showing a deep berry purple texture representing mixed berries flavor, modern minimalist style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7ZH7gcIRbtH5CzQ3D19zJEEKtJiDExPhZ2HlDz5FnkcZGX_6Q8tbx7vTqh_Kb1APlId2M2fJd1K9qtnYKuNXD_5BRb0ybPdOteCuBN9kyE817E8f9DyM2ZCwM52QvShRW3e3daRqxuj_izd2QoymPwQnUxmSOm1fcvPxnvV2xgEHKKcYVMkq-GT5lnByUjs47X6MXvFMqSeuAYgJ7l-0RJ_Xgo7w1cfOjS0af_RmYZKZdU5okHejxfw')"></div>
+</div>
+<span class="font-ui-label text-ui-label text-ink w-full text-center truncate">Mixed Berries</span>
+</button>
+</div>
+</div>
+<!-- Size Selector -->
+<div class="flex flex-col gap-3">
+<div class="font-ui-label text-ui-label text-ink">Size</div>
+<div class="flex flex-wrap gap-grid-gap">
+<button class="bg-surface rounded-full border border-surface-container-highest px-4 py-2 font-ui-label text-ui-label text-tertiary hover:border-stroke-alt transition-colors">
+                        1ct
+                    </button>
+<button class="bg-surface rounded-full border border-surface-container-highest px-4 py-2 font-ui-label text-ui-label text-tertiary hover:border-stroke-alt transition-colors">
+                        5ct
+                    </button>
+<button class="bg-surface rounded-full border-1.5 border-ink px-4 py-2 font-ui-label text-ui-label text-ink bg-surface-container-low">
+                        10ct
+                    </button>
+<button class="bg-surface rounded-full border border-surface-container-highest px-4 py-2 font-ui-label text-ui-label text-tertiary opacity-50 cursor-not-allowed">
+                        30ct
+                    </button>
+</div>
+</div>
+<!-- Purchase Options -->
+<div class="flex flex-col gap-0 border border-surface-container-highest rounded-[14px] overflow-hidden bg-surface">
+<!-- Subscribe -->
+<label class="flex flex-col p-4 border-b border-surface-container-highest bg-beige cursor-pointer relative">
+<div class="flex items-start gap-3">
+<div class="mt-0.5 relative flex items-center justify-center">
+<input checked="" class="w-5 h-5 border-2 border-ink text-ink focus:ring-ink" name="purchase_type" type="radio"/>
+</div>
+<div class="flex-grow flex flex-col">
+<div class="flex justify-between items-center">
+<span class="font-ui-label text-ui-label text-ink">Subscribe &amp; Save</span>
+<span class="font-price text-price text-ink">$42.00</span>
+</div>
+<span class="font-caption text-caption text-tertiary mt-1">Delivery every 30 days</span>
+<div class="bg-surface-container-low rounded-lg p-3 mt-3 border border-surface-container-highest flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-ink">sync</span>
+<span class="font-subtitle text-subtitle text-[12px] text-ink">Swap or skip anytime</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-ink">cancel</span>
+<span class="font-subtitle text-subtitle text-[12px] text-ink">Cancel after 2nd order</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute top-0 right-0 bg-primary-container text-ink font-metadata text-metadata px-2 py-1 rounded-bl-lg">SAVE 30%</div>
+</label>
+<!-- One-time -->
+<label class="flex flex-col p-4 cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<div class="relative flex items-center justify-center">
+<input class="w-5 h-5 border-2 border-stroke-alt text-ink focus:ring-ink" name="purchase_type" type="radio"/>
+</div>
+<div class="flex-grow flex justify-between items-center">
+<span class="font-ui-label text-ui-label text-tertiary">One-time purchase</span>
+<span class="font-price text-price text-tertiary">$60.00</span>
+</div>
+</div>
+</label>
+</div>
+<!-- Buy Row -->
+<div class="flex items-stretch gap-stack-gap h-14 mt-2">
+<div class="flex items-center justify-between border-1.5 border-stroke-alt rounded-[14px] px-3 bg-surface w-[120px] flex-shrink-0">
+<button class="text-ink p-1 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">remove</span>
+</button>
+<span class="font-ui-label text-ui-label text-ink">1</span>
+<button class="text-ink p-1 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+<button class="flex-grow bg-primary-container border-1.5 border-stroke-alt rounded-[14px] flex items-center justify-center font-ui-label text-ui-label text-ink hover:opacity-90 transition-opacity gap-2">
+                    Add to Cart - $42.00
+                </button>
+</div>
+<!-- Perks -->
+<div class="flex items-center justify-center gap-6 py-4 mt-2 bg-surface rounded-[14px] border border-surface-container-highest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-ink" style="font-size: 18px;">local_shipping</span>
+<span class="font-subtitle text-subtitle text-[12px] text-ink">Free Shipping $50+</span>
+</div>
+<div class="w-px h-4 bg-surface-container-highest"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-ink" style="font-size: 18px;">verified</span>
+<span class="font-subtitle text-subtitle text-[12px] text-ink">Lab Tested</span>
+</div>
+</div>
+</section>
+<!-- Tabs Section -->
+<section class="col-span-1 md:col-span-2 mt-12 w-full pt-8">
+<div class="flex overflow-x-auto gap-8 border-b border-surface-container-highest hide-scrollbar mb-8" id="tab-buttons">
+<button class="pb-4 font-ui-label text-ui-label text-ink border-b-2 border-ink whitespace-nowrap transition-colors" onclick="switchTab('desc', this)">Description</button>
+<button class="pb-4 font-ui-label text-ui-label text-tertiary hover:text-ink border-b-2 border-transparent hover:border-stroke-alt whitespace-nowrap transition-colors" onclick="switchTab('bts', this)">Behind the Scenes</button>
+<button class="pb-4 font-ui-label text-ui-label text-tertiary hover:text-ink border-b-2 border-transparent hover:border-stroke-alt whitespace-nowrap transition-colors" onclick="switchTab('potency', this)">Potency &amp; Safety Testing</button>
+<button class="pb-4 font-ui-label text-ui-label text-tertiary hover:text-ink border-b-2 border-transparent hover:border-stroke-alt whitespace-nowrap transition-colors" onclick="switchTab('ingredients', this)">Ingredients</button>
+<button class="pb-4 font-ui-label text-ui-label text-tertiary hover:text-ink border-b-2 border-transparent hover:border-stroke-alt whitespace-nowrap transition-colors" onclick="switchTab('shipping', this)">Shipping &amp; Returns</button>
+</div>
+<div class="max-w-3xl" id="tab-contents">
+<div class="block font-subtitle text-subtitle text-ink space-y-4" id="tab-desc">
+<p>Experience the pinnacle of purity and potency with our THCA Liquid Diamonds Pod Kit. Crafted using our proprietary extraction process, these liquid diamonds offer an unparalleled, unadulterated experience.</p>
+<p>Each pod is meticulously filled with crystal-clear liquid diamonds, ensuring a smooth, flavorful, and incredibly potent draw every time. Perfect for those who demand the highest quality and an authentic, dispensary-grade experience.</p>
+</div>
+<div class="hidden font-subtitle text-subtitle text-ink space-y-6" id="tab-bts">
+<p>Take a look inside our state-of-the-art facility to see how we craft our premium THCA Liquid Diamonds.</p>
+<div class="w-full aspect-video bg-surface-container-low border border-surface-container-highest rounded-[14px] flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[48px] text-tertiary">play_circle</span>
+</div>
+</div>
+<div class="hidden font-subtitle text-subtitle text-ink space-y-6" id="tab-potency">
+<p>We believe in radical transparency. Every batch is rigorously tested by independent, third-party laboratories for potency, purity, and safety.</p>
+<div class="w-full h-96 bg-surface-container-low border border-surface-container-highest rounded-[14px] flex flex-col items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[32px] text-tertiary">picture_as_pdf</span>
+<span class="text-tertiary text-sm font-ui-label">Lab Results PDF Viewer Placeholder</span>
+</div>
+</div>
+<div class="hidden font-subtitle text-subtitle text-ink space-y-4" id="tab-ingredients">
+<ul class="list-disc pl-5 space-y-2">
+<li>100% Hemp-derived THCA Liquid Diamonds</li>
+<li>Cannabis-derived Terpenes (CDT)</li>
+<li>Zero artificial flavorings, cutting agents, or fillers</li>
+</ul>
+</div>
+<div class="hidden font-subtitle text-subtitle text-ink space-y-3" id="tab-shipping">
+<details class="border border-surface-container-highest rounded-[14px] bg-surface group">
+<summary class="flex items-center justify-between p-4 cursor-pointer font-ui-label text-ui-label text-ink">
+          What is your shipping policy?
+          <span class="material-symbols-outlined transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-4 pt-0 text-tertiary border-t border-surface-container-highest mt-2">
+          We offer free shipping on all orders over $50. Orders are typically processed within 1-2 business days and delivered within 3-5 business days.
+        </div>
+</details>
+<details class="border border-surface-container-highest rounded-[14px] bg-surface group">
+<summary class="flex items-center justify-between p-4 cursor-pointer font-ui-label text-ui-label text-ink">
+          Do you accept returns?
+          <span class="material-symbols-outlined transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-4 pt-0 text-tertiary border-t border-surface-container-highest mt-2">
+          Yes, we offer a 30-day money-back guarantee on all unopened and unused products. Contact our support team to initiate a return.
+        </div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<div class="flex justify-center mt-8 mb-4">
+<a class="font-subtitle text-ink hover:opacity-70 transition-colors underline decoration-1 underline-offset-4" href="#">
+    Continue Shopping
+  </a>
+</div></div>
+</div>
+</div>
+<!-- Bottom Navigation App Bar Placeholder -->
+<script>
+function switchTab(tabId, element) {
+    const buttons = document.querySelectorAll('#tab-buttons button');
+    buttons.forEach(btn => {
+        btn.classList.remove('border-ink', 'text-ink');
+        btn.classList.add('text-tertiary', 'border-transparent');
+    });
+    
+    element.classList.remove('text-tertiary', 'border-transparent');
+    element.classList.add('border-ink', 'text-ink');
+
+    const contents = document.querySelectorAll('#tab-contents > div');
+    contents.forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('block');
+    });
+
+    const activeContent = document.getElementById('tab-' + tabId);
+    if(activeContent) {
+        activeContent.classList.remove('hidden');
+        activeContent.classList.add('block');
+    }
+}
+</script>
+</body></html>
