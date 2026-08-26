@@ -710,6 +710,8 @@ var ICON = {
   verified:  function (s) { return ui(s || 18, '<path d="M12 2 14.6 5 18.6 5.2 19.4 9.1 22 12 19.4 14.9 18.6 18.8 14.6 19 12 22 9.4 19 5.4 18.8 4.6 14.9 2 12 4.6 9.1 5.4 5.2 9.4 5z"></path><polyline points="8.6 12 11.2 14.5 15.6 9.8"></polyline>'); },
   sync:      function (s) { return ui(s || 16, '<polyline points="21 4 21 10 15 10"></polyline><polyline points="3 20 3 14 9 14"></polyline><path d="M19 10a7.5 7.5 0 0 0-13-3.3L3 10"></path><path d="M5 14a7.5 7.5 0 0 0 13 3.3l3-3.3"></path>'); },
   cancel:    function (s) { return ui(s || 16, '<circle cx="12" cy="12" r="9"></circle><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line>'); },
+  tag:       function (s) { return ui(s || 16, '<path d="M20.6 13.4 12.4 21.6a2 2 0 0 1-2.8 0l-7.2-7.2a2 2 0 0 1-.6-1.4V4a2 2 0 0 1 2-2h9a2 2 0 0 1 1.4.6l6.4 6.4a2 2 0 0 1 0 2.8z"></path><circle cx="7.5" cy="7.5" r="1.4"></circle>'); },
+  users:     function (s) { return ui(s || 16, '<path d="M16 20v-1.6a3.4 3.4 0 0 0-3.4-3.4H6.4A3.4 3.4 0 0 0 3 18.4V20"></path><circle cx="9.5" cy="7.5" r="3.4"></circle><path d="M21 20v-1.6a3.4 3.4 0 0 0-2.6-3.3"></path><path d="M15.5 4.3a3.4 3.4 0 0 1 0 6.4"></path>'); },
   play:      function (s) { return ui(s || 48, '<circle cx="12" cy="12" r="9"></circle><polygon points="10 8.5 16 12 10 15.5"></polygon>'); },
   pdf:       function (s) { return ui(s || 32, '<path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"></path><polyline points="14 2 14 7 19 7"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line>'); },
   star:      function (s, fill) { return ui(s || 16, '<path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path>', { fill: fill || 'none', sw: 1.4 }); }
@@ -927,10 +929,12 @@ function quickViewHTML(c) {
                 '<span style="font-size:13px; font-weight:600; color:var(--ink)">Subscribe &amp; Save</span>' +
                 '<span style="font-size:15px; font-weight:700; color:var(--ink)">' + money(priceNum(sel.price) * 0.7) + '</span>' +
               '</div>' +
-              '<span style="font-size:11px; font-weight:400; color:var(--tertiary); margin-top:4px">Save 30% on your first order, then 10% on every order after.</span>' +
               '<div style="background:var(--surface-container-low); border:1px solid var(--surface-container-highest); border-radius:9px; padding:12px; margin-top:12px; display:flex; flex-direction:column; gap:8px">' +
-                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.sync(16) + 'Swap or skip anytime</span>' +
-                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.cancel(16) + 'Cancel after 2nd order</span>' +
+                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.tag(16) + 'Save 30% on first order, then 10% thereafter</span>' +
+                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.sync(16) + 'Swap, skip, pause anytime</span>' +
+                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.cancel(16) + 'Cancel after 2nd delivery</span>' +
+                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.users(16) + 'Join 200k+ happy customers</span>' +
+                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.truck(16) + 'Prioritized, faster shipping</span>' +
               '</div>' +
             '</div>' +
           '</div>' +
