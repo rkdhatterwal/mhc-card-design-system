@@ -2224,7 +2224,7 @@ var DATA = [
  * Keys keep the DC's `side + ':' + id` shape; only the 'p' side is left.
  * ------------------------------------------------------------------ */
 var state = { qty: {}, sel: {}, open: null, added: null, sub: {},
-              qv: null, qvQty: 1, qvTab: 'desc', qvAdded: false };
+              qv: null, qvQty: 1, qvAdded: false };
 var addedTimer = null;
 
 function key(id) { return 'p:' + id; }
@@ -2620,13 +2620,8 @@ function qvAtc(disabled) {
       ? 'bg-gray-200 border-gray-300 text-gray-400 cursor-not-allowed opacity-100'
       : 'bg-accent border-stroke-alt text-ink cursor-pointer hover:opacity-90');
 }
-function qvTab(selected) {
-  return 'bg-transparent border-0 border-b-2 pb-4 cursor-pointer font-[inherit] text-[13px] font-semibold whitespace-nowrap [transition:color_.15s,border-color_.15s]' +
-    ' ' + (selected ? 'text-ink border-b-ink' : 'text-tertiary border-b-transparent hover:text-ink hover:border-b-stroke-alt');
-}
 var QV_STEP = 'text-[13.3333px] bg-transparent border-0 cursor-pointer text-ink p-1 rounded-[50%] flex font-[inherit] hover:bg-surface-container-low';
 var QV_CHIP = 'inline-flex items-center gap-1 px-2 py-[3px] rounded-ctrl text-[11px] font-bold text-ink';
-var HIDE_SCROLLBAR = '[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]';
 
 /* ------------------------------------------------------------------ *
  * Quick view
@@ -2689,65 +2684,6 @@ function chooseSize(c, size) {
   return 0;
 }
 
-function describe(c) {
-  var bits = [];
-  var lead = '<b>' + esc(c.title) + '</b>' + (c.sub ? ' — ' + esc(c.sub) : '') + ', from Modern Herb Co.';
-  if (c.strains.length) {
-    var words = c.strains.map(function (s) { return EFFECT_WORD[s]; });
-    lead += ' Formulated across ' + esc(words.join(', ').replace(/, ([^,]*)$/, ' and $1')) + '.';
-  }
-  bits.push(lead);
-  var second = '';
-  var ax = axes(c);
-  if (ax.twoAxis) {
-    second = 'Available in ' + esc(ax.sizes.join(', ')) + ' across ' + ax.flavors.length + ' flavours — ' +
-      esc(ax.flavors.map(function (f) { return f.label; }).join(', ')) + '.';
-  } else if (c.sizes.length) {
-    second = 'Available in ' + esc(c.sizes.join(', ')) + '.';
-  }
-  if (c.priceRange) second += (second ? ' ' : '') + 'Priced ' + esc(c.priceRange) + '.';
-  if (second) bits.push(second);
-  return bits.map(function (t) { return '<p class="m-0">' + t + '</p>'; }).join('');
-}
-
-var TABS = [
-  { id: 'desc',        label: 'Description' },
-  { id: 'bts',         label: 'Behind the Scenes' },
-  { id: 'potency',     label: 'Potency &amp; Safety Testing' },
-  { id: 'ingredients', label: 'Ingredients' },
-  { id: 'shipping',    label: 'Shipping &amp; Returns' }
-];
-
-function tabBody(id, c) {
-  var wrap = function (inner) { return '<div class="flex flex-col gap-4 text-[15px] leading-[1.5] text-ink max-w-[768px]">' + inner + '</div>'; };
-  if (id === 'desc') return wrap(describe(c));
-  if (id === 'bts') return wrap(
-    '<p class="m-0">Take a look inside our facility to see how ' + esc(c.title) + ' is made.</p>' +
-    '<div class="w-full aspect-video bg-surface-container-low border border-surface-container-highest rounded-card flex items-center justify-center text-tertiary">' + ICON.play(48) + '</div>');
-  if (id === 'potency') return wrap(
-    '<p class="m-0">Every batch is tested by independent, third-party laboratories for potency, purity and safety.</p>' +
-    '<div class="w-full h-[320px] bg-surface-container-low border border-surface-container-highest rounded-card flex flex-col items-center justify-center gap-2 text-tertiary">' +
-      ICON.pdf(32) + '<span class="text-[13px] font-semibold">Lab Results PDF Viewer Placeholder</span></div>');
-  if (id === 'ingredients') return wrap(
-    '<ul class="list-disc m-0 pl-5 flex flex-col gap-2">' +
-      '<li>Hemp-derived cannabinoid distillate</li>' +
-      '<li>Cannabis-derived terpenes (CDT)</li>' +
-      '<li>Zero artificial flavourings, cutting agents or fillers</li>' +
-    '</ul>');
-  var faq = function (q, a) {
-    return '<details class="group border border-surface-container-highest rounded-card bg-white">' +
-      '<summary class="list-none cursor-pointer [&::-webkit-details-marker]:hidden flex items-center justify-between p-4 text-[13px] font-semibold text-ink">' + q +
-        '<span class="flex [transition:transform_.2s] group-open:rotate-180">' + ICON.chevdown(20) + '</span></summary>' +
-      '<div class="px-4 pb-4 text-tertiary border-t border-surface-container-highest mt-2 pt-4">' + a + '</div>' +
-    '</details>';
-  };
-  return wrap(
-    '<div class="flex flex-col gap-3">' +
-      faq('What is your shipping policy?', 'We offer free shipping on all orders over $50. Orders are typically processed within 1–2 business days and delivered within 3–5 business days.') +
-      faq('Do you accept returns?', 'Yes, we offer a 30-day money-back guarantee on all unopened and unused products. Contact our support team to initiate a return.') +
-    '</div>');
-}
-
 function quickViewHTML(c) {
   var k = key(c.id);
   var selIdx = state.sel[k] || 0;
@@ -2759,7 +2695,6 @@ function quickViewHTML(c) {
   var allSold = c.options.every(function (o) { return o.soldOut; });
   var disabled = allSold || !!sel.soldOut;
   var unit = subOn ? priceNum(sel.price) * 0.7 : priceNum(sel.price);
-  var tab = state.qvTab || 'desc';
 
   var effectChip = function (strain) {
     if (!strain) return '';
@@ -2885,16 +2820,6 @@ function quickViewHTML(c) {
     '</section>' +
   '</div>' +
 
-  /* ---- Tabs ---- */
-  '<section class="mt-12 w-full pt-8">' +
-    '<div class="' + HIDE_SCROLLBAR + ' flex overflow-x-auto gap-8 border-b border-surface-container-highest mb-8">' +
-      TABS.map(function (t) {
-        return '<button type="button" class="' + qvTab(t.id === tab) + '" data-qv="tab" data-value="' + t.id + '" role="tab" aria-selected="' + (t.id === tab) + '">' + t.label + '</button>';
-      }).join('') +
-    '</div>' +
-    tabBody(tab, c) +
-  '</section>' +
-
   '<div class="flex justify-center mt-8 mb-4">' +
     '<a href="#" data-quick-view-close class="text-[15px] text-ink underline underline-offset-4">Continue Shopping</a>' +
   '</div>';
@@ -2914,7 +2839,6 @@ function openQuickView(id) {
   qvLastFocused = document.activeElement;
   state.qv = id;
   state.qvQty = 1;
-  state.qvTab = 'desc';
   state.qvAdded = false;
   renderQuickView();
   qvRoot.hidden = false;
@@ -2943,7 +2867,6 @@ qvRoot.addEventListener('click', function (e) {
   else if (what === 'idx')  { state.sel[k] = parseInt(val, 10); }
   else if (what === 'sub')  { state.sub[k] = true; }
   else if (what === 'once') { state.sub[k] = false; }
-  else if (what === 'tab')  { state.qvTab = val; renderQuickView(); return; }
   else if (what === 'inc')  { state.qvQty = Math.min(999, (state.qvQty || 1) + 1); renderQuickView(); return; }
   else if (what === 'dec')  { state.qvQty = Math.max(1, (state.qvQty || 1) - 1); renderQuickView(); return; }
   else if (what === 'add') {

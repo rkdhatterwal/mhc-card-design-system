@@ -158,15 +158,6 @@
   .qv-atc[disabled] { background:#e5e7eb; border-color:#d1d5db; color:#9ca3af; cursor:not-allowed; opacity:1 }
   .qv-step { background:none; border:none; cursor:pointer; color:var(--ink); padding:4px; border-radius:50%; display:flex; font-family:inherit }
   .qv-step:hover { background:var(--surface-container-low) }
-  .qv-tab {
-    background:none; border:none; border-bottom:2px solid transparent; padding:0 0 16px; cursor:pointer;
-    font-family:inherit; font-size:13px; font-weight:600; color:var(--tertiary); white-space:nowrap; transition:color .15s,border-color .15s;
-  }
-  .qv-tab:hover { color:var(--ink); border-bottom-color:var(--stroke-alt) }
-  .qv-tab[aria-selected="true"] { color:var(--ink); border-bottom-color:var(--ink) }
-  .qv-panel details > summary { list-style:none; cursor:pointer }
-  .qv-panel details > summary::-webkit-details-marker { display:none }
-  .qv-panel details[open] summary .chev { transform:rotate(180deg) }
 </style>
 </head>
 <body>
@@ -349,7 +340,7 @@ var DATA = [
  * Keys keep the DC's `side + ':' + id` shape; only the 'p' side is left.
  * ------------------------------------------------------------------ */
 var state = { qty: {}, sel: {}, open: null, added: null, sub: {},
-              qv: null, qvQty: 1, qvTab: 'desc', qvAdded: false };
+              qv: null, qvQty: 1, qvAdded: false };
 var addedTimer = null;
 
 function key(id) { return 'p:' + id; }
@@ -776,65 +767,6 @@ function chooseSize(c, size) {
   return 0;
 }
 
-function describe(c) {
-  var bits = [];
-  var lead = '<b>' + esc(c.title) + '</b>' + (c.sub ? ' — ' + esc(c.sub) : '') + ', from Modern Herb Co.';
-  if (c.strains.length) {
-    var words = c.strains.map(function (s) { return EFFECT_WORD[s]; });
-    lead += ' Formulated across ' + esc(words.join(', ').replace(/, ([^,]*)$/, ' and $1')) + '.';
-  }
-  bits.push(lead);
-  var second = '';
-  var ax = axes(c);
-  if (ax.twoAxis) {
-    second = 'Available in ' + esc(ax.sizes.join(', ')) + ' across ' + ax.flavors.length + ' flavours — ' +
-      esc(ax.flavors.map(function (f) { return f.label; }).join(', ')) + '.';
-  } else if (c.sizes.length) {
-    second = 'Available in ' + esc(c.sizes.join(', ')) + '.';
-  }
-  if (c.priceRange) second += (second ? ' ' : '') + 'Priced ' + esc(c.priceRange) + '.';
-  if (second) bits.push(second);
-  return bits.map(function (t) { return '<p style="margin:0">' + t + '</p>'; }).join('');
-}
-
-var TABS = [
-  { id: 'desc',        label: 'Description' },
-  { id: 'bts',         label: 'Behind the Scenes' },
-  { id: 'potency',     label: 'Potency &amp; Safety Testing' },
-  { id: 'ingredients', label: 'Ingredients' },
-  { id: 'shipping',    label: 'Shipping &amp; Returns' }
-];
-
-function tabBody(id, c) {
-  var wrap = function (inner) { return '<div style="display:flex; flex-direction:column; gap:16px; font-size:15px; line-height:1.5; color:var(--ink); max-width:768px">' + inner + '</div>'; };
-  if (id === 'desc') return wrap(describe(c));
-  if (id === 'bts') return wrap(
-    '<p style="margin:0">Take a look inside our facility to see how ' + esc(c.title) + ' is made.</p>' +
-    '<div style="width:100%; aspect-ratio:16/9; background:var(--surface-container-low); border:1px solid var(--surface-container-highest); border-radius:14px; display:flex; align-items:center; justify-content:center; color:var(--tertiary)">' + ICON.play(48) + '</div>');
-  if (id === 'potency') return wrap(
-    '<p style="margin:0">Every batch is tested by independent, third-party laboratories for potency, purity and safety.</p>' +
-    '<div style="width:100%; height:320px; background:var(--surface-container-low); border:1px solid var(--surface-container-highest); border-radius:14px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--tertiary)">' +
-      ICON.pdf(32) + '<span style="font-size:13px; font-weight:600">Lab Results PDF Viewer Placeholder</span></div>');
-  if (id === 'ingredients') return wrap(
-    '<ul style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:8px">' +
-      '<li>Hemp-derived cannabinoid distillate</li>' +
-      '<li>Cannabis-derived terpenes (CDT)</li>' +
-      '<li>Zero artificial flavourings, cutting agents or fillers</li>' +
-    '</ul>');
-  var faq = function (q, a) {
-    return '<details style="border:1px solid var(--surface-container-highest); border-radius:14px; background:#fff">' +
-      '<summary style="display:flex; align-items:center; justify-content:space-between; padding:16px; font-size:13px; font-weight:600; color:var(--ink)">' + q +
-        '<span class="chev" style="display:flex; transition:transform .2s">' + ICON.chevdown(20) + '</span></summary>' +
-      '<div style="padding:0 16px 16px; color:var(--tertiary); border-top:1px solid var(--surface-container-highest); margin-top:8px; padding-top:16px">' + a + '</div>' +
-    '</details>';
-  };
-  return wrap(
-    '<div style="display:flex; flex-direction:column; gap:12px">' +
-      faq('What is your shipping policy?', 'We offer free shipping on all orders over $50. Orders are typically processed within 1–2 business days and delivered within 3–5 business days.') +
-      faq('Do you accept returns?', 'Yes, we offer a 30-day money-back guarantee on all unopened and unused products. Contact our support team to initiate a return.') +
-    '</div>');
-}
-
 function quickViewHTML(c) {
   var k = key(c.id);
   var selIdx = state.sel[k] || 0;
@@ -846,7 +778,6 @@ function quickViewHTML(c) {
   var allSold = c.options.every(function (o) { return o.soldOut; });
   var disabled = allSold || !!sel.soldOut;
   var unit = subOn ? priceNum(sel.price) * 0.7 : priceNum(sel.price);
-  var tab = state.qvTab || 'desc';
 
   var effectChip = function (strain) {
     if (!strain) return '';
@@ -972,16 +903,6 @@ function quickViewHTML(c) {
     '</section>' +
   '</div>' +
 
-  /* ---- Tabs ---- */
-  '<section style="margin-top:48px; width:100%; padding-top:32px">' +
-    '<div class="hide-scrollbar" style="display:flex; overflow-x:auto; gap:32px; border-bottom:1px solid var(--surface-container-highest); margin-bottom:32px">' +
-      TABS.map(function (t) {
-        return '<button type="button" class="qv-tab" data-qv="tab" data-value="' + t.id + '" role="tab" aria-selected="' + (t.id === tab) + '">' + t.label + '</button>';
-      }).join('') +
-    '</div>' +
-    tabBody(tab, c) +
-  '</section>' +
-
   '<div style="display:flex; justify-content:center; margin:32px 0 16px">' +
     '<a href="#" data-quick-view-close style="font-size:15px; color:var(--ink); text-decoration:underline; text-underline-offset:4px">Continue Shopping</a>' +
   '</div>';
@@ -1001,7 +922,6 @@ function openQuickView(id) {
   qvLastFocused = document.activeElement;
   state.qv = id;
   state.qvQty = 1;
-  state.qvTab = 'desc';
   state.qvAdded = false;
   renderQuickView();
   qvRoot.hidden = false;
@@ -1030,7 +950,6 @@ qvRoot.addEventListener('click', function (e) {
   else if (what === 'idx')  { state.sel[k] = parseInt(val, 10); }
   else if (what === 'sub')  { state.sub[k] = true; }
   else if (what === 'once') { state.sub[k] = false; }
-  else if (what === 'tab')  { state.qvTab = val; renderQuickView(); return; }
   else if (what === 'inc')  { state.qvQty = Math.min(999, (state.qvQty || 1) + 1); renderQuickView(); return; }
   else if (what === 'dec')  { state.qvQty = Math.max(1, (state.qvQty || 1) - 1); renderQuickView(); return; }
   else if (what === 'add') {
