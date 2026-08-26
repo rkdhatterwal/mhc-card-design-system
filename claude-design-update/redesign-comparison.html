@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobile PLP — proposed cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/swiper@14/swiper-bundle.min.css" rel="stylesheet">
+<style>
+  /* Palette lifted from the reference page's tailwind.config, so the chrome
+     here matches page-mockup-fixed-height-with-subscription.html exactly. */
+  :root {
+    --surface:#faf9f5; --surface-container-low:#f4f4f0; --surface-container-highest:#e3e2df;
+    --ink:#393839; --tertiary:#5f5e5f; --muted-gray:#9CA3AF; --gray-text:#666666;
+    --accent:#e3e829; --stroke-alt:#807E7F; --beige:#F9F8F4; --cream:#F7F6F1;
+    --effect-sleep:#DCEDEC; --effect-energy:#F7F7DD; --effect-balance:#F0EAE4;
+    --body-font:'Space Grotesk',Poppins,sans-serif;
+    --title-font:'BrokenScript','Space Grotesk',Poppins,sans-serif;
+  }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--surface); color:var(--ink); font-family:'Poppins',system-ui,sans-serif; }
+  body.modal-open { overflow:hidden }
+  a { color:var(--ink); text-decoration:none; }
+  a:hover { color:var(--ink); }
+
+  [data-col="p"] ul[role="listbox"]::-webkit-scrollbar { width: 6px; }
+  [data-col="p"] ul[role="listbox"]::-webkit-scrollbar-track { background: #EDECE7; border-left: 1px solid #DEDDD6; border-radius: 0 8px 8px 0; }
+  [data-col="p"] ul[role="listbox"]::-webkit-scrollbar-thumb { margin: 10px 0; }
+  [data-col="p"] ul[role="listbox"]::-webkit-scrollbar-thumb { background: #393839; border-radius: 3px; }
+
+  /* style-hover="…" in the DC source is inert (support.js never reads it).
+     These are the hovers it was describing, as real CSS. */
+  [data-col="p"] li[role="option"]:not([data-selected])       { background:transparent }
+  [data-col="p"] li[role="option"]:not([data-selected]):hover { background:#F2F4C4 }
+
+  .hide-scrollbar::-webkit-scrollbar { display:none }
+  .hide-scrollbar { -ms-overflow-style:none; scrollbar-width:none }
+
+  /* ---------- TopAppBar ---------- */
+  .topbar {
+    position:fixed; top:0; left:0; width:100%; z-index:50; height:64px;
+    background:var(--surface); border-bottom:1px solid var(--surface-container-highest);
+    display:flex; align-items:center; justify-content:space-between; padding:0 20px;
+  }
+  .topbar .brand { font-size:15px; font-weight:400; letter-spacing:.5px; text-transform:uppercase; color:var(--ink) }
+  .topbar nav { display:none; gap:24px; font-size:14px; font-weight:600 }
+  .topbar nav a:hover, .topbar .account:hover { color:var(--accent) }
+  .iconbtn {
+    background:none; border:none; padding:0; cursor:pointer; color:var(--ink);
+    display:inline-flex; align-items:center; gap:4px; font-family:inherit;
+  }
+  .iconbtn:hover { opacity:.8 }
+  .iconbtn:active { transform:scale(.95) }
+  .topbar .account, .topbar .cart-label { display:none }
+  .topbar .menu { display:inline-flex }
+  @media (min-width:768px) {
+    .topbar { padding:0 40px }
+    .topbar nav { display:flex }
+    .topbar .menu { display:none }
+    .topbar .account { display:inline-flex; align-items:center; gap:4px; font-size:14px; font-weight:600 }
+    .topbar .cart-label { display:inline; font-size:14px; font-weight:600 }
+  }
+
+  /* ---------- BottomNavBar (mobile only) ---------- */
+  .bottomnav {
+    position:fixed; bottom:0; left:0; width:100%; z-index:50; height:80px;
+    background:var(--surface); border-top:1px solid var(--surface-container-highest);
+    display:flex; justify-content:space-around; align-items:center;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .bottomnav button {
+    flex:1; height:100%; background:none; border:none; cursor:pointer; font-family:inherit;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    font-size:9.5px; font-weight:700; line-height:1.3; color:var(--tertiary);
+  }
+  .bottomnav button[aria-current="page"] { color:var(--ink) }
+  .bottomnav button:hover { background:var(--surface-container-low) }
+  .bottomnav button:active { transform:scale(.95) }
+  @media (min-width:768px) { .bottomnav { display:none } }
+
+  /* ---------- Desktop footer ---------- */
+  .sitefooter { display:none; background:var(--surface); border-top:1px solid var(--surface-container-highest); padding:32px 0; margin-top:40px }
+  .sitefooter .row { max-width:1280px; margin:0 auto; padding:0 40px; display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--gray-text) }
+  .sitefooter a:hover { color:var(--ink) }
+  @media (min-width:768px) { .sitefooter { display:block } }
+
+  /* ---------- Carousel ---------- */
+  .featured-carousel .swiper-slide { height:auto }
+  .featured-carousel .swiper-slide > article {
+    height:100%; background:#fff; border:2px solid transparent; border-radius:20px;
+    padding:12px; box-shadow:0 10px 30px rgba(17,24,39,.08);
+  }
+  .carousel-prev, .carousel-next {
+    position:absolute; top:50%; transform:translateY(-50%); z-index:10;
+    width:40px; height:40px; border-radius:50%;
+    display:none; align-items:center; justify-content:center;
+    background:#fff; border:1px solid var(--surface-container-highest); color:var(--ink);
+    box-shadow:0 4px 12px rgba(17,24,39,.10); cursor:pointer; font-family:inherit; transition:background .15s;
+  }
+  .carousel-prev { left:-20px } .carousel-next { right:-20px }
+  .carousel-prev:hover, .carousel-next:hover { background:var(--surface-container-low) }
+  .carousel-prev.swiper-button-disabled, .carousel-next.swiper-button-disabled { opacity:.35; pointer-events:none }
+  @media (min-width:768px) { .carousel-prev, .carousel-next { display:flex } }
+
+  /* ---------- Quick view ----------
+     Styled off the card, not the reference's Tailwind tokens: Space Grotesk
+     body, the card's title font, 9px controls, #807E7F strokes, #F7F6F1 tiles,
+     and the same #e3e829 add-to-cart with a 1.5px stroke. */
+  #quick-view[hidden] { display:none }
+  #quick-view {
+    position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:16px;
+  }
+  @media (min-width:768px) { #quick-view { padding:40px } }
+  .qv-backdrop { position:absolute; inset:0; background:rgba(57,56,57,.6); backdrop-filter:blur(4px) }
+  .qv-panel {
+    position:relative; background:var(--surface); width:100%; max-width:1200px; max-height:90vh;
+    overflow:hidden; border-radius:14px; box-shadow:0 24px 60px rgba(17,24,39,.35);
+    display:flex; flex-direction:column; font-family:var(--body-font);
+  }
+  .qv-scroll { overflow-y:auto; padding:24px }
+  @media (min-width:768px) { .qv-scroll { padding:40px } }
+  .qv-close {
+    position:absolute; top:16px; right:16px; z-index:50; width:40px; height:40px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    background:var(--surface); border:1px solid var(--surface-container-highest); color:var(--ink); font-family:inherit;
+  }
+  .qv-close:hover { background:var(--surface-container-low) }
+  .qv-grid { display:block }
+  @media (min-width:768px) { .qv-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start } }
+  .qv-title { font-family:var(--title-font); font-size:26px; font-weight:700; line-height:1.12; margin:0; color:var(--ink) }
+  .qv-chip {
+    display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:9px;
+    font-size:11px; font-weight:700; color:var(--ink);
+  }
+  .qv-opt {
+    background:#fff; border:1.5px solid var(--surface-container-highest); border-radius:9px;
+    padding:8px; cursor:pointer; font-family:inherit; text-align:left; position:relative;
+    display:flex; flex-direction:column; align-items:center; gap:8px; transition:border-color .15s;
+  }
+  .qv-opt:hover:not([disabled]) { border-color:var(--stroke-alt) }
+  .qv-opt[aria-pressed="true"] { border-color:var(--ink); background:var(--cream) }
+  .qv-opt[disabled] { opacity:.5; cursor:not-allowed }
+  .qv-size {
+    background:#fff; border:1.5px solid var(--surface-container-highest); border-radius:9px;
+    padding:8px 16px; cursor:pointer; font-family:inherit; font-size:13px; font-weight:600;
+    color:var(--tertiary); transition:border-color .15s;
+  }
+  .qv-size:hover:not([disabled]) { border-color:var(--stroke-alt) }
+  .qv-size[aria-pressed="true"] { border-color:var(--ink); background:var(--cream); color:var(--ink) }
+  .qv-size[disabled] { opacity:.5; cursor:not-allowed; text-decoration:line-through }
+  .qv-atc {
+    flex:1 1 auto; display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--accent); border:1.5px solid var(--stroke-alt); border-radius:9px;
+    color:var(--ink); font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; padding:0 16px;
+  }
+  .qv-atc:hover { opacity:.9 }
+  .qv-atc[disabled] { background:#e5e7eb; border-color:#d1d5db; color:#9ca3af; cursor:not-allowed; opacity:1 }
+  .qv-step { background:none; border:none; cursor:pointer; color:var(--ink); padding:4px; border-radius:50%; display:flex; font-family:inherit }
+  .qv-step:hover { background:var(--surface-container-low) }
+  .qv-tab {
+    background:none; border:none; border-bottom:2px solid transparent; padding:0 0 16px; cursor:pointer;
+    font-family:inherit; font-size:13px; font-weight:600; color:var(--tertiary); white-space:nowrap; transition:color .15s,border-color .15s;
+  }
+  .qv-tab:hover { color:var(--ink); border-bottom-color:var(--stroke-alt) }
+  .qv-tab[aria-selected="true"] { color:var(--ink); border-bottom-color:var(--ink) }
+  .qv-panel details > summary { list-style:none; cursor:pointer }
+  .qv-panel details > summary::-webkit-details-marker { display:none }
+  .qv-panel details[open] summary .chev { transform:rotate(180deg) }
+</style>
+</head>
+<body>
+
+<!-- TopAppBar -->
+<header class="topbar">
+  <div style="display:flex; align-items:center; gap:24px">
+    <button class="iconbtn menu" type="button" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    <div class="brand">Modern Herb Co</div>
+    <nav>
+      <a href="#">Shop</a>
+      <a href="#">Discover</a>
+    </nav>
+  </div>
+  <div style="display:flex; align-items:center; gap:16px">
+    <a class="account" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Account</span></a>
+    <button class="iconbtn" type="button" aria-label="Cart"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><span class="cart-label">Cart (0)</span></button>
+  </div>
+</header>
+
+<main style="flex-grow:1; padding:84px 20px 100px; max-width:1280px; margin:0 auto; width:100%">
+
+  <div style="padding-bottom:18px; border-bottom:1px solid var(--surface-container-highest)">
+    <h1 style="margin:0; font-size:26px; font-weight:800; color:var(--ink); letter-spacing:-.4px">Mobile PLP — proposed cards</h1>
+    <p style="margin:4px 0 0; font-size:14px; color:#6b7280">The proposed card with every change applied, in a swipeable carousel. The cards are live — variant dropdowns, subscribe rows and add-to-cart all work, and <b>Details</b> opens the quick view for that card. Locked on every card: the potency word “Max” beside the form factor, and a “Modern Herb Co” brand line above the product name.</p>
+  </div>
+
+  <div style="margin:22px 0 0">
+    <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px">
+      <span style="display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--accent); border:1.5px solid var(--ink)"></span>
+      <span style="font-size:13px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--ink)">Proposed</span>
+    </div>
+
+    <!-- Horizontal Carousel Wrapper -->
+    <div style="position:relative; width:100%">
+      <button class="carousel-prev" type="button" aria-label="Scroll Left"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+      <div class="swiper featured-carousel" data-col="p" style="width:100%; padding-bottom:16px">
+        <div class="swiper-wrapper" id="slides"></div>
+      </div>
+      <button class="carousel-next" type="button" aria-label="Scroll Right"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+    </div>
+  </div>
+
+</main>
+
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bottomnav">
+  <button type="button" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><path d="M3 9 4.5 4h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"></path></svg><span>Shop</span></button>
+  <button type="button"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><circle cx="12" cy="12" r="9"></circle><polygon points="16 8 10.5 10.5 8 16 13.5 13.5"></polygon></svg><span>Discover</span></button>
+  <button type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Account</span></button>
+  <button type="button"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><span>Cart</span></button>
+</nav>
+
+<!-- Desktop Footer -->
+<footer class="sitefooter">
+  <div class="row">
+    <p style="margin:0">© 2024 Modern Herb Co. All rights reserved.</p>
+    <div style="display:flex; gap:16px">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Quick View — content is written by renderQuickView() from the card's own data -->
+<div id="quick-view" role="dialog" aria-modal="true" aria-labelledby="quick-view-title" hidden>
+  <div class="qv-backdrop" data-quick-view-close></div>
+  <div class="qv-panel">
+    <button class="qv-close" type="button" aria-label="Close quick view" data-quick-view-close><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    <div class="qv-scroll hide-scrollbar" id="qv-body"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@14/swiper-bundle.min.js"></script>
+<script>
+(function () {
+'use strict';
+
+/* ------------------------------------------------------------------ *
+ * Props — the five DC prop defaults, hardcoded.
+ * ------------------------------------------------------------------ */
+var PROPS = {
+  accentColor: '#e3e829',
+  strokeColor: '#807E7F',
+  potencyWord: 'Max',
+  brandLine:   'Modern Herb Co',
+  photoWidth:  45
+};
+
+var STRAIN = {
+  indica: { bg: '#ede9fe', fg: '#4c1d95', label: 'Sleep' },
+  hybrid: { bg: '#d1fae5', fg: '#065f46', label: 'Balance' },
+  sativa: { bg: '#fef3c7', fg: '#92400e', label: 'Energy' }
+};
+
+/* ------------------------------------------------------------------ *
+ * Icons — same paths as the DC source, emitted as SVG markup strings
+ * instead of React elements. Only the MHC set survives: the legacy
+ * crescent / sun / leaf set belonged to the current column.
+ * ------------------------------------------------------------------ */
+function svg(size, viewBox, children) {
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="' + viewBox + '"' +
+    ' fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"' +
+    ' style="display:block">' + (Array.isArray(children) ? children.join('') : children) + '</svg>';
+}
+function splitOpt(t) {
+  var parts = String(t || '').split(' / ');
+  if (parts.length < 2) return { count: '', flavor: t || '' };
+  return { count: parts[0], flavor: parts.slice(1).join(' / ') };
+}
+/* `filledIcons` is on, so every glyph is the solid weight. */
+function mhcIcon(kind, size) {
+  size = size || 14;
+  var solidPath = function (d) { return '<path d="' + d + '" fill="currentColor" stroke="none"></path>'; };
+  if (kind === 'indica') return svg(size, '0 0 16 16', solidPath('M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z'));
+  if (kind === 'sativa') return svg(size, '0 0 16 16', solidPath('M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z'));
+  return svg(size, '0 0 16 16', [
+    '<path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path>',
+    '<path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path>'
+  ]);
+}
+
+/* ------------------------------------------------------------------ *
+ * Data — verbatim from the DC source. `livePotency` / `liveBrand` /
+ * `imgInset` fed the current column only, so they are gone.
+ * ------------------------------------------------------------------ */
+var DATA = [
+  {
+    id: 1, label: 'B2G1',
+    img: 'uploads/001-MHC-Rosin-Gummies-30ct-mixed_berry--web.png',
+    title: 'Enhanced Spectrum', sub: 'THC Craft Soda — Grape Kush',
+    strains: ['indica', 'hybrid', 'sativa'], sizes: ['1ct', '5ct', '20ct'],
+    options: [
+      { title: '1ct / Huckleberry', price: '$5', strain: 'indica' },
+      { title: '5ct / Huckleberry', price: '$10', strain: 'indica' },
+      { title: '20ct / Huckleberry', price: '$50', strain: 'indica' },
+      { title: '1ct / Passionfruit', price: '$5', strain: 'hybrid' },
+      { title: '5ct / Passionfruit', price: '$10', strain: 'hybrid' },
+      { title: '20ct / Passionfruit', price: '$50', strain: 'hybrid' },
+      { title: '1ct / Strawberry Rhubarb', price: '$5', strain: 'sativa' },
+      { title: '5ct / Strawberry Rhubarb', price: '$25', strain: 'sativa' },
+      { title: '20ct / Strawberry Rhubarb', price: '$50', strain: 'sativa' }
+    ],
+    priceRange: '$5 – $50', ratingAvg: '4.5', ratingCount: '(2)'
+  },
+  {
+    id: 2, label: 'SALE',
+    img: 'uploads/003-MHC-Carts-Live-Rosin-Pouch-RENDER-Front_Headband_High Res.png',
+    title: 'Sleepy Time', sub: 'Indica Gummies',
+    strains: ['indica'], sizes: ['10ct', '30ct'],
+    options: [
+      { title: '10ct', price: '$18', strain: 'indica' },
+      { title: '30ct', price: '$42', strain: 'indica' }
+    ],
+    priceRange: '$18 – $42', ratingAvg: '5.0', ratingCount: '(41)'
+  },
+  {
+    id: 3, label: '',
+    img: 'uploads/001-MHC-Gummies-Rosin-3ct-peaches_cream-web.png',
+    title: 'CBD Tincture 1000mg', sub: '',
+    strains: [], sizes: ['15ml', '30ml'],
+    options: [
+      { title: '15ml', price: '$34', strain: '' },
+      { title: '30ml — Sold out', price: '$59', strain: '', soldOut: true }
+    ],
+    priceRange: '$34 – $59', ratingAvg: '', ratingCount: ''
+  },
+  {
+    id: 4, label: 'New!',
+    img: 'uploads/Caramel-Render_SamplePouch-hybrid-web.png',
+    title: 'Hybrid Soda', sub: 'Single Size',
+    strains: ['hybrid'], sizes: ['1ct'],
+    options: [{ title: '1ct', price: '$6', strain: 'hybrid' }],
+    priceRange: '$6', ratingAvg: '4.0', ratingCount: '(8)'
+  }
+];
+
+/* ------------------------------------------------------------------ *
+ * State — the DC component's this.state, minus the toggle map.
+ * Keys keep the DC's `side + ':' + id` shape; only the 'p' side is left.
+ * ------------------------------------------------------------------ */
+var state = { qty: {}, sel: {}, open: null, added: null, sub: {},
+              qv: null, qvQty: 1, qvTab: 'desc', qvAdded: false };
+var addedTimer = null;
+
+function key(id) { return 'p:' + id; }
+
+function pick(id, i) {
+  state.sel[key(id)] = i;
+  state.open = null;
+  render();
+}
+function add(k) {
+  state.added = k;
+  clearTimeout(addedTimer);
+  addedTimer = setTimeout(function () { state.added = null; render(); }, 1300);
+  render();
+}
+
+/* ------------------------------------------------------------------ *
+ * build() — same shape as the DC renderVals() card object.
+ *
+ * With the toggle panel gone every change is ON, and with the current
+ * column gone the DC's two guards collapse to constants:
+ *   isOn(id) === true          (for any id)
+ *   on(id)   === true          (side is always 'p')
+ * Every branch that survives is annotated with the change that drives it.
+ * The `side !== 'p'` half of each ternary lived only in the current
+ * column; `Redesign Comparison.dc.html` remains its source of record.
+ * ------------------------------------------------------------------ */
+function build() {
+  return DATA.map(function (c) {
+    var k = key(c.id);
+    var selIdx = state.sel[k] || 0;
+    var sel = c.options[selIdx];
+    var selStrain = sel && sel.strain ? STRAIN[sel.strain] : null;
+    var selSold = sel ? !!sel.soldOut : false;
+    var allSold = c.options.length ? c.options.every(function (o) { return o.soldOut; }) : false;
+    var disabled = allSold || selSold;
+
+    var sub = state.sub[k] !== false;
+    var subPrice = sel ? ('$' + (Math.round(parseFloat(String(sel.price).replace(/[^0-9.]/g, '')) * 0.7 * 100) / 100).toFixed(2)) : '';
+    var accent = PROPS.accentColor;
+    var strokeTone = PROPS.strokeColor;                                 // lightStrokes
+
+    var WORD        = { indica: 'Sleep',  sativa: 'Energy', hybrid: 'Happy'  };
+    var STRAIN_NAME = { indica: 'Indica', sativa: 'Sativa', hybrid: 'Hybrid' };
+    var EFFECT_ORDER = { indica: 0, hybrid: 1, sativa: 2 };
+    var ordered = (c.strains || []).slice().sort(function (a, b) { return EFFECT_ORDER[a] - EFFECT_ORDER[b]; });
+
+    // `squareCounts` cancels `uniformRadius`, so controls stay at 9px;
+    // `radiusFix` hands the menu the same number.
+    var ctrlRadius = '9px', chipRadius = '9px', effectRadius = '9px', menuRadius = '9px';
+
+    // `infoUnified` wins over infoBoxed / infoOneRow / infoPlain / infoCaption /
+    // infoNoFill / infoNoStroke: the stacked cream-tile version.
+    // `outlineOnly` + `effectWords` settle the rest.
+    var infoBorder = '1px solid ' + strokeTone;
+
+    var selSplit = splitOpt(sel ? sel.title : '');
+
+    return {
+      img: c.img || '',
+      menuRadius: menuRadius,
+      ctrlRadius: ctrlRadius,
+      chipRadius: chipRadius,
+      cardDir: 'row',                                                   // sideways
+      orderSub: -3,
+      orderTitle: -2,
+      // sideways + effectWords: photoWidth capped at 34 so three word tiles hold one line
+      imgFlex: '0 0 ' + Math.min(PROPS.photoWidth, 34) + '%',
+      imgAspect: 'auto',
+      imgMinH: '150px',
+      imgRadius: '13px 0 0 13px',
+      effectRadius: effectRadius,
+      infoBorder: infoBorder,
+      menuTileBg: '#F7F6F1',
+      menuPad: '0',
+      rowMargin: '0 4px 4px',
+      menuTileBorder: 'none',
+
+      // infoUnified: effects and counts stack, both in cream tiles, no stroke
+      comboRow: c.strains.length > 0 || c.sizes.length > 0,
+      comboGap: '4px',                                                  // effectWords
+      comboDir: 'column',
+      comboAlign: 'flex-start',
+      comboRowGap: '6px',
+      comboStrains: ordered.map(function (x) {
+        return {
+          label: STRAIN[x].label,
+          body: WORD[x],                                                // effectWords
+          pad: '4px 9px',
+          size: '11px',
+          box: 'auto',
+          bg: '#F7F6F1', border: 'none', fg: '#4A4A49'
+        };
+      }),
+      comboSizes: c.sizes.map(function (x) {
+        return { label: x, fg: '#4A4A49', bg: '#F7F6F1', border: 'none', pad: '5px 10px', track: '.3px' };
+      }),
+
+      atcStroke: '1.5px',                                               // atcStroke
+      ctrlBorder: strokeTone,                                           // darkBorders
+      hairline: strokeTone,
+      imgBg: '#fff',                                                    // whiteImageWell beats warmImageWell
+      imgScale: 'translateX(15%) scale(1.55)',                          // sideways
+
+      labelInPrice: c.label,
+      brandAboveTitle: 'Modern Herb Co',
+      strengthTop: PROPS.potencyWord + ' Potency',
+      selPriceWeight: 400,
+      metaFg: '#4A4A49',
+      metaWeight: 400,
+      stackGap: '8px',                                                  // rhythm
+      stackPad: '11px 11px 11px 11px',
+      buyGap: '0',
+      badgeShadow: 'none',                                              // flatBadge
+      accent: accent,
+      titleFont: "'BrokenScript','Space Grotesk',Poppins,sans-serif",
+      bodyFont: "'Space Grotesk',Poppins,sans-serif",
+      badgeBorder: '1px solid ' + strokeTone,
+      brandColor: '#4A4A49',                                            // neutralBrand
+      stSize: '12px',
+      stWeight: 500,
+      stTrack: '0',
+      stCase: 'none',
+      stBg: '#F7F6F1',
+      stFg: '#393839',
+      subColor: '#393839',
+      subWeight: 400,
+      stBorder: 'none',
+      stPad: '5px 11px',
+      title: 'THCA LIQUID DIAMONDS',
+      sub: 'Pod Kit',
+
+      hasVariants: c.options.length > 0,
+      noVariants: c.options.length === 0,
+      open: state.open === k,
+      // rowCountRight overrides rowCountLane / rowCountChip: the count moves right
+      selFlavor: selSplit.flavor,
+      selCount: selSplit.count,
+      selCountRight: !!selSplit.count,
+      selPrice: sel ? sel.price : '',
+      selOpacity: selSold ? 0.6 : 1,
+      selDecoration: selSold ? 'line-through' : 'none',
+      selHasStrain: !!selStrain,
+      selStrainIcon: selStrain ? mhcIcon(sel.strain, 14) : '',
+      options: c.options.map(function (o, i) {
+        var sp = splitOpt(o.title);
+        return {
+          price: o.price,
+          flavor: sp.flavor,
+          count: sp.count,
+          countCircle: !!sp.count,
+          priceWeight: 400,
+          groupLabel: (o.strain && (i === 0 || o.strain !== c.options[i - 1].strain))
+            ? (WORD[o.strain] + ' (' + STRAIN_NAME[o.strain] + ')') : '',
+          groupTop: i === 0 ? '0' : '6px',
+          groupTopBorder: i === 0 ? 'none' : ('1px solid ' + strokeTone),
+          hasStrain: !!o.strain,
+          icon: o.strain ? mhcIcon(o.strain, 14) : '',
+          rowBg: accent,
+          rowSelected: i === selIdx,
+          rowOpacity: o.soldOut ? 0.5 : 1,
+          decoration: o.soldOut ? 'line-through' : 'none'
+        };
+      }),
+
+      buyable: !disabled,
+      soldOut: disabled,
+      added: state.added === k,
+      atcBg:     disabled ? '#e5e7eb' : '#e3e829',
+      atcBorder: disabled ? '#d1d5db' : strokeTone,
+      atcColor:  disabled ? '#9ca3af' : '#393839',
+      atcCursor: disabled ? 'not-allowed' : 'pointer',
+      showSubs: !!sel,                                                  // subscribe
+      onceOn: !sub, subOn: sub,
+      onceBorder: sub ? '#e5e7eb' : strokeTone,
+      subBorder:  sub ? '#DEDDD6' : '#e5e7eb',
+      subBg:      sub ? '#F7F6F1' : '#fff',
+      onceDot:    sub ? 'transparent' : '#393839',
+      subDot:     sub ? '#393839' : 'transparent',
+      oncePrice: sel ? sel.price : '',
+      subPrice: subPrice,
+      detailsBg: '#393839',
+      detailsFg: '#fff',
+      shipNote: 'Fast Shipping',                                        // seeMore + priceDedupe
+      hasRating: !!c.ratingAvg, ratingAvg: c.ratingAvg, ratingCount: c.ratingCount,
+      stars: [{ fill: accent, stroke: strokeTone, sw: 1.4 }],
+
+      id: c.id
+    };
+  });
+}
+
+/* ------------------------------------------------------------------ *
+ * Template — the <sc-if> / <sc-for> tree as one string builder.
+ * ------------------------------------------------------------------ */
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function cardHTML(v) {
+  var d = 'data-id="' + v.id + '"';
+  return '' +
+'<div style="position:relative; display:flex; flex-direction: ' + v.cardDir + '; height:100%; background:#fff; border:1px solid ' + v.hairline + '; border-radius:14px">' +
+
+  (v.labelInPrice ?
+  '<span style="position:absolute; top:44px; left:11px; z-index:5; box-sizing:border-box; display:inline-block; background: ' + v.stBg + '; color:#393839; border:1px solid ' + v.ctrlBorder + '; font-family: ' + v.bodyFont + '; font-weight:700; font-size:12px; line-height:1.2; letter-spacing:.2px; padding: ' + v.stPad + '; border-radius: ' + v.chipRadius + '; white-space:nowrap">' + esc(v.labelInPrice) + '</span>' : '') +
+
+  (v.strengthTop ?
+  '<span style="position:absolute; top:11px; left:11px; z-index:5; box-sizing:border-box; display:inline-block; white-space:nowrap; font-family: ' + v.bodyFont + '; color: ' + v.stFg + '; font-size: ' + v.stSize + '; font-weight: ' + v.stWeight + '; letter-spacing: ' + v.stTrack + '; text-transform: ' + v.stCase + '; background: ' + v.stBg + '; border: ' + v.stBorder + '; border-radius: ' + v.chipRadius + '; padding: ' + v.stPad + '; line-height:1.2">' + esc(v.strengthTop) + '</span>' : '') +
+
+  '<a href="#" style="position:relative; display:block; flex: ' + v.imgFlex + '; align-self:stretch; aspect-ratio: ' + v.imgAspect + '; min-height: ' + v.imgMinH + '; border-radius: ' + v.imgRadius + '; overflow:hidden; background:#f6f6f7">' +
+    '<div style="position:absolute; inset:0; background: ' + v.imgBg + '">' +
+      '<div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform: ' + v.imgScale + '; transform-origin:center center">' +
+        '<img src="' + esc(v.img) + '" alt="' + esc(v.title) + '" style="width:100%; height:100%; object-fit:contain">' +
+      '</div>' +
+    '</div>' +
+  '</a>' +
+
+  '<div style="display:flex; flex-direction:column; flex:1 1 auto; min-width:0; padding: ' + v.stackPad + '; gap: ' + v.stackGap + '">' +
+
+    '<div style="order: ' + v.orderSub + '; display:flex; align-items:center; gap:8px; min-width:0">' +
+      (v.sub ?
+      '<p data-fit-sub style="flex:0 1 auto; min-width:0; margin:0; font-family: ' + v.bodyFont + '; font-size:15px; font-weight: ' + v.subWeight + '; color: ' + v.subColor + '; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">' + esc(v.sub) + '</p>' : '') +
+    '</div>' +
+    '<a href="#" data-fit-title style="order: ' + v.orderTitle + '; font-family: ' + v.titleFont + '; display:block; margin:-5px 0 0; font-size:20px; font-weight:700; color:#393839; line-height:1.12; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">' + esc(v.title) + '</a>' +
+    (v.brandAboveTitle ?
+    '<p data-fit-sub style="order:-1; margin:-5px 0 0; font-family: ' + v.bodyFont + '; font-size:15px; font-weight:400; color: ' + v.brandColor + '; line-height:1.12; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">' + esc(v.brandAboveTitle) + '</p>' : '') +
+
+    '<div style="flex:1 1 auto; min-height:8px; margin:-6px 0"></div>' +
+
+    (v.comboRow ?
+    '<div aria-label="Effects and counts" style="box-sizing:border-box; display:flex; flex-direction: ' + v.comboDir + '; flex-wrap:nowrap; align-items: ' + v.comboAlign + '; gap: ' + v.comboRowGap + '; overflow:hidden; border: none; border-radius: ' + v.ctrlRadius + '; padding: 0">' +
+      '<div style="align-self:stretch; display:flex; flex-wrap:nowrap; align-items:center; gap: ' + v.comboGap + '; min-width:0">' +
+        v.comboStrains.map(function (s) {
+          return '<span title="' + esc(s.label) + '" style="display:inline-flex; align-items:center; justify-content:center; width: ' + s.box + '; height: ' + s.box + '; min-width: ' + s.box + '; flex:0 0 auto; font-family: ' + v.bodyFont + '; padding: ' + s.pad + '; font-size: ' + s.size + '; font-weight:400; letter-spacing: 0; border-radius: ' + v.effectRadius + '; box-sizing:border-box; background: ' + s.bg + '; border: ' + s.border + '; color: ' + s.fg + '">' + s.body + '</span>';
+        }).join('') +
+      '</div>' +
+      '<div style="display:flex; flex-wrap:nowrap; align-items:center; gap: ' + v.comboGap + '; min-width:0">' +
+        v.comboSizes.map(function (size) {
+          return '<span style="box-sizing:border-box; font-family: ' + v.bodyFont + '; font-size:12px; font-weight:400; letter-spacing: ' + size.track + '; color: ' + size.fg + '; background: ' + size.bg + '; border: ' + size.border + '; border-radius: ' + v.chipRadius + '; padding: ' + size.pad + '; line-height:1.4; white-space:nowrap">' + esc(size.label) + '</span>';
+        }).join('') +
+      '</div>' +
+    '</div>' : '') +
+
+    (v.hasVariants ?
+    // swiper-no-swiping: a drag inside the selector or its menu must not move the carousel
+    '<div data-variant-wrap class="swiper-no-swiping" style="position:relative; min-height:40px">' +
+      '<button type="button" data-act="toggle" ' + d + ' aria-haspopup="listbox" style="position:relative; width:100%; display:flex; align-items:center; gap:6px; font-family:inherit; font-size:13px; font-weight:600; color:#393839; background:#fff; border:1.5px solid ' + v.ctrlBorder + '; border-radius: ' + v.ctrlRadius + '; padding:8px 30px 8px 10px; cursor:pointer; text-align:left; opacity: ' + v.selOpacity + '">' +
+        '<span style="display:flex; align-items:center; gap:6px; flex:1 1 auto; min-width:0">' +
+          (v.selHasStrain ?
+          '<span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; box-sizing:border-box; flex-shrink:0; background: ' + v.menuTileBg + '; border: ' + v.menuTileBorder + '; color:#393839">' + v.selStrainIcon + '</span>' : '') +
+          '<span style="flex:1 1 auto; min-width:0; font-family: ' + v.bodyFont + '; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-decoration: ' + v.selDecoration + '">' + esc(v.selFlavor) + '</span>' +
+          (v.selCountRight ?
+          '<span style="flex-shrink:0; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; min-width:32px; height:26px; padding:0 8px; border-radius: ' + v.chipRadius + '; background: ' + v.menuTileBg + '; border: ' + v.menuTileBorder + '; font-size:12px; font-weight:400; color:#393839">' + esc(v.selCount) + '</span>' : '') +
+        '</span>' +
+        '<span style="font-weight: ' + v.selPriceWeight + '; color: ' + v.metaFg + '; flex-shrink:0; text-decoration: ' + v.selDecoration + '">' + esc(v.selPrice) + '</span>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); pointer-events:none; color:#6b7280"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
+      '</button>' +
+      (v.open ?
+      '<ul role="listbox" style="list-style:none; margin:0; position:absolute; top:0; left:0; right:0; z-index:50; padding: ' + v.menuPad + '; overflow-x:hidden; background:#fff; border:1.5px solid ' + v.ctrlBorder + '; border-radius: ' + v.menuRadius + '; box-shadow:0 8px 28px rgba(0,0,0,.18); max-height:184px; overflow-y:auto">' +
+        v.options.map(function (opt, i) {
+          return (opt.groupLabel ?
+            '<li style="margin: ' + opt.groupTop + ' 0 3px; padding:6px 12px; background: ' + v.stBg + '; color:#393839; border-radius:0; border-top: ' + opt.groupTopBorder + '; border-bottom:1px solid ' + v.ctrlBorder + '; font-family: ' + v.bodyFont + '; font-size:11px; font-weight:700; letter-spacing:.6px; line-height:1.2">' + esc(opt.groupLabel) + '</li>' : '') +
+            // Selected rows carry the fill inline so the :hover rule can win on the rest.
+            '<li role="option" data-act="pick" ' + d + ' data-idx="' + i + '"' + (opt.rowSelected ? ' data-selected' : '') +
+              ' style="display:flex; align-items:center; gap:7px; margin: ' + v.rowMargin + '; padding:9px 8px; box-sizing:border-box; border-radius:6px; cursor:pointer; font-size:13px; opacity: ' + opt.rowOpacity + (opt.rowSelected ? '; background: ' + opt.rowBg : '') + '">' +
+              (opt.hasStrain ?
+              '<span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; box-sizing:border-box; flex-shrink:0; background: ' + v.menuTileBg + '; border: ' + v.menuTileBorder + '; color:#393839">' + opt.icon + '</span>' : '') +
+              '<span style="flex:1 1 auto; min-width:0; font-family: ' + v.bodyFont + '; font-weight:600; line-height:1.25; white-space: nowrap; overflow:hidden; text-overflow:ellipsis; text-decoration: ' + opt.decoration + '">' + esc(opt.flavor) + '</span>' +
+              (opt.countCircle ?
+              '<span style="flex-shrink:0; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; min-width:32px; height:26px; padding:0 8px; border-radius: ' + v.chipRadius + '; background: ' + v.menuTileBg + '; border: ' + v.menuTileBorder + '; font-size:12px; font-weight:400; color:#393839">' + esc(opt.count) + '</span>' : '') +
+              '<span style="font-weight: ' + opt.priceWeight + '; color: ' + v.metaFg + '; flex-shrink:0">' + esc(opt.price) + '</span>' +
+            '</li>';
+        }).join('') +
+      '</ul>' : '') +
+    '</div>' : '') +
+
+    (v.noVariants ? '<div aria-hidden="true" style="min-height:40px"></div>' : '') +
+
+    (v.showSubs ?
+    '<div role="radiogroup" aria-label="Purchase type" style="display:flex; flex-direction:column; gap:6px">' +
+      '<div data-act="once" ' + d + ' role="radio" aria-checked="' + v.onceOn + '" style="box-sizing:border-box; display:flex; align-items:center; gap:8px; cursor:pointer; background:#fff; border:1.5px solid ' + v.onceBorder + '; border-radius: ' + v.ctrlRadius + '; padding:9px 11px">' +
+        '<span aria-hidden="true" style="flex:0 0 15px; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:50%; border:1.5px solid ' + v.ctrlBorder + '; background:#fff">' +
+          '<span style="display:block; width:7px; height:7px; border-radius:50%; background: ' + v.onceDot + '"></span>' +
+        '</span>' +
+        '<span style="flex:1 1 auto; min-width:0; font-family: ' + v.bodyFont + '; font-size:12px; font-weight:600; color:#393839; line-height:1.25">One-time purchase</span>' +
+        '<span style="flex-shrink:0; font-size:12px; font-weight:400; color:#4A4A49">' + esc(v.oncePrice) + '</span>' +
+      '</div>' +
+      '<div data-act="sub" ' + d + ' role="radio" aria-checked="' + v.subOn + '" style="box-sizing:border-box; display:flex; flex-direction:column; gap:3px; cursor:pointer; background: ' + v.subBg + '; border:1.5px solid ' + v.subBorder + '; border-radius: ' + v.ctrlRadius + '; padding:9px 11px">' +
+        '<span style="display:flex; align-items:center; gap:8px">' +
+          '<span aria-hidden="true" style="flex:0 0 15px; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:50%; border:1.5px solid ' + v.ctrlBorder + '; background:#fff">' +
+            '<span style="display:block; width:7px; height:7px; border-radius:50%; background: ' + v.subDot + '"></span>' +
+          '</span>' +
+          '<span style="flex:1 1 auto; min-width:0; font-family: ' + v.bodyFont + '; font-size:12px; font-weight:600; color:#393839; line-height:1.25">Subscribe &amp; Save</span>' +
+          '<span style="flex-shrink:0; font-size:12px; font-weight:400; color:#4A4A49">' + esc(v.subPrice) + '</span>' +
+        '</span>' +
+        '<span style="padding-left:23px; font-size:11px; font-weight:400; color:#4A4A49; line-height:1.3; text-wrap:pretty">Save 30% on your first order, then 10% on every order after.</span>' +
+      '</div>' +
+    '</div>' : '') +
+
+    '<div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:6px; margin-top: ' + v.buyGap + '">' +
+      '<button type="button" data-act="add" ' + d + ' style="order:2; flex:1 1 auto; display:inline-flex; align-items:center; justify-content:center; gap:6px; border: ' + v.atcStroke + ' solid ' + v.atcBorder + '; background: ' + v.atcBg + '; color: ' + v.atcColor + '; font-family:inherit; font-size:13px; font-weight:700; border-radius: ' + v.ctrlRadius + '; padding:8px; min-width:44px; cursor: ' + v.atcCursor + '">' +
+        (v.buyable ?
+        '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>' : '') +
+        (v.soldOut ? '<span>Sold Out</span>' : '') +
+        (v.added ? '<span style="font-size:15px">&#10003;</span>' : '') +
+      '</button>' +
+      '<a href="#" title="See details" data-act="details" ' + d + ' style="order:1; flex:0 0 34%; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; gap:5px; border: ' + v.atcStroke + ' solid ' + v.atcBorder + '; background: ' + v.detailsBg + '; color: ' + v.detailsFg + '; font-size:11px; font-weight:600; letter-spacing:.2px; border-radius: ' + v.ctrlRadius + '; padding:8px; min-width:44px; text-decoration:none">' +
+        '<span style="font-family: ' + v.bodyFont + '; font-size:13px; font-weight:700; letter-spacing:.2px">Details</span>' +
+      '</a>' +
+    '</div>' +
+
+    '<div style="display:flex; align-items:center; justify-content:flex-end; gap:6px; flex-wrap:wrap">' +
+      (v.shipNote ?
+      '<span style="box-sizing:border-box; font-family: ' + v.bodyFont + '; font-size:12px; font-weight:400; color:#393839; white-space:nowrap; background: ' + v.stBg + '; border: ' + v.stBorder + '; border-radius: ' + v.chipRadius + '; padding: ' + v.stPad + '; line-height:1.2">' + esc(v.shipNote) + '</span>' : '') +
+      (v.hasRating ?
+      '<span style="display:inline-flex; align-items:center; gap:3px; font-size:13px; font-weight:600; color:#393839; white-space:nowrap">' +
+        '<span style="display:inline-flex; align-items:center; gap:1px; flex-shrink:0">' +
+          v.stars.map(function (star) {
+            return '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="' + star.fill + '" stroke="' + star.stroke + '" stroke-width="' + star.sw + '" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>';
+          }).join('') +
+        '</span>' +
+        '<span>' + esc(v.ratingAvg) + '</span>' +
+        '<span style="color: ' + v.metaFg + '; font-weight: ' + v.metaWeight + '">' + esc(v.ratingCount) + '</span>' +
+      '</span>' : '') +
+    '</div>' +
+
+  '</div>' +
+'</div>';
+}
+
+/* ------------------------------------------------------------------ *
+ * UI icons — the reference page uses the Material Symbols font for the
+ * header, footer and quick view. These are inline equivalents, so the
+ * page pulls no second icon font.
+ * ------------------------------------------------------------------ */
+function ui(size, body, opts) {
+  opts = opts || {};
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="0 0 24 24"' +
+    ' fill="' + (opts.fill || 'none') + '" stroke="' + (opts.stroke || 'currentColor') + '" stroke-width="' + (opts.sw || 1.8) + '"' +
+    ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0">' + body + '</svg>';
+}
+var ICON = {
+  menu:      function (s) { return ui(s || 22, '<line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>'); },
+  person:    function (s) { return ui(s || 20, '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>'); },
+  bag:       function (s) { return ui(s || 22, '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path>'); },
+  store:     function (s) { return ui(s || 22, '<path d="M3 9 4.5 4h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"></path>'); },
+  explore:   function (s) { return ui(s || 22, '<circle cx="12" cy="12" r="9"></circle><polygon points="16 8 10.5 10.5 8 16 13.5 13.5"></polygon>'); },
+  close:     function (s) { return ui(s || 20, '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'); },
+  chevleft:  function (s) { return ui(s || 20, '<polyline points="15 18 9 12 15 6"></polyline>', { sw: 2.2 }); },
+  chevright: function (s) { return ui(s || 20, '<polyline points="9 18 15 12 9 6"></polyline>', { sw: 2.2 }); },
+  chevdown:  function (s) { return ui(s || 20, '<polyline points="6 9 12 15 18 9"></polyline>', { sw: 2.2 }); },
+  share:     function (s) { return ui(s || 18, '<circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line>'); },
+  minus:     function (s) { return ui(s || 20, '<line x1="5" y1="12" x2="19" y2="12"></line>', { sw: 2.2 }); },
+  plus:      function (s) { return ui(s || 20, '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>', { sw: 2.2 }); },
+  truck:     function (s) { return ui(s || 18, '<rect x="1" y="6" width="13" height="11" rx="1"></rect><path d="M14 9h4l3 3.5V17h-7z"></path><circle cx="5.5" cy="19" r="1.8"></circle><circle cx="17.5" cy="19" r="1.8"></circle>'); },
+  verified:  function (s) { return ui(s || 18, '<path d="M12 2 14.6 5 18.6 5.2 19.4 9.1 22 12 19.4 14.9 18.6 18.8 14.6 19 12 22 9.4 19 5.4 18.8 4.6 14.9 2 12 4.6 9.1 5.4 5.2 9.4 5z"></path><polyline points="8.6 12 11.2 14.5 15.6 9.8"></polyline>'); },
+  sync:      function (s) { return ui(s || 16, '<polyline points="21 4 21 10 15 10"></polyline><polyline points="3 20 3 14 9 14"></polyline><path d="M19 10a7.5 7.5 0 0 0-13-3.3L3 10"></path><path d="M5 14a7.5 7.5 0 0 0 13 3.3l3-3.3"></path>'); },
+  cancel:    function (s) { return ui(s || 16, '<circle cx="12" cy="12" r="9"></circle><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line>'); },
+  play:      function (s) { return ui(s || 48, '<circle cx="12" cy="12" r="9"></circle><polygon points="10 8.5 16 12 10 15.5"></polygon>'); },
+  pdf:       function (s) { return ui(s || 32, '<path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"></path><polyline points="14 2 14 7 19 7"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line>'); },
+  star:      function (s, fill) { return ui(s || 16, '<path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path>', { fill: fill || 'none', sw: 1.4 }); }
+};
+/* ------------------------------------------------------------------ *
+ * Quick view
+ *
+ * Content is derived from the clicked card's own DATA entry — no copy is
+ * hardcoded per product. The variant selection is SHARED with the card
+ * (both read state.sel), so opening the quick view shows what the card
+ * has selected, and changing it there updates the card behind the modal.
+ *
+ * Where the reference page has content this data set has no equivalent
+ * (extra gallery shots, behind-the-scenes video, lab PDF), the reference's
+ * placeholder treatment is kept rather than inventing product claims.
+ * ------------------------------------------------------------------ */
+var TRIAD = { indica: '#DCEDEC', sativa: '#F7F7DD', hybrid: '#F0EAE4' };
+var STRAIN_LABEL = { indica: 'Indica', sativa: 'Sativa', hybrid: 'Hybrid' };
+var EFFECT_WORD = { indica: 'Sleep', sativa: 'Energy', hybrid: 'Happy' };
+
+function money(n) { return '$' + (Math.round(n * 100) / 100).toFixed(2); }
+function priceNum(p) { return parseFloat(String(p).replace(/[^0-9.]/g, '')) || 0; }
+
+/* Split a card's options into flavour and size axes when the titles carry
+   both ("5ct / Huckleberry"); otherwise there is a single option axis. */
+function axes(c) {
+  var twoAxis = c.options.some(function (o) { return o.title.indexOf(' / ') !== -1; });
+  if (!twoAxis) {
+    return {
+      twoAxis: false, flavors: [],
+      sizes: c.options.map(function (o, i) { return { label: o.title, idx: i, soldOut: !!o.soldOut }; })
+    };
+  }
+  var flavors = [], sizes = [];
+  c.options.forEach(function (o) {
+    var sp = splitOpt(o.title);
+    if (!flavors.some(function (f) { return f.label === sp.flavor; })) flavors.push({ label: sp.flavor, strain: o.strain });
+    if (sizes.indexOf(sp.count) === -1) sizes.push(sp.count);
+  });
+  return { twoAxis: true, flavors: flavors, sizes: sizes };
+}
+function findOption(c, flavor, size) {
+  for (var i = 0; i < c.options.length; i++) {
+    var sp = splitOpt(c.options[i].title);
+    if (sp.flavor === flavor && sp.count === size) return i;
+  }
+  return -1;
+}
+/* Keep the other axis fixed where the combination exists, else fall back. */
+function chooseFlavor(c, flavor) {
+  var cur = splitOpt(c.options[state.sel[key(c.id)] || 0].title);
+  var i = findOption(c, flavor, cur.count);
+  if (i !== -1) return i;
+  for (var j = 0; j < c.options.length; j++) if (splitOpt(c.options[j].title).flavor === flavor) return j;
+  return 0;
+}
+function chooseSize(c, size) {
+  var cur = splitOpt(c.options[state.sel[key(c.id)] || 0].title);
+  var i = findOption(c, cur.flavor, size);
+  if (i !== -1) return i;
+  for (var j = 0; j < c.options.length; j++) if (splitOpt(c.options[j].title).count === size) return j;
+  return 0;
+}
+
+function describe(c) {
+  var bits = [];
+  var lead = '<b>' + esc(c.title) + '</b>' + (c.sub ? ' — ' + esc(c.sub) : '') + ', from Modern Herb Co.';
+  if (c.strains.length) {
+    var words = c.strains.map(function (s) { return EFFECT_WORD[s]; });
+    lead += ' Formulated across ' + esc(words.join(', ').replace(/, ([^,]*)$/, ' and $1')) + '.';
+  }
+  bits.push(lead);
+  var second = '';
+  var ax = axes(c);
+  if (ax.twoAxis) {
+    second = 'Available in ' + esc(ax.sizes.join(', ')) + ' across ' + ax.flavors.length + ' flavours — ' +
+      esc(ax.flavors.map(function (f) { return f.label; }).join(', ')) + '.';
+  } else if (c.sizes.length) {
+    second = 'Available in ' + esc(c.sizes.join(', ')) + '.';
+  }
+  if (c.priceRange) second += (second ? ' ' : '') + 'Priced ' + esc(c.priceRange) + '.';
+  if (second) bits.push(second);
+  return bits.map(function (t) { return '<p style="margin:0">' + t + '</p>'; }).join('');
+}
+
+var TABS = [
+  { id: 'desc',        label: 'Description' },
+  { id: 'bts',         label: 'Behind the Scenes' },
+  { id: 'potency',     label: 'Potency &amp; Safety Testing' },
+  { id: 'ingredients', label: 'Ingredients' },
+  { id: 'shipping',    label: 'Shipping &amp; Returns' }
+];
+
+function tabBody(id, c) {
+  var wrap = function (inner) { return '<div style="display:flex; flex-direction:column; gap:16px; font-size:15px; line-height:1.5; color:var(--ink); max-width:768px">' + inner + '</div>'; };
+  if (id === 'desc') return wrap(describe(c));
+  if (id === 'bts') return wrap(
+    '<p style="margin:0">Take a look inside our facility to see how ' + esc(c.title) + ' is made.</p>' +
+    '<div style="width:100%; aspect-ratio:16/9; background:var(--surface-container-low); border:1px solid var(--surface-container-highest); border-radius:14px; display:flex; align-items:center; justify-content:center; color:var(--tertiary)">' + ICON.play(48) + '</div>');
+  if (id === 'potency') return wrap(
+    '<p style="margin:0">Every batch is tested by independent, third-party laboratories for potency, purity and safety.</p>' +
+    '<div style="width:100%; height:320px; background:var(--surface-container-low); border:1px solid var(--surface-container-highest); border-radius:14px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--tertiary)">' +
+      ICON.pdf(32) + '<span style="font-size:13px; font-weight:600">Lab Results PDF Viewer Placeholder</span></div>');
+  if (id === 'ingredients') return wrap(
+    '<ul style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:8px">' +
+      '<li>Hemp-derived cannabinoid distillate</li>' +
+      '<li>Cannabis-derived terpenes (CDT)</li>' +
+      '<li>Zero artificial flavourings, cutting agents or fillers</li>' +
+    '</ul>');
+  var faq = function (q, a) {
+    return '<details style="border:1px solid var(--surface-container-highest); border-radius:14px; background:#fff">' +
+      '<summary style="display:flex; align-items:center; justify-content:space-between; padding:16px; font-size:13px; font-weight:600; color:var(--ink)">' + q +
+        '<span class="chev" style="display:flex; transition:transform .2s">' + ICON.chevdown(20) + '</span></summary>' +
+      '<div style="padding:0 16px 16px; color:var(--tertiary); border-top:1px solid var(--surface-container-highest); margin-top:8px; padding-top:16px">' + a + '</div>' +
+    '</details>';
+  };
+  return wrap(
+    '<div style="display:flex; flex-direction:column; gap:12px">' +
+      faq('What is your shipping policy?', 'We offer free shipping on all orders over $50. Orders are typically processed within 1–2 business days and delivered within 3–5 business days.') +
+      faq('Do you accept returns?', 'Yes, we offer a 30-day money-back guarantee on all unopened and unused products. Contact our support team to initiate a return.') +
+    '</div>');
+}
+
+function quickViewHTML(c) {
+  var k = key(c.id);
+  var selIdx = state.sel[k] || 0;
+  var sel = c.options[selIdx];
+  var selSplit = splitOpt(sel.title);
+  var ax = axes(c);
+  var subOn = state.sub[k] !== false;
+  var qty = state.qvQty || 1;
+  var allSold = c.options.every(function (o) { return o.soldOut; });
+  var disabled = allSold || !!sel.soldOut;
+  var unit = subOn ? priceNum(sel.price) * 0.7 : priceNum(sel.price);
+  var tab = state.qvTab || 'desc';
+
+  var effectChip = function (strain) {
+    if (!strain) return '';
+    return '<span class="qv-chip" style="background:' + TRIAD[strain] + '">' + mhcIcon(strain, 11) + STRAIN_LABEL[strain] + '</span>';
+  };
+
+  return '' +
+  '<div class="qv-grid">' +
+
+    /* ---- Column A: media ---- */
+    '<section style="display:flex; flex-direction:column; gap:8px; width:100%">' +
+      '<div style="position:relative; width:100%; aspect-ratio:1/1; background:#fff; border-radius:14px; border:1px solid var(--surface-container-highest); display:flex; align-items:center; justify-content:center; padding:16px; overflow:hidden">' +
+        '<div style="position:absolute; top:16px; left:16px; z-index:10; font-size:13px; font-weight:600; color:var(--ink)">' + esc(PROPS.potencyWord) + ' Potency</div>' +
+        '<div style="position:absolute; top:16px; right:16px; z-index:10; color:var(--stroke-alt)">' + ICON.share(18) + '</div>' +
+        (c.label ? '<div style="position:absolute; bottom:16px; left:16px; z-index:10; background:' + PROPS.accentColor + '; border:1px solid ' + PROPS.strokeColor + '; color:var(--ink); font-size:12px; font-weight:800; padding:5px 10px; border-radius:999px">' + esc(c.label) + '</div>' : '') +
+        '<img src="' + esc(c.img) + '" alt="' + esc(c.title) + '" style="width:100%; height:100%; object-fit:contain">' +
+      '</div>' +
+      '<div style="display:flex; gap:8px; padding:8px 0">' +
+        '<button type="button" class="qv-opt" aria-pressed="true" style="width:80px; height:80px; padding:4px">' +
+          '<img src="' + esc(c.img) + '" alt="" style="width:100%; height:100%; object-fit:contain">' +
+        '</button>' +
+      '</div>' +
+    '</section>' +
+
+    /* ---- Column B: information ---- */
+    '<section style="display:flex; flex-direction:column; gap:24px; margin-top:24px">' +
+
+      '<div style="display:flex; flex-direction:column; gap:4px">' +
+        '<div style="font-size:15px; color:var(--tertiary)">Modern Herb Co</div>' +
+        '<h2 class="qv-title" id="quick-view-title">' + esc(c.title) + '</h2>' +
+        '<div style="display:flex; align-items:center; justify-content:space-between; gap:12px">' +
+          '<div style="font-size:15px; color:var(--muted-gray)">' + esc(c.sub || '') + '</div>' +
+          (c.ratingAvg ?
+          '<div style="display:flex; align-items:center; gap:4px; white-space:nowrap">' + ICON.star(16, PROPS.accentColor) +
+            '<span style="font-size:13px; font-weight:600; color:var(--ink)">' + esc(c.ratingAvg) +
+            ' <span style="color:var(--tertiary); font-weight:400">' + esc(c.ratingCount) + '</span></span></div>' : '') +
+        '</div>' +
+      '</div>' +
+      '<div style="height:1px; background:var(--surface-container-highest); width:100%"></div>' +
+
+      /* Flavour selector — only when the options carry a flavour axis */
+      (ax.twoAxis ?
+      '<div style="display:flex; flex-direction:column; gap:12px">' +
+        '<div style="font-size:13px; font-weight:600; color:var(--ink)">Flavor: <span style="font-weight:400">' + esc(selSplit.flavor) + '</span></div>' +
+        '<div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px">' +
+          ax.flavors.map(function (f) {
+            return '<button type="button" class="qv-opt" data-qv="flavor" data-value="' + esc(f.label) + '" aria-pressed="' + (f.label === selSplit.flavor) + '">' +
+              (f.strain ? '<span style="position:absolute; top:4px; right:4px">' + effectChip(f.strain) + '</span>' : '') +
+              '<span style="width:40px; height:40px; border-radius:50%; margin-top:16px; background:' + (f.strain ? TRIAD[f.strain] : 'var(--surface-container-low)') + '; display:flex; align-items:center; justify-content:center; color:var(--ink)">' + (f.strain ? mhcIcon(f.strain, 18) : '') + '</span>' +
+              '<span style="width:100%; text-align:center; font-size:13px; font-weight:600; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap">' + esc(f.label) + '</span>' +
+            '</button>';
+          }).join('') +
+        '</div>' +
+      '</div>' : '') +
+
+      /* Size / option selector */
+      '<div style="display:flex; flex-direction:column; gap:12px">' +
+        '<div style="font-size:13px; font-weight:600; color:var(--ink)">' + (ax.twoAxis ? 'Size' : 'Option') + '</div>' +
+        '<div style="display:flex; flex-wrap:wrap; gap:10px">' +
+          (ax.twoAxis
+            ? ax.sizes.map(function (sz) {
+                var i = findOption(c, selSplit.flavor, sz);
+                var sold = i !== -1 && c.options[i].soldOut;
+                return '<button type="button" class="qv-size" data-qv="size" data-value="' + esc(sz) + '" aria-pressed="' + (sz === selSplit.count) + '"' + (sold ? ' disabled' : '') + '>' + esc(sz) + '</button>';
+              }).join('')
+            : ax.sizes.map(function (o) {
+                return '<button type="button" class="qv-size" data-qv="idx" data-value="' + o.idx + '" aria-pressed="' + (o.idx === selIdx) + '"' + (o.soldOut ? ' disabled' : '') + '>' + esc(o.label) + '</button>';
+              }).join('')) +
+        '</div>' +
+      '</div>' +
+
+      /* Purchase options — shares state.sub with the card behind the modal */
+      '<div style="display:flex; flex-direction:column; border:1px solid var(--surface-container-highest); border-radius:14px; overflow:hidden; background:#fff">' +
+        '<div data-qv="sub" role="radio" aria-checked="' + subOn + '" style="position:relative; display:flex; flex-direction:column; padding:16px; border-bottom:1px solid var(--surface-container-highest); background:' + (subOn ? 'var(--cream)' : '#fff') + '; cursor:pointer">' +
+          '<div style="display:flex; align-items:flex-start; gap:12px">' +
+            '<span aria-hidden="true" style="margin-top:2px; flex:0 0 18px; width:18px; height:18px; border-radius:50%; border:1.5px solid ' + PROPS.strokeColor + '; background:#fff; display:inline-flex; align-items:center; justify-content:center">' +
+              '<span style="width:9px; height:9px; border-radius:50%; background:' + (subOn ? 'var(--ink)' : 'transparent') + '"></span></span>' +
+            '<div style="flex:1 1 auto; display:flex; flex-direction:column; min-width:0">' +
+              '<div style="display:flex; justify-content:space-between; align-items:center; gap:12px">' +
+                '<span style="font-size:13px; font-weight:600; color:var(--ink)">Subscribe &amp; Save</span>' +
+                '<span style="font-size:15px; font-weight:700; color:var(--ink)">' + money(priceNum(sel.price) * 0.7) + '</span>' +
+              '</div>' +
+              '<span style="font-size:11px; font-weight:400; color:var(--tertiary); margin-top:4px">Save 30% on your first order, then 10% on every order after.</span>' +
+              '<div style="background:var(--surface-container-low); border:1px solid var(--surface-container-highest); border-radius:9px; padding:12px; margin-top:12px; display:flex; flex-direction:column; gap:8px">' +
+                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.sync(16) + 'Swap or skip anytime</span>' +
+                '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.cancel(16) + 'Cancel after 2nd order</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div style="position:absolute; top:0; right:0; background:' + PROPS.accentColor + '; color:var(--ink); font-size:11px; font-weight:700; letter-spacing:1px; padding:4px 8px; border-radius:0 0 0 9px">SAVE 30%</div>' +
+        '</div>' +
+        '<div data-qv="once" role="radio" aria-checked="' + (!subOn) + '" style="display:flex; align-items:center; gap:12px; padding:16px; cursor:pointer; background:' + (subOn ? '#fff' : 'var(--cream)') + '">' +
+          '<span aria-hidden="true" style="flex:0 0 18px; width:18px; height:18px; border-radius:50%; border:1.5px solid ' + PROPS.strokeColor + '; background:#fff; display:inline-flex; align-items:center; justify-content:center">' +
+            '<span style="width:9px; height:9px; border-radius:50%; background:' + (subOn ? 'transparent' : 'var(--ink)') + '"></span></span>' +
+          '<span style="flex:1 1 auto; display:flex; justify-content:space-between; align-items:center; gap:12px">' +
+            '<span style="font-size:13px; font-weight:600; color:' + (subOn ? 'var(--tertiary)' : 'var(--ink)') + '">One-time purchase</span>' +
+            '<span style="font-size:15px; font-weight:700; color:' + (subOn ? 'var(--tertiary)' : 'var(--ink)') + '">' + money(priceNum(sel.price)) + '</span>' +
+          '</span>' +
+        '</div>' +
+      '</div>' +
+
+      /* Buy row */
+      '<div style="display:flex; align-items:stretch; gap:8px; height:56px; margin-top:8px">' +
+        '<div style="display:flex; align-items:center; justify-content:space-between; border:1.5px solid ' + PROPS.strokeColor + '; border-radius:9px; padding:0 12px; background:#fff; width:120px; flex-shrink:0">' +
+          '<button type="button" class="qv-step" data-qv="dec" aria-label="Decrease">' + ICON.minus(20) + '</button>' +
+          '<span style="font-size:13px; font-weight:600; color:var(--ink)">' + qty + '</span>' +
+          '<button type="button" class="qv-step" data-qv="inc" aria-label="Increase">' + ICON.plus(20) + '</button>' +
+        '</div>' +
+        '<button type="button" class="qv-atc" data-qv="add"' + (disabled ? ' disabled' : '') + '>' +
+          (disabled ? 'Sold Out' : 'Add to Cart - ' + money(unit * qty) + (state.qvAdded ? '  &#10003;' : '')) +
+        '</button>' +
+      '</div>' +
+
+      /* Perks */
+      '<div style="display:flex; align-items:center; justify-content:center; gap:24px; padding:16px; background:#fff; border-radius:14px; border:1px solid var(--surface-container-highest)">' +
+        '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.truck(18) + 'Free Shipping $50+</span>' +
+        '<span style="width:1px; height:16px; background:var(--surface-container-highest)"></span>' +
+        '<span style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink)">' + ICON.verified(18) + 'Lab Tested</span>' +
+      '</div>' +
+
+    '</section>' +
+  '</div>' +
+
+  /* ---- Tabs ---- */
+  '<section style="margin-top:48px; width:100%; padding-top:32px">' +
+    '<div class="hide-scrollbar" style="display:flex; overflow-x:auto; gap:32px; border-bottom:1px solid var(--surface-container-highest); margin-bottom:32px">' +
+      TABS.map(function (t) {
+        return '<button type="button" class="qv-tab" data-qv="tab" data-value="' + t.id + '" role="tab" aria-selected="' + (t.id === tab) + '">' + t.label + '</button>';
+      }).join('') +
+    '</div>' +
+    tabBody(tab, c) +
+  '</section>' +
+
+  '<div style="display:flex; justify-content:center; margin:32px 0 16px">' +
+    '<a href="#" data-quick-view-close style="font-size:15px; color:var(--ink); text-decoration:underline; text-underline-offset:4px">Continue Shopping</a>' +
+  '</div>';
+}
+
+var qvRoot = document.getElementById('quick-view');
+var qvBody = document.getElementById('qv-body');
+var qvLastFocused = null;
+
+function renderQuickView() {
+  if (state.qv == null) return;
+  var c = DATA.filter(function (x) { return x.id === state.qv; })[0];
+  if (!c) return;
+  qvBody.innerHTML = quickViewHTML(c);
+}
+function openQuickView(id) {
+  qvLastFocused = document.activeElement;
+  state.qv = id;
+  state.qvQty = 1;
+  state.qvTab = 'desc';
+  state.qvAdded = false;
+  renderQuickView();
+  qvRoot.hidden = false;
+  document.body.classList.add('modal-open');
+  var closeBtn = qvRoot.querySelector('.qv-close');
+  if (closeBtn) closeBtn.focus();
+}
+function closeQuickView() {
+  state.qv = null;
+  qvRoot.hidden = true;
+  document.body.classList.remove('modal-open');
+  if (qvLastFocused && qvLastFocused.focus) qvLastFocused.focus();
+}
+
+qvRoot.addEventListener('click', function (e) {
+  if (e.target.closest && e.target.closest('[data-quick-view-close]')) { e.preventDefault(); closeQuickView(); return; }
+  var el = e.target.closest ? e.target.closest('[data-qv]') : null;
+  if (!el || state.qv == null) return;
+  var c = DATA.filter(function (x) { return x.id === state.qv; })[0];
+  var k = key(c.id);
+  var what = el.getAttribute('data-qv');
+  var val = el.getAttribute('data-value');
+
+  if (what === 'flavor') { state.sel[k] = chooseFlavor(c, val); }
+  else if (what === 'size') { state.sel[k] = chooseSize(c, val); }
+  else if (what === 'idx')  { state.sel[k] = parseInt(val, 10); }
+  else if (what === 'sub')  { state.sub[k] = true; }
+  else if (what === 'once') { state.sub[k] = false; }
+  else if (what === 'tab')  { state.qvTab = val; renderQuickView(); return; }
+  else if (what === 'inc')  { state.qvQty = Math.min(999, (state.qvQty || 1) + 1); renderQuickView(); return; }
+  else if (what === 'dec')  { state.qvQty = Math.max(1, (state.qvQty || 1) - 1); renderQuickView(); return; }
+  else if (what === 'add') {
+    state.qvAdded = true;
+    add(k);
+    renderQuickView();
+    clearTimeout(qvAddedTimer);
+    qvAddedTimer = setTimeout(function () { state.qvAdded = false; renderQuickView(); }, 1300);
+    return;
+  }
+  // selection changes touch the card too, so re-render both surfaces
+  render();
+  renderQuickView();
+});
+var qvAddedTimer = null;
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !qvRoot.hidden) closeQuickView();
+});
+/* ------------------------------------------------------------------ *
+ * Render
+ *
+ * The slide elements are created once and never replaced — only each
+ * slide's inner HTML is rewritten. Swiper's slide bookkeeping therefore
+ * survives every re-render and needs no update() call.
+ * ------------------------------------------------------------------ */
+var wrapper = document.getElementById('slides');
+var carousel = document.querySelector('.featured-carousel');
+var articles = DATA.map(function () {
+  var slide = document.createElement('div');
+  slide.className = 'swiper-slide';
+  var article = document.createElement('article');
+  slide.appendChild(article);
+  wrapper.appendChild(slide);
+  return article;
+});
+
+function render() {
+  build().forEach(function (v, i) { articles[i].innerHTML = cardHTML(v); });
+  fit();
+}
+
+/* One delegated listener on the (stable) wrapper. */
+wrapper.addEventListener('click', function (e) {
+  var a = e.target.closest ? e.target.closest('a[href="#"]') : null;
+  if (a) e.preventDefault();
+
+  var el = e.target.closest ? e.target.closest('[data-act]') : null;
+  if (!el) return;
+  var act = el.getAttribute('data-act');
+  var id = parseInt(el.getAttribute('data-id'), 10);
+  var k = key(id);
+
+  if (act === 'details') { openQuickView(id); return; }
+  if (act === 'toggle')  { state.open = state.open === k ? null : k; render(); return; }
+  if (act === 'pick')    { pick(id, parseInt(el.getAttribute('data-idx'), 10)); return; }
+  if (act === 'once')    { state.sub[k] = false; render(); return; }
+  if (act === 'sub')     { state.sub[k] = true;  render(); return; }
+  if (act === 'add') {
+    var card = DATA.filter(function (c) { return c.id === id; })[0];
+    var sel = card.options[state.sel[k] || 0];
+    var allSold = card.options.length ? card.options.every(function (o) { return o.soldOut; }) : false;
+    if (!(allSold || (sel && sel.soldOut))) add(k);
+    return;
+  }
+});
+
+/* The DC version had no outside-click close — the editor chrome absorbed it.
+   A standalone page needs one. Clicks inside the modal are not the page. */
+document.addEventListener('click', function (e) {
+  if (!state.open) return;
+  if (e.target.closest && e.target.closest('[data-variant-wrap], #quick-view')) return;
+  state.open = null;
+  render();
+});
+
+/* ------------------------------------------------------------------ *
+ * Text fit — ported as-is from the DC component.
+ * Every title gets ONE shared size: the smallest that fits all of them.
+ * ------------------------------------------------------------------ */
+function fit() {
+  var textW = function (el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    return r.getBoundingClientRect().width;
+  };
+  var uniform = function (sel, base, min) {
+    var els = Array.prototype.slice.call(document.querySelectorAll(sel));
+    if (!els.length) return;
+    var set = function (s) { els.forEach(function (el) { el.style.fontSize = s + 'px'; }); };
+    var fits = function () { return els.every(function (el) { return !el.clientWidth || textW(el) <= el.clientWidth - 2; }); };
+    var size = base, guard = 0;
+    set(size);
+    while (size > min && guard++ < 80 && !fits()) { size -= 0.5; set(size); }
+    while (size < base && guard++ < 160) {
+      set(size + 0.5);
+      if (!fits()) { set(size); break; }
+      size += 0.5;
+    }
+  };
+  // Titles are full-width block boxes, so box-vs-text measurement is valid for them.
+  uniform('[data-col="p"] [data-fit-title]', 30, 11);
+  // Subs hug their own text (shrink-to-content), so they cannot be measured this way:
+  // give them a fixed size and let them wrap instead of ellipsizing.
+  document.querySelectorAll('[data-col="p"] [data-fit-sub]').forEach(function (el) { el.style.fontSize = '12px'; });
+}
+
+render();
+
+new Swiper('.featured-carousel', {
+  slidesPerView: 1,
+  spaceBetween: 10,
+  watchOverflow: true,
+  navigation: {
+    prevEl: '.carousel-prev',
+    nextEl: '.carousel-next'
+  },
+  breakpoints: {
+    768:  { slidesPerView: 2, spaceBetween: 20 },
+    1024: { slidesPerView: 3, spaceBetween: 20 }
+  }
+});
+
+/* The DC build polled a title's clientWidth with a 250ms setInterval — an editor
+   artifact. A standalone page can observe the carousel instead. The container is
+   stable across re-renders (only the slides' innerHTML is replaced), and the width
+   guard keeps fit()'s own font-size changes from feeding back through height. */
+if (window.ResizeObserver) {
+  var lastW = -1;
+  new ResizeObserver(function () {
+    var w = carousel.clientWidth;
+    if (w && w !== lastW) { lastW = w; fit(); }
+  }).observe(carousel);
+}
+window.addEventListener('resize', fit);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; background:#f4f4f5; font-family:'Poppins',system-ui,sans-serif; }
+  a { color:#393839; text-decoration:none; }
+  [data-col="p"] ul[role="listbox"]::-webkit-scrollbar { width: 6px; }
+  [data-col="p"] ul[role="listbox"]::-webkit-scrollbar-track { background: #EDECE7; border-left: 1px solid #DEDDD6; border-radius: 0 8px 8px 0; }
+  [data-col="p"] ul[role="listbox"]::-webkit-scrollbar-thumb { margin: 10px 0; }
+  [data-col="p"] ul[role="listbox"]::-webkit-scrollbar-thumb { background: #393839; border-radius: 3px; }
+  a:hover { color:#393839; }
+</style>
+</helmet>
+<div style="min-height:100vh; background:#f4f4f5; padding:28px 28px 64px; font-family:'Poppins',system-ui,sans-serif; -webkit-font-smoothing:antialiased">
+
+  <div style="max-width:1420px; margin:0 auto; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; padding-bottom:18px; border-bottom:1px solid #e0e0e2">
+    <div>
+      <h1 style="margin:0; font-size:26px; font-weight:800; color:#393839; letter-spacing:-.4px">Mobile PLP — proposed changes</h1>
+      <p style="margin:4px 0 0; font-size:14px; color:#6b7280">Flip each change on or off in the panel at left. The first phone is the proposal; the second is the current build, frozen. Every change applies to all cards. Locked on every version: the potency word “Max” beside the form factor, and a “Modern Herb Co” brand line under the product name.</p>
+    </div>
+  </div>
+
+  <div style="min-width:1400px; max-width:1420px; margin:22px auto 0; display:flex; flex-wrap:nowrap; gap:20px; align-items:flex-start">
+
+    <div style="flex:0 0 auto; display:flex; flex-wrap:nowrap; gap:20px; align-items:flex-start">
+    <div style="flex:0 0 240px; width:240px; display:flex; flex-direction:column; gap:10px; position:sticky; top:24px; max-height:calc(100vh - 48px)">
+      <div style="display:flex; align-items:center; gap:8px">
+        <span style="display:inline-block; width:9px; height:9px; border-radius:50%; background:#e3e829; border:1.5px solid #393839"></span>
+        <span style="font-size:13px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#393839">Proposed changes</span>
+      </div>
+      <div style="align-self:stretch; flex:1 1 auto; min-height:0; overflow-y:auto; background:#fff; border:1px solid #e2e2e6; border-radius:14px; padding:12px; display:flex; flex-direction:column; gap:10px">
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <span style="font-size:12px; font-weight:800; letter-spacing:1.1px; text-transform:uppercase; color:#393839">Toggle each change</span>
+          <span style="display:flex; gap:6px">
+            <button type="button" onClick="{{ allOn }}" style="font-family:inherit; font-size:12px; font-weight:700; padding:5px 11px; border-radius:999px; border:1.5px solid #d1d5db; background:#fff; color:#393839; cursor:pointer; white-space:nowrap" style-hover="background:#f6f6f7">All on</button>
+            <button type="button" onClick="{{ allOff }}" style="font-family:inherit; font-size:12px; font-weight:700; padding:5px 11px; border-radius:999px; border:1.5px solid #d1d5db; background:#fff; color:#393839; cursor:pointer; white-space:nowrap" style-hover="background:#f6f6f7">Reset all</button>
+          </span>
+        </div>
+        <sc-for list="{{ changes }}" as="ch" hint-placeholder-count="1">
+          <button type="button" onClick="{{ ch.toggle }}" aria-pressed="{{ ch.on }}" style="display:flex; align-items:center; gap:10px; width:100%; text-align:left; font-family:inherit; background:transparent; border:none; padding:2px 0; cursor:pointer">
+            <span style="flex:0 0 34px; width:34px; height:20px; border-radius:999px; position:relative; transition:background .15s; background: {{ ch.trackBg }}; border:1.5px solid {{ ch.trackBorder }}">
+              <span style="position:absolute; top:1px; left: {{ ch.knobLeft }}; width:14px; height:14px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.3); transition:left .15s"></span>
+            </span>
+            <span style="display:inline-flex; align-items:center; justify-content:center; flex:0 0 20px; width:20px; height:20px; border-radius:50%; background:#393839; color:#fff; font-size:11px; font-weight:800">{{ ch.n }}</span>
+            <span style="flex:1 1 auto; min-width:0; font-size:13px; font-weight:600; line-height:1.3; color: {{ ch.labelColor }}">{{ ch.title }}</span>
+          </button>
+        </sc-for>
+        <sc-if value="{{ noChanges }}">
+          <p style="margin:0; font-size:12px; color:#9ca3af; line-height:1.5">No changes wired yet.</p>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="flex:0 0 auto; display:flex; flex-wrap:nowrap; gap:20px; align-items:flex-start">
+    <div style="box-sizing:border-box; flex:0 0 400px; width:400px; display:flex; flex-direction:column; gap:10px; align-items:center">
+      <div style="display:flex; align-items:center; gap:8px; align-self:stretch">
+        <span style="display:inline-block; width:9px; height:9px; border-radius:50%; background:#e3e829; border:1.5px solid #393839"></span>
+        <span style="font-size:13px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#393839">Proposed</span>
+      </div>
+      <div style="box-sizing:border-box; width:100%; max-width:400px; background:#fff; border:2px solid transparent; border-radius:20px; padding:12px; box-shadow:0 10px 30px rgba(17,24,39,.08)">
+        <div data-col="p" style="display:grid; grid-template-columns: {{ gridCols }}; gap:10px; align-items:stretch">
+          <sc-for list="{{ proposed }}" as="card" hint-placeholder-count="4">
+            <div style="position:relative; display:flex; flex-direction: {{ card.cardDir }}; height:100%; background:#fff; border:1px solid {{ card.hairline }}; border-radius:14px">
+
+              <sc-if value="{{ card.labelInPrice }}" hint-placeholder-val="{{ true }}">
+                <span style="position:absolute; top:44px; left:11px; z-index:5; box-sizing:border-box; display:inline-block; background: {{ card.stBg }}; color:#393839; border:1px solid {{ card.ctrlBorder }}; font-family: {{ card.bodyFont }}; font-weight:700; font-size:12px; line-height:1.2; letter-spacing:.2px; padding: {{ card.stPad }}; border-radius: {{ card.chipRadius }}; white-space:nowrap">{{ card.labelInPrice }}</span>
+              </sc-if>
+              <sc-if value="{{ card.strengthTop }}" hint-placeholder-val="{{ true }}">
+                <span style="position:absolute; top:11px; left:11px; z-index:5; box-sizing:border-box; display:inline-block; white-space:nowrap; font-family: {{ card.bodyFont }}; color: {{ card.stFg }}; font-size: {{ card.stSize }}; font-weight: {{ card.stWeight }}; letter-spacing: {{ card.stTrack }}; text-transform: {{ card.stCase }}; background: {{ card.stBg }}; border: {{ card.stBorder }}; border-radius: {{ card.chipRadius }}; padding: {{ card.stPad }}; line-height:1.2">{{ card.strengthTop }}</span>
+              </sc-if>
+              <a href="#" style="position:relative; display:block; flex: {{ card.imgFlex }}; align-self:stretch; aspect-ratio: {{ card.imgAspect }}; min-height: {{ card.imgMinH }}; border-radius: {{ card.imgRadius }}; overflow:hidden; background:#f6f6f7">
+                <div style="position:absolute; inset:0; background: {{ card.imgBg }}">
+                  <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform: {{ card.imgScale }}; transform-origin:center center">
+                    <image-slot id="{{ card.slotId }}" src="{{ card.img }}" shape="rect" fit="contain" placeholder="Drop product photo" style="{{ card.slotStyle }}"></image-slot>
+                  </div>
+                </div>
+                <sc-if value="{{ card.brandOnPhoto }}" hint-placeholder-val="{{ true }}">
+                  <span style="position:absolute; bottom:9px; left:11px; z-index:3; max-width:calc(100% - 22px); display:block; color:#4a4a8a; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.brandOnPhoto }}</span>
+                </sc-if>
+                <sc-if value="{{ card.labelPhotoOnly }}" hint-placeholder-val="{{ true }}">
+                  <span style="position:absolute; top:8px; left: {{ card.badgeLeft }}; right: {{ card.badgeRight }}; z-index:3; background: {{ card.accent }}; color:#393839; font-weight:800; font-size:12px; line-height:1; letter-spacing:.2px; padding:5px 10px; border-radius:999px; box-shadow: {{ card.badgeShadow }}; border: {{ card.badgeBorder }}; max-width:46%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.labelPhotoOnly }}</span>
+                </sc-if>
+              </a>
+
+              <div style="display:flex; flex-direction:column; flex:1 1 auto; min-width:0; padding: {{ card.stackPad }}; gap: {{ card.stackGap }}">
+                <div style="order: {{ card.orderSub }}; display:flex; align-items:center; gap:8px; min-width:0">
+                  <sc-if value="{{ card.sub }}" hint-placeholder-val="{{ true }}">
+                    <p data-fit-sub style="flex:0 1 auto; min-width:0; margin:0; font-family: {{ card.bodyFont }}; font-size:15px; font-weight: {{ card.subWeight }}; color: {{ card.subColor }}; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.sub }}</p>
+                  </sc-if>
+                </div>
+                <a href="#" data-fit-title style="order: {{ card.orderTitle }}; font-family: {{ card.titleFont }}; display:block; margin:-5px 0 0; font-size:20px; font-weight:700; color:#393839; line-height:1.12; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.title }}</a>
+                <sc-if value="{{ card.brandAboveTitle }}" hint-placeholder-val="{{ true }}">
+                  <p data-fit-sub style="order:-1; margin:-5px 0 0; font-family: {{ card.bodyFont }}; font-size:15px; font-weight:400; color: {{ card.brandColor }}; line-height:1.12; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.brandAboveTitle }}</p>
+                </sc-if>
+
+                <div style="flex:1 1 auto; min-height:8px; margin:-6px 0"></div>
+
+                <sc-if value="{{ card.comboRow }}">
+                  <div aria-label="Effects and counts" style="box-sizing:border-box; display:flex; flex-direction: {{ card.comboDir }}; flex-wrap:nowrap; align-items: {{ card.comboAlign }}; gap: {{ card.comboRowGap }}; overflow:hidden; border: {{ card.comboBorder }}; border-radius: {{ card.ctrlRadius }}; padding: {{ card.comboPad }}">
+                    <div style="align-self:stretch; display:flex; flex-wrap:nowrap; align-items:center; gap: {{ card.comboGap }}; min-width:0">
+                      <sc-for list="{{ card.comboStrains }}" as="s" hint-placeholder-count="2">
+                        <span title="{{ s.label }}" style="display:inline-flex; align-items:center; justify-content:center; width: {{ s.box }}; height: {{ s.box }}; min-width: {{ s.box }}; flex:0 0 auto; font-family: {{ card.bodyFont }}; padding: {{ s.pad }}; font-size: {{ s.size }}; font-weight:400; letter-spacing: {{ s.track }}; border-radius: {{ card.effectRadius }}; box-sizing:border-box; background: {{ s.bg }}; border: {{ s.border }}; color: {{ s.fg }}">{{ s.body }}</span>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ card.comboSpacer }}">
+                      <span aria-hidden="true" style="flex:1 1 auto"></span>
+                    </sc-if>
+                    <sc-if value="{{ card.comboRule }}">
+                      <span aria-hidden="true" style="flex:0 0 1px; width:1px; height:14px; background:#d8d8dc"></span>
+                    </sc-if>
+                    <div style="display:flex; flex-wrap:nowrap; align-items:center; gap: {{ card.comboGap }}; min-width:0">
+                      <sc-for list="{{ card.comboSizes }}" as="size" hint-placeholder-count="2">
+                        <span style="box-sizing:border-box; font-family: {{ card.bodyFont }}; font-size:12px; font-weight:400; letter-spacing: {{ size.track }}; color: {{ size.fg }}; background: {{ size.bg }}; border: {{ size.border }}; border-radius: {{ card.chipRadius }}; padding: {{ size.pad }}; line-height:1.4; white-space:nowrap">{{ size.label }}</span>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ card.showStrainRow }}" hint-placeholder-val="{{ true }}">
+                  <sc-if value="{{ card.infoCaptionText }}">
+                    <span style="display:block; font-size:9.5px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:#9ca3af">{{ card.infoCaptionText }}</span>
+                  </sc-if>
+                  <div aria-label="Effects" style="display:flex; flex-wrap:wrap; align-items:center; gap:6px">
+                    <sc-for list="{{ card.strains }}" as="s" hint-placeholder-count="2">
+                      <span title="{{ s.label }}" style="display:inline-flex; align-items:center; justify-content:center; width: {{ s.rowBox }}; height:28px; min-width: {{ s.rowBox }}; flex:0 0 auto; font-family: {{ card.bodyFont }}; padding: {{ s.pad }}; font-size: {{ s.size }}; font-weight:400; letter-spacing: {{ s.track }}; border-radius: {{ card.effectRadius }}; box-sizing:border-box; background: {{ s.bg }}; border: {{ s.border }}; color: {{ s.fg }}">{{ s.body }}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ card.showSizeRow }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5px">
+                    <sc-if value="{{ card.sizesText }}">
+                      <span style="font-size:11px; font-weight:600; letter-spacing:.5px; color:#9ca3af; white-space:nowrap">{{ card.sizesText }}</span>
+                    </sc-if>
+                    <sc-if value="{{ card.infoTiles }}" hint-placeholder-val="{{ true }}">
+                      <sc-for list="{{ card.sizes }}" as="size" hint-placeholder-count="2">
+                        <span style="box-sizing:border-box; font-size:11px; font-weight:600; color: {{ card.infoColor }}; background: {{ card.chipBg }}; border: {{ card.infoBorder }}; border-radius: {{ card.chipRadius }}; padding:3px 9px; line-height:1.4; white-space:nowrap">{{ size }}</span>
+                      </sc-for>
+                    </sc-if>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ card.chooseCaptionText }}">
+                  <span style="display:block; margin-bottom:-2px; font-size:9.5px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:#6b7280">{{ card.chooseCaptionText }}</span>
+                </sc-if>
+                <sc-if value="{{ card.hasVariants }}" hint-placeholder-val="{{ true }}">
+                  <div style="position:relative; min-height:40px">
+                    <button type="button" onClick="{{ card.toggle }}" aria-haspopup="listbox" style="position:relative; width:100%; display:flex; align-items:center; gap:6px; font-family:inherit; font-size:13px; font-weight:600; color:#393839; background:#fff; border:1.5px solid {{ card.ctrlBorder }}; border-radius: {{ card.ctrlRadius }}; padding:8px 30px 8px 10px; cursor:pointer; text-align:left; opacity: {{ card.selOpacity }}">
+                      <span style="display:flex; align-items:center; gap:6px; flex:1 1 auto; min-width:0">
+                        <sc-if value="{{ card.selHasStrain }}" hint-placeholder-val="{{ true }}">
+                          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; box-sizing:border-box; flex-shrink:0; background: {{ card.menuTileBg }}; border: {{ card.menuTileBorder }}; color:#393839">{{ card.selStrainIcon }}</span>
+                        </sc-if>
+                        <sc-if value="{{ card.selShowCount }}" hint-placeholder-val="{{ true }}">
+                          <span style="flex-shrink:0; box-sizing:border-box; font-size:12px; font-weight:600; color:#393839; width: {{ card.countW }}; border: {{ card.countBorder }}; border-radius: {{ card.ctrlRadius }}; padding: {{ card.countPad }}; text-align:center">{{ card.selCount }}</span>
+                        </sc-if>
+                        <sc-if value="{{ card.showRule }}" hint-placeholder-val="{{ true }}">
+                          <span aria-hidden="true" style="flex-shrink:0; width:1px; align-self:stretch; background: {{ card.hairline }}"></span>
+                        </sc-if>
+                        <span style="flex:1 1 auto; min-width:0; font-family: {{ card.bodyFont }}; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-decoration: {{ card.selDecoration }}">{{ card.selFlavor }}</span>
+                        <sc-if value="{{ card.selCountRight }}" hint-placeholder-val="{{ true }}">
+                          <span style="flex-shrink:0; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; min-width:32px; height:26px; padding:0 8px; border-radius: {{ card.chipRadius }}; background: {{ card.menuTileBg }}; border: {{ card.menuTileBorder }}; font-size:12px; font-weight:400; color:#393839">{{ card.selCount }}</span>
+                        </sc-if>
+                      </span>
+                      <sc-if value="{{ card.showSelPrice }}" hint-placeholder-val="{{ true }}">
+                        <span style="font-weight: {{ card.selPriceWeight }}; color: {{ card.metaFg }}; flex-shrink:0; text-decoration: {{ card.selDecoration }}">{{ card.selPrice }}</span>
+                      </sc-if>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); pointer-events:none; color:#6b7280"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <sc-if value="{{ card.open }}">
+                      <ul role="listbox" style="list-style:none; margin:0; padding:4px; position:absolute; top:0; left:0; right:0; z-index:50; padding: {{ card.menuPad }}; overflow-x:hidden; background:#fff; border:1.5px solid {{ card.ctrlBorder }}; border-radius: {{ card.menuRadius }}; box-shadow:0 8px 28px rgba(0,0,0,.18); max-height:184px; overflow-y:auto">
+                        <sc-for list="{{ card.options }}" as="opt" hint-placeholder-count="3">
+                          <sc-if value="{{ opt.groupLabel }}">
+                            <li style="margin: {{ opt.groupTop }} 0 3px; padding:6px 12px; background: {{ card.stBg }}; color:#393839; border-radius:0; border-top: {{ opt.groupTopBorder }}; border-bottom:1px solid {{ card.ctrlBorder }}; font-family: {{ card.bodyFont }}; font-size:11px; font-weight:700; letter-spacing:.6px; line-height:1.2">{{ opt.groupLabel }}</li>
+                          </sc-if>
+                          <li role="option" onClick="{{ opt.select }}" style="display:flex; align-items:center; gap:7px; margin: {{ card.rowMargin }}; padding:9px 8px; box-sizing:border-box; border-radius:6px; cursor:pointer; font-size:13px; background: {{ opt.rowBg }}; opacity: {{ opt.rowOpacity }}" style-hover="background:#F2F4C4">
+                            <sc-if value="{{ opt.hasStrain }}" hint-placeholder-val="{{ true }}">
+                              <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; box-sizing:border-box; flex-shrink:0; background: {{ card.menuTileBg }}; border: {{ card.menuTileBorder }}; color:#393839">{{ opt.icon }}</span>
+                            </sc-if>
+                            <sc-if value="{{ opt.showCount }}" hint-placeholder-val="{{ true }}">
+                              <span style="flex-shrink:0; box-sizing:border-box; font-size:12px; font-weight:600; color:#393839; width: {{ card.countW }}; border: {{ card.countBorder }}; border-radius: {{ card.ctrlRadius }}; padding: {{ card.countPad }}; text-align:center">{{ opt.count }}</span>
+                            </sc-if>
+                            <sc-if value="{{ card.showRule }}" hint-placeholder-val="{{ true }}">
+                              <span aria-hidden="true" style="flex-shrink:0; width:1px; align-self:stretch; background: {{ card.hairline }}"></span>
+                            </sc-if>
+                            <span style="flex:1 1 auto; min-width:0; font-family: {{ card.bodyFont }}; font-weight:600; line-height:1.25; white-space: {{ opt.flavorWrap }}; overflow:hidden; text-overflow:ellipsis; text-decoration: {{ opt.decoration }}">{{ opt.flavor }}</span>
+                            <sc-if value="{{ opt.countRight }}" hint-placeholder-val="{{ true }}">
+                              <span style="flex-shrink:0; font-size:12px; font-weight:600; color:#393839">{{ opt.count }}</span>
+                            </sc-if>
+                            <sc-if value="{{ opt.countCircle }}" hint-placeholder-val="{{ true }}">
+                              <span style="flex-shrink:0; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; min-width:32px; height:26px; padding:0 8px; border-radius: {{ card.chipRadius }}; background: {{ card.menuTileBg }}; border: {{ card.menuTileBorder }}; font-size:12px; font-weight:400; color:#393839">{{ opt.count }}</span>
+                            </sc-if>
+                            <span style="font-weight: {{ opt.priceWeight }}; color: {{ card.metaFg }}; flex-shrink:0">{{ opt.price }}</span>
+                          </li>
+                        </sc-for>
+                      </ul>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ card.noVariants }}">
+                  <div aria-hidden="true" style="min-height:40px"></div>
+                </sc-if>
+
+                <sc-if value="{{ card.showSubs }}" hint-placeholder-val="{{ true }}">
+                  <div role="radiogroup" aria-label="Purchase type" style="display:flex; flex-direction:column; gap:6px">
+                    <div onClick="{{ card.pickOnce }}" role="radio" aria-checked="{{ card.onceOn }}" style="box-sizing:border-box; display:flex; align-items:center; gap:8px; cursor:pointer; background:#fff; border:1.5px solid {{ card.onceBorder }}; border-radius: {{ card.ctrlRadius }}; padding:9px 11px">
+                      <span aria-hidden="true" style="flex:0 0 15px; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:50%; border:1.5px solid {{ card.ctrlBorder }}; background:#fff">
+                        <span style="display:block; width:7px; height:7px; border-radius:50%; background: {{ card.onceDot }}"></span>
+                      </span>
+                      <span style="flex:1 1 auto; min-width:0; font-family: {{ card.bodyFont }}; font-size:12px; font-weight:600; color:#393839; line-height:1.25">One-time purchase</span>
+                      <span style="flex-shrink:0; font-size:12px; font-weight:400; color:#4A4A49">{{ card.oncePrice }}</span>
+                    </div>
+                    <div onClick="{{ card.pickSub }}" role="radio" aria-checked="{{ card.subOn }}" style="box-sizing:border-box; display:flex; flex-direction:column; gap:3px; cursor:pointer; background: {{ card.subBg }}; border:1.5px solid {{ card.subBorder }}; border-radius: {{ card.ctrlRadius }}; padding:9px 11px">
+                      <span style="display:flex; align-items:center; gap:8px">
+                        <span aria-hidden="true" style="flex:0 0 15px; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:50%; border:1.5px solid {{ card.ctrlBorder }}; background:#fff">
+                          <span style="display:block; width:7px; height:7px; border-radius:50%; background: {{ card.subDot }}"></span>
+                        </span>
+                        <span style="flex:1 1 auto; min-width:0; font-family: {{ card.bodyFont }}; font-size:12px; font-weight:600; color:#393839; line-height:1.25">Subscribe &amp; Save</span>
+                        <span style="flex-shrink:0; font-size:12px; font-weight:400; color:#4A4A49">{{ card.subPrice }}</span>
+                      </span>
+                      <span style="padding-left:23px; font-size:11px; font-weight:400; color:#4A4A49; line-height:1.3; text-wrap:pretty">Save 30% on your first order, then 10% on every order after.</span>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:6px; margin-top: {{ card.buyGap }}">
+                  <sc-if value="{{ card.showStepper }}" hint-placeholder-val="{{ true }}">
+                    <div aria-label="Quantity" style="display:flex; align-items:stretch; border:1.5px solid {{ card.ctrlBorder }}; border-radius: {{ card.ctrlRadius }}; overflow:hidden; flex-shrink:0">
+                      <button type="button" onClick="{{ card.dec }}" aria-label="Decrease" style="width:30px; border:none; background: {{ card.stepBg }}; font-size:16px; line-height:1; color:#393839; cursor:pointer; font-family:inherit" style-hover="background:#f3f4f6">&#8722;</button>
+                      <div style="width:34px; display:flex; align-items:center; justify-content:center; border-left:1px solid {{ card.hairline }}; border-right:1px solid {{ card.hairline }}; font-size:14px; font-weight:600; color:#393839">{{ card.qty }}</div>
+                      <button type="button" onClick="{{ card.inc }}" aria-label="Increase" style="width:30px; border:none; background: {{ card.stepBg }}; font-size:16px; line-height:1; color:#393839; cursor:pointer; font-family:inherit" style-hover="background:#f3f4f6">&#43;</button>
+                    </div>
+                  </sc-if>
+                  <button type="button" onClick="{{ card.add }}" style="order:2; flex:1 1 auto; display:inline-flex; align-items:center; justify-content:center; gap:6px; border: {{ card.atcStroke }} solid {{ card.atcBorder }}; background: {{ card.atcBg }}; color: {{ card.atcColor }}; font-family:inherit; font-size:13px; font-weight:700; border-radius: {{ card.ctrlRadius }}; padding:8px; min-width:44px; cursor: {{ card.atcCursor }}">
+                    <sc-if value="{{ card.buyable }}" hint-placeholder-val="{{ true }}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+                    </sc-if>
+                    <sc-if value="{{ card.soldOut }}"><span>Sold Out</span></sc-if>
+                    <sc-if value="{{ card.added }}"><span style="font-size:15px">&#10003;</span></sc-if>
+                  </button>
+                  <sc-if value="{{ card.showPeek }}" hint-placeholder-val="{{ true }}">
+                    <a href="#" title="See details" style="order:1; flex:0 0 34%; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; gap:5px; border: {{ card.atcStroke }} solid {{ card.atcBorder }}; background: {{ card.detailsBg }}; color: {{ card.detailsFg }}; font-size:11px; font-weight:600; letter-spacing:.2px; border-radius: {{ card.ctrlRadius }}; padding:8px; min-width:44px; text-decoration:none">
+                      <span style="font-family: {{ card.bodyFont }}; font-size:13px; font-weight:700; letter-spacing:.2px">Details</span>
+                    </a>
+                  </sc-if>
+                </div>
+
+                <div style="display:flex; align-items:center; justify-content:flex-end; gap:6px; flex-wrap:wrap">
+                  <sc-if value="{{ card.shipNote }}" hint-placeholder-val="{{ true }}">
+                    <span style="box-sizing:border-box; font-family: {{ card.bodyFont }}; font-size:12px; font-weight:400; color:#393839; white-space:nowrap; background: {{ card.stBg }}; border: {{ card.stBorder }}; border-radius: {{ card.chipRadius }}; padding: {{ card.stPad }}; line-height:1.2">{{ card.shipNote }}</span>
+                  </sc-if>
+                  <sc-if value="{{ card.showPriceRow }}" hint-placeholder-val="{{ true }}">
+                    <p style="margin:0; font-size:15px; font-weight:700; color: {{ card.priceColor }}; line-height:1.2">{{ card.priceDisplay }}</p>
+                  </sc-if>
+                  <sc-if value="{{ card.hasRating }}" hint-placeholder-val="{{ true }}">
+                    <span style="display:inline-flex; align-items:center; gap:3px; font-size:13px; font-weight:600; color:#393839; white-space:nowrap">
+                      <span style="display:inline-flex; align-items:center; gap:1px; flex-shrink:0">
+                        <sc-for list="{{ card.stars }}" as="star" hint-placeholder-count="5">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="{{ star.fill }}" stroke="{{ star.stroke }}" stroke-width="{{ star.sw }}" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                        </sc-for>
+                      </span>
+                      <sc-if value="{{ card.showAvg }}" hint-placeholder-val="{{ true }}">
+                        <span>{{ card.ratingAvg }}</span>
+                      </sc-if>
+                      <span style="color: {{ card.metaFg }}; font-weight: {{ card.metaWeight }}">{{ card.ratingCount }}</span>
+                    </span>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="box-sizing:border-box; flex:0 0 400px; width:400px; display:flex; flex-direction:column; gap:10px; align-items:center">
+      <div style="display:flex; align-items:center; gap:8px; align-self:stretch">
+        <span style="display:inline-block; width:9px; height:9px; border-radius:50%; background:#c9c9cd"></span>
+        <span style="font-size:13px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#6b7280">Current — do not edit</span>
+      </div>
+      <div style="box-sizing:border-box; width:100%; max-width:400px; background:#fff; border:1px solid transparent; border-radius:20px; padding:12px">
+        <div data-col="c" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; align-items:stretch">
+          <sc-for list="{{ current }}" as="card" hint-placeholder-count="4">
+            <div style="position:relative; display:flex; flex-direction:column; height:100%; background:#fff; border:1px solid {{ card.hairline }}; border-radius:14px">
+              <sc-if value="{{ card.strengthTop }}" hint-placeholder-val="{{ true }}">
+                <span style="position:absolute; top:11px; left:11px; z-index:5; box-sizing:border-box; display:inline-block; white-space:nowrap; font-family: {{ card.bodyFont }}; color: {{ card.stFg }}; font-size: {{ card.stSize }}; font-weight: {{ card.stWeight }}; letter-spacing: {{ card.stTrack }}; text-transform: {{ card.stCase }}; background: {{ card.stBg }}; border: {{ card.stBorder }}; border-radius: {{ card.chipRadius }}; padding: {{ card.stPad }}; line-height:1.2">{{ card.strengthTop }}</span>
+              </sc-if>
+              <a href="#" style="position:relative; display:block; flex: {{ card.imgFlex }}; align-self:stretch; aspect-ratio: {{ card.imgAspect }}; min-height: {{ card.imgMinH }}; border-radius: {{ card.imgRadius }}; overflow:hidden; background:#f6f6f7">
+                <div style="position:absolute; inset:0; background: {{ card.imgBg }}">
+                  <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform: {{ card.imgScale }}; transform-origin:center center">
+                    <image-slot id="{{ card.slotId }}" src="{{ card.img }}" shape="rect" fit="contain" placeholder="Drop product photo" style="{{ card.slotStyle }}"></image-slot>
+                  </div>
+                </div>
+                <sc-if value="{{ card.brandOnPhoto }}" hint-placeholder-val="{{ true }}">
+                  <span style="position:absolute; bottom:9px; left:11px; z-index:3; max-width:calc(100% - 22px); display:block; color:#4a4a8a; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.brandOnPhoto }}</span>
+                </sc-if>
+                <sc-if value="{{ card.labelPhotoOnly }}" hint-placeholder-val="{{ true }}">
+                  <span style="position:absolute; top:8px; left: {{ card.badgeLeft }}; right: {{ card.badgeRight }}; z-index:3; background: {{ card.accent }}; color:#393839; font-weight:800; font-size:12px; line-height:1; letter-spacing:.2px; padding:5px 10px; border-radius:999px; box-shadow: {{ card.badgeShadow }}; border: {{ card.badgeBorder }}; max-width:46%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.labelPhotoOnly }}</span>
+                </sc-if>
+              </a>
+
+              <div style="display:flex; flex-direction:column; flex:1 1 auto; min-width:0; padding: {{ card.stackPad }}; gap: {{ card.stackGap }}">
+                <div style="order: {{ card.orderSub }}; display:flex; align-items:center; gap:8px; min-width:0">
+                  <sc-if value="{{ card.sub }}" hint-placeholder-val="{{ true }}">
+                    <p data-fit-sub style="flex:0 1 auto; min-width:0; margin:0; font-family: {{ card.bodyFont }}; font-size:15px; font-weight: {{ card.subWeight }}; color: {{ card.subColor }}; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.sub }}</p>
+                  </sc-if>
+                </div>
+                <a href="#" data-fit-title style="order: {{ card.orderTitle }}; font-family: {{ card.titleFont }}; display:block; margin:-5px 0 0; font-size:20px; font-weight:700; color:#393839; line-height:1.12; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.title }}</a>
+                <sc-if value="{{ card.brandAboveTitle }}" hint-placeholder-val="{{ true }}">
+                  <p data-fit-sub style="order:-1; margin:-5px 0 0; font-family: {{ card.bodyFont }}; font-size:15px; font-weight:400; color: {{ card.brandColor }}; line-height:1.12; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ card.brandAboveTitle }}</p>
+                </sc-if>
+
+                <div style="flex:1 1 auto; min-height:8px; margin:-6px 0"></div>
+
+                <sc-if value="{{ card.comboRow }}">
+                  <div aria-label="Effects and counts" style="box-sizing:border-box; display:flex; flex-direction: {{ card.comboDir }}; flex-wrap:nowrap; align-items: {{ card.comboAlign }}; gap: {{ card.comboRowGap }}; overflow:hidden; border: {{ card.comboBorder }}; border-radius: {{ card.ctrlRadius }}; padding: {{ card.comboPad }}">
+                    <div style="align-self:stretch; display:flex; flex-wrap:nowrap; align-items:center; gap: {{ card.comboGap }}; min-width:0">
+                      <sc-for list="{{ card.comboStrains }}" as="s" hint-placeholder-count="2">
+                        <span title="{{ s.label }}" style="display:inline-flex; align-items:center; justify-content:center; width: {{ s.box }}; height: {{ s.box }}; min-width: {{ s.box }}; flex:0 0 auto; font-family: {{ card.bodyFont }}; padding: {{ s.pad }}; font-size: {{ s.size }}; font-weight:400; letter-spacing: {{ s.track }}; border-radius: {{ card.effectRadius }}; box-sizing:border-box; background: {{ s.bg }}; border: {{ s.border }}; color: {{ s.fg }}">{{ s.body }}</span>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ card.comboSpacer }}">
+                      <span aria-hidden="true" style="flex:1 1 auto"></span>
+                    </sc-if>
+                    <sc-if value="{{ card.comboRule }}">
+                      <span aria-hidden="true" style="flex:0 0 1px; width:1px; height:14px; background:#d8d8dc"></span>
+                    </sc-if>
+                    <div style="display:flex; flex-wrap:nowrap; align-items:center; gap: {{ card.comboGap }}; min-width:0">
+                      <sc-for list="{{ card.comboSizes }}" as="size" hint-placeholder-count="2">
+                        <span style="box-sizing:border-box; font-family: {{ card.bodyFont }}; font-size:12px; font-weight:400; letter-spacing: {{ size.track }}; color: {{ size.fg }}; background: {{ size.bg }}; border: {{ size.border }}; border-radius: {{ card.chipRadius }}; padding: {{ size.pad }}; line-height:1.4; white-space:nowrap">{{ size.label }}</span>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ card.showStrainRow }}" hint-placeholder-val="{{ true }}">
+                  <sc-if value="{{ card.infoCaptionText }}">
+                    <span style="display:block; font-size:9.5px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:#9ca3af">{{ card.infoCaptionText }}</span>
+                  </sc-if>
+                  <div aria-label="Effects" style="display:flex; flex-wrap:wrap; align-items:center; gap:6px">
+                    <sc-for list="{{ card.strains }}" as="s" hint-placeholder-count="2">
+                      <span title="{{ s.label }}" style="display:inline-flex; align-items:center; justify-content:center; width: {{ s.rowBox }}; height:28px; min-width: {{ s.rowBox }}; flex:0 0 auto; font-family: {{ card.bodyFont }}; padding: {{ s.pad }}; font-size: {{ s.size }}; font-weight:400; letter-spacing: {{ s.track }}; border-radius: {{ card.effectRadius }}; box-sizing:border-box; background: {{ s.bg }}; border: {{ s.border }}; color: {{ s.fg }}">{{ s.body }}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ card.showSizeRow }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5px">
+                    <sc-if value="{{ card.sizesText }}">
+                      <span style="font-size:11px; font-weight:600; letter-spacing:.5px; color:#9ca3af; white-space:nowrap">{{ card.sizesText }}</span>
+                    </sc-if>
+                    <sc-if value="{{ card.infoTiles }}" hint-placeholder-val="{{ true }}">
+                      <sc-for list="{{ card.sizes }}" as="size" hint-placeholder-count="2">
+                        <span style="box-sizing:border-box; font-size:11px; font-weight:600; color: {{ card.infoColor }}; background: {{ card.chipBg }}; border: {{ card.infoBorder }}; border-radius: {{ card.chipRadius }}; padding:3px 9px; line-height:1.4; white-space:nowrap">{{ size }}</span>
+                      </sc-for>
+                    </sc-if>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ card.chooseCaptionText }}">
+                  <span style="display:block; margin-bottom:-2px; font-size:9.5px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:#6b7280">{{ card.chooseCaptionText }}</span>
+                </sc-if>
+                <sc-if value="{{ card.hasVariants }}" hint-placeholder-val="{{ true }}">
+                  <div style="position:relative; min-height:40px">
+                    <button type="button" onClick="{{ card.toggle }}" aria-haspopup="listbox" style="position:relative; width:100%; display:flex; align-items:center; gap:6px; font-family:inherit; font-size:13px; font-weight:600; color:#393839; background:#fff; border:1.5px solid {{ card.ctrlBorder }}; border-radius: {{ card.ctrlRadius }}; padding:8px 30px 8px 10px; cursor:pointer; text-align:left; opacity: {{ card.selOpacity }}">
+                      <span style="display:flex; align-items:center; gap:6px; flex:1 1 auto; min-width:0">
+                        <sc-if value="{{ card.selHasStrain }}" hint-placeholder-val="{{ true }}">
+                          <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; box-sizing:border-box; flex-shrink:0; background: {{ card.menuTileBg }}; border: {{ card.menuTileBorder }}; color:#393839">{{ card.selStrainIcon }}</span>
+                        </sc-if>
+                        <sc-if value="{{ card.selShowCount }}" hint-placeholder-val="{{ true }}">
+                          <span style="flex-shrink:0; box-sizing:border-box; font-size:12px; font-weight:600; color:#393839; width: {{ card.countW }}; border: {{ card.countBorder }}; border-radius: {{ card.ctrlRadius }}; padding: {{ card.countPad }}; text-align:center">{{ card.selCount }}</span>
+                        </sc-if>
+                        <sc-if value="{{ card.showRule }}" hint-placeholder-val="{{ true }}">
+                          <span aria-hidden="true" style="flex-shrink:0; width:1px; align-self:stretch; background: {{ card.hairline }}"></span>
+                        </sc-if>
+                        <span style="flex:1 1 auto; min-width:0; font-family: {{ card.bodyFont }}; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-decoration: {{ card.selDecoration }}">{{ card.selFlavor }}</span>
+                        <sc-if value="{{ card.selCountRight }}" hint-placeholder-val="{{ true }}">
+                          <span style="flex-shrink:0; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; min-width:32px; height:26px; padding:0 8px; border-radius: {{ card.chipRadius }}; background: {{ card.menuTileBg }}; border: {{ card.menuTileBorder }}; font-size:12px; font-weight:400; color:#393839">{{ card.selCount }}</span>
+                        </sc-if>
+                      </span>
+                      <sc-if value="{{ card.showSelPrice }}" hint-placeholder-val="{{ true }}">
+                        <span style="font-weight: {{ card.selPriceWeight }}; color: {{ card.metaFg }}; flex-shrink:0; text-decoration: {{ card.selDecoration }}">{{ card.selPrice }}</span>
+                      </sc-if>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); pointer-events:none; color:#6b7280"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <sc-if value="{{ card.open }}">
+                      <ul role="listbox" style="list-style:none; margin:0; padding:4px; position:absolute; top:0; left:0; right:0; z-index:50; padding: {{ card.menuPad }}; overflow-x:hidden; background:#fff; border:1.5px solid {{ card.ctrlBorder }}; border-radius: {{ card.menuRadius }}; box-shadow:0 8px 28px rgba(0,0,0,.18); max-height:184px; overflow-y:auto">
+                        <sc-for list="{{ card.options }}" as="opt" hint-placeholder-count="3">
+                          <sc-if value="{{ opt.groupLabel }}">
+                            <li style="margin: {{ opt.groupTop }} 0 3px; padding:6px 12px; background: {{ card.stBg }}; color:#393839; border-radius:0; border-top: {{ opt.groupTopBorder }}; border-bottom:1px solid {{ card.ctrlBorder }}; font-family: {{ card.bodyFont }}; font-size:11px; font-weight:700; letter-spacing:.6px; line-height:1.2">{{ opt.groupLabel }}</li>
+                          </sc-if>
+                          <li role="option" onClick="{{ opt.select }}" style="display:flex; align-items:center; gap:7px; margin: {{ card.rowMargin }}; padding:9px 8px; box-sizing:border-box; border-radius:6px; cursor:pointer; font-size:13px; background: {{ opt.rowBg }}; opacity: {{ opt.rowOpacity }}" style-hover="background:#F2F4C4">
+                            <sc-if value="{{ opt.hasStrain }}" hint-placeholder-val="{{ true }}">
+                              <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; box-sizing:border-box; flex-shrink:0; background: {{ card.menuTileBg }}; border: {{ card.menuTileBorder }}; color:#393839">{{ opt.icon }}</span>
+                            </sc-if>
+                            <sc-if value="{{ opt.showCount }}" hint-placeholder-val="{{ true }}">
+                              <span style="flex-shrink:0; box-sizing:border-box; font-size:12px; font-weight:600; color:#393839; width: {{ card.countW }}; border: {{ card.countBorder }}; border-radius: {{ card.ctrlRadius }}; padding: {{ card.countPad }}; text-align:center">{{ opt.count }}</span>
+                            </sc-if>
+                            <sc-if value="{{ card.showRule }}" hint-placeholder-val="{{ true }}">
+                              <span aria-hidden="true" style="flex-shrink:0; width:1px; align-self:stretch; background: {{ card.hairline }}"></span>
+                            </sc-if>
+                            <span style="flex:1 1 auto; min-width:0; font-family: {{ card.bodyFont }}; font-weight:600; line-height:1.25; white-space: {{ opt.flavorWrap }}; overflow:hidden; text-overflow:ellipsis; text-decoration: {{ opt.decoration }}">{{ opt.flavor }}</span>
+                            <sc-if value="{{ opt.countRight }}" hint-placeholder-val="{{ true }}">
+                              <span style="flex-shrink:0; font-size:12px; font-weight:600; color:#393839">{{ opt.count }}</span>
+                            </sc-if>
+                            <sc-if value="{{ opt.countCircle }}" hint-placeholder-val="{{ true }}">
+                              <span style="flex-shrink:0; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; min-width:32px; height:26px; padding:0 8px; border-radius: {{ card.chipRadius }}; background: {{ card.menuTileBg }}; border: {{ card.menuTileBorder }}; font-size:12px; font-weight:400; color:#393839">{{ opt.count }}</span>
+                            </sc-if>
+                            <span style="font-weight: {{ opt.priceWeight }}; color: {{ card.metaFg }}; flex-shrink:0">{{ opt.price }}</span>
+                          </li>
+                        </sc-for>
+                      </ul>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ card.noVariants }}">
+                  <div aria-hidden="true" style="min-height:40px"></div>
+                </sc-if>
+
+                <sc-if value="{{ card.showSubs }}" hint-placeholder-val="{{ true }}">
+                  <div role="radiogroup" aria-label="Purchase type" style="display:flex; flex-direction:column; gap:6px">
+                    <div onClick="{{ card.pickOnce }}" role="radio" aria-checked="{{ card.onceOn }}" style="box-sizing:border-box; display:flex; align-items:center; gap:8px; cursor:pointer; background:#fff; border:1.5px solid {{ card.onceBorder }}; border-radius: {{ card.ctrlRadius }}; padding:9px 11px">
+                      <span aria-hidden="true" style="flex:0 0 15px; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:50%; border:1.5px solid {{ card.ctrlBorder }}; background:#fff">
+                        <span style="display:block; width:7px; height:7px; border-radius:50%; background: {{ card.onceDot }}"></span>
+                      </span>
+                      <span style="flex:1 1 auto; min-width:0; font-family: {{ card.bodyFont }}; font-size:12px; font-weight:600; color:#393839; line-height:1.25">One-time purchase</span>
+                      <span style="flex-shrink:0; font-size:12px; font-weight:400; color:#4A4A49">{{ card.oncePrice }}</span>
+                    </div>
+                    <div onClick="{{ card.pickSub }}" role="radio" aria-checked="{{ card.subOn }}" style="box-sizing:border-box; display:flex; flex-direction:column; gap:3px; cursor:pointer; background: {{ card.subBg }}; border:1.5px solid {{ card.subBorder }}; border-radius: {{ card.ctrlRadius }}; padding:9px 11px">
+                      <span style="display:flex; align-items:center; gap:8px">
+                        <span aria-hidden="true" style="flex:0 0 15px; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:50%; border:1.5px solid {{ card.ctrlBorder }}; background:#fff">
+                          <span style="display:block; width:7px; height:7px; border-radius:50%; background: {{ card.subDot }}"></span>
+                        </span>
+                        <span style="flex:1 1 auto; min-width:0; font-family: {{ card.bodyFont }}; font-size:12px; font-weight:600; color:#393839; line-height:1.25">Subscribe &amp; Save</span>
+                        <span style="flex-shrink:0; font-size:12px; font-weight:400; color:#4A4A49">{{ card.subPrice }}</span>
+                      </span>
+                      <span style="padding-left:23px; font-size:11px; font-weight:400; color:#4A4A49; line-height:1.3; text-wrap:pretty">Save 30% on your first order, then 10% on every order after.</span>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:6px; margin-top: {{ card.buyGap }}">
+                  <sc-if value="{{ card.showStepper }}" hint-placeholder-val="{{ true }}">
+                    <div aria-label="Quantity" style="display:flex; align-items:stretch; border:1.5px solid {{ card.ctrlBorder }}; border-radius: {{ card.ctrlRadius }}; overflow:hidden; flex-shrink:0">
+                      <button type="button" onClick="{{ card.dec }}" aria-label="Decrease" style="width:30px; border:none; background: {{ card.stepBg }}; font-size:16px; line-height:1; color:#393839; cursor:pointer; font-family:inherit" style-hover="background:#f3f4f6">&#8722;</button>
+                      <div style="width:34px; display:flex; align-items:center; justify-content:center; border-left:1px solid {{ card.hairline }}; border-right:1px solid {{ card.hairline }}; font-size:14px; font-weight:600; color:#393839">{{ card.qty }}</div>
+                      <button type="button" onClick="{{ card.inc }}" aria-label="Increase" style="width:30px; border:none; background: {{ card.stepBg }}; font-size:16px; line-height:1; color:#393839; cursor:pointer; font-family:inherit" style-hover="background:#f3f4f6">&#43;</button>
+                    </div>
+                  </sc-if>
+                  <button type="button" onClick="{{ card.add }}" style="order:2; flex:1 1 auto; display:inline-flex; align-items:center; justify-content:center; gap:6px; border: {{ card.atcStroke }} solid {{ card.atcBorder }}; background: {{ card.atcBg }}; color: {{ card.atcColor }}; font-family:inherit; font-size:13px; font-weight:700; border-radius: {{ card.ctrlRadius }}; padding:8px; min-width:44px; cursor: {{ card.atcCursor }}">
+                    <sc-if value="{{ card.buyable }}" hint-placeholder-val="{{ true }}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+                    </sc-if>
+                    <sc-if value="{{ card.soldOut }}"><span>Sold Out</span></sc-if>
+                    <sc-if value="{{ card.added }}"><span style="font-size:15px">&#10003;</span></sc-if>
+                  </button>
+                  <sc-if value="{{ card.showPeek }}" hint-placeholder-val="{{ true }}">
+                    <a href="#" title="See details" style="order:1; flex:0 0 34%; box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; gap:5px; border: {{ card.atcStroke }} solid {{ card.atcBorder }}; background: {{ card.detailsBg }}; color: {{ card.detailsFg }}; font-size:11px; font-weight:600; letter-spacing:.2px; border-radius: {{ card.ctrlRadius }}; padding:8px; min-width:44px; text-decoration:none">
+                      <span style="font-family: {{ card.bodyFont }}; font-size:13px; font-weight:700; letter-spacing:.2px">Details</span>
+                    </a>
+                  </sc-if>
+                </div>
+
+                <div style="display:flex; align-items:center; justify-content:flex-end; gap:6px; flex-wrap:wrap">
+                  <sc-if value="{{ card.shipNote }}" hint-placeholder-val="{{ true }}">
+                    <span style="box-sizing:border-box; font-family: {{ card.bodyFont }}; font-size:12px; font-weight:400; color:#393839; white-space:nowrap; background: {{ card.stBg }}; border: {{ card.stBorder }}; border-radius: {{ card.chipRadius }}; padding: {{ card.stPad }}; line-height:1.2">{{ card.shipNote }}</span>
+                  </sc-if>
+                  <sc-if value="{{ card.showPriceRow }}" hint-placeholder-val="{{ true }}">
+                    <p style="margin:0; font-size:15px; font-weight:700; color: {{ card.priceColor }}; line-height:1.2">{{ card.priceDisplay }}</p>
+                  </sc-if>
+                  <sc-if value="{{ card.hasRating }}" hint-placeholder-val="{{ true }}">
+                    <span style="display:inline-flex; align-items:center; gap:3px; font-size:13px; font-weight:600; color:#393839; white-space:nowrap">
+                      <span style="display:inline-flex; align-items:center; gap:1px; flex-shrink:0">
+                        <sc-for list="{{ card.stars }}" as="star" hint-placeholder-count="5">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="{{ star.fill }}" stroke="{{ star.stroke }}" stroke-width="{{ star.sw }}" stroke-linejoin="round" aria-hidden="true" style="display:block; flex-shrink:0"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                        </sc-for>
+                      </span>
+                      <sc-if value="{{ card.showAvg }}" hint-placeholder-val="{{ true }}">
+                        <span>{{ card.ratingAvg }}</span>
+                      </sc-if>
+                      <span style="color: {{ card.metaFg }}; font-weight: {{ card.metaWeight }}">{{ card.ratingCount }}</span>
+                    </span>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    </div>
+
+    <div style="box-sizing:border-box; flex:0 0 260px; width:260px; display:flex; flex-direction:column; gap:12px; position:sticky; top:24px; max-height:calc(100vh - 48px); overflow-y:auto">
+      <span style="font-size:13px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#393839">Change notes</span>
+      <sc-for list="{{ notes }}" as="note" hint-placeholder-count="3">
+        <div style="display:flex; gap:10px; background:#fff; border:1px solid #e2e2e6; border-radius:12px; padding:12px; opacity: {{ note.opacity }}">
+          <span style="display:inline-flex; align-items:center; justify-content:center; flex:0 0 24px; width:24px; height:24px; border-radius:50%; background: {{ note.dotBg }}; color:#fff; font-size:13px; font-weight:800">{{ note.n }}</span>
+          <div style="min-width:0">
+            <p style="margin:0; font-size:14px; font-weight:700; color:#393839; line-height:1.3">{{ note.title }}</p>
+            <p style="margin:3px 0 0; font-size:13px; color:#6b7280; line-height:1.45; text-wrap:pretty">{{ note.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+      <p style="margin:2px 0 0; font-size:12px; color:#9ca3af; line-height:1.5">Numbers match the toggles at left. Dimmed notes are changes currently switched off.</p>
+    </div>
+
+  </div>
+
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#e3e829&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;,&quot;options&quot;:[&quot;#e3e829&quot;,&quot;#F2E205&quot;,&quot;#C9D138&quot;,&quot;#B3DAD9&quot;]},&quot;strokeColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#807E7F&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;,&quot;options&quot;:[&quot;#807E7F&quot;,&quot;#6B6A6B&quot;,&quot;#393839&quot;,&quot;#A9A7A8&quot;]},&quot;potencyWord&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Max&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Copy&quot;},&quot;brandLine&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Modern Herb Co&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Copy&quot;},&quot;photoWidth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:45,&quot;min&quot;:24,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+const STRAIN = {
+  indica: { bg: '#ede9fe', fg: '#4c1d95', label: 'Sleep' },
+  hybrid: { bg: '#d1fae5', fg: '#065f46', label: 'Balance' },
+  sativa: { bg: '#fef3c7', fg: '#92400e', label: 'Energy' }
+};
+
+function svg(size, viewBox, children) {
+  return React.createElement('svg', {
+    xmlns: 'http://www.w3.org/2000/svg', width: size, height: size, viewBox,
+    fill: 'none', stroke: 'currentColor', strokeWidth: 1.6,
+    strokeLinecap: 'round', strokeLinejoin: 'round', style: { display: 'block' }
+  }, children);
+}
+function splitOpt(t) {
+  const parts = String(t || '').split(' / ');
+  if (parts.length < 2) return { count: '', flavor: t || '' };
+  return { count: parts[0], flavor: parts.slice(1).join(' / ') };
+}
+function legacyIcon(kind, size) {
+  size = size || 14;
+  if (kind === 'indica') {
+    return svg(size, '0 0 16 16', React.createElement('path', { key: 'p', d: 'M11.5 4.5 A5 5 0 1 0 11.5 11.5 A3.5 3.5 0 1 1 11.5 4.5 Z' }));
+  }
+  if (kind === 'sativa') {
+    const rays = [[8,1,8,3],[8,13,8,15],[1,8,3,8],[13,8,15,8],[3.05,3.05,4.46,4.46],[11.54,11.54,12.95,12.95],[12.95,3.05,11.54,4.46],[4.46,11.54,3.05,12.95]]
+      .map((c, i) => React.createElement('line', { key: i, x1: c[0], y1: c[1], x2: c[2], y2: c[3] }));
+    return svg(size, '0 0 16 16', [React.createElement('circle', { key: 'c', cx: 8, cy: 8, r: 2.5 })].concat(rays));
+  }
+  return svg(size, '0 0 24 24', [
+    React.createElement('line', { key: 'a', x1: 12, y1: 3, x2: 12, y2: 20 }),
+    React.createElement('line', { key: 'b', x1: 8, y1: 20, x2: 16, y2: 20 }),
+    React.createElement('line', { key: 'c', x1: 4, y1: 7, x2: 20, y2: 7 }),
+    React.createElement('path', { key: 'd', d: 'M4 11 Q6.5 14 9 11' }),
+    React.createElement('path', { key: 'e', d: 'M15 11 Q17.5 14 20 11' })
+  ]);
+}
+function mhcIcon(kind, size, filled) {
+  size = size || 14;
+  const solidPath = d => React.createElement('path', {
+    key: 'p', d: d,
+    fill: filled ? 'currentColor' : 'none',
+    stroke: filled ? 'none' : 'currentColor'
+  });
+  if (kind === 'indica') return svg(size, '0 0 16 16', solidPath('M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z'));
+  if (kind === 'sativa') return svg(size, '0 0 16 16', solidPath('M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z'));
+  if (filled) {
+    return svg(size, '0 0 16 16', [
+      React.createElement('path', { key: 'a', d: 'M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z', fill: 'currentColor', stroke: 'none' }),
+      React.createElement('path', { key: 'b', d: 'M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z', fill: 'currentColor', stroke: 'none' })
+    ]);
+  }
+  return svg(size, '0 0 16 16', [
+    React.createElement('path', { key: 'a', d: 'M1.4 13.2 A6.6 6.6 0 0 1 14.6 13.2' }),
+    React.createElement('path', { key: 'b', d: 'M4.3 13.2 A3.7 3.7 0 0 1 11.7 13.2' }),
+    React.createElement('path', { key: 'c', d: 'M7.2 13.2 A0.8 0.8 0 0 1 8.8 13.2' })
+  ]);
+}
+
+const DATA = [
+  {
+    id: 1, label: 'B2G1', livePotency: 'Mild', liveBrand: 'Modern Herb Co', imgInset: '11%',
+    img: 'uploads/001-MHC-Rosin-Gummies-30ct-mixed_berry--web.png',
+    imgBg: '#F9F8F4', imgDot: '#9b8cf0',
+    title: 'Enhanced Spectrum', sub: 'THC Craft Soda — Grape Kush',
+    strains: ['indica', 'hybrid', 'sativa'], sizes: ['1ct', '5ct', '20ct'],
+    options: [
+      { title: '1ct / Huckleberry', price: '$5', strain: 'indica' },
+      { title: '5ct / Huckleberry', price: '$10', strain: 'indica' },
+      { title: '20ct / Huckleberry', price: '$50', strain: 'indica' },
+      { title: '1ct / Passionfruit', price: '$5', strain: 'hybrid' },
+      { title: '5ct / Passionfruit', price: '$10', strain: 'hybrid' },
+      { title: '20ct / Passionfruit', price: '$50', strain: 'hybrid' },
+      { title: '1ct / Strawberry Rhubarb', price: '$5', strain: 'sativa' },
+      { title: '5ct / Strawberry Rhubarb', price: '$25', strain: 'sativa' },
+      { title: '20ct / Strawberry Rhubarb', price: '$50', strain: 'sativa' }
+    ],
+    priceRange: '$5 – $50', ratingAvg: '4.5', ratingCount: '(2)'
+  },
+  {
+    id: 2, label: 'SALE', livePotency: 'Strong', liveBrand: 'Modern Herb Co', imgInset: '11%',
+    img: 'uploads/003-MHC-Carts-Live-Rosin-Pouch-RENDER-Front_Headband_High Res.png',
+    imgBg: '#F9F8F4', imgDot: '#e0954d',
+    title: 'Sleepy Time', sub: 'Indica Gummies',
+    strains: ['indica'], sizes: ['10ct', '30ct'],
+    options: [
+      { title: '10ct', price: '$18', strain: 'indica' },
+      { title: '30ct', price: '$42', strain: 'indica' }
+    ],
+    priceRange: '$18 – $42', ratingAvg: '5.0', ratingCount: '(41)'
+  },
+  {
+    id: 3, label: '', livePotency: '', liveBrand: '',
+    img: 'uploads/001-MHC-Gummies-Rosin-3ct-peaches_cream-web.png',
+    imgBg: '#F9F8F4', imgDot: '#8fbf4d',
+    title: 'CBD Tincture 1000mg', sub: '',
+    strains: [], sizes: ['15ml', '30ml'],
+    options: [
+      { title: '15ml', price: '$34', strain: '' },
+      { title: '30ml — Sold out', price: '$59', strain: '', soldOut: true }
+    ],
+    priceRange: '$34 – $59', ratingAvg: '', ratingCount: ''
+  },
+  {
+    id: 4, label: 'New!', livePotency: 'Medium', liveBrand: 'Black Shelf',
+    img: 'uploads/Caramel-Render_SamplePouch-hybrid-web.png',
+    imgBg: '#F9F8F4', imgDot: '#e06666',
+    title: 'Hybrid Soda', sub: 'Single Size',
+    strains: ['hybrid'], sizes: ['1ct'],
+    options: [{ title: '1ct', price: '$6', strain: 'hybrid' }],
+    priceRange: '$6', ratingAvg: '4.0', ratingCount: '(8)'
+  }
+];
+
+// Callouts on the PROPOSED column, keyed by card id.
+// One entry per proposed change. `card` = which card carries the callout badge.
+const CHANGES = [
+  {
+    id: 'darkBorders', n: 1,
+    title: 'Control strokes go near-black',
+    body: 'Every stroke in the lower half of the card leaves light gray for the near-black family, matching the add-to-cart button: count chips, the variant selector and its dropdown, the quantity stepper frame, the two dividers around the quantity field, and the card’s own outer border.'
+  },
+  {
+    id: 'lightStrokes', n: 2,
+    title: 'Alt: lighter stroke tone (#807E7F)',
+    body: 'Same strokes one step lighter — #807E7F instead of #393839, the same warm near-black family — so the controls stop competing with the text and the add-to-cart button. Requires change 1; switch this off for the full-dark version.'
+  },
+  {
+    id: 'atcStroke', n: 3,
+    title: 'Add-to-cart border matches the rest of the card',
+    body: 'The add-to-cart border drops from 2px to 1.5px, the same weight as the quantity stepper and the variant selector, so no single control reads heavier than its neighbours.'
+  },
+  {
+    id: 'flatBadge', n: 4,
+    title: 'Flat promo badge',
+    body: 'The B2G1 / SALE / New! badge loses its drop shadow — the only shadow anywhere on the card — and takes a 1px stroke in the card’s stroke colour instead.'
+  },
+  {
+    id: 'uniformRadius', n: 5,
+    title: 'One radius on everything (14px)',
+    body: 'Every corner uses the same 14px radius: card, image well, variant selector, dropdown, quantity stepper, add-to-cart, the count chips and the effect icons — the whole card on one number. Compare against the Current column, where controls are 9px and chips are fully rounded pills. Trade-off: nested corners are no longer concentric, so inner curves can look slightly off-centre inside the outer ones.'
+  },
+  {
+    id: 'squareCounts', n: 6,
+    title: 'Alt: keep the 9px control radius',
+    body: 'Keeps the concentric standard instead — card 14px, image 13px, and every control at 9px. The effect icons and the count chips (1ct / 5ct / 20ct) both take that same 9px, so they read as part of the same control family as the selector and add-to-cart rather than as pills. Overrides change 5 while it is on.'
+  },
+  {
+    id: 'rowCountLane', n: 7,
+    title: 'Dropdown: count in its own lane',
+    body: 'Each dropdown row becomes effect icon → count in a fixed 34px lane → a 1px vertical rule → flavour → price. The rule does the separating instead of a slash, counts line up down the list so they can be compared, and the flavour still gets everything left over.'
+  },
+  {
+    id: 'rowCountChip', n: 8,
+    title: 'Alt: count as a small chip',
+    body: 'Same order, no vertical rule: the count sits in a 1px outlined chip at the control radius, so it reads as a spec token and the flavour that follows is plain text. Slightly more ink than the lane, but the count is unmistakable. Overrides change 7.'
+  },
+  {
+    id: 'rowCountRight', n: 9,
+    title: 'Alt: count moves right, flavour gets the full width',
+    body: 'The most minimal of the three: effect icon, then the flavour across the whole row, with the count set small and gray immediately before the price. Nothing separates them but space — maximum room for long flavour names, at the cost of counts no longer aligning in a column. Overrides changes 7 and 8.'
+  },
+  {
+    id: 'infoNoStroke', n: 10,
+    title: 'Stroke means clickable',
+    body: 'The effect icons and count chips keep their fill but lose their outline entirely, while every interactive control — selector, stepper, add-to-cart — keeps a 1.5px stroke. One rule the eye learns in a second: outlined things can be tapped, unoutlined things are just telling you something.'
+  },
+  {
+    id: 'infoNoFill', n: 11,
+    title: 'Alt: fill means clickable',
+    body: 'The opposite rule. Effect icons and count chips go white with a pale #d8d8dc hairline and gray text; the dropdown and add-to-cart keep their fills and dark strokes. Informational tiles recede into the card, the buy controls carry all the contrast. Overrides change 10.'
+  },
+  {
+    id: 'infoCaption', n: 12,
+    title: 'Alt: name the two groups',
+    body: 'Adds two 9.5px uppercase captions — “In this product” above the effect and count row, “Choose your option” above the dropdown. Says it in words instead of relying on styling, at the cost of two more lines of type per card. Overrides changes 10 and 11.'
+  },
+  {
+    id: 'infoPlain', n: 13,
+    title: 'Alt: no tiles at all',
+    body: 'The most minimal: effect glyphs sit bare with no circle behind them and the counts become plain gray text (1ct · 5ct · 20ct). With nothing boxed except the controls, only the dropdown and add-to-cart look pressable. Overrides changes 10, 11 and 12.'
+  },
+  {
+    id: 'infoOneRow', n: 14,
+    title: 'Effects and counts share one row',
+    body: 'Instead of two stacked rows, the effect icons and the count chips sit on a single line — effects left, counts pushed to the right edge. Saves a row of card height and reads as one band of specs rather than two unrelated groups. Overrides changes 10–13 while it is on.'
+  },
+  {
+    id: 'infoBoxed', n: 15,
+    title: 'Alt: one outlined spec box',
+    body: 'The same single row, wrapped in one 1px container at the control radius with a hairline rule between the effects and the counts. Everything informational lives inside one shape, so the only other outlined things on the card are the dropdown and add-to-cart. Overrides change 14.'
+  },
+  {
+    id: 'infoUnified', n: 16,
+    title: 'Alt: light-gray info tiles, stacked',
+    body: 'Effects and counts both sit in soft #F7F6F1 cream tiles with #84837C glyphs and text, no outline at all — effect circles on the top line, count chips (1ct / 5ct / 20ct) directly beneath on the same 6px spacing. The tint groups each set and separates the two rows visually, while the missing stroke keeps them from reading as buttons: only the dropdown and add-to-cart carry a stroke, so those are the only things that look pressable.'
+  },
+  {
+    id: 'radiusFix', n: 17,
+    title: 'Dropdown radius matches its trigger',
+    body: 'The variant dropdown was 10px while the selector that opens it was 9px — a mismatch nobody chose. The dropdown now inherits whatever radius the controls are using.'
+  },
+  {
+    id: 'noGrayFills', n: 18,
+    title: 'Remove gray fills — counts + quantity stepper',
+    body: 'Count chips drop their #f3f4f6 fill and sit on white with the 1px border only; the quantity stepper’s + / − buttons drop #f9fafb for the same reason.'
+  },
+  {
+    id: 'warmFill', n: 19,
+    title: 'Alt: warm fill instead of empty',
+    body: 'Rather than clearing them, count chips and the + / − stepper buttons take a #F9F8F4 fill — the same warm neutral as the image well. Overrides change 18 while it is on.'
+  },
+  {
+    id: 'outlineOnly', n: 20,
+    title: 'Alt: outlines only — no fills anywhere',
+    body: 'Effect icons and count chips both go white-filled with a 1px stroke and a #393839 glyph: no colour fills at all, the whole card carried by line weight. Overrides changes 18, 19 and every effect-colour option while it is on — the cleanest read, at the cost of colour as a scanning cue.'
+  },
+  {
+    id: 'strainNeutral', n: 21,
+    title: 'One palette for the effect icons',
+    body: 'Sleep, Energy and Balance drop their purple / amber / green coding: every effect circle becomes #EFF0B3 with a #393839 glyph, on the card and inside the variant selector. Effect is read from the icon shape, not the colour.'
+  },
+  {
+    id: 'strainBeige', n: 22,
+    title: 'Alt: effect circles in beige',
+    body: 'Same single-palette idea as change 21, in #F9F8F4 instead of the pale yellow. Overrides 21 while it is on.'
+  },
+  {
+    id: 'strainTriad', n: 23,
+    title: 'Alt: three-colour effect circles',
+    body: 'Each effect keeps its own circle, in the new muted palette: sleep #B3DAD9, energy #EFF0B3, balance #F0EAE4, all with #393839 glyphs. Overrides changes 21 and 22.'
+  },
+  {
+    id: 'strainTriadLight', n: 24,
+    title: 'Alt: lighter three-colour circles',
+    body: 'The same three hues mixed toward white — #DCEDEC, #F7F7DD, #F0EAE4 — so up to three circles per card stop competing with the single yellow add-to-cart button. Overrides change 23.'
+  },
+  {
+    id: 'effectWords', n: 25,
+    title: 'Effect words instead of icons',
+    body: 'Effect tiles carry the word only — Indica, Sativa, Hybrid — with no glyph, so all three hold one line in far less width and the reclaimed space goes to the photo. An earlier version paired glyph AND word — moon + Indica, lightning + Sativa, rainbow + Hybrid — so the icon teaches the term rather than replacing it, and the words match what customers already search and filter by. The photo column narrows to 36% to buy the width, which keeps all three tiles on one line in the sideways layout.'
+  },
+  {
+    id: 'filledIcons', n: 26,
+    title: 'Solid Moon / Lightning / Rainbow glyphs',
+    body: 'The MHC effect set is moon (sleep), lightning bolt (energy) and rainbow (balance). Solid weight reads better at 28px and matches a bolder brand voice; switch this off to compare the same three as line icons. The Current column keeps the live sun / crescent / leaf set so you can see what is being replaced.'
+  },
+  {
+    id: 'warmImageWell', n: 27,
+    title: 'Warm image well',
+    body: 'The photo area behind each product shot goes from white to #F0EAE4, so the cut-out renders sit on the same warm neutral as the chips and stepper instead of a hard white square.'
+  },
+  {
+    id: 'whiteImageWell', n: 28,
+    title: 'Alt: white image well',
+    body: 'The photo area stays pure white, so the renders read as floating with no visible plate. Overrides change 26.'
+  },
+  {
+    id: 'strengthChip', n: 29,
+    title: 'Potency word as a small chip',
+    body: 'The potency word now sits at the right end of the effects line, separated from the icons by a hairline rule and a gap so it never reads as another effect tile — far more visible than the card corner it used to occupy, and in the same band as the other specs it belongs with. This toggle keeps the older treatment for comparison: an 11px uppercase chip — warm fill, 1px stroke, matching the count chips below. Switch off to see it as plain bold type. Either way “Max” stays top-left on every card. The Current column keeps the live site’s own potency words and brand lines, so the before/after stays honest.'
+  },
+  {
+    id: 'neutralBrand', n: 30,
+    title: 'Brand line above the title, neutral colour',
+    body: 'On the proposal the brand line leaves the bottom-left of the photo and sits directly above the product title, at the same size and weight as the form-factor subtitle underneath it — brand, product, form factor as one reading column. The Current column keeps it over the photo so you can see the move. It also moves off #4a4a8a — the only blue-purple in the design — into the warm neutral family (#6B6A6B), so the palette is yellow, beige and near-black with no orphan hue.'
+  },
+  {
+    id: 'priceDedupe', n: 31,
+    title: 'Price stated once, not twice',
+    body: 'The variant selector and the price row both showed a price. The selector drops its price and the row below shows the selected variant’s price instead of a range — one number per card, updating as you switch variants.'
+  },
+  {
+    id: 'noStepper', n: 32,
+    title: 'Drop the quantity stepper, full-width add-to-cart',
+    body: 'Why: at 375px the card carries two buy controls on one row, so add-to-cart shrinks to about half width and the stepper’s − / + buttons sit at 30px — under the 44px minimum tap target, so a thumb reaching for “add” can hit “+” instead. Quantity moves to the cart, where there is room and a mistake is cheap to undo. Counter-argument: if multi-pack buyers routinely add 2–3 straight from the grid, the stepper earns its place — sales data should settle it.'
+  },
+  {
+    id: 'soldOutLabel', n: 33,
+    title: 'Explicit sold-out state',
+    body: 'On sold-out cards the price is replaced with “Sold out” in gray, instead of relying on a faded button. Clearer at a glance and readable for anyone who can’t judge the opacity change.'
+  },
+  {
+    id: 'sideways', n: 35,
+    title: 'Sideways cards — one per row',
+    body: 'A list layout instead of a 2-up grid: the photo sits on the left at 42% of the card, with the copy stack, spec tiles, variant selector and add-to-cart filling the right. The section stays mobile width. Each card gets far more horizontal room for long flavour names and full product titles, and the buy controls become full-width tap targets — the trade-off is roughly half as many products above the fold, so this suits a short curated grid better than a long catalogue.'
+  },
+  {
+    id: 'subscribe', n: 37,
+    title: 'Subscribe & Save block',
+    body: 'Two radio rows sit between the variant selector and the buy row: One-time purchase at list price, and Subscribe & Save at 30% off the first order with 10% off every order after. The subscription row carries the lime accent and a one-line explanation so the discount does not need a tooltip. Selecting a row is live — the price follows the variant you pick above.'
+  },
+  {
+    id: 'seeMore', n: 36,
+    title: 'Split the buy row — add to cart + See more',
+    body: 'The yellow button keeps the cart action; a white outlined “See more” button with an eye icon sits beside it and opens the product page for the full description and lab results. Shoppers who already know what they want stay on the grid; shoppers who need to read something have a clear way through instead of guessing that the photo is a link.'
+  },
+  {
+    id: 'rhythm', n: 34,
+    title: 'One vertical spacing step',
+    body: 'The lower half of the card used six different gaps. Everything moves to a single 8px step so the stack reads as a system rather than a pile.'
+  }
+];
+
+class Component extends DCLogic {
+  state = { qty: {}, sel: {}, open: null, added: null, on: {}, sub: {} };
+
+  // Changes default ON; only an explicit false turns one off.
+  isOn(id) { return this.state.on[id] !== false; }
+
+  componentDidMount() { this.startFitLoop(); }
+  componentDidUpdate() { this._lastW = -1; }
+  componentWillUnmount() { clearInterval(this._loop); cancelAnimationFrame(this._raf); }
+
+  startFitLoop() {
+    this._lastW = -1;
+    const tick = () => {
+      try {
+        const probe = document.querySelector('[data-col="p"] [data-fit-title]');
+        const w = probe ? probe.clientWidth : 0;
+        if (w && w !== this._lastW) { this._lastW = w; this.fit(); }
+      } catch (err) { /* keep the loop alive */ }
+    };
+    tick();
+    clearInterval(this._loop);
+    this._loop = setInterval(tick, 250);
+    if (document.fonts) document.fonts.ready.then(() => { this._lastW = -1; });
+  }
+
+  fit() {
+    // Every title/sub gets ONE shared size: the smallest that fits all of them.
+    const textW = el => {
+      const r = document.createRange();
+      r.selectNodeContents(el);
+      return r.getBoundingClientRect().width;
+    };
+    const uniform = (sel, base, min) => {
+      const els = Array.prototype.slice.call(document.querySelectorAll(sel));
+      if (!els.length) return;
+      const set = s => els.forEach(el => { el.style.fontSize = s + 'px'; });
+      const fits = () => els.every(el => !el.clientWidth || textW(el) <= el.clientWidth - 2);
+      let size = base, guard = 0;
+      set(size);
+      while (size > min && guard++ < 80 && !fits()) { size -= 0.5; set(size); }
+      while (size < base && guard++ < 160) {
+        set(size + 0.5);
+        if (!fits()) { set(size); break; }
+        size += 0.5;
+      }
+    };
+    // Titles are full-width block boxes, so box-vs-text measurement is valid for them.
+    uniform('[data-col="p"] [data-fit-title]', 30, 11);
+    uniform('[data-col="c"] [data-fit-title]', 20, 12);
+    // Subs hug their own text (shrink-to-content), so they cannot be measured this way:
+    // give them a fixed size and let them wrap instead of ellipsizing.
+    document.querySelectorAll('[data-col="p"] [data-fit-sub]').forEach(el => { el.style.fontSize = '12px'; });
+    document.querySelectorAll('[data-col="c"] [data-fit-sub]').forEach(el => {
+      el.style.fontSize = '15px';
+      el.style.whiteSpace = 'normal';
+      el.style.textOverflow = 'clip';
+    });
+  }
+
+  pair(glyph, word) {
+    return React.createElement('span',
+      { style: { display: 'inline-flex', alignItems: 'center', gap: '5px', whiteSpace: 'nowrap' } },
+      glyph, React.createElement('span', { key: 'w' }, word));
+  }
+
+  key(side, id) { return side + ':' + id; }
+
+  bump(side, id, d) {
+    const k = this.key(side, id);
+    this.setState(s => ({ qty: Object.assign({}, s.qty, { [k]: Math.max(1, Math.min(999, (s.qty[k] || 1) + d)) }) }));
+  }
+
+  pick(side, id, i) {
+    const k = this.key(side, id);
+    this.setState(s => ({ sel: Object.assign({}, s.sel, { [k]: i }), open: null }));
+  }
+
+  add(k) {
+    this.setState({ added: k });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ added: null }), 1300);
+  }
+
+  build(side) {
+    const s = this.state;
+    return DATA.map(c => {
+      const k = this.key(side, c.id);
+      const selIdx = s.sel[k] || 0;
+      const sel = c.options[selIdx];
+      const selStrain = sel && sel.strain ? STRAIN[sel.strain] : null;
+      const selSold = sel ? !!sel.soldOut : false;
+      const allSold = c.options.length ? c.options.every(o => o.soldOut) : false;
+      const disabled = allSold || selSold;
+      const on = id => side === 'p' && this.isOn(id);
+      const sideways = on('sideways');
+      const sub = (s.sub || {})[k] !== false;
+      const subPrice = sel ? ('$' + (Math.round(parseFloat(String(sel.price).replace(/[^0-9.]/g, '')) * 0.7 * 100) / 100).toFixed(2)) : '';
+      const accent = side === 'p' ? (this.props.accentColor ?? '#e3e829') : '#e3e829';
+      const potency = side === 'p' ? (this.props.potencyWord ?? 'Max') : (c.livePotency || '');
+      const brandName = side === 'p' ? (this.props.brandLine ?? 'Modern Herb Co') : (c.liveBrand || '');
+      const grayOff = on('noGrayFills');
+      const warm = on('warmFill');
+      const outline = on('outlineOnly');
+      const dedupePrice = on('priceDedupe');
+      const rhythm = on('rhythm');
+      const noStepper = on('noStepper');
+      const flatBadge = on('flatBadge');
+      const neutralBrand = on('neutralBrand');
+      const soldLabel = on('soldOutLabel');
+      const stChip = on('strengthChip');
+      const strokeTone = on('lightStrokes') ? (this.props.strokeColor ?? '#807E7F') : '#393839';
+      const solid = on('filledIcons');
+      const words = on('effectWords');
+      const WORD = { indica: 'Sleep', sativa: 'Energy', hybrid: 'Happy' };
+      const STRAIN_NAME = { indica: 'Indica', sativa: 'Sativa', hybrid: 'Hybrid' };
+      const EFFECT_ORDER = { indica: 0, hybrid: 1, sativa: 2 };
+      const ordered = (c.strains || []).slice().sort((a, b) => EFFECT_ORDER[a] - EFFECT_ORDER[b]);
+      const squareCounts = on('squareCounts');
+      const uniform = on('uniformRadius') && !squareCounts;
+      const ctrlRadius = uniform ? '14px' : '9px';
+      const chipRadius = side === 'p' ? ctrlRadius : '999px';
+      const effectRadius = side === 'p' ? ctrlRadius : '50%';
+      const menuRadius = on('radiusFix') ? ctrlRadius : '10px';
+      const triadLight = on('strainTriadLight');
+      const triad = on('strainTriad') || triadLight;
+      const beige = on('strainBeige') && !triad;
+      const flatStrain = on('strainNeutral') || beige || triad;
+      const TRIAD = triadLight
+        ? { indica: '#DCEDEC', sativa: '#F7F7DD', hybrid: '#F0EAE4' }
+        : { indica: '#B3DAD9', sativa: '#EFF0B3', hybrid: '#F0EAE4' };
+      const unifiedGray = on('infoUnified');
+      const comboBoxed = on('infoBoxed') && !unifiedGray;
+      const oneRow = on('infoOneRow') && !comboBoxed && !unifiedGray;
+      const comboRow = oneRow || comboBoxed || unifiedGray;
+      const infoPlain = on('infoPlain') && !comboRow;
+      const infoCaption = on('infoCaption') && !infoPlain && !comboRow;
+      const infoNoFill = on('infoNoFill') && !infoPlain && !infoCaption && !comboRow;
+      const infoNoStroke = on('infoNoStroke') && !infoPlain && !infoCaption && !infoNoFill && !comboRow;
+      const baseBg = k => triad ? TRIAD[k] : (beige ? '#F9F8F4' : (flatStrain ? '#EFF0B3' : STRAIN[k].bg));
+      const sBg = k => infoPlain ? 'transparent' : ((outline || infoNoFill) ? '#fff' : baseBg(k));
+      const sFg = k => (outline || flatStrain || infoPlain || infoNoFill) ? '#393839' : STRAIN[k].fg;
+      const infoBorder = side !== 'p' ? '1px solid #e5e7eb'
+        : (infoPlain || infoNoStroke ? 'none'
+        : (infoNoFill ? '1px solid #d8d8dc' : (outline ? ('1px solid ' + strokeTone) : ('1px solid ' + (this.isOn('darkBorders') ? strokeTone : '#e5e7eb')))));
+      const sBorder = side === 'p' ? infoBorder : 'none';
+      const icon = (kind, sz) => side === 'p' ? mhcIcon(kind, sz, solid) : legacyIcon(kind, sz);
+      const rowRight = on('rowCountRight');
+      const rowChip = on('rowCountChip') && !rowRight;
+      const rowLane = on('rowCountLane') && !rowChip && !rowRight;
+      const selSplit = splitOpt(sel ? sel.title : '');
+      return {
+        slotId: 'card' + c.id + '-' + side,
+        slotStyle: side === 'p' ? '--slot-surface:transparent; --slot-ring:0' : '',
+        img: c.img || '',
+        menuRadius: menuRadius,
+        ctrlRadius: ctrlRadius,
+        chipRadius: chipRadius,
+        cardDir: sideways ? 'row' : 'column',
+        orderSub: side === 'p' ? -3 : -2,
+        orderTitle: side === 'p' ? -2 : -3,
+        imgFlex: sideways ? ('0 0 ' + Math.min(this.props.photoWidth ?? 45, words ? 34 : 60) + '%') : '0 0 auto',
+        imgAspect: sideways ? 'auto' : '1/1',
+        imgMinH: sideways ? '150px' : '0',
+        imgRadius: sideways ? '13px 0 0 13px' : '13px 13px 0 0',
+        effectRadius: effectRadius,
+        infoBorder: infoBorder,
+        infoColor: infoPlain || infoNoFill ? '#6b7280' : '#374151',
+        infoTiles: !infoPlain,
+        groupRule: '#DEDDD6',
+        menuTileBg: side === 'p' ? '#F7F6F1' : '#fff',
+        menuPad: side === 'p' ? '0' : '4px',
+        rowMargin: side === 'p' ? '0 4px 4px' : '0',
+        menuTileBorder: side === 'p' ? 'none' : ('1px solid ' + strokeTone),
+        countRing: strokeTone,
+        comboRow: comboRow && (c.strains.length > 0 || c.sizes.length > 0),
+        showStrainRow: !comboRow && c.strains.length > 0,
+        showSizeRow: !comboRow && c.sizes.length > 0,
+        comboGap: words ? '4px' : '6px',
+        comboDir: unifiedGray ? 'column' : 'row',
+        comboAlign: unifiedGray ? 'flex-start' : 'center',
+        comboRowGap: unifiedGray ? '6px' : (comboBoxed ? '6px' : '6px'),
+        comboBorder: comboBoxed ? ('1px solid ' + (side === 'p' && this.isOn('darkBorders') ? strokeTone : '#d8d8dc')) : 'none',
+        comboPad: comboBoxed ? '5px 8px' : '0',
+        comboRule: comboBoxed && c.strains.length > 0 && c.sizes.length > 0,
+        comboSpacer: oneRow,
+        comboStrains: ordered.map(x => ({
+          label: STRAIN[x].label,
+          body: words && side === 'p' ? WORD[x] : icon(x, 14),
+          pad: words && side === 'p' ? '4px 9px' : '0',
+          track: '0',
+          size: words && side === 'p' ? '11px' : '12px',
+          box: words && side === 'p' ? 'auto' : (unifiedGray ? '26px' : (comboBoxed ? '22px' : '28px')),
+          bg: unifiedGray ? '#F7F6F1' : sBg(x),
+          border: unifiedGray ? 'none' : sBorder,
+          fg: unifiedGray ? '#4A4A49' : sFg(x)
+        })),
+        comboSizes: c.sizes.map(x => ({
+          label: x,
+          fg: unifiedGray ? '#4A4A49' : '#374151',
+          bg: unifiedGray ? '#F7F6F1' : (outline ? '#fff' : (warm ? '#F9F8F4' : (grayOff ? 'transparent' : '#f3f4f6'))),
+          border: unifiedGray ? 'none' : infoBorder,
+          pad: unifiedGray ? '5px 10px' : '3px 9px',
+          track: unifiedGray ? '.3px' : '0'
+        })),
+        infoCaptionText: infoCaption ? 'In this product' : '',
+        chooseCaptionText: infoCaption ? 'Choose your option' : '',
+        atcStroke: (side === 'p' && this.isOn('atcStroke')) ? '1.5px' : '2px',
+        ctrlBorder: (side === 'p' && this.isOn('darkBorders')) ? strokeTone : '#d1d5db',
+        hairline: (side === 'p' && this.isOn('darkBorders')) ? strokeTone : '#e5e7eb',
+        chipBg: outline ? '#fff' : (warm ? '#F9F8F4' : (grayOff ? 'transparent' : '#f3f4f6')),
+        stepBg: outline ? '#fff' : (warm ? '#F9F8F4' : (grayOff ? '#fff' : '#f9fafb')),
+        imgBg: (side === 'p' && this.isOn('warmImageWell') && !this.isOn('whiteImageWell')) ? '#F0EAE4' : '#fff',
+        imgDot: c.imgDot,
+        imgScale: sideways ? 'translateX(15%) scale(1.55)' : (c.imgInset === '11%' ? 'scale(0.82)' : 'scale(1)'),
+        label: c.label, strength: potency, brand: brandName,
+        labelInline: '',
+        labelPhotoOnly: side === 'p' ? '' : c.label,
+        labelInPrice: side === 'p' ? c.label : '',
+        potencyInline: '',
+        potencyRule: side === 'p' && !!potency && c.strains.length > 0,
+        potencyFg: unifiedGray ? '#84837C' : '#374151',
+        potencyBg: unifiedGray ? '#F7F6F1' : (outline ? '#fff' : (warm ? '#F9F8F4' : (grayOff ? 'transparent' : '#f3f4f6'))),
+        potencyBorder: unifiedGray ? 'none' : infoBorder,
+        potencyPad: unifiedGray ? '5px 10px' : '3px 9px',
+        potencyTrack: unifiedGray ? '.3px' : '0',
+        brandAboveTitle: side === 'p' ? 'Modern Herb Co' : '',
+        brandOnPhoto: side === 'p' ? '' : brandName,
+        strengthTop: side === 'p' ? (potency ? potency + ' Potency' : '') : potency,
+        showSelPrice: !dedupePrice || side === 'p',
+        selPriceWeight: side === 'p' ? 400 : 700,
+        metaFg: side === 'p' ? '#4A4A49' : '#6b7280',
+        metaWeight: side === 'p' ? 400 : 500,
+        priceDisplay: (soldLabel && disabled) ? 'Sold out' : ((dedupePrice && sel) ? sel.price : c.priceRange),
+        priceColor: (soldLabel && disabled) ? '#9ca3af' : '#393839',
+        stackGap: rhythm ? '8px' : '6px',
+        stackPad: side === 'p' ? '11px 11px 11px 11px' : '10px',
+        buyGap: '0',
+        showStepper: !disabled && !noStepper,
+        badgeShadow: flatBadge ? 'none' : '0 1px 4px rgba(0,0,0,.18)',
+        accent: accent,
+        hoverBg: side === 'p' ? '#F2F4C4' : '#f6f6f7',
+        titleFont: side === 'p' ? "'BrokenScript','Space Grotesk',Poppins,sans-serif" : 'inherit',
+        bodyFont: side === 'p' ? "'Space Grotesk',Poppins,sans-serif" : 'inherit',
+        badgeLeft: side === 'p' ? '8px' : 'auto',
+        badgeRight: side === 'p' ? 'auto' : '8px',
+        badgeBorder: flatBadge ? ('1px solid ' + strokeTone) : 'none',
+        brandColor: side === 'p' ? '#4A4A49' : (neutralBrand ? '#6B6A6B' : '#4a4a8a'),
+        stSize: side === 'p' ? '12px' : (stChip ? '11px' : '17px'),
+        stWeight: side === 'p' ? 500 : (stChip ? 700 : 800),
+        stTrack: side === 'p' ? '0' : (stChip ? '1px' : '0'),
+        stCase: side === 'p' ? 'none' : (stChip ? 'uppercase' : 'none'),
+        stBg: side === 'p' ? (unifiedGray ? '#F7F6F1' : (outline ? '#fff' : (warm ? '#F9F8F4' : '#f3f4f6'))) : 'transparent',
+        stFg: '#393839',
+        subColor: side === 'p' ? '#393839' : '#6b7280',
+        subWeight: 400,
+        stBorder: (side === 'p' && !unifiedGray) ? infoBorder : 'none',
+        stPad: side === 'p' ? '5px 11px' : (stChip ? '3px 9px' : '0'),
+        title: side === 'p' ? 'THCA LIQUID DIAMONDS' : c.title,
+        sub: side === 'p' ? 'Pod Kit' : c.sub,
+        hasStrains: c.strains.length > 0,
+        strains: ordered.map(x => ({
+          bg: sBg(x), fg: sFg(x), border: sBorder, label: STRAIN[x].label,
+          body: words && side === 'p' ? WORD[x] : icon(x, 14),
+          pad: words && side === 'p' ? '0 10px' : '0',
+          track: '0',
+          size: words && side === 'p' ? '11px' : '12px',
+          rowBox: words && side === 'p' ? 'auto' : '28px'
+        })),
+        hasSizes: c.sizes.length > 0, sizes: c.sizes,
+        sizesText: infoPlain ? c.sizes.join('  ·  ') : '',
+        hasVariants: c.options.length > 0,
+        noVariants: c.options.length === 0,
+        open: s.open === k,
+        toggle: () => this.setState(st => ({ open: st.open === k ? null : k })),
+        selTitle: sel ? sel.title : '',
+        selFlavor: (rowLane || rowChip || rowRight) ? selSplit.flavor : (sel ? sel.title : ''),
+        selCount: selSplit.count,
+        selShowCount: !!selSplit.count && (rowLane || rowChip),
+        selCountRight: !!selSplit.count && (rowRight || side === 'p'),
+        showRule: rowLane,
+        countW: rowLane ? '34px' : 'auto',
+        countBorder: rowChip ? ('1px solid ' + strokeTone) : 'none',
+        countPad: rowChip ? '1px 7px' : '0',
+        selPrice: sel ? sel.price : '',
+        selOpacity: selSold ? 0.6 : 1,
+        selDecoration: selSold ? 'line-through' : 'none',
+        selHasStrain: !!selStrain,
+        selStrainBg: selStrain ? sBg(sel.strain) : 'transparent',
+        selStrainFg: selStrain ? sFg(sel.strain) : 'inherit',
+        selStrainBorder: selStrain ? sBorder : 'none',
+        selStrainIcon: selStrain ? icon(sel.strain, 14) : null,
+        options: c.options.map((o, i) => ({
+          title: o.title, price: o.price,
+          flavor: (rowLane || rowChip || rowRight) ? splitOpt(o.title).flavor : o.title,
+          count: splitOpt(o.title).count,
+          showCount: !!splitOpt(o.title).count && (rowLane || rowChip),
+          countRight: !!splitOpt(o.title).count && rowRight && side !== 'p',
+          countCircle: !!splitOpt(o.title).count && side === 'p',
+          priceWeight: side === 'p' ? 400 : 700,
+          flavorWrap: 'nowrap',
+          groupLabel: (side === 'p' && o.strain && (i === 0 || o.strain !== c.options[i - 1].strain)) ? (WORD[o.strain] + ' (' + STRAIN_NAME[o.strain] + ')') : '',
+          groupTop: i === 0 ? '0' : '6px',
+          groupTopBorder: i === 0 ? 'none' : ('1px solid ' + (this.isOn('lightStrokes') ? (this.props.strokeColor ?? '#807E7F') : '#393839')),
+          groupEndBorder: (side === 'p' && o.strain && (i === c.options.length - 1 || o.strain !== c.options[i + 1].strain)) ? ('1px solid ' + (this.isOn('lightStrokes') ? (this.props.strokeColor ?? '#807E7F') : '#393839')) : 'none',
+          groupEndRadius: (side === 'p' && o.strain && (i === c.options.length - 1 || o.strain !== c.options[i + 1].strain)) ? ('0 0 ' + ctrlRadius + ' ' + ctrlRadius) : '0',
+          hasStrain: !!o.strain,
+          strainBg: o.strain ? sBg(o.strain) : 'transparent',
+          strainFg: o.strain ? sFg(o.strain) : 'inherit',
+          strainBorder: o.strain ? sBorder : 'none',
+          icon: o.strain ? icon(o.strain, 14) : null,
+          rowBg: i === selIdx ? (side === 'p' ? accent : '#f3f4f6') : 'transparent',
+          rowOpacity: o.soldOut ? 0.5 : 1,
+          decoration: o.soldOut ? 'line-through' : 'none',
+          select: () => this.pick(side, c.id, i)
+        })),
+        qty: s.qty[k] || 1,
+        inc: () => this.bump(side, c.id, 1),
+        dec: () => this.bump(side, c.id, -1),
+        add: () => { if (!disabled) this.add(k); },
+        buyable: !disabled,
+        soldOut: disabled,
+        added: s.added === k,
+        atcBg: disabled ? '#e5e7eb' : '#e3e829',
+        atcBorder: disabled ? '#d1d5db' : strokeTone,
+        atcColor: disabled ? '#9ca3af' : '#393839',
+        atcCursor: disabled ? 'not-allowed' : 'pointer',
+        showPeek: side === 'p',
+        showSubs: side === 'p' && !!sel,
+        onceOn: !sub, subOn: sub,
+        onceBorder: sub ? '#e5e7eb' : strokeTone,
+        subBorder: sub ? '#DEDDD6' : '#e5e7eb',
+        subBg: sub ? '#F7F6F1' : '#fff',
+        onceDot: sub ? 'transparent' : '#393839',
+        subDot: sub ? '#393839' : 'transparent',
+        oncePrice: sel ? sel.price : '',
+        subPrice: subPrice,
+        pickOnce: () => this.setState(st => ({ sub: Object.assign({}, st.sub, { [k]: false }) })),
+        pickSub: () => this.setState(st => ({ sub: Object.assign({}, st.sub, { [k]: true }) })),
+        detailsBg: '#393839',
+        detailsFg: '#fff',
+        shipNote: side === 'p' ? 'Fast Shipping' : '',
+        showPriceRow: side !== 'p',
+        priceRange: c.priceRange,
+        hasRating: !!c.ratingAvg, ratingAvg: c.ratingAvg, ratingCount: c.ratingCount,
+        showAvg: true,
+        stars: [{
+          fill: side === 'p' ? accent : '#f5a623',
+          stroke: side === 'p' ? strokeTone : 'none',
+          sw: side === 'p' ? 1.4 : 0
+        }]
+      };
+    });
+  }
+
+  renderVals() {
+    const flags = {};
+    CHANGES.forEach(c => { flags[c.id] = this.isOn(c.id); });
+    const ordered = CHANGES.slice().sort((a, b) => a.n - b.n);
+    return {
+      proposed: this.build('p'),
+      current: this.build('c'),
+      noChanges: CHANGES.length === 0,
+      changes: ordered.map(c => ({
+        n: c.n, title: c.title, on: !!flags[c.id],
+        trackBg: flags[c.id] ? '#e3e829' : '#e9e9ec',
+        trackBorder: flags[c.id] ? '#393839' : '#d1d5db',
+        knobLeft: flags[c.id] ? '16px' : '2px',
+        labelColor: flags[c.id] ? '#393839' : '#9ca3af',
+        toggle: () => this.setState(s => ({ on: Object.assign({}, s.on, { [c.id]: s.on[c.id] === false }) }))
+      })),
+      gridCols: this.isOn('sideways') ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
+      allOn: () => this.setState({ on: {} }),
+      allOff: () => this.setState({ on: CHANGES.reduce((m, c) => { m[c.id] = false; return m; }, {}) }),
+      notes: ordered.map(c => ({
+        n: c.n, title: c.title, body: c.body,
+        opacity: flags[c.id] ? 1 : 0.45,
+        dotBg: flags[c.id] ? '#393839' : '#b9b9c0'
+      })),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
