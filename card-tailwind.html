@@ -1104,6 +1104,10 @@ video {
   list-style-type: none;
 }
 
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -1166,6 +1170,10 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .gap-6 {
@@ -1949,6 +1957,10 @@ video {
     display: none;
   }
 
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .md\:grid-cols-\[1fr_1fr\] {
     grid-template-columns: 1fr 1fr;
   }
@@ -1984,6 +1996,12 @@ video {
 
   .md\:\[align-items\:start\] {
     align-items: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -2085,6 +2103,15 @@ video {
     </div>
   </div>
 
+  <!-- Grid — the same cards, laid out three across and two down. -->
+  <div class="mt-12">
+    <div class="flex items-center gap-2 mb-[10px]">
+      <span class="inline-block w-[9px] h-[9px] rounded-[50%] bg-accent border-[1.5px] border-ink"></span>
+      <span class="text-[13px] font-extrabold tracking-[1.2px] uppercase text-ink">Grid — 3 &times; 2</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="grid-cards" data-col="g"></div>
+  </div>
+
 </main>
 
 <!-- BottomNavBar (Mobile Only) -->
@@ -2171,7 +2198,7 @@ function mhcIcon(kind, size) {
 var DATA = [
   {
     id: 1, label: 'B2G1',
-    img: 'uploads/001-MHC-Rosin-Gummies-30ct-mixed_berry--web.png',
+    img: 'claude-design-update/uploads/001-MHC-Rosin-Gummies-30ct-mixed_berry--web.png',
     title: 'Enhanced Spectrum', sub: 'THC Craft Soda — Grape Kush',
     strains: ['indica', 'hybrid', 'sativa'], sizes: ['1ct', '5ct', '20ct'],
     options: [
@@ -2189,7 +2216,7 @@ var DATA = [
   },
   {
     id: 2, label: 'SALE',
-    img: 'uploads/003-MHC-Carts-Live-Rosin-Pouch-RENDER-Front_Headband_High Res.png',
+    img: 'claude-design-update/uploads/003-MHC-Carts-Live-Rosin-Pouch-RENDER-Front_Headband_High%20Res.png',
     title: 'Sleepy Time', sub: 'Indica Gummies',
     strains: ['indica'], sizes: ['10ct', '30ct'],
     options: [
@@ -2200,7 +2227,7 @@ var DATA = [
   },
   {
     id: 3, label: '',
-    img: 'uploads/001-MHC-Gummies-Rosin-3ct-peaches_cream-web.png',
+    img: 'claude-design-update/uploads/001-MHC-Gummies-Rosin-3ct-peaches_cream-web.png',
     title: 'CBD Tincture 1000mg', sub: '',
     strains: [], sizes: ['15ml', '30ml'],
     options: [
@@ -2211,11 +2238,38 @@ var DATA = [
   },
   {
     id: 4, label: 'New!',
-    img: 'uploads/Caramel-Render_SamplePouch-hybrid-web.png',
+    img: 'claude-design-update/uploads/Caramel-Render_SamplePouch-hybrid-web.png',
     title: 'Hybrid Soda', sub: 'Single Size',
     strains: ['hybrid'], sizes: ['1ct'],
     options: [{ title: '1ct', price: '$6', strain: 'hybrid' }],
     priceRange: '$6', ratingAvg: '4.0', ratingCount: '(8)'
+  },
+  /* Entries 5 and 6 fill the 3 x 2 grid; the carousel picks them up too. */
+  {
+    id: 5, label: 'New!',
+    img: 'claude-design-update/uploads/003-MHC-THCA-Uncut-Podkit-AT-WeddingCake-Render-Web.jpg',
+    title: 'Uncut Pod Kit', sub: 'Live THCA',
+    strains: ['indica', 'hybrid'], sizes: ['1ct', '2ct'],
+    options: [
+      { title: '1ct / Wedding Cake', price: '$38', strain: 'indica' },
+      { title: '2ct / Wedding Cake', price: '$70', strain: 'indica' },
+      { title: '1ct / Pineapple Express', price: '$38', strain: 'hybrid' },
+      { title: '2ct / Pineapple Express', price: '$70', strain: 'hybrid', soldOut: true }
+    ],
+    priceRange: '$38 - $70', ratingAvg: '4.9', ratingCount: '(63)'
+  },
+  {
+    id: 6, label: '',
+    img: 'claude-design-update/uploads/001-MHC-Rosin-Gummies-30ct-mixed_berry--web.png',
+    title: 'Peaches & Cream', sub: 'Rosin Gummies',
+    strains: ['sativa', 'hybrid'], sizes: ['3ct', '10ct'],
+    options: [
+      { title: '3ct / Peaches', price: '$15', strain: 'sativa' },
+      { title: '10ct / Peaches', price: '$42', strain: 'sativa' },
+      { title: '3ct / Cream Soda', price: '$15', strain: 'hybrid' },
+      { title: '10ct / Cream Soda', price: '$42', strain: 'hybrid' }
+    ],
+    priceRange: '$15 - $42', ratingAvg: '4.7', ratingCount: '(19)'
   }
 ];
 
@@ -2224,13 +2278,16 @@ var DATA = [
  * Keys keep the DC's `side + ':' + id` shape; only the 'p' side is left.
  * ------------------------------------------------------------------ */
 var state = { qty: {}, sel: {}, open: null, added: null, sub: {},
-              qv: null, qvQty: 1, qvAdded: false };
+              qv: null, qvSide: 'p', qvQty: 1, qvAdded: false };
 var addedTimer = null;
 
-function key(id) { return 'p:' + id; }
+/* The DC's `side + ':' + id` key shape, back in use now that the page has two
+   surfaces: 'p' is the carousel, 'g' the grid. Each keeps its own selection,
+   open menu and subscribe toggle, so driving one card never moves the other. */
+function key(side, id) { return side + ':' + id; }
 
-function pick(id, i) {
-  state.sel[key(id)] = i;
+function pick(side, id, i) {
+  state.sel[key(side, id)] = i;
   state.open = null;
   render();
 }
@@ -2253,11 +2310,11 @@ function add(k) {
  *   on(id)   === true          (side is always 'p')
  * Every branch that survives is annotated with the change that drives it.
  * The `side !== 'p'` half of each ternary lived only in the current
- * column; `Redesign Comparison.dc.html` remains its source of record.
+ * column; `index.html` remains its source of record.
  * ------------------------------------------------------------------ */
-function build() {
+function build(side) {
   return DATA.map(function (c) {
-    var k = key(c.id);
+    var k = key(side, c.id);
     var selIdx = state.sel[k] || 0;
     var sel = c.options[selIdx];
     var selStrain = sel && sel.strain ? STRAIN[sel.strain] : null;
@@ -2670,14 +2727,14 @@ function findOption(c, flavor, size) {
 }
 /* Keep the other axis fixed where the combination exists, else fall back. */
 function chooseFlavor(c, flavor) {
-  var cur = splitOpt(c.options[state.sel[key(c.id)] || 0].title);
+  var cur = splitOpt(c.options[state.sel[key(state.qvSide, c.id)] || 0].title);
   var i = findOption(c, flavor, cur.count);
   if (i !== -1) return i;
   for (var j = 0; j < c.options.length; j++) if (splitOpt(c.options[j].title).flavor === flavor) return j;
   return 0;
 }
 function chooseSize(c, size) {
-  var cur = splitOpt(c.options[state.sel[key(c.id)] || 0].title);
+  var cur = splitOpt(c.options[state.sel[key(state.qvSide, c.id)] || 0].title);
   var i = findOption(c, cur.flavor, size);
   if (i !== -1) return i;
   for (var j = 0; j < c.options.length; j++) if (splitOpt(c.options[j].title).count === size) return j;
@@ -2685,7 +2742,7 @@ function chooseSize(c, size) {
 }
 
 function quickViewHTML(c) {
-  var k = key(c.id);
+  var k = key(state.qvSide, c.id);
   var selIdx = state.sel[k] || 0;
   var sel = c.options[selIdx];
   var selSplit = splitOpt(sel.title);
@@ -2835,8 +2892,9 @@ function renderQuickView() {
   if (!c) return;
   qvBody.innerHTML = quickViewHTML(c);
 }
-function openQuickView(id) {
+function openQuickView(side, id) {
   qvLastFocused = document.activeElement;
+  state.qvSide = side;
   state.qv = id;
   state.qvQty = 1;
   state.qvAdded = false;
@@ -2858,7 +2916,7 @@ qvRoot.addEventListener('click', function (e) {
   var el = e.target.closest ? e.target.closest('[data-qv]') : null;
   if (!el || state.qv == null) return;
   var c = DATA.filter(function (x) { return x.id === state.qv; })[0];
-  var k = key(c.id);
+  var k = key(state.qvSide, c.id);
   var what = el.getAttribute('data-qv');
   var val = el.getAttribute('data-value');
 
@@ -2895,19 +2953,31 @@ document.addEventListener('keydown', function (e) {
  * ------------------------------------------------------------------ */
 var wrapper = document.getElementById('slides');
 var carousel = document.querySelector('.featured-carousel');
+var CARD_SHELL = 'h-full bg-white border-2 border-transparent rounded-slide p-3 shadow-card';
 var articles = DATA.map(function () {
   var slide = document.createElement('div');
   // !h-auto beats swiper-bundle's own `.swiper-slide { height:100% }`
   slide.className = 'swiper-slide !h-auto';
   var article = document.createElement('article');
-  article.className = 'h-full bg-white border-2 border-transparent rounded-slide p-3 shadow-card';
+  article.className = CARD_SHELL;
   slide.appendChild(article);
   wrapper.appendChild(slide);
   return article;
 });
 
+/* The grid gets the same one-article-per-product treatment: the elements are
+   created once and only their innerHTML is rewritten, exactly like the slides. */
+var gridWrap = document.getElementById('grid-cards');
+var gridCards = DATA.map(function () {
+  var article = document.createElement('article');
+  article.className = CARD_SHELL;
+  gridWrap.appendChild(article);
+  return article;
+});
+
 function render() {
-  build().forEach(function (v, i) { articles[i].innerHTML = cardHTML(v); });
+  build('p').forEach(function (v, i) { articles[i].innerHTML = cardHTML(v); });
+  build('g').forEach(function (v, i) { gridCards[i].innerHTML = cardHTML(v); });
   fit();
   // The Play CDN compiles newly-seen classes in a MutationObserver callback,
   // so re-measure once those rules have actually landed.
@@ -2916,30 +2986,35 @@ function render() {
   }
 }
 
-/* One delegated listener on the (stable) wrapper. */
-wrapper.addEventListener('click', function (e) {
-  var a = e.target.closest ? e.target.closest('a[href="#"]') : null;
-  if (a) e.preventDefault();
+/* One delegated listener per surface, on the (stable) container. The side it
+   was built with is closed over, so a click resolves to that surface's key. */
+function cardClicks(side) {
+  return function (e) {
+    var a = e.target.closest ? e.target.closest('a[href="#"]') : null;
+    if (a) e.preventDefault();
 
-  var el = e.target.closest ? e.target.closest('[data-act]') : null;
-  if (!el) return;
-  var act = el.getAttribute('data-act');
-  var id = parseInt(el.getAttribute('data-id'), 10);
-  var k = key(id);
+    var el = e.target.closest ? e.target.closest('[data-act]') : null;
+    if (!el) return;
+    var act = el.getAttribute('data-act');
+    var id = parseInt(el.getAttribute('data-id'), 10);
+    var k = key(side, id);
 
-  if (act === 'details') { openQuickView(id); return; }
-  if (act === 'toggle')  { state.open = state.open === k ? null : k; render(); return; }
-  if (act === 'pick')    { pick(id, parseInt(el.getAttribute('data-idx'), 10)); return; }
-  if (act === 'once')    { state.sub[k] = false; render(); return; }
-  if (act === 'sub')     { state.sub[k] = true;  render(); return; }
-  if (act === 'add') {
-    var card = DATA.filter(function (c) { return c.id === id; })[0];
-    var sel = card.options[state.sel[k] || 0];
-    var allSold = card.options.length ? card.options.every(function (o) { return o.soldOut; }) : false;
-    if (!(allSold || (sel && sel.soldOut))) add(k);
-    return;
-  }
-});
+    if (act === 'details') { openQuickView(side, id); return; }
+    if (act === 'toggle')  { state.open = state.open === k ? null : k; render(); return; }
+    if (act === 'pick')    { pick(side, id, parseInt(el.getAttribute('data-idx'), 10)); return; }
+    if (act === 'once')    { state.sub[k] = false; render(); return; }
+    if (act === 'sub')     { state.sub[k] = true;  render(); return; }
+    if (act === 'add') {
+      var card = DATA.filter(function (c) { return c.id === id; })[0];
+      var sel = card.options[state.sel[k] || 0];
+      var allSold = card.options.length ? card.options.every(function (o) { return o.soldOut; }) : false;
+      if (!(allSold || (sel && sel.soldOut))) add(k);
+      return;
+    }
+  };
+}
+wrapper.addEventListener('click', cardClicks('p'));
+gridWrap.addEventListener('click', cardClicks('g'));
 
 /* The DC version had no outside-click close — the editor chrome absorbed it.
    A standalone page needs one. Clicks inside the modal are not the page. */
@@ -2975,10 +3050,13 @@ function fit() {
     }
   };
   // Titles are full-width block boxes, so box-vs-text measurement is valid for them.
+  // Each surface is measured on its own, since a grid cell and a slide are not
+  // the same width — one shared size across both would shrink to the narrower.
   uniform('[data-col="p"] [data-fit-title]', 30, 11);
+  uniform('[data-col="g"] [data-fit-title]', 30, 11);
   // Subs hug their own text (shrink-to-content), so they cannot be measured this way:
   // give them a fixed size and let them wrap instead of ellipsizing.
-  document.querySelectorAll('[data-col="p"] [data-fit-sub]').forEach(function (el) { el.style.fontSize = '12px'; });
+  document.querySelectorAll('[data-fit-sub]').forEach(function (el) { el.style.fontSize = '12px'; });
 }
 
 render();

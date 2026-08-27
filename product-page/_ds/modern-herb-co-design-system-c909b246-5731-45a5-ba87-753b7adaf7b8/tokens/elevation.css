@@ -1,0 +1,12 @@
+:root{
+  /* Cards carry a 1px stroke, NOT a shadow. Shadows are reserved for things
+     that float: carousel slides, nav, menus, modal panels. */
+  --border-width-hairline:1px;
+  --border-width-control:1.5px;
+  --shadow-none:none;
+  --shadow-card:0 10px 30px rgba(17,24,39,.08);
+  --shadow-nav:0 4px 12px rgba(17,24,39,.10);
+  --shadow-menu:0 8px 28px rgba(0,0,0,.18);
+  --shadow-panel:0 24px 60px rgba(17,24,39,.35);
+  --blur-backdrop:4px;
+}

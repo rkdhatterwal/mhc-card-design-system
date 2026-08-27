@@ -1,0 +1,12 @@
+:root{
+  --duration-fast:150ms;                 /* @kind other */
+  --ease-default:ease;                   /* @kind other */
+  --transition-border:border-color 150ms ease;  /* @kind other */
+  --transition-bg:background 150ms ease;        /* @kind other */
+  --press-scale:.95;                     /* @kind other */
+  --hover-opacity:.8;                    /* @kind other */
+  --hover-opacity-strong:.9;             /* @kind other */
+  --disabled-opacity:.5;                 /* @kind other */
+  --soldout-opacity:.6;                  /* @kind other */
+  --added-flash:1300ms;                  /* @kind other */
+}

@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modern Herb Co — THCA Liquid Diamonds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme: the card design system (card-tailwind.html / tailwind.config.js), lifted verbatim
+     so every utility here resolves to the same value the cards use. -->
+<script id="tailwind-config">
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                'surface':                   '#faf9f5',
+                'surface-container-low':     '#f4f4f0',
+                'surface-container-highest': '#e3e2df',
+                'ink':                       '#393839',
+                'tertiary':                  '#5f5e5f',
+                'muted-gray':                '#9CA3AF',
+                'gray-text':                 '#666666',
+                'accent':                    '#e3e829',
+                'stroke-alt':                '#807E7F',
+                'beige':                     '#F9F8F4',
+                'cream':                     '#F7F6F1',
+                'effect-sleep':              '#DCEDEC',
+                'effect-energy':             '#F7F7DD',
+                'effect-balance':            '#F0EAE4',
+                'meta':                      '#4A4A49',
+                'sub-stroke':                '#DEDDD6',
+                'menu-hover':                '#F2F4C4',
+                'track':                     '#EDECE7',
+                'img-well':                  '#f6f6f7'
+            },
+            fontFamily: {
+                sans:  ['Poppins', 'system-ui', 'sans-serif'],
+                body:  ["'Space Grotesk'", 'Poppins', 'sans-serif'],
+                title: ["'BrokenScript'", "'Space Grotesk'", 'Poppins', 'sans-serif']
+            },
+            borderRadius: {
+                ctrl:  '9px',
+                card:  '14px',
+                img:   '13px 0 0 13px',
+                slide: '20px'
+            },
+            boxShadow: {
+                card:  '0 10px 30px rgba(17,24,39,.08)',
+                nav:   '0 4px 12px rgba(17,24,39,.10)',
+                menu:  '0 8px 28px rgba(0,0,0,.18)',
+                panel: '0 24px 60px rgba(17,24,39,.35)'
+            },
+            spacing: {
+                /* The buy column's vertical rhythm, as one named value per the spec:
+                   16px desktop / 28px mobile, plus the tighter, deliberately
+                   unlinked 8px used by subscribe/one-time and qty/add-to-cart. */
+                'rhythm':      '28px',
+                'rhythm-md':   '16px',
+                'pair':        '8px'
+            }
+        }
+    }
+}
+</script>
+<style>
+    /* The title face ships with the repo; the stack falls back to Space Grotesk if it is missing. */
+    @font-face {
+        font-family: 'BrokenScript';
+        src: url('fonts/brokenscript_boldcond-webfont.woff2') format('woff2'),
+             url('fonts/brokenscript_boldcond-webfont.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+</style>
+</head>
+<body class="bg-surface text-ink font-body [line-height:normal] min-h-screen flex flex-col">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 h-16 bg-surface border-b border-surface-container-highest flex items-center justify-between px-5 md:px-10">
+  <div class="flex items-center gap-6">
+    <button class="md:hidden bg-transparent border-0 p-0 cursor-pointer text-ink inline-flex items-center gap-1 hover:opacity-80 active:scale-95" type="button" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    <div class="text-[15px] font-normal tracking-[.5px] uppercase text-ink">Modern Herb Co</div>
+    <nav class="hidden md:flex gap-6 text-[14px] font-semibold">
+      <a class="hover:text-accent" href="#">Shop</a>
+      <a class="hover:text-accent" href="#">Discover</a>
+    </nav>
+  </div>
+  <div class="flex items-center gap-4">
+    <a class="hidden md:inline-flex md:items-center md:gap-1 md:text-[14px] md:font-semibold hover:text-accent" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Account</span></a>
+    <button class="bg-transparent border-0 p-0 cursor-pointer text-ink inline-flex items-center gap-1 hover:opacity-80 active:scale-95" type="button" aria-label="Cart"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><span class="hidden md:inline md:text-[14px] md:font-semibold">Cart (0)</span></button>
+  </div>
+</header>
+
+<main class="grow pt-[84px] pb-[100px] px-5 md:px-10 max-w-[1280px] mx-auto w-full">
+
+  <!-- Custom Product Information Grid — two equal columns, both sticky so whichever
+       column is shorter stays pinned while the longer one scrolls. -->
+  <div class="md:grid md:grid-cols-[1fr_1fr] md:gap-10 md:[align-items:start]">
+
+    <!-- Column A (Left — Media) -->
+    <section class="md:sticky md:top-[84px] flex flex-col gap-2 w-full">
+      <div class="relative w-full aspect-square bg-white rounded-card border border-surface-container-highest flex items-center justify-center p-4 overflow-hidden">
+        <span class="absolute top-4 left-4 z-10 box-border inline-block whitespace-nowrap bg-cream text-ink text-[12px] font-medium leading-[1.2] px-[11px] py-[5px] rounded-ctrl" id="potency-chip">Max Potency</span>
+        <button class="absolute top-4 right-4 z-10 text-stroke-alt bg-transparent border-0 p-0 cursor-pointer hover:opacity-80" type="button" aria-label="Share">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line></svg>
+        </button>
+        <span class="absolute bottom-4 left-4 z-10 bg-accent border border-stroke-alt text-ink text-[12px] font-extrabold px-[10px] py-[5px] rounded-[999px]" id="hero-label">B2G1</span>
+        <img alt="THCA Liquid Diamonds Pod Kit" class="w-full h-full max-w-none object-contain mix-blend-multiply" id="hero-image" src=""/>
+      </div>
+      <!-- Carousel: scrolls left/right, the last thumbnail is clipped by the column so
+           there is a visible hint that more images exist. -->
+      <div class="flex gap-2 py-2 overflow-x-auto hide-scrollbar" id="thumbs"></div>
+    </section>
+
+    <!-- Column B (Right — Information) -->
+    <section class="md:sticky md:top-[84px] flex flex-col gap-rhythm md:gap-rhythm-md mt-6 md:mt-0">
+
+      <!-- Heading stack -->
+      <div class="flex flex-col gap-1">
+        <div class="text-[15px] text-tertiary" id="brand-line">Modern Herb Co</div>
+        <h1 class="font-title text-[26px] font-bold leading-[1.12] m-0 text-ink" id="product-title">THCA LIQUID DIAMONDS</h1>
+        <div class="flex items-center justify-between gap-3">
+          <div class="text-[15px] text-muted-gray" id="product-type">Pod Starter Kit</div>
+          <div class="flex items-center gap-1 whitespace-nowrap" id="rating-line"></div>
+        </div>
+      </div>
+      <div class="h-px bg-surface-container-highest w-full"></div>
+
+      <!-- Description — variant-scoped, falls back to the parent product description -->
+      <p class="m-0 text-[13px] leading-[1.5] text-meta [text-wrap:pretty]" id="variant-description"></p>
+
+      <!-- Flavor selector — always rendered above Size, whatever the option order is -->
+      <div class="flex flex-col gap-3" id="flavor-block" style="display:none"></div>
+
+      <!-- Size selector -->
+      <div class="flex flex-col gap-3" id="size-block" style="display:none"></div>
+
+      <!-- Delivery frequency (subscription) widget — present only when the selected
+           variant carries selling plans. The 8px gap here is deliberately its own
+           value, not the column rhythm. -->
+      <div class="flex flex-col gap-pair" id="purchase-block" style="display:none"></div>
+
+      <!-- Quantity + Add to Cart, also on the fixed 8px pair gap -->
+      <div class="flex items-stretch gap-pair h-14" id="buy-row"></div>
+
+      <!-- Perks -->
+      <div class="flex items-center justify-center gap-6 p-4 bg-white rounded-card border border-surface-container-highest">
+        <span class="flex items-center gap-2 text-[12px] text-ink"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><rect x="1" y="6" width="13" height="11" rx="1"></rect><path d="M14 9h4l3 3.5V17h-7z"></path><circle cx="5.5" cy="19" r="1.8"></circle><circle cx="17.5" cy="19" r="1.8"></circle></svg>Free Shipping $50+</span>
+        <span class="w-px h-4 bg-surface-container-highest"></span>
+        <span class="flex items-center gap-2 text-[12px] text-ink"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M12 2 14.6 5 18.6 5.2 19.4 9.1 22 12 19.4 14.9 18.6 18.8 14.6 19 12 22 9.4 19 5.4 18.8 4.6 14.9 2 12 4.6 9.1 5.4 5.2 9.4 5z"></path><polyline points="8.6 12 11.2 14.5 15.6 9.8"></polyline></svg>Lab Tested</span>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- Tabs -->
+  <section class="mt-12 w-full pt-8">
+    <div class="flex overflow-x-auto gap-8 border-b border-surface-container-highest hide-scrollbar mb-8" id="tab-buttons">
+      <button class="pb-4 text-[13px] font-semibold text-ink border-b-2 border-ink whitespace-nowrap [transition:color_.15s,border-color_.15s]" type="button" onclick="switchTab('desc', this)">Description</button>
+      <button class="pb-4 text-[13px] font-semibold text-tertiary hover:text-ink border-b-2 border-transparent hover:border-b-stroke-alt whitespace-nowrap [transition:color_.15s,border-color_.15s]" type="button" onclick="switchTab('use', this)">How to Use</button>
+      <button class="pb-4 text-[13px] font-semibold text-tertiary hover:text-ink border-b-2 border-transparent hover:border-b-stroke-alt whitespace-nowrap [transition:color_.15s,border-color_.15s]" type="button" onclick="switchTab('bts', this)">Behind the Scenes</button>
+      <button class="pb-4 text-[13px] font-semibold text-tertiary hover:text-ink border-b-2 border-transparent hover:border-b-stroke-alt whitespace-nowrap [transition:color_.15s,border-color_.15s]" type="button" onclick="switchTab('potency', this)">Potency &amp; Safety Testing</button>
+      <button class="pb-4 text-[13px] font-semibold text-tertiary hover:text-ink border-b-2 border-transparent hover:border-b-stroke-alt whitespace-nowrap [transition:color_.15s,border-color_.15s]" type="button" onclick="switchTab('ingredients', this)">Ingredients</button>
+      <button class="pb-4 text-[13px] font-semibold text-tertiary hover:text-ink border-b-2 border-transparent hover:border-b-stroke-alt whitespace-nowrap [transition:color_.15s,border-color_.15s]" type="button" onclick="switchTab('shipping', this)">Shipping &amp; Returns</button>
+    </div>
+
+    <div class="max-w-[768px]" id="tab-contents">
+      <div class="block text-[14px] leading-[1.5] text-meta space-y-4" id="tab-desc">
+        <p class="text-[15px] font-semibold leading-[1.4] text-ink">Liquid Diamonds prioritize a stronger high with a faster onset. Crafted with real live resin and without synthetics or hidden Delta-8.</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Kit ships with battery, USB-C cable and the pod you select</li>
+          <li>Lab tested by batch. COA on every unit</li>
+          <li>Compatible with Modern Herb Co, Black Sheep and Hi-Lites refills</li>
+        </ul>
+      </div>
+
+      <div class="hidden text-[14px] leading-[1.5] text-meta space-y-4" id="tab-use">
+        <p>Charge the battery fully before first use. Click the pod into the battery until it seats, then draw. Compatible with Modern Herb Co, Black Sheep and Hi-Lites pod refills.</p>
+      </div>
+
+      <div class="hidden text-[14px] leading-[1.5] text-meta space-y-6" id="tab-bts">
+        <p>We use full-spectrum live resin, not just terpenes labeled as live resin, for richer flavor and more profound effects. Every batch is rigorously tested.</p>
+        <div class="w-full aspect-video bg-cream border border-surface-container-highest rounded-card overflow-hidden relative">
+          <iframe src="https://www.youtube-nocookie.com/embed/SXo0U2fJjG4" title="Modern Herb Co behind the scenes" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen="allowfullscreen" class="absolute inset-0 w-full h-full border-0"></iframe>
+        </div>
+      </div>
+
+      <div class="hidden text-[14px] leading-[1.5] text-meta space-y-6" id="tab-potency">
+        <p>Each strain is tested by batch for potency, pesticides, heavy metals and residual solvents. Certificates are issued per batch.</p>
+        <div class="flex flex-col gap-2">
+        <a href="#" class="flex items-center gap-3 p-3 bg-white border-[1.5px] border-stroke-alt rounded-ctrl hover:opacity-90">
+          <span class="text-ink shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"></path><polyline points="14 2 14 7 19 7"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg></span>
+          <span class="flex flex-col gap-[2px] min-w-0">
+            <span class="text-[13px] font-semibold text-ink">Live THCa Liquid Diamonds — Sour Diesel</span>
+            <span class="text-[12px] text-meta">Batch 1622_LDSD_DT_050726 · PDF</span>
+          </span>
+        </a>
+        <a href="#" class="flex items-center gap-3 p-3 bg-white border-[1.5px] border-stroke-alt rounded-ctrl hover:opacity-90">
+          <span class="text-ink shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"></path><polyline points="14 2 14 7 19 7"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg></span>
+          <span class="flex flex-col gap-[2px] min-w-0">
+            <span class="text-[13px] font-semibold text-ink">Live THCa Liquid Diamonds — Pineapple Express</span>
+            <span class="text-[12px] text-meta">Batch 1630_LDPE_AT_050726 · PDF</span>
+          </span>
+        </a>
+        <a href="#" class="flex items-center gap-3 p-3 bg-white border-[1.5px] border-stroke-alt rounded-ctrl hover:opacity-90">
+          <span class="text-ink shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"></path><polyline points="14 2 14 7 19 7"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg></span>
+          <span class="flex flex-col gap-[2px] min-w-0">
+            <span class="text-[13px] font-semibold text-ink">Live THCa Liquid Diamonds — Lemon OG</span>
+            <span class="text-[12px] text-meta">Batch 1624_LDLEM_KO_050726 · PDF</span>
+          </span>
+        </a>
+        </div>
+      </div>
+
+      <div class="hidden text-[14px] leading-[1.5] text-meta space-y-4" id="tab-ingredients">
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Live Resin (Hemp Derived)</li>
+          <li>THCA Diamonds (Hemp Derived)</li>
+          <li>Terpenes (Hemp Derived)</li>
+        </ul>
+      </div>
+
+      <div class="hidden text-[14px] leading-[1.5] text-meta space-y-3" id="tab-shipping">
+        <details class="border border-surface-container-highest rounded-card bg-white group">
+          <summary class="flex items-center justify-between p-4 cursor-pointer text-[13px] font-semibold text-ink">
+            What is your shipping policy?
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0 [transition:transform_.2s] group-open:rotate-180"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="p-4 pt-4 text-[13px] text-meta border-t border-surface-container-highest">
+            Orders typically ship same or next business day depending on the time the order was placed. Shipping insurance is offered at checkout and strongly advised. Packages are labeled IHC, not The Hemp Collect.
+          </div>
+        </details>
+        <details class="border border-surface-container-highest rounded-card bg-white group">
+          <summary class="flex items-center justify-between p-4 cursor-pointer text-[13px] font-semibold text-ink">
+            Do you accept returns?
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0 [transition:transform_.2s] group-open:rotate-180"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="p-4 pt-4 text-[13px] text-meta border-t border-surface-container-highest">
+            Yes — a 30-day money-back guarantee on all unopened and unused products. Contact support to start a return.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="mt-12 w-full pt-8 border-t border-surface-container-highest">
+    <div class="flex items-center justify-between gap-4 flex-wrap mb-8">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-[9px] h-[9px] rounded-[50%] bg-accent border-[1.5px] border-ink"></span>
+        <span class="text-[13px] font-extrabold tracking-[1.2px] uppercase text-ink">Reviews</span>
+      </div>
+      <div class="flex items-center gap-2 text-meta" id="reviews-summary"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3" id="reviews-grid"></div>
+  </section>
+
+  <!-- Pairs with -->
+  <section class="mt-12 w-full pt-8">
+    <div class="flex items-center gap-2 mb-8">
+      <span class="inline-block w-[9px] h-[9px] rounded-[50%] bg-accent border-[1.5px] border-ink"></span>
+      <span class="text-[13px] font-extrabold tracking-[1.2px] uppercase text-ink">Pairs with</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="pairs-grid"></div>
+  </section>
+
+</main>
+
+<!-- BottomNavBar (mobile only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 h-20 bg-surface border-t border-surface-container-highest flex justify-around items-center pb-[env(safe-area-inset-bottom)] md:hidden">
+  <button class="flex-1 h-full py-px px-[6px] bg-transparent border-0 cursor-pointer flex flex-col items-center justify-center gap-1 text-[9.5px] font-bold leading-[1.3] text-ink hover:bg-surface-container-low active:scale-95" type="button" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M3 9 4.5 4h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"></path></svg><span>Shop</span></button>
+  <button class="flex-1 h-full py-px px-[6px] bg-transparent border-0 cursor-pointer flex flex-col items-center justify-center gap-1 text-[9.5px] font-bold leading-[1.3] text-tertiary hover:bg-surface-container-low active:scale-95" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><circle cx="12" cy="12" r="9"></circle><polygon points="16 8 10.5 10.5 8 16 13.5 13.5"></polygon></svg><span>Discover</span></button>
+  <button class="flex-1 h-full py-px px-[6px] bg-transparent border-0 cursor-pointer flex flex-col items-center justify-center gap-1 text-[9.5px] font-bold leading-[1.3] text-tertiary hover:bg-surface-container-low active:scale-95" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Account</span></button>
+  <button class="flex-1 h-full py-px px-[6px] bg-transparent border-0 cursor-pointer flex flex-col items-center justify-center gap-1 text-[9.5px] font-bold leading-[1.3] text-tertiary hover:bg-surface-container-low active:scale-95" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><span>Cart</span></button>
+</nav>
+
+<!-- Desktop footer -->
+<footer class="hidden md:block bg-surface border-t border-surface-container-highest py-8 mt-10">
+  <div class="max-w-[1280px] mx-auto px-10 flex justify-between items-center text-[14px] text-gray-text">
+    <p class="m-0">© 2024 Modern Herb Co. All rights reserved.</p>
+    <div class="flex gap-4">
+      <a class="text-ink" href="#">Terms</a>
+      <a class="text-ink" href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function switchTab(tabId, element) {
+    document.querySelectorAll('#tab-buttons button').forEach(function (btn) {
+        btn.classList.remove('border-ink', 'text-ink');
+        btn.classList.add('text-tertiary', 'border-transparent');
+    });
+    element.classList.remove('text-tertiary', 'border-transparent');
+    element.classList.add('border-ink', 'text-ink');
+
+    document.querySelectorAll('#tab-contents > div').forEach(function (content) {
+        content.classList.add('hidden');
+        content.classList.remove('block');
+    });
+    var active = document.getElementById('tab-' + tabId);
+    if (active) { active.classList.remove('hidden'); active.classList.add('block'); }
+}
+</script>
+
+<!--
+     Variant selection, availability and purchase-frequency logic.
+
+     The data below stands in for what the Liquid build reads off the product:
+     native Vendor / Type, custom.product_line, custom.variant_description,
+     custom.strain_type, custom.flavor_image, and the Recharge selling plans.
+     Availability is computed here from the product's own variant data, never
+     from a picker's disabled-state marking.
+-->
+<script>
+(function () {
+'use strict';
+
+/* ---------- Data ---------- */
+
+var CDN = 'https://thehempcollect.com/cdn/shop/files/';
+var IMG_SOUR  = CDN + '001-MHC-Pods-Live-THCA-LiquidDiamonds-Sour-Diesel-Pod-Kit-Render-Front-web_aebbdcd4-be7f-425b-a815-263942043d71.png?v=1752277960&width=800';
+var IMG_PINE  = CDN + '001-MHC-Pods-Live-THCA-LiquidDiamonds-pineappleexpress-Pod-Kit-Render-Front-web.png?v=1752277952&width=800';
+var IMG_LEMON = CDN + '001-MHC-Pods-Live-THCA-LiquidDiamonds-Lemon-OG-Pod-Kit-Render-Front-web.png?v=1752277958&width=800';
+
+var PRODUCT = {
+  brand: 'Modern Herb Co',
+  productLine: 'THCA Liquid Diamonds',
+  productTitle: 'THCa Pod Kit Live Resin Liquid Diamonds',
+  // The buy-column subtitle reads "<subtitle> — <selected size>".
+  subtitle: 'Live Resin Pod Kit',
+  // Drives the conditional subscription bullet further down.
+  productType: 'Pod Starter Kit',
+  potencyWord: 'Max',
+  label: 'B2G1',
+  rating: { avg: '4.6', count: '(128)', total: '128' },
+  description: 'Liquid Diamonds prioritize a stronger high with a faster onset. Crafted with real live resin and without synthetics or hidden Delta-8.',
+  images: [IMG_SOUR, IMG_PINE, IMG_LEMON],
+  // Flavor options, in the order Shopify lists them. `image` is custom.flavor_image,
+  // `strain` is custom.strain_type, `label` is custom.flavor_label (corner badge).
+  // No flavor_image is set here, so each swatch falls back to its strain glyph.
+  flavors: [
+    {
+      name: 'Sour Diesel', strain: 'sativa', label: 'Best Seller',
+      image: '', hero: IMG_SOUR,
+      coa: 'Batch 1622_LDSD_DT_050726',
+      description: 'Diesel zest with hints of lemon haze. Focused & active moments. Energy (Sativa).'
+    },
+    {
+      name: 'Pineapple Express', strain: 'hybrid', label: '',
+      image: '', hero: IMG_PINE,
+      coa: 'Batch 1630_LDPE_AT_050726',
+      description: 'Bright citrus notes with tropical pineapple sweetness and earthy pine. Happy (Hybrid).'
+    },
+    {
+      name: 'Lemon OG', strain: 'indica', label: '',
+      image: '', hero: IMG_LEMON,
+      coa: 'Batch 1624_LDLEM_KO_050726',
+      description: 'Bright lemon, skunk and a hint of earthy pine. Mellow and relaxing. Sleep (Indica).'
+    }
+  ],
+  // Size options, in Shopify order. `icon` is custom.size_icon — space for it is
+  // reserved on every card whether or not one is set, so a row stays level.
+  sizes: [
+    { name: '1g',     icon: 'pod'  },
+    { name: '2g',     icon: 'pod'  },
+    { name: '2-Pack', icon: 'case' },
+    { name: '4-Pack', icon: 'case' }
+  ],
+  // Recharge selling plans
+  sellingPlans: [
+    { id: 'every-30', label: 'Delivery every 30 days' },
+    { id: 'every-45', label: 'Delivery every 45 days' },
+    { id: 'every-60', label: 'Delivery every 60 days' }
+  ]
+};
+
+var PRICES = { '1g': 24.5, '2g': 37.5, '2-Pack': 70, '4-Pack': 132 };
+
+/* 'y' = available, 'sold' = a real variant that is out of stock,
+   'none' = the combination does not exist as a variant at all. */
+var MATRIX = {
+  'Sour Diesel':       { '1g': 'y',    '2g': 'y', '2-Pack': 'y', '4-Pack': 'y'    },
+  'Pineapple Express': { '1g': 'y',    '2g': 'y', '2-Pack': 'y', '4-Pack': 'none' },
+  'Lemon OG':          { '1g': 'sold', '2g': 'y', '2-Pack': 'y', '4-Pack': 'sold' }
+};
+
+var VARIANTS = [];
+PRODUCT.flavors.forEach(function (f) {
+  PRODUCT.sizes.forEach(function (s) {
+    var status = MATRIX[f.name][s.name];
+    if (status === 'none') return;                       // no such variant
+    VARIANTS.push({
+      flavor: f.name,
+      size: s.name,
+      price: PRICES[s.name],
+      available: status === 'y',
+      // The single-gram pod carries no selling plan, so the frequency widget
+      // disappears while it is selected.
+      subscription: s.name !== '1g',
+      description: f.description
+    });
+  });
+});
+
+/* Judge.me review feed. */
+var REVIEWS = [
+  { avg: '5.0', stars: 5, body: 'The Lemon OG tastes fantastic and it has potent relaxing effects. I am very impressed.', author: 'Anonymous' },
+  { avg: '4.0', stars: 4, body: 'Not as strong flavor as regular live resin but stronger buzz.', author: 'Guccicoochimane' },
+  { avg: '5.0', stars: 5, body: 'Great tase and great effects! I will continue to buy the refills!', author: 'Dean H.' }
+];
+
+/* "Pairs with" — the related products the v2 page carries. */
+/* "Pairs with" — the related products the v2 page carries, shaped like the
+   design system's own card data (card-tailwind.html). */
+var RELATED = [
+  { img: 'product-page/assets/products/gummies-rosin-3ct-peaches-cream.png',
+    brand: 'Modern Herb Co', title: 'Peaches & Cream', sub: 'Gummies',
+    potencyWord: 'Enhanced', label: '', shipNote: 'Fast Shipping',
+    strains: ['hybrid'], counts: ['3ct', '10ct', '30ct'],
+    options: [
+      { title: '3ct',  price: '$15', strain: 'hybrid' },
+      { title: '10ct', price: '$42', strain: 'hybrid' },
+      { title: '30ct', price: '$99', strain: 'hybrid', soldOut: true }
+    ],
+    ratingAvg: '4.8', ratingCount: '(22)' },
+
+  { img: 'product-page/assets/products/rosin-gummies-30ct-mixed-berry.png',
+    brand: 'Modern Herb Co', title: 'Mixed Berry', sub: 'Rosin Gummies',
+    potencyWord: 'Max', label: 'SALE', shipNote: 'Fast Shipping',
+    strains: ['indica'], counts: ['10ct', '30ct'],
+    options: [
+      { title: '10ct', price: '$18', strain: 'indica' },
+      { title: '30ct', price: '$42', strain: 'indica' }
+    ],
+    ratingAvg: '5.0', ratingCount: '(41)' },
+
+  { img: 'product-page/assets/products/carts-live-rosin-pouch-headband.png',
+    brand: 'Modern Herb Co', title: 'Headband', sub: 'Live Rosin Carts',
+    potencyWord: 'Max', label: '', shipNote: 'Fast Shipping',
+    strains: ['sativa'], counts: ['1g', '2g'],
+    options: [
+      { title: '1g', price: '$49', strain: 'sativa' },
+      { title: '2g', price: '$79', strain: 'sativa' }
+    ],
+    ratingAvg: '4.7', ratingCount: '(47)' }
+];
+
+/* ---------- Icons (same set the cards use) ---------- */
+
+function ui(size, body, opts) {
+  opts = opts || {};
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="0 0 24 24"' +
+    ' fill="' + (opts.fill || 'none') + '" stroke="' + (opts.stroke || 'currentColor') + '" stroke-width="' + (opts.sw || 1.8) + '"' +
+    ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0">' + body + '</svg>';
+}
+var ICON = {
+  star:    function (s, fill) { return ui(s || 16, '<path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path>', { fill: fill || 'none', stroke: '#807E7F', sw: 1.4 }); },
+  minus:   function (s) { return ui(s || 20, '<line x1="5" y1="12" x2="19" y2="12"></line>', { sw: 2.2 }); },
+  plus:    function (s) { return ui(s || 20, '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>', { sw: 2.2 }); },
+  cart:    function (s) { return ui(s || 22, '<circle cx="9" cy="21" r="1.4"></circle><circle cx="19" cy="21" r="1.4"></circle><path d="M2 3h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4L21 7H6"></path>', { sw: 2 }); },
+  tag:     function (s) { return ui(s || 16, '<path d="M20.6 13.4 12.4 21.6a2 2 0 0 1-2.8 0l-7.2-7.2a2 2 0 0 1-.6-1.4V4a2 2 0 0 1 2-2h9a2 2 0 0 1 1.4.6l6.4 6.4a2 2 0 0 1 0 2.8z"></path><circle cx="7.5" cy="7.5" r="1.4"></circle>'); },
+  percent: function (s) { return ui(s || 16, '<line x1="19" y1="5" x2="5" y2="19"></line><circle cx="7.5" cy="7.5" r="2.5"></circle><circle cx="16.5" cy="16.5" r="2.5"></circle>'); },
+  sync:    function (s) { return ui(s || 16, '<polyline points="21 4 21 10 15 10"></polyline><polyline points="3 20 3 14 9 14"></polyline><path d="M19 10a7.5 7.5 0 0 0-13-3.3L3 10"></path><path d="M5 14a7.5 7.5 0 0 0 13 3.3l3-3.3"></path>'); },
+  cancel:  function (s) { return ui(s || 16, '<circle cx="12" cy="12" r="9"></circle><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line>'); },
+  users:   function (s) { return ui(s || 16, '<path d="M16 20v-1.6a3.4 3.4 0 0 0-3.4-3.4H6.4A3.4 3.4 0 0 0 3 18.4V20"></path><circle cx="9.5" cy="7.5" r="3.4"></circle><path d="M21 20v-1.6a3.4 3.4 0 0 0-2.6-3.3"></path><path d="M15.5 4.3a3.4 3.4 0 0 1 0 6.4"></path>'); },
+  chevron: function (s) { return ui(s || 16, '<polyline points="6 9 12 15 18 9"></polyline>', { sw: 2.2 }); },
+  pod:     function (s) { return ui(s || 18, '<rect x="8" y="2.5" width="8" height="19" rx="3"></rect><line x1="8" y1="9" x2="16" y2="9"></line>'); },
+  case:    function (s) { return ui(s || 18, '<rect x="2.5" y="7" width="19" height="13" rx="2"></rect><path d="M8.5 7V5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v2"></path>'); }
+};
+/* Strain glyphs — the solid MHC set, identical to the cards. */
+function strainIcon(kind, size) {
+  size = size || 14;
+  var solid = function (d) { return '<path d="' + d + '" fill="currentColor" stroke="none"></path>'; };
+  var open = '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="block shrink-0">';
+  if (kind === 'indica') return open + solid('M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z') + '</svg>';
+  if (kind === 'sativa') return open + solid('M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z') + '</svg>';
+  return open +
+    '<path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path>' +
+    '<path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path>' +
+    '</svg>';
+}
+var STRAIN_LABEL = { indica: 'Indica', sativa: 'Sativa', hybrid: 'Hybrid' };
+var STRAIN_BG    = { indica: 'bg-effect-sleep', sativa: 'bg-effect-energy', hybrid: 'bg-effect-balance' };
+
+/* ---------- Availability ---------- */
+
+function variantFor(flavor, size) {
+  for (var i = 0; i < VARIANTS.length; i++) {
+    if (VARIANTS[i].flavor === flavor && VARIANTS[i].size === size) return VARIANTS[i];
+  }
+  return null;
+}
+function isAvailable(flavor, size) {
+  var v = variantFor(flavor, size);
+  return !!v && v.available;
+}
+/* Options with zero available variants anywhere never render. */
+var FLAVORS = PRODUCT.flavors.filter(function (f) {
+  return VARIANTS.some(function (v) { return v.flavor === f.name && v.available; });
+});
+var SIZES = PRODUCT.sizes.filter(function (s) {
+  return VARIANTS.some(function (v) { return v.size === s.name && v.available; });
+});
+function lastAvailableSizeFor(flavor) {
+  for (var i = SIZES.length - 1; i >= 0; i--) if (isAvailable(flavor, SIZES[i].name)) return SIZES[i].name;
+  return SIZES.length ? SIZES[SIZES.length - 1].name : null;
+}
+function firstAvailableFlavorFor(size) {
+  for (var i = 0; i < FLAVORS.length; i++) if (isAvailable(FLAVORS[i].name, size)) return FLAVORS[i].name;
+  return FLAVORS.length ? FLAVORS[0].name : null;
+}
+/* The custom default: the FIRST flavor with any available variant, then the
+   LAST available size for that flavor. Re-applied whenever a selection goes stale. */
+function applyDefault() {
+  state.flavor = FLAVORS.length ? FLAVORS[0].name : null;
+  state.size = state.flavor ? lastAvailableSizeFor(state.flavor) : null;
+}
+function flavorMeta(name) {
+  for (var i = 0; i < PRODUCT.flavors.length; i++) if (PRODUCT.flavors[i].name === name) return PRODUCT.flavors[i];
+  return null;
+}
+
+/* ---------- State ---------- */
+
+var state = { flavor: null, size: null, sub: true, plan: PRODUCT.sellingPlans[0].id, qty: 1, image: 0,
+              added: false,
+              // "Pairs with" cards each keep their own selection, menu and toggle.
+              pairSel: {}, pairOpen: null, pairSub: {}, pairAdded: null };
+var addedTimer = null;
+var pairTimer = null;
+applyDefault();
+
+function selectFlavor(name) {
+  state.flavor = name;
+  // A dimmed flavor is still clickable: move the OTHER axis to a valid pairing.
+  if (!isAvailable(state.flavor, state.size)) state.size = lastAvailableSizeFor(state.flavor);
+  state.image = 0;
+  render();
+}
+function selectSize(name) {
+  state.size = name;
+  if (!isAvailable(state.flavor, state.size)) state.flavor = firstAvailableFlavorFor(state.size);
+  render();
+}
+
+/* ---------- Helpers ---------- */
+
+/* The `hidden` attribute loses to a display utility in the cascade, so
+   visibility is switched on the element's own style instead. */
+function show(el, on) { el.style.display = on ? '' : 'none'; }
+
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function money(n) { return '$' + (Math.round(n * 100) / 100).toFixed(2); }
+function current() { return variantFor(state.flavor, state.size); }
+/* Subscription: 30% off the first order. */
+function subPrice(v) { return v ? v.price * 0.7 : 0; }
+function unitPrice(v) { return showSubs(v) && state.sub ? subPrice(v) : (v ? v.price : 0); }
+function showSubs(v) { return !!v && !!v.subscription; }
+/* Lowest available price at a size, used on the size card when the current
+   flavor has no variant there. */
+function priceAtSize(size) {
+  var v = variantFor(state.flavor, size);
+  if (v) return v.price;
+  var prices = VARIANTS.filter(function (x) { return x.size === size; }).map(function (x) { return x.price; });
+  return prices.length ? Math.min.apply(null, prices) : 0;
+}
+
+/* ---------- Render: media ---------- */
+
+function gallery() {
+  var f = flavorMeta(state.flavor);
+  var imgs = [];
+  if (f && f.hero) imgs.push(f.hero);                 // variant image wins the hero slot
+  PRODUCT.images.forEach(function (src) { if (imgs.indexOf(src) === -1) imgs.push(src); });
+  return imgs;
+}
+function renderMedia() {
+  var imgs = gallery();
+  if (state.image >= imgs.length) state.image = 0;
+  var hero = document.getElementById('hero-image');
+  hero.src = imgs[state.image] || '';
+  hero.alt = PRODUCT.productLine + ' — ' + (state.flavor || '');
+
+  document.getElementById('potency-chip').textContent = PRODUCT.potencyWord + ' Potency';
+  var label = document.getElementById('hero-label');
+  label.textContent = PRODUCT.label;
+  show(label, !!PRODUCT.label);
+
+  document.getElementById('thumbs').innerHTML = imgs.map(function (src, i) {
+    var on = i === state.image;
+    return '<button type="button" data-act="image" data-idx="' + i + '" aria-pressed="' + on + '"' +
+      ' class="w-20 h-20 shrink-0 bg-white rounded-ctrl border-[1.5px] p-1 cursor-pointer [transition:border-color_.15s] ' +
+      (on ? 'border-ink' : 'border-surface-container-highest opacity-60 hover:opacity-100 hover:border-stroke-alt') + '">' +
+      '<img src="' + esc(src) + '" alt="" class="w-full h-full max-w-none object-contain mix-blend-multiply">' +
+      '</button>';
+  }).join('');
+}
+
+/* ---------- Render: heading + description ---------- */
+
+function renderHeading() {
+  document.getElementById('brand-line').textContent = PRODUCT.brand;
+  // Product line falls back to the native product title; the Type line is
+  // suppressed whenever that fallback is in play.
+  var line = PRODUCT.productLine || PRODUCT.productTitle;
+  document.getElementById('product-title').textContent = line.toUpperCase();
+  var typeEl = document.getElementById('product-type');
+  typeEl.textContent = PRODUCT.subtitle + (state.size ? ' \u2014 ' + state.size : '');
+  show(typeEl, !!PRODUCT.productLine && !!PRODUCT.subtitle);
+
+  var rating = document.getElementById('rating-line');
+  rating.innerHTML = PRODUCT.rating && PRODUCT.rating.avg
+    ? ICON.star(16, '#e3e829') + '<span class="text-[13px] font-semibold text-ink">' + esc(PRODUCT.rating.avg) +
+      ' <span class="text-tertiary font-normal">' + esc(PRODUCT.rating.count) + '</span></span>'
+    : '';
+
+  var v = current();
+  var f = flavorMeta(state.flavor);
+  document.getElementById('variant-description').textContent =
+    (v && v.description) || (f && f.description) || PRODUCT.description;
+}
+
+/* ---------- Render: flavor selector ---------- */
+
+function renderFlavors() {
+  var block = document.getElementById('flavor-block');
+  if (!FLAVORS.length) { show(block, false); block.innerHTML = ''; return; }
+  show(block, true);
+
+  block.innerHTML =
+    '<div class="text-[13px] font-semibold text-ink">Flavor: <span class="font-normal">' + esc(state.flavor || '') + '</span></div>' +
+    '<div class="grid grid-cols-3 gap-[10px]">' +
+      FLAVORS.map(function (f) {
+        var on = f.name === state.flavor;
+        // Dimmed = no available variant at the current size, but still clickable.
+        var dim = !isAvailable(f.name, state.size);
+        return '<button type="button" data-act="flavor" data-value="' + esc(f.name) + '" aria-pressed="' + on + '"' +
+          ' class="@container relative flex flex-col items-center gap-2 p-2 border-[1.5px] rounded-ctrl cursor-pointer text-left overflow-hidden [transition:border-color_.15s] ' +
+          (on ? 'border-ink bg-cream' : 'border-surface-container-highest bg-white hover:border-stroke-alt') +
+          (dim ? ' opacity-50' : '') + '">' +
+
+          (f.strain
+            ? '<span class="absolute top-1 right-1 inline-flex items-center gap-1 px-2 py-[3px] rounded-ctrl text-[11px] font-bold text-ink ' + STRAIN_BG[f.strain] + '">' +
+                strainIcon(f.strain, 11) + STRAIN_LABEL[f.strain] +
+              '</span>'
+            : '') +
+
+          // Corner label (custom.flavor_label) — centred on the swatch, never past the card edge.
+          (f.label
+            ? '<span class="absolute top-[56px] left-1/2 -translate-x-1/2 z-[5] max-w-full whitespace-nowrap overflow-hidden text-ellipsis bg-accent border border-stroke-alt text-ink text-[10px] font-bold px-[6px] py-px rounded-[999px]">' + esc(f.label) + '</span>'
+            : '') +
+
+          '<span class="w-10 h-10 mt-4 rounded-[50%] overflow-hidden flex items-center justify-center text-ink ' +
+            (f.image ? 'bg-surface-container-low' : (f.strain ? STRAIN_BG[f.strain] : 'bg-surface-container-low')) + '">' +
+            (f.image
+              ? '<span class="block w-full h-full bg-cover bg-center" style="background-image:url(' + esc(f.image) + ')"></span>'
+              : (f.strain ? strainIcon(f.strain, 18) : '')) +
+          '</span>' +
+
+          '<span class="w-full text-center text-[12px] @[7rem]:text-[13px] font-semibold text-ink leading-[1.25] min-h-[32px] flex items-center justify-center [text-wrap:pretty]">' + esc(f.name) + '</span>' +
+        '</button>';
+      }).join('') +
+    '</div>';
+}
+
+/* ---------- Render: size selector ---------- */
+
+function renderSizes() {
+  var block = document.getElementById('size-block');
+  if (!SIZES.length) { show(block, false); block.innerHTML = ''; return; }
+  show(block, true);
+
+  block.innerHTML =
+    '<div class="text-[13px] font-semibold text-ink">Size: <span class="font-normal">' + esc(state.size || '') + '</span></div>' +
+    '<div class="flex flex-wrap gap-[10px]">' +
+      SIZES.map(function (s) {
+        var on = s.name === state.size;
+        var dim = !isAvailable(state.flavor, s.name);
+        var icon = s.icon && ICON[s.icon] ? ICON[s.icon](18) : '';
+        return '<button type="button" data-act="size" data-value="' + esc(s.name) + '" aria-pressed="' + on + '"' +
+          ' class="flex flex-col items-center justify-center gap-1 min-w-[86px] px-3 py-2 border-[1.5px] rounded-ctrl cursor-pointer [transition:border-color_.15s] ' +
+          (on ? 'border-ink bg-cream' : 'border-surface-container-highest bg-white hover:border-stroke-alt') +
+          (dim ? ' opacity-50' : '') + '">' +
+          // The icon slot is always reserved, so every card in the row is the same height.
+          '<span class="h-[18px] w-[18px] flex items-center justify-center text-ink">' + icon + '</span>' +
+          '<span class="text-[13px] font-semibold ' + (on ? 'text-ink' : 'text-tertiary') + (dim ? ' line-through' : '') + '">' + esc(s.name) + '</span>' +
+          '<span class="text-[12px] font-normal text-meta">' + money(priceAtSize(s.name)) + '</span>' +
+        '</button>';
+      }).join('') +
+    '</div>';
+}
+
+/* ---------- Render: purchase frequency ---------- */
+
+function subBullets() {
+  var rows = [
+    [ICON.tag(16),     'Save 30% on your first order'],
+    [ICON.percent(16), 'Ongoing 10% off thereafter'],
+    [ICON.sync(16),    'Swap or skip anytime'],
+    [ICON.cancel(16),  'Cancel after 2nd delivery'],
+    [ICON.users(16),   'Join 200k+ happy customers']
+  ];
+  // Conditional on the product type.
+  if (PRODUCT.productType === 'Pod Starter Kit') {
+    rows.push([ICON.sync(16), 'Kits convert to refills after first shipment with reduced cost']);
+  }
+  return rows.map(function (r) {
+    return '<span class="flex items-start gap-2 text-[12.5px] leading-[1.35] text-ink">' +
+      '<span class="mt-[1px] shrink-0">' + r[0] + '</span>' + esc(r[1]) + '</span>';
+  }).join('');
+}
+
+function renderPurchase() {
+  var block = document.getElementById('purchase-block');
+  var v = current();
+  // No selling plans on this variant: the widget goes away, but the shopper's
+  // Subscribe preference is left intact for the next variant that has one.
+  if (!showSubs(v)) { show(block, false); block.innerHTML = ''; return; }
+  show(block, true);
+
+  var on = state.sub;
+  block.innerHTML =
+    // Subscribe is first and default.
+    '<div data-act="sub" role="radio" aria-checked="' + on + '" tabindex="0"' +
+      ' class="rounded-card border-[1.5px] overflow-hidden cursor-pointer ' + (on ? 'border-ink' : 'border-surface-container-highest') + '">' +
+      // Black header — "Best Value" is the largest thing in it, and the row stays one line.
+      '<div class="flex items-center justify-between gap-2 bg-ink text-white px-[11px] py-[5px]">' +
+        '<span class="text-[15px] font-bold leading-[1.2] whitespace-nowrap">Best Value</span>' +
+        '<span class="shrink-0 bg-accent text-ink text-[10px] font-bold tracking-[1px] px-2 py-[2px] rounded-[999px] whitespace-nowrap">SAVE 30%</span>' +
+      '</div>' +
+      '<div class="flex flex-col gap-3 p-4 ' + (on ? 'bg-cream' : 'bg-white') + '">' +
+        '<div class="flex items-center gap-3">' +
+          '<span aria-hidden="true" class="flex-[0_0_18px] w-[18px] h-[18px] rounded-[50%] border-[1.5px] border-stroke-alt bg-white inline-flex items-center justify-center">' +
+            '<span class="w-[9px] h-[9px] rounded-[50%] ' + (on ? 'bg-ink' : 'bg-transparent') + '"></span></span>' +
+          '<span class="flex-auto min-w-0 text-[13px] font-semibold text-ink">Subscribe &amp; Save</span>' +
+          '<span class="shrink-0 text-[15px] font-bold text-ink">' + money(subPrice(v)) + '</span>' +
+        '</div>' +
+        // Recharge plans
+        '<div class="relative">' +
+          '<select data-act="plan" class="w-full appearance-none bg-white border-[1.5px] border-stroke-alt rounded-ctrl pl-[10px] pr-8 py-2 text-[13px] font-semibold text-ink cursor-pointer">' +
+            PRODUCT.sellingPlans.map(function (p) {
+              return '<option value="' + esc(p.id) + '"' + (p.id === state.plan ? ' selected' : '') + '>' + esc(p.label) + '</option>';
+            }).join('') +
+          '</select>' +
+          '<span class="absolute right-[10px] top-1/2 -translate-y-1/2 pointer-events-none text-gray-text">' + ICON.chevron(16) + '</span>' +
+        '</div>' +
+        '<div class="flex flex-col gap-2 bg-surface-container-low border border-surface-container-highest rounded-ctrl p-3">' +
+          subBullets() +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    // One-time is the second option.
+    '<div data-act="once" role="radio" aria-checked="' + (!on) + '" tabindex="0"' +
+      ' class="flex items-center gap-3 p-4 rounded-card border-[1.5px] cursor-pointer ' +
+      (on ? 'border-surface-container-highest bg-white' : 'border-ink bg-cream') + '">' +
+      '<span aria-hidden="true" class="flex-[0_0_18px] w-[18px] h-[18px] rounded-[50%] border-[1.5px] border-stroke-alt bg-white inline-flex items-center justify-center">' +
+        '<span class="w-[9px] h-[9px] rounded-[50%] ' + (on ? 'bg-transparent' : 'bg-ink') + '"></span></span>' +
+      '<span class="flex-auto flex justify-between items-center gap-3">' +
+        '<span class="text-[13px] font-semibold ' + (on ? 'text-tertiary' : 'text-ink') + '">One-time purchase</span>' +
+        '<span class="text-[15px] font-bold ' + (on ? 'text-tertiary' : 'text-ink') + '">' + money(v.price) + '</span>' +
+      '</span>' +
+    '</div>';
+}
+
+/* ---------- Render: quantity + add to cart ---------- */
+
+function renderBuyRow() {
+  var v = current();
+  var sold = !v || !v.available;
+  var total = unitPrice(v) * state.qty;
+  // Above one unit the button carries the line total.
+  var priceLabel = state.qty > 1 ? money(total) : money(unitPrice(v));
+
+  document.getElementById('buy-row').innerHTML =
+    '<div class="flex items-center justify-between border-[1.5px] border-stroke-alt rounded-ctrl px-3 bg-white w-[120px] shrink-0">' +
+      '<button type="button" data-act="dec" aria-label="Decrease quantity" class="bg-transparent border-0 cursor-pointer text-ink p-1 rounded-[50%] flex hover:bg-surface-container-low">' + ICON.minus(20) + '</button>' +
+      '<span class="text-[13px] font-semibold text-ink">' + state.qty + '</span>' +
+      '<button type="button" data-act="inc" aria-label="Increase quantity" class="bg-transparent border-0 cursor-pointer text-ink p-1 rounded-[50%] flex hover:bg-surface-container-low">' + ICON.plus(20) + '</button>' +
+    '</div>' +
+    '<button type="button" data-act="add"' + (sold ? ' disabled' : '') +
+      ' class="flex-auto inline-flex items-center justify-center gap-2 border-[1.5px] rounded-ctrl text-[14px] font-bold px-4 ' +
+      (sold ? 'bg-gray-200 border-gray-300 text-gray-400 cursor-not-allowed' : 'bg-accent border-stroke-alt text-ink cursor-pointer hover:opacity-90') + '">' +
+      (sold ? 'Sold Out' : ICON.cart(22) + '<span>Add to Cart · ' + priceLabel + (state.added ? '  &#10003;' : '') + '</span>') +
+    '</button>';
+}
+
+/* ---------- Render: reviews ---------- */
+
+function stars(n) {
+  var out = '';
+  for (var i = 1; i <= 5; i++) out += ICON.star(14, i <= n ? '#e3e829' : 'none');
+  return '<span class="flex items-center gap-px">' + out + '</span>';
+}
+
+function renderReviews() {
+  var summary = document.getElementById('reviews-summary');
+  summary.innerHTML = ICON.star(16, '#e3e829') +
+    '<span class="text-[13px] font-semibold text-ink">' + esc(PRODUCT.rating.avg) +
+    ' <span class="text-tertiary font-normal">' + esc(PRODUCT.rating.count) + '</span></span>' +
+    '<span class="text-[13px] text-meta">' + esc(PRODUCT.rating.total) + ' reviews from verified buyers</span>';
+
+  document.getElementById('reviews-grid').innerHTML = REVIEWS.map(function (r) {
+    return '<div class="flex flex-col gap-2 p-4 bg-white rounded-card border border-surface-container-highest">' +
+      stars(r.stars) +
+      '<p class="m-0 text-[14px] leading-[1.5] text-ink [text-wrap:pretty]">' + esc(r.body) + '</p>' +
+      '<span class="text-[11px] text-tertiary">' + esc(r.author) + ' \u2014 Verified buyer</span>' +
+    '</div>';
+  }).join('');
+}
+
+/* ---------- Render: pairs with ---------- */
+/*
+ * The card is the design system's own, ported from card-tailwind.html: a
+ * sideways card with the image panel down the left edge and the info stack
+ * on the right — brand / title / sub, effect and count chips, the variant
+ * selector, the one-time + subscribe rows, Details + Add to Cart, and the
+ * shipping note beside the rating.
+ */
+
+var EFFECT_WORD  = { indica: 'Sleep',  sativa: 'Energy', hybrid: 'Happy'   };
+var EFFECT_TITLE = { indica: 'Sleep',  sativa: 'Energy', hybrid: 'Balance' };
+var EFFECT_ORDER = { indica: 0, hybrid: 1, sativa: 2 };
+
+/* "5ct / Huckleberry" carries both axes; a bare "10ct" carries only one. */
+function splitOpt(t) {
+  var parts = String(t || '').split(' / ');
+  if (parts.length < 2) return { count: '', flavor: t || '' };
+  return { count: parts[0], flavor: parts.slice(1).join(' / ') };
+}
+function priceNum(p) { return parseFloat(String(p).replace(/[^0-9.]/g, '')) || 0; }
+
+var MENU_SCROLLBAR =
+  '[&::-webkit-scrollbar]:w-[6px] ' +
+  '[&::-webkit-scrollbar-track]:bg-track [&::-webkit-scrollbar-track]:border-l ' +
+  '[&::-webkit-scrollbar-track]:border-l-sub-stroke [&::-webkit-scrollbar-track]:rounded-[0_8px_8px_0] ' +
+  '[&::-webkit-scrollbar-thumb]:my-[10px] [&::-webkit-scrollbar-thumb]:bg-ink [&::-webkit-scrollbar-thumb]:rounded-[3px]';
+
+function pairCardHTML(c, i) {
+  var d = 'data-idx="' + i + '"';
+  var selIdx = state.pairSel[i] || 0;
+  var sel = c.options[selIdx];
+  var selSplit = splitOpt(sel.title);
+  var allSold = c.options.every(function (o) { return o.soldOut; });
+  var disabled = allSold || !!sel.soldOut;
+  var sub = state.pairSub[i] !== false;
+  var open = state.pairOpen === i;
+  var added = state.pairAdded === i;
+  var subPrice = '$' + (Math.round(priceNum(sel.price) * 0.7 * 100) / 100).toFixed(2);
+
+  var ordered = (c.strains || []).slice().sort(function (a, b) {
+    return EFFECT_ORDER[a] - EFFECT_ORDER[b];
+  });
+
+
+  return '' +
+'<div class="relative flex flex-row h-full bg-white border border-stroke-alt rounded-card">' +
+
+  // Image panel: the render is oversized and nudged right inside its own well,
+  // the way the design system card frames it.
+  '<a href="#" class="relative block flex-[0_0_34%] self-stretch aspect-auto min-h-[150px] rounded-img overflow-hidden bg-img-well">' +
+    '<div class="absolute inset-0 bg-white">' +
+      '<div class="absolute inset-0 flex items-center justify-center translate-x-[15%] scale-[1.55] origin-center">' +
+        '<img src="' + esc(c.img) + '" alt="' + esc(c.title) + '" class="w-full h-full max-w-none object-contain">' +
+      '</div>' +
+    '</div>' +
+
+    // The corner chips live inside the panel and are bounded by it, so a long
+    // potency word wraps over the image instead of running into the info column.
+    '<span class="absolute top-[11px] left-[11px] right-[11px] z-[5] flex flex-col items-start gap-[7px]">' +
+      '<span class="box-border inline-block max-w-full font-body text-ink text-[12px] font-medium tracking-normal normal-case bg-cream rounded-ctrl px-[11px] py-[5px] leading-[1.2]">' + esc(c.potencyWord) + ' Potency</span>' +
+      (c.label ?
+      '<span class="box-border inline-block max-w-full bg-cream text-ink border border-stroke-alt font-body font-bold text-[12px] leading-[1.2] tracking-[.2px] px-[11px] py-[5px] rounded-ctrl">' + esc(c.label) + '</span>' : '') +
+    '</span>' +
+  '</a>' +
+
+  '<div class="flex flex-col flex-auto min-w-0 p-[11px] gap-2">' +
+
+    '<div class="order-[-3] flex items-center gap-2 min-w-0">' +
+      '<p class="flex-initial min-w-0 m-0 font-body text-[12px] font-normal text-ink leading-[1.2] whitespace-nowrap overflow-hidden text-ellipsis">' + esc(c.sub) + '</p>' +
+    '</div>' +
+    '<a href="#" data-pair-title class="order-[-2] font-title block mt-[-5px] text-[20px] font-bold text-ink leading-[1.12] whitespace-nowrap overflow-hidden text-ellipsis">' + esc(c.title) + '</a>' +
+    '<p class="order-[-1] mt-[-5px] font-body text-[12px] font-normal text-meta leading-[1.12] whitespace-nowrap overflow-hidden text-ellipsis">' + esc(c.brand) + '</p>' +
+
+    // Pushes everything below to the bottom of the card, so a row of cards lines up.
+    '<div class="flex-auto min-h-[8px] my-[-6px]"></div>' +
+
+    '<div aria-label="Effects and counts" class="box-border flex flex-col flex-nowrap items-start gap-[6px] overflow-hidden rounded-ctrl p-0">' +
+      '<div class="self-stretch flex flex-nowrap items-center gap-1 min-w-0">' +
+        ordered.map(function (x) {
+          return '<span title="' + esc(EFFECT_TITLE[x]) + '" class="inline-flex items-center justify-center w-auto h-auto min-w-[auto] flex-none font-body px-[9px] py-1 text-[11px] font-normal tracking-normal rounded-ctrl box-border bg-cream text-meta">' + EFFECT_WORD[x] + '</span>';
+        }).join('') +
+      '</div>' +
+      '<div class="flex flex-nowrap items-center gap-1 min-w-0">' +
+        c.counts.map(function (n) {
+          return '<span class="box-border font-body text-[12px] font-normal tracking-[.3px] text-meta bg-cream rounded-ctrl px-[10px] py-[5px] leading-[1.4] whitespace-nowrap">' + esc(n) + '</span>';
+        }).join('') +
+      '</div>' +
+    '</div>' +
+
+    '<div data-pair-wrap class="relative min-h-[40px]">' +
+      '<button type="button" data-act="pair-toggle" ' + d + ' aria-haspopup="listbox" class="relative w-full flex items-center gap-[6px] font-[inherit] text-[13px] font-semibold text-ink bg-white border-[1.5px] border-stroke-alt rounded-ctrl pt-2 pr-[30px] pb-2 pl-[10px] cursor-pointer text-left ' + (sel.soldOut ? 'opacity-60' : 'opacity-100') + '">' +
+        '<span class="flex items-center gap-[6px] flex-auto min-w-0">' +
+          (sel.strain ?
+          '<span class="inline-flex items-center justify-center w-6 h-6 rounded-[50%] box-border shrink-0 bg-cream text-ink">' + strainIcon(sel.strain, 14) + '</span>' : '') +
+          '<span class="flex-auto min-w-0 font-body overflow-hidden text-ellipsis whitespace-nowrap ' + (sel.soldOut ? 'line-through' : 'no-underline') + '">' + esc(selSplit.flavor) + '</span>' +
+          (selSplit.count ?
+          '<span class="shrink-0 box-border inline-flex items-center justify-center min-w-[32px] h-[26px] px-2 rounded-ctrl bg-cream text-[12px] font-normal text-ink">' + esc(selSplit.count) + '</span>' : '') +
+        '</span>' +
+        '<span class="font-normal text-meta shrink-0 ' + (sel.soldOut ? 'line-through' : 'no-underline') + '">' + esc(sel.price) + '</span>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="absolute right-[10px] top-1/2 -translate-y-1/2 pointer-events-none text-gray-500"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
+      '</button>' +
+      (open ?
+      '<ul role="listbox" class="list-none m-0 absolute top-0 left-0 right-0 z-50 p-0 overflow-x-hidden bg-white border-[1.5px] border-stroke-alt rounded-ctrl shadow-menu max-h-[184px] overflow-y-auto ' + MENU_SCROLLBAR + '">' +
+        c.options.map(function (o, oi) {
+          var sp = splitOpt(o.title);
+          var groupLabel = (o.strain && (oi === 0 || o.strain !== c.options[oi - 1].strain))
+            ? EFFECT_WORD[o.strain] + ' (' + STRAIN_LABEL[o.strain] + ')' : '';
+          return (groupLabel ?
+            '<li class="' + (oi === 0 ? 'mt-0' : 'mt-[6px]') + ' mx-0 mb-[3px] px-3 py-[6px] bg-cream text-ink rounded-none ' + (oi === 0 ? 'border-t-0' : 'border-t border-t-stroke-alt') + ' border-b border-b-stroke-alt font-body text-[11px] font-bold tracking-[.6px] leading-[1.2]">' + esc(groupLabel) + '</li>' : '') +
+            '<li role="option" data-act="pair-pick" ' + d + ' data-opt="' + oi + '"' + (oi === selIdx ? ' data-selected' : '') +
+              ' class="flex items-center gap-[7px] mt-0 mx-1 mb-1 px-2 py-[9px] box-border rounded-[6px] cursor-pointer text-[13px] ' +
+              (o.soldOut ? 'opacity-50' : 'opacity-100') + ' ' +
+              (oi === selIdx ? 'bg-accent' : 'bg-transparent hover:bg-menu-hover') + '">' +
+              (o.strain ?
+              '<span class="inline-flex items-center justify-center w-6 h-6 rounded-[50%] box-border shrink-0 bg-cream text-ink">' + strainIcon(o.strain, 14) + '</span>' : '') +
+              '<span class="flex-auto min-w-0 font-body font-semibold leading-[1.25] whitespace-nowrap overflow-hidden text-ellipsis ' + (o.soldOut ? 'line-through' : 'no-underline') + '">' + esc(sp.flavor) + '</span>' +
+              (sp.count ?
+              '<span class="shrink-0 box-border inline-flex items-center justify-center min-w-[32px] h-[26px] px-2 rounded-ctrl bg-cream text-[12px] font-normal text-ink">' + esc(sp.count) + '</span>' : '') +
+              '<span class="font-normal text-meta shrink-0">' + esc(o.price) + '</span>' +
+            '</li>';
+        }).join('') +
+      '</ul>' : '') +
+    '</div>' +
+
+    '<div role="radiogroup" aria-label="Purchase type" class="flex flex-col gap-[6px]">' +
+      '<div data-act="pair-once" ' + d + ' role="radio" aria-checked="' + (!sub) + '" class="box-border flex items-center gap-2 cursor-pointer bg-white border-[1.5px] ' + (sub ? 'border-gray-200' : 'border-stroke-alt') + ' rounded-ctrl px-[11px] py-[9px]">' +
+        '<span aria-hidden="true" class="flex-[0_0_15px] box-border inline-flex items-center justify-center w-[15px] h-[15px] rounded-[50%] border-[1.5px] border-stroke-alt bg-white">' +
+          '<span class="block w-[7px] h-[7px] rounded-[50%] ' + (sub ? 'bg-transparent' : 'bg-ink') + '"></span>' +
+        '</span>' +
+        '<span class="flex-auto min-w-0 font-body text-[12px] font-semibold text-ink leading-[1.25]">One-time purchase</span>' +
+        '<span class="shrink-0 text-[12px] font-normal text-meta">' + esc(sel.price) + '</span>' +
+      '</div>' +
+      '<div data-act="pair-sub" ' + d + ' role="radio" aria-checked="' + sub + '" class="box-border flex flex-col gap-[3px] cursor-pointer ' + (sub ? 'bg-cream' : 'bg-white') + ' border-[1.5px] ' + (sub ? 'border-sub-stroke' : 'border-gray-200') + ' rounded-ctrl px-[11px] py-[9px]">' +
+        '<span class="flex items-center gap-2">' +
+          '<span aria-hidden="true" class="flex-[0_0_15px] box-border inline-flex items-center justify-center w-[15px] h-[15px] rounded-[50%] border-[1.5px] border-stroke-alt bg-white">' +
+            '<span class="block w-[7px] h-[7px] rounded-[50%] ' + (sub ? 'bg-ink' : 'bg-transparent') + '"></span>' +
+          '</span>' +
+          '<span class="flex-auto min-w-0 font-body text-[12px] font-semibold text-ink leading-[1.25]">Subscribe &amp; Save</span>' +
+          '<span class="shrink-0 text-[12px] font-normal text-meta">' + subPrice + '</span>' +
+        '</span>' +
+        '<span class="pl-[23px] text-[11px] font-normal text-meta leading-[1.3] [text-wrap:pretty]">Save 30% on your first order, then 10% on every order after.</span>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="flex flex-wrap items-stretch gap-[6px] mt-0">' +
+      '<button type="button" data-act="pair-add" ' + d + ' class="order-2 flex-auto inline-flex items-center justify-center gap-[6px] border-[1.5px] ' +
+        (disabled ? 'border-gray-300 bg-gray-200 text-gray-400 cursor-not-allowed' : 'border-stroke-alt bg-accent text-ink cursor-pointer') +
+        ' font-[inherit] text-[13px] font-bold rounded-ctrl p-2 min-w-[44px]">' +
+        (disabled ? '<span>Sold Out</span>' : ICON.cart(22)) +
+        (added ? '<span class="text-[15px]">&#10003;</span>' : '') +
+      '</button>' +
+      '<a href="#" title="See details" data-act="pair-details" ' + d + ' class="order-1 flex-[0_0_34%] box-border inline-flex items-center justify-center gap-[5px] border-[1.5px] border-stroke-alt bg-ink text-white text-[11px] font-semibold tracking-[.2px] rounded-ctrl p-2 min-w-[44px] no-underline">' +
+        '<span class="font-body text-[13px] font-bold tracking-[.2px]">Details</span>' +
+      '</a>' +
+    '</div>' +
+
+    '<div class="flex items-center justify-end gap-[6px] flex-wrap">' +
+      '<span class="box-border font-body text-[12px] font-normal text-ink whitespace-nowrap bg-cream rounded-ctrl px-[11px] py-[5px] leading-[1.2]">' + esc(c.shipNote) + '</span>' +
+      '<span class="inline-flex items-center gap-[3px] text-[13px] font-semibold text-ink whitespace-nowrap">' +
+        '<span class="inline-flex items-center gap-px shrink-0">' + ICON.star(14, '#e3e829') + '</span>' +
+        '<span>' + esc(c.ratingAvg) + '</span>' +
+        '<span class="text-meta font-normal">' + esc(c.ratingCount) + '</span>' +
+      '</span>' +
+    '</div>' +
+
+  '</div>' +
+'</div>';
+}
+
+function renderPairs() {
+  document.getElementById('pairs-grid').innerHTML = RELATED.map(function (c, i) {
+    return '<article class="h-full">' + pairCardHTML(c, i) + '</article>';
+  }).join('');
+  fitPairTitles();
+  // The Play CDN compiles newly-seen classes in a MutationObserver callback,
+  // so re-measure once those rules have actually landed.
+  if (window.requestAnimationFrame) {
+    requestAnimationFrame(function () { requestAnimationFrame(fitPairTitles); });
+  }
+}
+
+/* Every card title takes ONE shared size: the largest that still fits them all. */
+function fitPairTitles() {
+  var els = Array.prototype.slice.call(document.querySelectorAll('[data-pair-title]'));
+  if (!els.length) return;
+  var textW = function (el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    return r.getBoundingClientRect().width;
+  };
+  var set = function (px) { els.forEach(function (el) { el.style.fontSize = px + 'px'; }); };
+  var fits = function () {
+    return els.every(function (el) { return !el.clientWidth || textW(el) <= el.clientWidth - 2; });
+  };
+  var size = 20, guard = 0;
+  set(size);
+  while (size > 11 && guard++ < 80 && !fits()) { size -= 0.5; set(size); }
+}
+window.addEventListener('resize', function () { fitPairTitles(); });
+
+/* ---------- Render ---------- */
+
+function render() {
+  if (!current()) applyDefault();
+  renderMedia();
+  renderHeading();
+  renderFlavors();
+  renderSizes();
+  renderPurchase();
+  renderBuyRow();
+  renderReviews();
+  renderPairs();
+}
+
+/* ---------- Events ---------- */
+
+document.addEventListener('change', function (e) {
+  var sel = e.target.closest ? e.target.closest('[data-act="plan"]') : null;
+  if (sel) { state.plan = sel.value; }
+});
+
+document.addEventListener('click', function (e) {
+  var anchor = e.target.closest ? e.target.closest('#pairs-grid a[href="#"]') : null;
+  if (anchor) e.preventDefault();
+
+  // Clicking anywhere outside an open variant menu closes it.
+  if (state.pairOpen !== null && !(e.target.closest && e.target.closest('[data-pair-wrap]'))) {
+    state.pairOpen = null;
+    renderPairs();
+  }
+
+  var el = e.target.closest ? e.target.closest('[data-act]') : null;
+  if (!el) return;
+  var act = el.getAttribute('data-act');
+
+  if (act === 'flavor') { selectFlavor(el.getAttribute('data-value')); return; }
+  if (act === 'size')   { selectSize(el.getAttribute('data-value')); return; }
+  if (act === 'image')  { state.image = parseInt(el.getAttribute('data-idx'), 10); renderMedia(); return; }
+  if (act === 'sub')    { state.sub = true;  renderPurchase(); renderBuyRow(); return; }
+  if (act === 'once')   { state.sub = false; renderPurchase(); renderBuyRow(); return; }
+  if (act.indexOf('pair-') === 0) {
+    var pi = parseInt(el.getAttribute('data-idx'), 10);
+    if (act === 'pair-toggle') { state.pairOpen = state.pairOpen === pi ? null : pi; renderPairs(); return; }
+    if (act === 'pair-pick') {
+      state.pairSel[pi] = parseInt(el.getAttribute('data-opt'), 10);
+      state.pairOpen = null;
+      renderPairs();
+      return;
+    }
+    if (act === 'pair-once') { state.pairSub[pi] = false; renderPairs(); return; }
+    if (act === 'pair-sub')  { state.pairSub[pi] = true;  renderPairs(); return; }
+    if (act === 'pair-details') return;                 // no quick view on this page
+    if (act === 'pair-add') {
+      var pc = RELATED[pi];
+      var po = pc.options[state.pairSel[pi] || 0];
+      if (pc.options.every(function (o) { return o.soldOut; }) || (po && po.soldOut)) return;
+      state.pairAdded = pi;
+      clearTimeout(pairTimer);
+      pairTimer = setTimeout(function () { state.pairAdded = null; renderPairs(); }, 1300);
+      renderPairs();
+      return;
+    }
+    return;
+  }
+  if (act === 'inc')    { state.qty = Math.min(999, state.qty + 1); renderBuyRow(); return; }
+  if (act === 'dec')    { state.qty = Math.max(1, state.qty - 1); renderBuyRow(); return; }
+  if (act === 'add') {
+    var v = current();
+    if (!v || !v.available) return;
+    // A real theme submits the native product form here, with `selling_plan`
+    // set from state.plan when Subscribe is chosen, so the cart app owns
+    // pricing, promotions and subscription creation.
+    state.added = true;
+    clearTimeout(addedTimer);
+    addedTimer = setTimeout(function () { state.added = false; renderBuyRow(); }, 1300);
+    renderBuyRow();
+    return;
+  }
+});
+
+render();
+
+})();
+</script>
+
+</body>
+</html>

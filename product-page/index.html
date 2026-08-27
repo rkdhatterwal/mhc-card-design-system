@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modern Herb Co — THCA Liquid Diamonds</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./ds-base.js"></script>
+<style>*{box-sizing:border-box}body{margin:0}a{color:#393839;text-decoration:none}a:hover{opacity:.85}button:active{transform:scale(.95)}.thumbs{scrollbar-width:thin;scrollbar-color:#e3e2df transparent}.thumbs::-webkit-scrollbar{height:6px}.thumbs::-webkit-scrollbar-thumb{background:#EDECE7;border-radius:9px}</style>
+</helmet>
+<div style="min-height:100vh;background:#faf9f5;font-family:'Poppins',system-ui,sans-serif;color:#393839">
+  <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.TopAppBar" wide="{{ wide }}" cart-count="{{ cart }}" hint-size="100%,64px"></x-import>
+
+  <main style="width:100%;max-width:1280px;margin:0 auto;padding:{{ gutter }}">
+
+    <nav style="display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-size:12px;color:#5f5e5f;padding:0 0 18px">
+      <a href="#">Shop</a><span>/</span><a href="#">Pod Kits</a><span>/</span><span style="color:#393839">THCA Liquid Diamonds</span>
+    </nav>
+
+    <div style="display:grid;gap:40px;align-items:start;grid-template-columns:{{ cols }}">
+
+      <section style="position:{{ sticky }};top:88px;align-self:start;display:flex;flex-direction:column;gap:8px;min-width:0">
+        <div style="position:relative;width:100%;aspect-ratio:1/1;background:#ffffff;border:1px solid #e3e2df;border-radius:14px;overflow:hidden;cursor:pointer" onClick="{{ nextHero }}">
+          <div style="position:absolute;top:16px;left:16px;z-index:5;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#393839">Max Potency</div>
+          <div style="position:absolute;top:16px;right:16px;z-index:5;color:#807E7F">
+            <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Icon" name="share" size="18" hint-size="18px,18px"></x-import>
+          </div>
+          <div style="position:absolute;bottom:16px;left:16px;z-index:5;background:#e3e829;border:1px solid #807E7F;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px">B2G1</div>
+          <sc-if value="{{ heroSour }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px">
+              <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-Sour-Diesel-Pod-Kit-Render-Front-web_aebbdcd4-be7f-425b-a815-263942043d71.png?v=1752277960&amp;width=800" alt="THCa Pod Kit Live Resin Liquid Diamonds: Sour Diesel (Sativa) - 2g" style="width:100%;height:100%;object-fit:contain">
+            </div>
+          </sc-if>
+          <sc-if value="{{ heroPineapple }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px">
+              <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-pineappleexpress-Pod-Kit-Render-Front-web.png?v=1752277952&amp;width=800" alt="THCa Pod Kit Live Resin Liquid Diamonds: Pineapple Express (Hybrid) - 2g" style="width:100%;height:100%;object-fit:contain">
+            </div>
+          </sc-if>
+          <sc-if value="{{ heroLemon }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px">
+              <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-Lemon-OG-Pod-Kit-Render-Front-web.png?v=1752277958&amp;width=800" alt="THCa Pod Kit Live Resin Liquid Diamonds: Lemon OG (Indica) - 2g" style="width:100%;height:100%;object-fit:contain">
+            </div>
+          </sc-if>
+          <sc-if value="{{ heroIsSlot }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#F9F8F4;color:#9CA3AF;font-family:'Space Grotesk',sans-serif;font-size:13px">
+              <span>Product photo {{ heroSlotNo }}</span>
+            </div>
+          </sc-if>
+        </div>
+
+        <div class="thumbs" style="display:flex;gap:8px;overflow-x:auto;padding:8px 0 10px">
+          <button type="button" onClick="{{ pickHeroPhoto }}" style="flex:0 0 88px;width:88px;height:88px;padding:6px;background:#ffffff;border-radius:9px;cursor:pointer;transition:border-color 150ms ease;border:1.5px solid {{ photoStroke }}">
+            <sc-if value="{{ isSour }}" hint-placeholder-val="{{ false }}">
+              <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-Sour-Diesel-Pod-Kit-Render-Front-web_aebbdcd4-be7f-425b-a815-263942043d71.png?v=1752277960&amp;width=200" alt="Sour Diesel pod kit" style="width:100%;height:100%;object-fit:contain">
+            </sc-if>
+            <sc-if value="{{ isPineapple }}" hint-placeholder-val="{{ false }}">
+              <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-pineappleexpress-Pod-Kit-Render-Front-web.png?v=1752277952&amp;width=200" alt="Pineapple Express pod kit" style="width:100%;height:100%;object-fit:contain">
+            </sc-if>
+            <sc-if value="{{ isLemon }}" hint-placeholder-val="{{ false }}">
+              <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-Lemon-OG-Pod-Kit-Render-Front-web.png?v=1752277958&amp;width=200" alt="Lemon OG pod kit" style="width:100%;height:100%;object-fit:contain">
+            </sc-if>
+          </button>
+          <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="4">
+            <button type="button" onClick="{{ t.onClick }}" style="flex:0 0 88px;width:88px;height:88px;padding:6px;background:#ffffff;border-radius:9px;cursor:pointer;transition:border-color 150ms ease;border:1.5px solid {{ t.stroke }}">
+              <span style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;border-radius:6px;background:#F9F8F4;color:#9CA3AF;font-family:'Space Grotesk',sans-serif;font-size:11px">{{ t.slotNo }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="position:{{ sticky }};top:88px;align-self:start;display:flex;flex-direction:column;gap:{{ rhythm }};min-width:0">
+
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:#5f5e5f">Modern Herb Co</div>
+          <h1 style="margin:0;font-family:'BrokenScript','Space Grotesk',sans-serif;font-size:{{ titleSize }};font-weight:700;line-height:1.12;text-transform:uppercase;color:#393839">THCA Liquid Diamonds</h1>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:#6B7280">{{ sel.productTitle }}</div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px">
+          <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Rating" average="4.6" count="(128)" size="16" hint-size="70px,18px"></x-import>
+          <a href="#" style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#4A4A49;text-decoration:underline;text-underline-offset:3px">128 reviews</a>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:9px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;background:{{ sel.tint }}">
+            <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.EffectIcon" strain="{{ sel.strain }}" size="12" hint-size="12px,12px"></x-import>
+            <span>{{ sel.strainLabel }}</span>
+          </span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:9px;background:#F7F6F1;font-family:'Space Grotesk',sans-serif;font-size:12px;color:#4A4A49">
+            <span>Potency</span>
+            <span style="display:inline-flex;gap:3px">
+              <span style="width:14px;height:5px;border-radius:2px;background:#393839"></span>
+              <span style="width:14px;height:5px;border-radius:2px;background:#393839"></span>
+              <span style="width:14px;height:5px;border-radius:2px;background:#393839"></span>
+            </span>
+            <span style="font-weight:700;color:#393839">Max</span>
+          </span>
+        </div>
+
+        <p style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.5;color:#4A4A49;text-wrap:pretty">{{ sel.desc }}</p>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600">Flavor: <span style="font-weight:400;color:#4A4A49">{{ sel.flavorLabel }}</span></div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
+            <sc-for list="{{ flavors }}" as="f" hint-placeholder-count="3">
+              <button type="button" onClick="{{ f.onClick }}" style="position:relative;display:flex;flex-direction:column;padding:7px;border-radius:9px;cursor:pointer;font-family:'Space Grotesk',sans-serif;text-align:center;transition:border-color 150ms ease;background:{{ f.fill }};border:1.5px solid {{ f.stroke }};opacity:{{ f.dim }}">
+                <span style="position:relative;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1/1;border-radius:9px;background:#ffffff;overflow:visible">
+                  <sc-if value="{{ f.isSour }}" hint-placeholder-val="{{ false }}">
+                    <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-Sour-Diesel-Pod-Kit-Render-Front-web_aebbdcd4-be7f-425b-a815-263942043d71.png?v=1752277960&amp;width=300" alt="Sour Diesel pod kit" style="width:100%;height:100%;object-fit:contain">
+                  </sc-if>
+                  <sc-if value="{{ f.isPineapple }}" hint-placeholder-val="{{ false }}">
+                    <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-pineappleexpress-Pod-Kit-Render-Front-web.png?v=1752277952&amp;width=300" alt="Pineapple Express pod kit" style="width:100%;height:100%;object-fit:contain">
+                  </sc-if>
+                  <sc-if value="{{ f.isLemon }}" hint-placeholder-val="{{ false }}">
+                    <img src="https://thehempcollect.com/cdn/shop/files/001-MHC-Pods-Live-THCA-LiquidDiamonds-Lemon-OG-Pod-Kit-Render-Front-web.png?v=1752277958&amp;width=300" alt="Lemon OG pod kit" style="width:100%;height:100%;object-fit:contain">
+                  </sc-if>
+                  <span style="position:absolute;top:0;right:0;display:inline-flex;align-items:center;gap:3px;padding:3px 6px;border-radius:9px;font-size:11px;font-weight:700;background:{{ f.tint }}">
+                    <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.EffectIcon" strain="{{ f.strain }}" size="11" hint-size="11px,11px"></x-import>
+                    <span>{{ f.strainLabel }}</span>
+                  </span>
+                  <sc-if value="{{ f.badge }}" hint-placeholder-val="{{ true }}">
+                    <span style="position:absolute;left:50%;bottom:0;transform:translate(-50%,50%);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:3px 8px;border-radius:9px;background:#e3e829;border:1px solid #807E7F;font-size:11px;font-weight:700">{{ f.badge }}</span>
+                  </sc-if>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:2px;min-height:56px;padding:8px 2px 0;text-align:center">
+                  <span style="font-size:12px;font-weight:600;line-height:1.2;color:#393839">{{ f.label }}</span>
+                  <span style="font-size:11px;line-height:1.25;color:#5f5e5f">{{ f.productLine }}</span>
+                  <span style="font-size:12px;font-weight:600;color:#393839">{{ f.price }}</span>
+                </span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600">Size: <span style="font-weight:400;color:#4A4A49">{{ sel.sizeLabel }}</span></div>
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px">
+            <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="4">
+              <button type="button" onClick="{{ s.onClick }}" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:11px 9px;border-radius:9px;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:border-color 150ms ease;background:{{ s.fill }};border:1.5px solid {{ s.stroke }};opacity:{{ s.dim }}">
+                <span style="display:flex;align-items:center;justify-content:center;gap:4px;width:100%;height:40px;border-radius:9px;background:#F7F6F1;color:#393839;font-size:12px;font-weight:600">
+                  <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Icon" name="bag" size="20" hint-size="20px,20px"></x-import>
+                  <span>{{ s.mult }}</span>
+                </span>
+                <span style="font-size:13px;font-weight:600;color:#393839">{{ s.label }}</span>
+                <span style="font-size:12px;color:#4A4A49;text-decoration:{{ s.strike }}">{{ s.price }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{ hasSubscription }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div role="radio" onClick="{{ pickSub }}" style="border-radius:9px;overflow:hidden;cursor:pointer;background:{{ subFill }};border:1.5px solid {{ subStroke }}">
+              <div style="display:flex;align-items:center;gap:8px;padding:9px 11px;background:#393839;color:#ffffff;font-family:'Space Grotesk',sans-serif;line-height:1.2">
+                <span aria-hidden="true" style="flex:0 0 15px;display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:1.5px solid #807E7F;background:#ffffff">
+                  <span style="width:7px;height:7px;border-radius:50%;background:{{ subDot }}"></span>
+                </span>
+                <span style="font-size:13px;font-weight:600;white-space:nowrap">Subscribe &amp; Save</span>
+                <span style="flex:1 1 auto;font-size:15px;font-weight:700;color:#e3e829;white-space:nowrap">Best Value</span>
+                <span style="flex:0 0 auto;padding:3px 8px;border-radius:9px;background:#e3e829;color:#393839;font-size:11px;font-weight:800;letter-spacing:.3px">SAVE 30%</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:7px;padding:11px">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-family:'Space Grotesk',sans-serif">
+                  <span style="font-size:13px;font-weight:600">Delivery every 30 days</span>
+                  <span style="font-size:15px;font-weight:700">{{ subPrice }}</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:7px;padding-top:2px">
+                  <sc-for list="{{ perks }}" as="p" hint-placeholder-count="5">
+                    <span style="display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#4A4A49">
+                      <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Icon" name="{{ p.icon }}" size="16" hint-size="16px,16px"></x-import>
+                      <span>{{ p.text }}</span>
+                    </span>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+
+            <div role="radio" onClick="{{ pickOnce }}" style="display:flex;align-items:center;gap:8px;padding:13px 11px;border-radius:9px;cursor:pointer;font-family:'Space Grotesk',sans-serif;background:{{ onceFill }};border:1.5px solid {{ onceStroke }}">
+              <span aria-hidden="true" style="flex:0 0 15px;display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:1.5px solid #807E7F;background:#ffffff">
+                <span style="width:7px;height:7px;border-radius:50%;background:{{ onceDot }}"></span>
+              </span>
+              <span style="flex:1 1 auto;font-size:13px;font-weight:600">One-time purchase</span>
+              <span style="font-size:15px;font-weight:700">{{ oncePrice }}</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;align-items:stretch;gap:8px;height:56px">
+          <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.QuantityStepper" value="{{ qty }}" on-change="{{ setQty }}" width="120" hint-size="120px,56px"></x-import>
+          <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Button" variant="cta" size="md" full="{{ true }}" disabled="{{ soldOut }}" added="{{ added }}" on-click="{{ addToCart }}" hint-size="100%,56px">{{ ctaLabel }}</x-import>
+        </div>
+
+        <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.PerksBar" hint-size="100%,44px"></x-import>
+      </section>
+    </div>
+
+    <div style="height:1px;background:#e3e2df;margin:56px 0 0"></div>
+
+    <section style="padding:32px 0 0">
+      <div style="display:flex;align-items:center;gap:8px;padding-bottom:18px">
+        <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#e3e829;border:1.5px solid #393839"></span>
+        <span style="font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase">Product details</span>
+      </div>
+      <div style="display:grid;gap:32px;grid-template-columns:{{ cols }}">
+        <div style="display:flex;flex-direction:column;gap:12px;font-family:'Space Grotesk',sans-serif">
+          <p style="margin:0;font-size:15px;font-weight:600;line-height:1.4;color:#393839">Liquid Diamonds prioritize a stronger high with a faster onset. Crafted with real live resin and without synthetics or hidden Delta-8.</p>
+          <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5;color:#4A4A49">
+            <li>Kit ships with battery, USB-C cable and the pod you select</li>
+            <li>Lab tested by batch. COA on every unit</li>
+            <li>Compatible with Modern Herb Co, Black Sheep and Hi-Lites refills</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;border:1px solid #e3e2df;border-radius:14px;background:#ffffff;overflow:hidden">
+          <sc-for list="{{ accordions }}" as="a" hint-placeholder-count="3">
+            <div style="border-bottom:1px solid #e3e2df">
+              <button type="button" onClick="{{ a.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:16px;background:transparent;border:0;cursor:pointer;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#393839;text-align:left">
+                <span>{{ a.title }}</span>
+                <span style="display:inline-flex;color:#807E7F;transform:rotate({{ a.rot }});transition:transform 150ms ease">
+                  <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Icon" name="chevdown" size="20" hint-size="20px,20px"></x-import>
+                </span>
+              </button>
+              <sc-if value="{{ a.open }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:12px;padding:0 16px 16px">
+                  <p style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.5;color:#4A4A49;text-wrap:pretty">{{ a.body }}</p>
+                  <sc-if value="{{ a.isVideo }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:9px;overflow:hidden;background:#F7F6F1;border:1px solid #e3e2df">
+                      <iframe src="https://www.youtube-nocookie.com/embed/SXo0U2fJjG4" title="Modern Herb Co behind the scenes" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen="allowfullscreen" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ a.isCoa }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                      <sc-for list="{{ coas }}" as="c" hint-placeholder-count="3">
+                        <a href="#" style="display:flex;align-items:center;gap:11px;padding:11px;border-radius:9px;background:#ffffff;border:1.5px solid #807E7F;font-family:'Space Grotesk',sans-serif;transition:border-color 150ms ease">
+                          <span style="display:inline-flex;flex:0 0 auto;color:#393839">
+                            <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Icon" name="pdf" size="20" hint-size="20px,20px"></x-import>
+                          </span>
+                          <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                            <span style="font-size:13px;font-weight:600;color:#393839">{{ c.title }}</span>
+                            <span style="font-size:12px;color:#4A4A49">{{ c.meta }}</span>
+                          </span>
+                        </a>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ showReviews }}" hint-placeholder-val="{{ true }}">
+    <section style="padding:48px 0 0">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#e3e829;border:1.5px solid #393839"></span>
+          <span style="font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase">Reviews</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#4A4A49">
+          <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Rating" average="4.6" count="(128)" size="16" hint-size="70px,18px"></x-import>
+          <span>128 reviews from verified buyers</span>
+        </div>
+      </div>
+      <div style="display:grid;gap:12px;grid-template-columns:{{ reviewCols }}">
+        <div style="display:flex;flex-direction:column;gap:8px;padding:16px;background:#ffffff;border:1px solid #e3e2df;border-radius:14px;font-family:'Space Grotesk',sans-serif">
+          <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Rating" average="5.0" size="14" hint-size="40px,16px"></x-import>
+          <p style="margin:0;font-size:14px;line-height:1.5;color:#393839">The Lemon OG tastes fantastic and it has potent relaxing effects. I am very impressed.</p>
+          <span style="font-size:11px;color:#5f5e5f">Anonymous — Verified buyer</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding:16px;background:#ffffff;border:1px solid #e3e2df;border-radius:14px;font-family:'Space Grotesk',sans-serif">
+          <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Rating" average="4.0" size="14" hint-size="40px,16px"></x-import>
+          <p style="margin:0;font-size:14px;line-height:1.5;color:#393839">Not as strong flavor as regular live resin but stronger buzz.</p>
+          <span style="font-size:11px;color:#5f5e5f">Guccicoochimane — Verified buyer</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding:16px;background:#ffffff;border:1px solid #e3e2df;border-radius:14px;font-family:'Space Grotesk',sans-serif">
+          <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.Rating" average="5.0" size="14" hint-size="40px,16px"></x-import>
+          <p style="margin:0;font-size:14px;line-height:1.5;color:#393839">Great tase and great effects! I will continue to buy the refills!</p>
+          <span style="font-size:11px;color:#5f5e5f">Dean H. — Verified buyer</span>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+
+    <section style="padding:48px 0 8px">
+      <div style="display:flex;align-items:center;gap:8px;padding-bottom:18px">
+        <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#e3e829;border:1.5px solid #393839"></span>
+        <span style="font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase">Pairs with</span>
+      </div>
+      <div style="display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(380px,1fr))">
+        <sc-for list="{{ related }}" as="card" hint-placeholder-count="3">
+          <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.ProductCard" dc-props="{{ card }}" hint-size="100%,420px"></x-import>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.SiteFooter" hint-size="100%,90px"></x-import>
+  </sc-if>
+  <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="height:80px"></div>
+      <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.BottomNavBar" hint-size="100%,80px"></x-import>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:1400},&quot;defaultPurchaseMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;sub&quot;,&quot;once&quot;],&quot;default&quot;:&quot;sub&quot;,&quot;tsType&quot;:&quot;'sub' | 'once'&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;showReviews&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+const IMG = 'assets/products/';
+const CDN = 'https://thehempcollect.com/cdn/shop/files/';
+const FLAVORS = [
+  { key: 'sourdiesel', label: 'Sour Diesel', strain: 'sativa', strainLabel: 'Energy', badge: 'Best Seller',
+    img: CDN + '001-MHC-Pods-Live-THCA-LiquidDiamonds-Sour-Diesel-Pod-Kit-Render-Front-web_aebbdcd4-be7f-425b-a815-263942043d71.png?v=1752277960&width=600',
+    title: 'THCa Pod Kit Live Resin Liquid Diamonds: Sour Diesel (Sativa) - 2g',
+    productLine: 'Live Resin Liquid Diamonds',
+    desc: 'Diesel zest with hints of lemon haze. Focused & active moments. Energy (Sativa).',
+    coa: 'Batch 1622_LDSD_DT_050726' },
+  { key: 'pineapple', label: 'Pineapple Express', strain: 'hybrid', strainLabel: 'Happy', badge: '',
+    img: CDN + '001-MHC-Pods-Live-THCA-LiquidDiamonds-pineappleexpress-Pod-Kit-Render-Front-web.png?v=1752277952&width=600',
+    title: 'THCa Pod Kit Live Resin Liquid Diamonds: Pineapple Express (Hybrid) - 2g',
+    productLine: 'Live Resin Liquid Diamonds',
+    desc: 'Bright citrus notes with tropical pineapple sweetness and earthy pine. Happy (Hybrid).',
+    coa: 'Batch 1630_LDPE_AT_050726' },
+  { key: 'lemonog', label: 'Lemon OG', strain: 'indica', strainLabel: 'Sleep', badge: '',
+    img: CDN + '001-MHC-Pods-Live-THCA-LiquidDiamonds-Lemon-OG-Pod-Kit-Render-Front-web.png?v=1752277958&width=600',
+    title: 'THCa Pod Kit Live Resin Liquid Diamonds: Lemon OG (Indica) - 2g',
+    productLine: 'Live Resin Liquid Diamonds',
+    desc: 'Bright lemon, skunk and a hint of earthy pine. Mellow and relaxing. Sleep (Indica).',
+    coa: 'Batch 1624_LDLEM_KO_050726' }
+];
+const SIZES = [
+  { key: '1g', label: '1g', mult: '\u00d71' },
+  { key: '2g', label: '2g', mult: '\u00d71' },
+  { key: '2pk', label: '2-Pack', mult: '\u00d72' },
+  { key: '4pk', label: '4-Pack', mult: '\u00d74' }
+];
+/* flavor / size matrix: missing entry = variant does not exist, sold = real variant, available:false */
+const VARIANTS = [
+  { flavor: 'sourdiesel', size: '1g', price: 24.5 },
+  { flavor: 'sourdiesel', size: '2g', price: 37.5 },
+  { flavor: 'sourdiesel', size: '2pk', price: 70 },
+  { flavor: 'sourdiesel', size: '4pk', price: 132 },
+  { flavor: 'pineapple', size: '1g', price: 24.5 },
+  { flavor: 'pineapple', size: '2g', price: 37.5 },
+  { flavor: 'pineapple', size: '2pk', price: 70 },
+  { flavor: 'lemonog', size: '1g', price: 24.5, sold: true },
+  { flavor: 'lemonog', size: '2g', price: 37.5 },
+  { flavor: 'lemonog', size: '2pk', price: 70 },
+  { flavor: 'lemonog', size: '4pk', price: 132, sold: true }
+];
+const TINT = { indica: '#DCEDEC', hybrid: '#F0EAE4', sativa: '#F7F7DD' };
+const ACC = [
+  { key: 'use', title: 'How to use', body: 'Charge the battery fully before first use. Click the pod into the battery until it seats, then draw. Compatible with Modern Herb Co, Black Sheep and Hi-Lites pod refills.' },
+  { key: 'bts', title: 'Behind the Scenes', kind: 'video',
+    body: 'We use full-spectrum live resin, not just terpenes labeled as live resin, for richer flavor and more profound effects. Every batch is rigorously tested.' },
+  { key: 'coa', title: 'Potency & Safety Testing', kind: 'coa',
+    body: 'Each strain is tested by batch for potency, pesticides, heavy metals and residual solvents. Certificates are issued per batch.' },
+  { key: 'ingredients', title: 'Ingredients', body: 'Live Resin (Hemp Derived), THCA Diamonds (Hemp Derived), Terpenes (Hemp Derived).' },
+  { key: 'ship', title: 'Shipping & returns', body: 'Orders typically ship same or next business day depending on the time the order was placed. Shipping insurance is offered at checkout and strongly advised. Packages are labeled IHC, not The Hemp Collect.' }
+];
+const YT = 'https://www.youtube-nocookie.com/embed/SXo0U2fJjG4';
+const money = (n) => '$' + (Math.round(n * 100) / 100).toFixed(2);
+
+class Component extends DCLogic {
+  state = { flavor: null, size: null, mode: null, qty: 1, hero: 0, acc: 'use', cart: 0, added: false, w: 1280,
+    relSel: {}, relOpen: null, relMode: {}, relAdded: null };
+
+  componentDidMount() {
+    this._m = () => this.setState({ w: window.innerWidth });
+    this._m();
+    window.addEventListener('resize', this._m);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._m); clearTimeout(this._t); }
+
+  variant(f, s) { return VARIANTS.find((v) => v.flavor === f && v.size === s); }
+  ok(f, s) { const v = this.variant(f, s); return !!v && !v.sold; }
+  flavorList() { return FLAVORS.filter((f) => SIZES.some((s) => this.ok(f.key, s.key))); }
+  sizeList() { return SIZES.filter((s) => FLAVORS.some((f) => this.ok(f.key, s.key))); }
+  lastSizeFor(f) { const l = this.sizeList().filter((s) => this.ok(f, s.key)); return l.length ? l[l.length - 1].key : this.sizeList()[0].key; }
+  firstFlavorFor(s) { const l = this.flavorList().filter((f) => this.ok(f.key, s)); return (l[0] || this.flavorList()[0]).key; }
+
+  selection() {
+    const f = this.state.flavor || this.flavorList()[0].key;
+    const s = this.state.size || this.lastSizeFor(f);
+    return { f, s };
+  }
+  pickFlavor(k) {
+    const { s } = this.selection();
+    this.setState({ flavor: k, size: this.ok(k, s) ? s : this.lastSizeFor(k) });
+  }
+  pickSize(k) {
+    const { f } = this.selection();
+    this.setState({ size: k, flavor: this.ok(f, k) ? f : this.firstFlavorFor(k) });
+  }
+  addToCart() {
+    clearTimeout(this._t);
+    this.setState((st) => ({ cart: st.cart + st.qty, added: true }));
+    this._t = setTimeout(() => this.setState({ added: false }), 1300);
+  }
+
+  relatedProducts() {
+    return [
+      { id: 2, img: IMG + 'gummies-rosin-3ct-peaches-cream.png', title: 'Peaches & Cream', sub: 'Gummies', brand: 'Modern Herb Co',
+        potencyWord: 'Enhanced', shipNote: 'Fast Shipping', strains: ['hybrid'], counts: ['3ct', '10ct', '30ct'], ratingAvg: '4.8', ratingCount: '(22)',
+        options: [{ title: '3ct', price: '$15', strain: 'hybrid' }, { title: '10ct', price: '$42', strain: 'hybrid' },
+          { title: '30ct', price: '$99', strain: 'hybrid', soldOut: true }] },
+      { id: 3, img: IMG + 'rosin-gummies-30ct-mixed-berry.png', title: 'Mixed Berry', sub: 'Rosin Gummies', brand: 'Modern Herb Co',
+        potencyWord: 'Max', promo: 'SALE', shipNote: 'Fast Shipping', strains: ['indica'], counts: ['10ct', '30ct'], ratingAvg: '5.0', ratingCount: '(41)',
+        options: [{ title: '10ct', price: '$18', strain: 'indica' }, { title: '30ct', price: '$42', strain: 'indica' }] },
+      { id: 4, img: IMG + 'carts-live-rosin-pouch-headband.png', title: 'Headband', sub: 'Live Rosin Carts', brand: 'Modern Herb Co',
+        potencyWord: 'Max', shipNote: 'Fast Shipping', strains: ['sativa'], counts: ['1g', '2g'], ratingAvg: '4.7', ratingCount: '(47)',
+        options: [{ title: '1g', price: '$49', strain: 'sativa' }, { title: '2g', price: '$79', strain: 'sativa' }] }
+    ];
+  }
+
+  renderVals() {
+    const st = this.state;
+    const wide = st.w >= 900;
+    const { f, s } = this.selection();
+    const flav = FLAVORS.find((x) => x.key === f);
+    const cur = this.variant(f, s);
+    const sold = !cur || !!cur.sold;
+    const unit = cur ? cur.price : 0;
+    const sub = (st.mode || this.props.defaultPurchaseMode || 'sub') === 'sub';
+    const total = (sub ? unit * 0.7 : unit) * st.qty;
+    const sizeLabel = (SIZES.find((x) => x.key === s) || SIZES[0]).label;
+
+    const items = [{ kind: 'img', src: flav.img, alt: flav.title }]
+      .concat([1, 2, 3, 4].map((n) => ({ kind: 'slot', no: n })));
+    const hero = Math.min(st.hero, items.length - 1);
+    const heroItem = items[hero];
+
+    const perks = [
+      { icon: 'tag', text: 'Save 30% on your first order' },
+      { icon: 'verified', text: 'Ongoing 10% off thereafter' },
+      { icon: 'sync', text: 'Swap or skip anytime' },
+      { icon: 'cancel', text: 'Cancel after 2nd delivery' },
+      { icon: 'users', text: 'Join 200k+ happy customers' },
+      { icon: 'sync', text: 'Kits convert to refills after first shipment with reduced cost' }
+    ];
+
+    return {
+      wide, narrow: !wide, cart: st.cart, qty: st.qty, added: st.added, soldOut: sold, true: true,
+      showReviews: this.props.showReviews !== false,
+      gridRef: null,
+      cols: wide ? '1fr 1fr' : '1fr',
+      reviewCols: wide ? 'repeat(3,minmax(0,1fr))' : '1fr',
+      sticky: wide ? 'sticky' : 'static',
+      rhythm: wide ? '16px' : '28px',
+      gutter: wide ? '24px 40px 64px' : '20px 20px 48px',
+      titleSize: wide ? '30px' : '26px',
+
+      heroIsImage: heroItem.kind === 'img',
+      heroIsSlot: heroItem.kind === 'slot', heroSlotNo: heroItem.no,
+      heroSour: heroItem.kind === 'img' && f === 'sourdiesel',
+      heroPineapple: heroItem.kind === 'img' && f === 'pineapple',
+      heroLemon: heroItem.kind === 'img' && f === 'lemonog',
+      isSour: f === 'sourdiesel', isPineapple: f === 'pineapple', isLemon: f === 'lemonog',
+      nextHero: () => this.setState((p) => ({ hero: (p.hero + 1) % items.length })),
+      photoStroke: hero === 0 ? '#393839' : '#e3e2df',
+      pickHeroPhoto: () => this.setState({ hero: 0 }),
+      thumbs: items.slice(1).map((m, i) => ({
+        slotNo: m.no, stroke: i + 1 === hero ? '#393839' : '#e3e2df', onClick: () => this.setState({ hero: i + 1 })
+      })),
+
+      sel: { flavorLabel: flav.label, sizeLabel: sizeLabel, desc: flav.desc, strain: flav.strain,
+        productTitle: 'Live Resin Pod Kit \u2014 ' + sizeLabel,
+        strainLabel: flav.strainLabel + ' (' + (flav.strain === 'indica' ? 'Indica' : flav.strain === 'sativa' ? 'Sativa' : 'Hybrid') + ')',
+        tint: TINT[flav.strain] },
+
+      flavors: this.flavorList().map((x) => {
+        const dim = !this.ok(x.key, s);
+        const on = x.key === f;
+        const v = this.variant(x.key, s) || VARIANTS.find((q) => q.flavor === x.key);
+        return { label: x.label, productLine: x.productLine,
+          isSour: x.key === 'sourdiesel', isPineapple: x.key === 'pineapple', isLemon: x.key === 'lemonog',
+          price: v && v.sold ? 'Sold Out' : money(v.price),
+          strain: x.strain, strainLabel: x.strainLabel, tint: TINT[x.strain],
+          badge: x.badge, fill: on ? '#F7F6F1' : '#ffffff', stroke: on ? '#393839' : '#e3e2df', dim: dim ? 0.45 : 1,
+          onClick: () => this.pickFlavor(x.key) };
+      }),
+
+      sizes: this.sizeList().map((x) => {
+        const v = this.variant(f, x.key) || VARIANTS.find((q) => q.size === x.key);
+        const dim = !this.ok(f, x.key);
+        const on = x.key === s;
+        const soldHere = !!(this.variant(f, x.key) && this.variant(f, x.key).sold);
+        return { label: x.label, mult: x.mult, price: soldHere ? 'Sold Out' : money(v.price),
+          strike: soldHere ? 'line-through' : 'none',
+          fill: on ? '#F7F6F1' : '#ffffff', stroke: on ? '#393839' : '#e3e2df', dim: dim ? 0.45 : 1,
+          onClick: () => this.pickSize(x.key) };
+      }),
+
+      hasSubscription: true, perks,
+      subPrice: money(unit * 0.7), oncePrice: money(unit),
+      subFill: sub ? '#F7F6F1' : '#ffffff', subStroke: sub ? '#393839' : '#e3e2df', subDot: sub ? '#393839' : 'transparent',
+      onceFill: sub ? '#ffffff' : '#F7F6F1', onceStroke: sub ? '#e3e2df' : '#393839', onceDot: sub ? 'transparent' : '#393839',
+      pickSub: () => this.setState({ mode: 'sub' }), pickOnce: () => this.setState({ mode: 'once' }),
+      setQty: (q) => this.setState({ qty: q }),
+      ctaLabel: sold ? 'Sold Out' : 'Add to Cart \u2013 ' + money(total),
+      addToCart: () => this.addToCart(),
+
+      accordions: ACC.map((a) => ({ title: a.title, body: a.body, open: st.acc === a.key,
+        isVideo: a.kind === 'video', isCoa: a.kind === 'coa',
+        rot: st.acc === a.key ? '180deg' : '0deg',
+        onClick: () => this.setState((p) => ({ acc: p.acc === a.key ? null : a.key })) })),
+
+      coas: FLAVORS.map((x) => ({
+        title: 'Live THCa Liquid Diamonds \u2014 ' + x.label,
+        meta: x.coa + ' \u00b7 PDF'
+      })),
+
+      related: this.relatedProducts().map((p) => ({
+        product: p, selectedIndex: st.relSel[p.id] || 0, open: st.relOpen === p.id,
+        purchaseMode: st.relMode[p.id] || 'sub', added: st.relAdded === p.id,
+        onToggleVariants: () => this.setState((q) => ({ relOpen: q.relOpen === p.id ? null : p.id })),
+        onSelectVariant: (i) => this.setState((q) => ({ relSel: { ...q.relSel, [p.id]: i }, relOpen: null })),
+        onPurchaseModeChange: (m) => this.setState((q) => ({ relMode: { ...q.relMode, [p.id]: m } })),
+        onAdd: () => { clearTimeout(this._rt); this.setState((q) => ({ cart: q.cart + 1, relAdded: p.id }));
+          this._rt = setTimeout(() => this.setState({ relAdded: null }), 1300); },
+        onDetails: () => {}
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+/* Minimal element defaults the source pages set on every surface. */
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-ui)}
+a{color:var(--text-body);text-decoration:none}
+a:hover{color:var(--text-body);opacity:var(--hover-opacity-strong)}
+.hide-scrollbar::-webkit-scrollbar{display:none}
+.hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}

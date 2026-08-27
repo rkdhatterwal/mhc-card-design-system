@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Product listing page" description="Modern Herb Co shop-all grid built from the real product card, variant dropdown and subscribe rows." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>*{box-sizing:border-box}body{margin:0}a{color:#393839;text-decoration:none}a:hover{opacity:.9}button:active{transform:scale(.95)}</style>
+</helmet>
+<div style="min-height:100vh;background:#faf9f5;font-family:'Poppins',system-ui,sans-serif;color:#393839">
+  <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.TopAppBar" wide="{{ wide }}" cart-count="{{ cart }}" hint-size="100%,64px"></x-import>
+  <main style="width:100%;max-width:1400px;margin:0 auto;padding:24px 20px 40px">
+    <div style="padding-bottom:18px;border-bottom:1px solid #e3e2df">
+      <h1 style="margin:0;font-size:26px;font-weight:800;letter-spacing:-.4px;color:#393839">Shop all</h1>
+      <p style="margin:4px 0 0;font-size:14px;color:#6B7280">Lab tested. Fast shipping. Subscribe and save 30%.</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:22px 0 10px">
+      <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#e3e829;border:1.5px solid #393839"></span>
+      <span style="font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#393839">All products</span>
+    </div>
+    <div style="display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(380px,1fr))">
+      <sc-for list="{{ cards }}" as="card" hint-placeholder-count="4">
+        <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.ProductCard" dc-props="{{ card }}" hint-size="100%,420px"></x-import>
+      </sc-for>
+    </div>
+  </main>
+  <x-import component-from-global-scope="ModernHerbCoDesignSystem_c909b2.SiteFooter" hint-size="100%,90px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;imageBase&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;../../assets/products/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;defaultPurchaseMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;sub&quot;,&quot;once&quot;],&quot;default&quot;:&quot;sub&quot;,&quot;tsType&quot;:&quot;'sub' | 'once'&quot;,&quot;section&quot;:&quot;Behaviour&quot;}}">
+class Component extends DCLogic {
+  state = { sel: {}, open: null, mode: {}, added: null, cart: 0 };
+
+  add(id) {
+    clearTimeout(this._t);
+    this.setState((s) => ({ cart: s.cart + 1, added: id }));
+    this._t = setTimeout(() => this.setState({ added: null }), 1300);
+  }
+
+  products() {
+    const base = this.props.imageBase ?? '../../assets/products/';
+    return [
+      { id: 1, img: base + 'thca-uncut-podkit-wedding-cake.jpg', title: 'THCA Liquid Diamonds', sub: 'Pod Kit',
+        brand: 'Modern Herb Co', potencyWord: 'Max', promo: 'B2G1', shipNote: 'Fast Shipping',
+        strains: ['indica', 'hybrid', 'sativa'], counts: ['1ct', '5ct', '20ct'], ratingAvg: '4.5', ratingCount: '(2)',
+        options: [
+          { title: '1ct / Huckleberry', price: '$5', strain: 'indica' },
+          { title: '5ct / Huckleberry', price: '$10', strain: 'indica' },
+          { title: '20ct / Huckleberry', price: '$50', strain: 'indica' },
+          { title: '1ct / Passionfruit', price: '$5', strain: 'hybrid' },
+          { title: '5ct / Passionfruit', price: '$10', strain: 'hybrid' },
+          { title: '1ct / Strawberry Rhubarb', price: '$5', strain: 'sativa' },
+          { title: '5ct / Strawberry Rhubarb', price: '$25', strain: 'sativa' }
+        ] },
+      { id: 2, img: base + 'gummies-rosin-3ct-peaches-cream.png', title: 'Peaches & Cream', sub: 'Gummies',
+        brand: 'Modern Herb Co', potencyWord: 'Enhanced', shipNote: 'Fast Shipping',
+        strains: ['indica', 'hybrid', 'sativa'], counts: ['3ct', '10ct', '30ct'], ratingAvg: '4.8', ratingCount: '(22)',
+        options: [
+          { title: '3ct', price: '$15', strain: 'hybrid' },
+          { title: '10ct', price: '$42', strain: 'hybrid' },
+          { title: '30ct', price: '$99', strain: 'hybrid', soldOut: true }
+        ] },
+      { id: 3, img: base + 'rosin-gummies-30ct-mixed-berry.png', title: 'Mixed Berry', sub: 'Rosin Gummies',
+        brand: 'Modern Herb Co', potencyWord: 'Max', promo: 'SALE', shipNote: 'Fast Shipping',
+        strains: ['indica'], counts: ['10ct', '30ct'], ratingAvg: '5.0', ratingCount: '(41)',
+        options: [
+          { title: '10ct', price: '$18', strain: 'indica' },
+          { title: '30ct', price: '$42', strain: 'indica' }
+        ] },
+      { id: 4, img: base + 'carts-live-rosin-pouch-headband.png', title: 'Headband', sub: 'Live Rosin Carts',
+        brand: 'Modern Herb Co', potencyWord: 'Max', shipNote: 'Fast Shipping',
+        strains: ['sativa'], counts: ['1g', '2g'], ratingAvg: '4.7', ratingCount: '(47)',
+        options: [
+          { title: '1g', price: '$49', strain: 'sativa' },
+          { title: '2g', price: '$79', strain: 'sativa' }
+        ] },
+      { id: 5, img: base + 'caramel-sample-pouch-hybrid.png', title: 'Caramel', sub: 'Sample Pouch',
+        brand: 'Modern Herb Co', potencyWord: 'Max', promo: 'New!', shipNote: 'Fast Shipping',
+        strains: ['hybrid'], counts: ['1ct'], ratingAvg: '4.0', ratingCount: '(8)',
+        options: [{ title: '1ct', price: '$6', strain: 'hybrid' }] }
+    ];
+  }
+
+  renderVals() {
+    const s = this.state;
+    return {
+      wide: true,
+      cart: s.cart,
+      cards: this.products().map((p) => ({
+        product: p,
+        selectedIndex: s.sel[p.id] || 0,
+        open: s.open === p.id,
+        purchaseMode: s.mode[p.id] || (this.props.defaultPurchaseMode ?? 'sub'),
+        added: s.added === p.id,
+        onToggleVariants: () => this.setState((st) => ({ open: st.open === p.id ? null : p.id })),
+        onSelectVariant: (i) => this.setState((st) => ({ sel: { ...st.sel, [p.id]: i }, open: null })),
+        onPurchaseModeChange: (m) => this.setState((st) => ({ mode: { ...st.mode, [p.id]: m } })),
+        onAdd: () => this.add(p.id),
+        onDetails: () => {}
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

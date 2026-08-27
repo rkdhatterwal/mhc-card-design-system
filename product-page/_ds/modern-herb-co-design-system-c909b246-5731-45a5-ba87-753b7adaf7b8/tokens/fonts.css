@@ -1,0 +1,10 @@
+/* Webfonts.
+   Poppins + Space Grotesk are the two faces the source pages load, verbatim:
+   https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700
+
+   MISSING FONT: the live storefront sets product titles in 'BrokenScript'
+   (FontFont, licensed). No binary shipped with the source, so --font-display
+   keeps 'BrokenScript' first and falls through to Space Grotesk — which is
+   exactly what the source screenshots render. Upload BrokenScript.woff2 and
+   add its @font-face here to get the real thing. */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");

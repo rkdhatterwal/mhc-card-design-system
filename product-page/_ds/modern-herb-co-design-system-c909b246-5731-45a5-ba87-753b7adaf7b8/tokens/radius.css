@@ -1,0 +1,10 @@
+:root{
+  --radius-control:9px;   /* selector, dropdown, stepper, add-to-cart, chips */
+  --radius-card:14px;
+  --radius-image:13px;
+  --radius-image-left:13px 0 0 13px;  /* sideways card image well */
+  --radius-slide:20px;
+  --radius-row:6px;       /* dropdown option row */
+  --radius-circle:50%;
+  --radius-pill:999px;    /* quick-view promo badge only — not used on cards */
+}

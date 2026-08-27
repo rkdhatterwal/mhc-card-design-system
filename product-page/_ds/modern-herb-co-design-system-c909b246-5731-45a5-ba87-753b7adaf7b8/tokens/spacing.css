@@ -1,0 +1,31 @@
+:root{
+  /* The card stack runs on ONE vertical step: 8px. Everything else is the
+     source's literal values — no 4/8 grid snapping. */
+  --space-1:3px;
+  --space-2:4px;
+  --space-3:5px;
+  --space-4:6px;
+  --space-5:7px;
+  --space-step:8px;   /* the card's single vertical rhythm step */
+  --space-6:9px;
+  --space-7:10px;
+  --space-8:11px;     /* card padding */
+  --space-9:12px;
+  --space-10:16px;
+  --space-11:18px;
+  --space-12:20px;
+  --space-13:22px;
+  --space-14:24px;
+  --space-15:32px;
+  --space-16:40px;
+
+  /* fixed chrome */
+  --topbar-height:64px;
+  --bottomnav-height:80px;
+  --tap-min:44px;
+  --control-height:40px;
+  --menu-max-height:184px;
+  --page-max-width:1280px;
+  --breakpoint-md:768px;
+  --breakpoint-lg:1024px;
+}

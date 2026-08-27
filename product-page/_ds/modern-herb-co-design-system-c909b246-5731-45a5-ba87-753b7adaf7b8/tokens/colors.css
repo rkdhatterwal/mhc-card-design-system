@@ -1,0 +1,69 @@
+:root{
+  /* ---- base palette (lifted verbatim from the source :root block) ---- */
+  --surface:#faf9f5;
+  --surface-container-low:#f4f4f0;
+  --surface-container-highest:#e3e2df;
+  --ink:#393839;
+  --tertiary:#5f5e5f;
+  --muted-gray:#9CA3AF;
+  --gray-text:#666666;
+  --accent:#e3e829;
+  --stroke-alt:#807E7F;
+  --beige:#F9F8F4;
+  --cream:#F7F6F1;
+
+  /* card-local tones that were inline hexes in the source */
+  --meta:#4A4A49;
+  --sub-stroke:#DEDDD6;
+  --menu-hover:#F2F4C4;
+  --track:#EDECE7;
+  --img-well:#f6f6f7;
+
+  /* spec-only tones (MHC Card Spec.md) */
+  --brand-line:#6B6A6B;
+  --form-gray:#6B7280;
+  --putty:#F0EAE4;
+  --white:#ffffff;
+
+  /* effect triad — three-colour, light */
+  --effect-sleep:#DCEDEC;
+  --effect-energy:#F7F7DD;
+  --effect-balance:#F0EAE4;
+
+  /* disabled greys */
+  --disabled-bg:#e5e7eb;
+  --disabled-border:#d1d5db;
+  --disabled-fg:#9ca3af;
+
+  /* ---- semantic aliases ---- */
+  --text-body:var(--ink);
+  --text-meta:var(--meta);
+  --text-tertiary:var(--tertiary);
+  --text-muted:var(--muted-gray);
+  --text-brand-line:var(--brand-line);
+  --text-form:var(--form-gray);
+  --text-footer:var(--gray-text);
+  --text-inverse:var(--white);
+  --text-on-accent:var(--ink);
+
+  --surface-page:var(--surface);
+  --surface-card:var(--white);
+  --surface-tile:var(--cream);
+  --surface-raised:var(--surface-container-low);
+  --surface-image-well:var(--img-well);
+  --surface-inverse:var(--ink);
+
+  --border-hairline:var(--surface-container-highest);
+  --border-control:var(--stroke-alt);
+  --border-subtle:var(--sub-stroke);
+
+  --accent-cta:var(--accent);
+  --accent-star-fill:var(--accent);
+  --accent-star-stroke:var(--stroke-alt);
+
+  --state-menu-hover:var(--menu-hover);
+  --state-selected-row:var(--accent);
+  --state-scroll-track:var(--track);
+
+  --backdrop-scrim:rgba(57,56,57,.6);
+}
