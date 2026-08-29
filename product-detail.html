@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MHC Product Page — Live Resin D9 Gummies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        /* Tokens lifted verbatim from card-scenarios.html so every utility on this
+           page resolves to the same value the product cards use. --font-body is the
+           one addition: card-scenarios uses the `font-body` class without declaring
+           the token, so the class is inert there. */
+        @theme {
+            --color-cake-white: #f7f6f1;
+            --color-fuscous-gray: #393839;
+            --color-dusty-gray: #807e7f;
+            --color-thunder: #4a4a49;
+            --color-bright-gray: #e5e7eb;
+            --color-light-sand: #deddd6;
+            --color-yellow-green: #e3e829;
+            --color-yellow-green-200: #f2f4c4;
+            --color-gray-500: #6b7280;
+            --font-sans: "Poppins";
+            --font-body: "Poppins";
+            --font-mono: "Space Grotesk";
+        }
+    </style>
+    <style>
+        /* Hide the thumbnail rail's scrollbar — the rail is driven by its arrow button. */
+        [data-thumb-rail]::-webkit-scrollbar { display: none; }
+        [data-thumb-rail] { scrollbar-width: none; -ms-overflow-style: none; }
+        /* Accordion summaries carry their own chevron. */
+        summary::-webkit-details-marker { display: none; }
+        /* Purchase-plan cards. These cannot use :has(:checked): `:checked` also
+           matches the selected <option> in the cadence <select>, which would keep
+           the Subscribe card permanently in its selected state. Key on the radio. */
+        [data-plan-card] { background-color: #fff; }
+        [data-plan-card]:has(> input[name="plan"]:checked) { border-color: var(--color-dusty-gray); }
+        [data-plan-card="subscribe"]:has(> input[name="plan"]:checked) { background-color: var(--color-cake-white); }
+        [data-plan-card="onetime"]:has(> input[name="plan"]:checked) { background-color: var(--color-yellow-green); }
+        /* The dot sits several levels inside its label, so it is driven from the
+           checked input rather than a sibling selector. */
+        [data-plan-dot]::after {
+            content: ""; display: block; height: .5rem; width: .5rem;
+            border-radius: 9999px; background: var(--color-thunder);
+            transform: scale(0); transition: transform .15s ease;
+        }
+        label:has(> input[name="plan"]:checked) [data-plan-dot]::after { transform: scale(1); }
+    </style>
+</head>
+<body class="font-body font-normal bg-white text-fuscous-gray">
+
+<!-- ================================ Header ================================ -->
+<header class="sticky top-0 z-50">
+    <div class="bg-fuscous-gray text-cake-white">
+        <p class="mx-auto max-w-[140rem] px-4 sm:px-6 lg:px-10 py-2 text-center font-mono text-[11px] tracking-[0.6px] uppercase">
+            Free shipping on orders over $75 &nbsp;&middot;&nbsp; Must be 21+ to purchase
+        </p>
+    </div>
+    <div class="bg-white border-b border-bright-gray">
+        <div class="mx-auto flex max-w-[1440px] flex-row items-center justify-between gap-4 px-4 py-3">
+            <a href="#" class="flex flex-row items-center gap-2 shrink-0">
+                <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-yellow-green border-2 border-dusty-gray font-mono text-sm font-bold">M</span>
+                <span class="hidden sm:block font-mono text-sm font-bold uppercase leading-[1.1] tracking-[0.6px]">Modern<br>Herb Co</span>
+            </a>
+            <nav class="hidden lg:flex flex-row items-center gap-1">
+                <a href="#" class="rounded-lg px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">Shop All</a>
+                <a href="#" class="rounded-lg px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">Flower</a>
+                <a href="#" class="rounded-lg px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">Vapes</a>
+                <a href="#" class="rounded-lg px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">Edibles</a>
+                <a href="#" class="rounded-lg px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">Subscribe</a>
+            </nav>
+            <div class="flex flex-row items-center gap-2">
+                <label class="hidden md:flex flex-row items-center gap-2 rounded-xl border-2 border-bright-gray px-3 py-2 focus-within:border-dusty-gray">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" class="text-dusty-gray shrink-0"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+                    <input type="search" placeholder="Search strains" class="w-36 bg-transparent font-body text-xs text-fuscous-gray outline-none placeholder:text-dusty-gray">
+                </label>
+                <button class="flex h-9 w-9 items-center justify-center rounded-lg border-2 border-bright-gray hover:border-dusty-gray cursor-pointer" aria-label="Account">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+                </button>
+                <button class="relative flex h-9 items-center gap-2 rounded-lg border-2 border-dusty-gray bg-yellow-green px-3 cursor-pointer" aria-label="Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4L21 6H6"></path></svg>
+                    <span class="font-mono text-xs font-bold">3</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="mx-auto max-w-[140rem] px-4 sm:px-6 lg:px-10">
+
+    <!-- ============================ Breadcrumb ============================ -->
+    <nav aria-label="Breadcrumb" class="flex flex-row flex-wrap items-center gap-2 pt-6 pb-4">
+        <a href="#" class="font-mono text-xs uppercase tracking-[0.6px] text-thunder hover:text-fuscous-gray hover:underline">Shop</a>
+        <span class="font-mono text-xs text-dusty-gray">/</span>
+        <a href="#" class="font-mono text-xs uppercase tracking-[0.6px] text-thunder hover:text-fuscous-gray hover:underline">Gummies</a>
+        <span class="font-mono text-xs text-dusty-gray">/</span>
+        <span class="font-mono text-xs uppercase tracking-[0.6px] text-fuscous-gray">Live Resin D9</span>
+    </nav>
+
+    <!-- ======================= Product — gallery + buy box ======================= -->
+    <section data-product class="flex flex-col gap-8 pb-14 lg:grid lg:grid-cols-2 lg:gap-11">
+
+        <!-- ------------------------------ Gallery ------------------------------ -->
+        <div class="order-2 flex flex-col gap-3 min-w-0 lg:order-none">
+            <div class="relative aspect-square overflow-hidden rounded-xl border border-dusty-gray bg-cake-white">
+                <img data-hero class="h-full w-full object-contain p-6" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/008-MHC_Live_D9_Gummy_Tube_Label-5ct_Huckleberry-Render-Front_Web.png?width=900" alt="Live Resin D9 THC Gummies — Huckleberry">
+                <div class="pointer-events-none absolute top-3 left-3 right-3 flex flex-row items-start justify-between gap-2">
+                    <span class="rounded-lg bg-cake-white px-3 py-1 font-mono text-xs font-medium text-fuscous-gray">Max Potency</span>
+                    <span class="rounded-lg border border-dusty-gray bg-cake-white px-3 py-1 font-mono text-xs font-bold text-fuscous-gray">New</span>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div data-thumb-rail class="flex flex-row gap-2 overflow-x-auto scroll-smooth pr-10">
+                    <button type="button" data-thumb aria-current="true" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/008-MHC_Live_D9_Gummy_Tube_Label-5ct_Huckleberry-Render-Front_Web.png?width=900" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                        <img class="h-full w-full object-contain p-1.5" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/008-MHC_Live_D9_Gummy_Tube_Label-5ct_Huckleberry-Render-Front_Web.png?width=200" alt="Huckleberry tube, front" loading="lazy">
+                    </button>
+                    <button type="button" data-thumb aria-current="false" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/007-MHC_Live_D9_Gummy_Tube_Label-5ct_Sour-Apple-Render-Front_Web.png?width=900" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                        <img class="h-full w-full object-contain p-1.5" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/007-MHC_Live_D9_Gummy_Tube_Label-5ct_Sour-Apple-Render-Front_Web.png?width=200" alt="Sour Apple tube, front" loading="lazy">
+                    </button>
+                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-pile-ct-20.png" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                        <img class="h-full w-full object-contain p-1.5" src="pdp-mockup/assets/gummies-pile-ct-20.png" alt="Twenty gummies" loading="lazy">
+                    </button>
+                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-ct-5.png" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                        <img class="h-full w-full object-contain p-1.5" src="pdp-mockup/assets/gummies-ct-5.png" alt="Five gummies, top view" loading="lazy">
+                    </button>
+                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-real-ct-1.png" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                        <img class="h-full w-full object-contain p-1.5" src="pdp-mockup/assets/gummies-real-ct-1.png" alt="Single gummy, macro" loading="lazy">
+                    </button>
+                    <button type="button" data-thumb aria-current="false" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/MHCO-Taffy-15CT-Bag-Render-BirthdayCake-Web.png?width=900" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                        <img class="h-full w-full object-contain p-1.5" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/MHCO-Taffy-15CT-Bag-Render-BirthdayCake-Web.png?width=200" alt="Bag format" loading="lazy">
+                    </button>
+                    <button type="button" data-thumb aria-current="false" data-fit="cover" data-src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=1400&amp;height=874&amp;crop=right" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                        <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=200&amp;height=125&amp;crop=right" alt="Sharing a gummy at home" loading="lazy">
+                    </button>
+                    <button type="button" data-thumb aria-current="false" data-fit="cover" data-src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=900&amp;height=900&amp;crop=right" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                        <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=200&amp;height=200&amp;crop=right" alt="Taking a gummy, close-up" loading="lazy">
+                    </button>
+                </div>
+                <span class="pointer-events-none absolute inset-y-0 right-0 w-14 rounded-r-lg bg-linear-to-r from-transparent to-white"></span>
+                <button type="button" data-thumb-next aria-label="More photos" class="absolute right-0 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg border-2 border-dusty-gray bg-yellow-green cursor-pointer hover:brightness-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+
+            <!-- Supporting shots below the gallery: lifestyle, detail and in-use, per the
+                 mockup. The three lifestyle/in-use frames are the brand's own Blue Razz
+                 campaign photography pulled from the live site. Both source files carry
+                 burnt-in marketing copy, so each is served through the Shopify CDN with a
+                 width/height/crop that lands on the clean part of the frame: crop=right on
+                 the desktop banner (copy sits left of native x~1500) and crop=top on the
+                 mobile banner (copy sits below the top ~46%). Changing those params will
+                 pull the type back into shot. -->
+            <div class="mt-3 grid grid-cols-2 gap-4">
+                <figure class="hidden sm:flex flex-col gap-2">
+                    <div class="aspect-square overflow-hidden rounded-xl border border-dusty-gray bg-cake-white">
+                        <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026MOBILE-no-Promo.png?width=1100&amp;height=622&amp;crop=top" alt="Two people unwinding at home, Live Resin D9 tube in hand" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="hidden sm:flex flex-col gap-2">
+                    <div class="flex aspect-square items-center justify-center overflow-hidden rounded-xl border border-dusty-gray bg-cake-white p-4">
+                        <img class="h-full w-full object-contain" src="pdp-mockup/assets/gummies-real-ct-1.png" alt="Single Live Resin D9 gummy, macro" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="hidden sm:flex flex-col gap-2">
+                    <div class="aspect-square overflow-hidden rounded-xl border border-dusty-gray bg-cake-white">
+                        <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=900&amp;height=900&amp;crop=right" alt="Close-up of a gummy being taken by hand" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="hidden sm:flex flex-col gap-2">
+                    <div class="aspect-square overflow-hidden rounded-xl border border-dusty-gray bg-cake-white">
+                        <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=1400&amp;height=874&amp;crop=right" alt="Open Live Resin D9 tube held while sharing a gummy" loading="lazy">
+                    </div>
+                </figure>
+            </div>
+        </div>
+
+        <!-- ------------------------------ Buy box ------------------------------ -->
+        <div class="contents lg:flex lg:flex-col lg:gap-2 lg:min-w-0 lg:sticky lg:top-32 lg:self-start">
+
+            <!-- Identity block. On mobile it is ordered above the gallery, per the
+                 mockup; from lg up the right column is a normal sticky flex column. -->
+            <div class="order-1 flex flex-col gap-4 min-w-0 lg:order-none">
+                <div class="flex flex-col">
+                    <p class="font-mono text-[15px] leading-[1.4] text-thunder">Modern Herb Co</p>
+                    <h1 class="font-mono text-3xl font-bold uppercase leading-[1.2] text-fuscous-gray sm:text-4xl">Live Resin D9 THC Gummies</h1>
+                    <span class="font-mono text-[15px] leading-[1.4] text-thunder">Gummies</span>
+                </div>
+                <a href="#reviews" class="flex w-fit flex-row items-center gap-2">
+                    <span class="flex h-4 w-4 items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.2" stroke-linejoin="round" aria-hidden="true" style="display:block;"><path d="m12 3.4 2.7 5.6 6.1.8-4.5 4.2 1.2 6-5.5-3-5.5 3 1.2-6L3.2 9.8l6.1-.8z"></path></svg>
+                    </span>
+                    <span class="font-body text-[13px] font-semibold text-fuscous-gray">4.8</span>
+                    <span class="font-body text-[13px] text-thunder underline underline-offset-2">based on 46 reviews</span>
+                </a>
+            </div>
+
+            <div class="order-3 flex flex-col gap-2 min-w-0 lg:order-none">
+            <div class="mt-3 flex flex-col gap-4">
+                <p class="font-body text-[15px] font-semibold leading-[1.6] text-fuscous-gray">Craft Live Resin. Real Fruit Juice.</p>
+                <dl class="flex flex-col gap-2.5">
+                    <div class="flex flex-row gap-2"><dt class="font-body text-sm font-semibold leading-[1.55] text-fuscous-gray">Taste:</dt><dd class="font-body text-sm leading-[1.55] text-thunder"><span data-spec-flavor>Huckleberry</span> &mdash; rich, jammy, fresh</dd></div>
+                    <div class="flex flex-row gap-2"><dt class="font-body text-sm font-semibold leading-[1.55] text-fuscous-gray">Effect:</dt><dd class="font-body text-sm leading-[1.55] text-thunder"><span data-spec-effect>Indica</span> &middot; <span data-spec-feel>relax, unwind</span></dd></div>
+                    <div class="flex flex-row gap-2"><dt class="font-body text-sm font-semibold leading-[1.55] text-fuscous-gray">Potency:</dt><dd class="font-body text-sm leading-[1.55] text-thunder">20mg per gummy</dd></div>
+                    <div class="flex flex-row gap-2"><dt class="font-body text-sm font-semibold leading-[1.55] text-fuscous-gray">Why:</dt><dd class="font-body text-sm leading-[1.55] text-thunder">live resin, fruit juice, vegan</dd></div>
+                    <div class="flex flex-row gap-2"><dt class="font-body text-sm font-semibold leading-[1.55] text-fuscous-gray">Legal:</dt><dd class="font-body text-sm leading-[1.55] text-thunder">Federally legal to ship</dd></div>
+                </dl>
+            </div>
+
+            <!-- Flavour selector -->
+            <div class="mt-6 border-t border-bright-gray pt-6">
+                <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                        <input type="radio" name="flavour" class="sr-only" checked data-flavour data-name="Huckleberry" data-effect="Indica" data-feel="relax, unwind" data-image="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/008-MHC_Live_D9_Gummy_Tube_Label-5ct_Huckleberry-Render-Front_Web.png?width=900">
+                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white">
+                            <img class="h-9 w-9" src="pdp-mockup/uploads/icon-flavor-huckleberry.svg" alt="" loading="lazy">
+                        </span>
+                        <span class="flex min-w-0 flex-col items-start gap-1">
+                            <span class="flex flex-row items-center gap-1.5 rounded-lg bg-cake-white px-2 py-1">
+                                <span class="flex h-3.5 w-3.5 items-center justify-center text-fuscous-gray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:block;"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+                                </span>
+                                <span class="font-mono text-xs font-semibold leading-[1.2] text-fuscous-gray">Indica</span>
+                            </span>
+                            <span class="truncate font-body text-xs text-thunder">Huckleberry</span>
+                        </span>
+                    </label>
+
+                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                        <input type="radio" name="flavour" class="sr-only" data-flavour data-name="Passion Fruit" data-effect="Indica" data-feel="calm, easy" data-image="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/MHCO-Taffy-15CT-Bag-Render-BirthdayCake-Web.png?width=900">
+                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white">
+                            <img class="h-9 w-9" src="pdp-mockup/uploads/icon-flavor-passion-fruit.svg" alt="" loading="lazy">
+                        </span>
+                        <span class="flex min-w-0 flex-col items-start gap-1">
+                            <span class="flex flex-row items-center gap-1.5 rounded-lg bg-cake-white px-2 py-1">
+                                <span class="flex h-3.5 w-3.5 items-center justify-center text-fuscous-gray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:block;"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+                                </span>
+                                <span class="font-mono text-xs font-semibold leading-[1.2] text-fuscous-gray">Indica</span>
+                            </span>
+                            <span class="truncate font-body text-xs text-thunder">Passion Fruit</span>
+                        </span>
+                    </label>
+
+                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                        <input type="radio" name="flavour" class="sr-only" data-flavour data-name="Sour Apple" data-effect="Hybrid" data-feel="level, clear" data-image="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/007-MHC_Live_D9_Gummy_Tube_Label-5ct_Sour-Apple-Render-Front_Web.png?width=900">
+                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white">
+                            <img class="h-9 w-9" src="pdp-mockup/uploads/icon-flavor-sour-apple.svg" alt="" loading="lazy">
+                        </span>
+                        <span class="flex min-w-0 flex-col items-start gap-1">
+                            <span class="flex flex-row items-center gap-1.5 rounded-lg bg-cake-white px-2 py-1">
+                                <span class="flex h-3.5 w-3.5 items-center justify-center text-fuscous-gray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 3 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" style="display:block;"><path d="M3 19a9 9 0 0 1 18 0"></path><path d="M7.4 19a4.6 4.6 0 0 1 9.2 0"></path></svg>
+                                </span>
+                                <span class="font-mono text-xs font-semibold leading-[1.2] text-fuscous-gray">Hybrid</span>
+                            </span>
+                            <span class="flex flex-row items-center gap-1.5">
+                                <span class="truncate font-body text-xs text-thunder">Sour Apple</span>
+                                <span class="rounded bg-fuscous-gray px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.6px] text-cake-white">Sale</span>
+                            </span>
+                        </span>
+                    </label>
+
+                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                        <input type="radio" name="flavour" class="sr-only" data-flavour data-name="Strawberry Rhubarb" data-effect="Sativa" data-feel="lift, focus" data-image="pdp-mockup/assets/gummies-real-ct-1.png">
+                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white">
+                            <img class="h-9 w-9" src="pdp-mockup/uploads/icon-flavor-strawberry-rhubarb.svg" alt="" loading="lazy">
+                        </span>
+                        <span class="flex min-w-0 flex-col items-start gap-1">
+                            <span class="flex flex-row items-center gap-1.5 rounded-lg bg-cake-white px-2 py-1">
+                                <span class="flex h-3.5 w-3.5 items-center justify-center text-fuscous-gray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:block;"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"></path></svg>
+                                </span>
+                                <span class="font-mono text-xs font-semibold leading-[1.2] text-fuscous-gray">Sativa</span>
+                            </span>
+                            <span class="truncate font-body text-xs text-thunder">Strawberry Rhubarb</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Count selector -->
+            <div class="mt-3">
+                <div class="grid grid-cols-3 gap-2">
+                    <label class="flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-bright-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                        <input type="radio" name="count" class="sr-only" data-count data-label="1ct" data-price="1.50" data-compare="3.00">
+                        <img class="h-11 w-14 object-contain" src="pdp-mockup/assets/gummies-pile-ct-1.png" alt="" loading="lazy">
+                        <span class="font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">1ct</span>
+                        <span class="flex flex-row items-baseline gap-1">
+                            <s class="font-body text-[11px] text-dusty-gray">$3.00</s>
+                            <span class="font-body text-xs text-thunder">$1.50</span>
+                        </span>
+                    </label>
+                    <label class="flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-bright-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                        <input type="radio" name="count" class="sr-only" data-count data-label="5ct" data-price="12.00" data-compare="">
+                        <img class="h-11 w-14 object-contain" src="pdp-mockup/assets/gummies-pile-ct-5.png" alt="" loading="lazy">
+                        <span class="font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">5ct</span>
+                        <span class="font-body text-xs text-thunder">$12.00</span>
+                    </label>
+                    <label class="relative flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-bright-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                        <input type="radio" name="count" class="sr-only" checked data-count data-label="20ct" data-price="40.00" data-compare="50.00">
+                        <span class="absolute -top-2 right-2 rounded bg-fuscous-gray px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.6px] text-cake-white">Popular</span>
+                        <img class="h-11 w-14 object-contain" src="pdp-mockup/assets/gummies-pile-ct-20.png" alt="" loading="lazy">
+                        <span class="font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">20ct</span>
+                        <span class="flex flex-row items-baseline gap-1">
+                            <s class="font-body text-[11px] text-dusty-gray">$50.00</s>
+                            <span class="font-body text-xs text-thunder">$40.00</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Purchase plan -->
+            <div class="mt-6 flex flex-col gap-3">
+                <p class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Purchase frequency</p>
+
+                <label data-plan-card="subscribe" class="cursor-pointer overflow-hidden rounded-xl border-2 border-bright-gray">
+                    <input type="radio" name="plan" class="sr-only" checked data-plan="subscribe">
+                    <span class="flex flex-row items-center justify-center gap-1.5 bg-fuscous-gray px-3 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.6px] text-cake-white">🔥 Best value</span>
+                    <span class="flex flex-col gap-2 p-3">
+                        <span class="flex flex-row items-center gap-2">
+                            <span data-plan-dot class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-dusty-gray"></span>
+                            <span class="flex-1 font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">Subscribe &amp; Save</span>
+                            <span class="flex flex-col items-end gap-0.5">
+                                <span class="flex flex-row items-center gap-2">
+                                    <span class="rounded-lg bg-fuscous-gray px-3 py-0.5 font-mono text-[11px] font-bold text-cake-white whitespace-nowrap">Save 30%</span>
+                                    <span class="font-body text-base text-fuscous-gray" data-price-subscribe>$28.00</span>
+                                </span>
+                                <s class="font-body text-xs text-dusty-gray" data-price-subscribe-compare>$40.00</s>
+                            </span>
+                        </span>
+
+                        <span class="flex flex-col gap-1.5 border-t border-light-sand pt-2">
+                            <span class="flex flex-row items-start gap-2"><span class="mt-px flex h-4 w-4 shrink-0 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="12" cy="12" r="9"></circle><path d="M12 6.6v10.8"></path><path d="M14.7 9.6a2.4 2.4 0 0 0-2.4-1.5h-.5a2.1 2.1 0 0 0-.3 4.2h1.1a2.1 2.1 0 0 1 .1 4.2h-.4a2.4 2.4 0 0 1-2.4-1.6"></path></svg></span><span class="font-body text-[13px] leading-[1.5] text-thunder">Save 30% on your first order</span></span>
+                            <span class="flex flex-row items-start gap-2"><span class="mt-px flex h-4 w-4 shrink-0 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M11.6 3H4v7.6l9.4 9.4 7.6-7.6z"></path><circle cx="7.6" cy="7.6" r="1.3" fill="currentColor" stroke="none"></circle></svg></span><span class="font-body text-[13px] leading-[1.5] text-thunder">Then 10% on each subsequent installment</span></span>
+                            <span class="flex flex-row items-start gap-2"><span class="mt-px flex h-4 w-4 shrink-0 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M20 11a8 8 0 0 0-13.7-5.2L3 9"></path><path d="M3 4v5h5"></path><path d="M4 13a8 8 0 0 0 13.7 5.2L21 15"></path><path d="M21 20v-5h-5"></path></svg></span><span class="font-body text-[13px] leading-[1.5] text-thunder">Swap, pause, or skip anytime</span></span>
+                            <span class="flex flex-row items-start gap-2"><span class="mt-px flex h-4 w-4 shrink-0 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M4 12.6l5 5L20 6.6"></path></svg></span><span class="font-body text-[13px] leading-[1.5] text-thunder">Cancel after 2nd shipment</span></span>
+                            <span class="flex flex-row items-start gap-2"><span class="mt-px flex h-4 w-4 shrink-0 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="9" cy="8" r="3.2"></circle><path d="M3.2 19.4a5.8 5.8 0 0 1 11.6 0"></path><path d="M16.4 5.2a3.2 3.2 0 0 1 0 5.6"></path><path d="M17.4 14.2a5.8 5.8 0 0 1 3.4 5.2"></path></svg></span><span class="font-body text-[13px] leading-[1.5] text-thunder">Join 200k+ happy customers</span></span>
+                        </span>
+
+                        <span class="flex flex-col gap-1.5">
+                            <span class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Deliver every</span>
+                            <span class="relative flex flex-row items-center">
+                                <select class="w-full cursor-pointer appearance-none rounded-xl border-2 border-dusty-gray bg-white px-3 py-2.5 font-body text-xs text-fuscous-gray outline-none">
+                                    <option>2 weeks: save 30%</option>
+                                    <option>4 weeks: save 30%</option>
+                                    <option selected>6 weeks: save 30%</option>
+                                    <option>8 weeks: save 30%</option>
+                                </select>
+                                <span class="pointer-events-none absolute right-3 flex h-4 w-4 items-center justify-center text-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+                </label>
+
+                <label data-plan-card="onetime" class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray px-3 py-3">
+                    <input type="radio" name="plan" class="sr-only" data-plan="onetime">
+                    <span data-plan-dot class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-dusty-gray"></span>
+                    <span class="flex-1 font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">One-time purchase</span>
+                    <span class="font-body text-base text-fuscous-gray" data-price-onetime>$40.00</span>
+                </label>
+            </div>
+
+            <!-- Quantity + add to cart -->
+            <div class="mt-7 flex flex-col gap-4">
+                <div class="mx-auto flex w-3/4 flex-row items-center justify-between gap-2 rounded-xl border-2 border-dusty-gray bg-yellow-green-200 px-2 py-1.5">
+                    <button type="button" data-qty-dec class="flex h-9 w-11 cursor-pointer items-center justify-center rounded-lg border-2 border-dusty-gray bg-white font-mono text-lg leading-none text-fuscous-gray hover:bg-cake-white" aria-label="Decrease quantity">&minus;</button>
+                    <span class="flex flex-col items-center leading-[1.15]">
+                        <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.6px] text-dusty-gray">Quantity</span>
+                        <span class="font-mono text-base font-bold text-fuscous-gray" data-qty>1</span>
+                    </span>
+                    <button type="button" data-qty-inc class="flex h-9 w-11 cursor-pointer items-center justify-center rounded-lg border-2 border-dusty-gray bg-yellow-green font-mono text-lg leading-none text-fuscous-gray hover:brightness-95" aria-label="Increase quantity">+</button>
+                </div>
+
+                <button type="button" class="flex w-full flex-row items-center justify-center gap-3 rounded-xl border-2 border-dusty-gray bg-yellow-green px-4 py-4 font-mono text-lg font-bold uppercase tracking-[0.6px] text-fuscous-gray cursor-pointer hover:brightness-95">
+                    <span data-price-total>$28.00</span>
+                    <span aria-hidden="true" class="font-normal text-dusty-gray">|</span>
+                    <span class="flex flex-row items-center gap-2">
+                        <span class="flex h-5 w-5 items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+                        </span>
+                        Add to cart
+                    </span>
+                </button>
+
+                <p class="text-center font-body text-[11px] text-dusty-gray">Shipping calculated at checkout &middot; Order in the next <span class="font-semibold text-thunder">9h 28m</span> to get it by <span class="font-semibold text-thunder">Monday</span>.</p>
+            </div>
+
+            <div class="mt-5 grid grid-cols-3 gap-3">
+                <div class="flex flex-col items-center gap-1 rounded-xl bg-cake-white px-2 py-3 text-center">
+                    <span class="flex h-5 w-5 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.2-8 11-4.6-1.8-8-6-8-11V5z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></span>
+                    <span class="font-mono text-[10px] font-bold uppercase leading-[1.3] tracking-[0.6px] text-fuscous-gray">Money-back<br>guarantee</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 rounded-xl bg-cake-white px-2 py-3 text-center">
+                    <span class="flex h-5 w-5 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="11" rx="2"></rect><path d="M7 10V7a5 5 0 0 1 10 0v3"></path></svg></span>
+                    <span class="font-mono text-[10px] font-bold uppercase leading-[1.3] tracking-[0.6px] text-fuscous-gray">Secure<br>payments</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 rounded-xl bg-cake-white px-2 py-3 text-center">
+                    <span class="flex h-5 w-5 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"></rect><path d="M2 11h20"></path></svg></span>
+                    <span class="font-mono text-[10px] font-bold uppercase leading-[1.3] tracking-[0.6px] text-fuscous-gray">Discreet<br>shipping</span>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ Trust bar ============================ -->
+    <section class="flex flex-col items-center gap-5 border-y border-bright-gray py-12">
+        <p class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Trusted by 200k+ customers</p>
+        <div class="flex flex-row flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            <span class="font-mono text-base font-bold uppercase tracking-[1.2px] text-dusty-gray">Forbes</span>
+            <span class="font-mono text-base font-bold uppercase tracking-[1.2px] text-dusty-gray">Leafly</span>
+            <span class="font-mono text-base font-bold uppercase tracking-[1.2px] text-dusty-gray">Benzinga</span>
+            <span class="font-mono text-base font-bold uppercase tracking-[1.2px] text-dusty-gray">High&nbsp;Times</span>
+        </div>
+    </section>
+
+    <!-- ========================= Ask an Herbalist ========================= -->
+    <section class="py-16">
+        <div class="flex flex-col gap-4 rounded-xl border border-dusty-gray bg-cake-white p-6 sm:p-8">
+            <div class="flex flex-row items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-2 border-dusty-gray bg-yellow-green text-fuscous-gray">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                </span>
+                <div class="flex flex-col gap-0.5">
+                    <h2 class="font-mono text-lg font-bold uppercase leading-[1.12] text-fuscous-gray">Ask an Herbalist</h2>
+                    <p class="font-body text-xs text-thunder">Your independent, cannabis-informed guide.</p>
+                </div>
+            </div>
+            <form class="flex flex-col gap-2 sm:flex-row">
+                <input type="text" placeholder="Is this right for me?" class="min-w-0 flex-1 rounded-xl border-2 border-bright-gray bg-white px-3 py-3 font-body text-xs text-fuscous-gray outline-none placeholder:text-dusty-gray focus:border-dusty-gray">
+                <button type="button" class="shrink-0 rounded-xl border-2 border-dusty-gray bg-yellow-green px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.6px] cursor-pointer hover:brightness-95">Ask</button>
+            </form>
+            <div class="flex flex-row flex-wrap gap-2">
+                <button type="button" class="rounded-lg border border-dusty-gray bg-white px-3 py-1.5 font-body text-xs text-thunder cursor-pointer hover:bg-yellow-green-200">How much should I take?</button>
+                <button type="button" class="rounded-lg border border-dusty-gray bg-white px-3 py-1.5 font-body text-xs text-thunder cursor-pointer hover:bg-yellow-green-200">Will it show on a test?</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ Accordions ============================ -->
+    <section class="pb-16">
+        <h2 class="mb-6 font-mono text-2xl font-bold uppercase leading-[1.12] text-fuscous-gray">Product info</h2>
+        <div class="flex flex-col gap-2">
+            <details data-accordion open class="group rounded-xl border border-dusty-gray bg-white">
+                <summary class="flex cursor-pointer flex-row items-center justify-between gap-3 px-4 py-4 font-mono text-sm font-bold uppercase tracking-[0.6px] text-fuscous-gray list-none">
+                    Product details
+                    <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </summary>
+                <div class="border-t border-bright-gray px-4 py-4">
+                    <p class="font-body text-xs leading-[1.7] text-thunder">Craft live resin, for real &mdash; a clean craft gummy start to finish. 20mg Delta-9 THC per gummy, pressed from fresh-frozen flower and finished with real fruit juice. No distillate, no synthetic cannabinoids, no corn syrup.</p>
+                </div>
+            </details>
+            <details data-accordion class="group rounded-xl border border-dusty-gray bg-white">
+                <summary class="flex cursor-pointer flex-row items-center justify-between gap-3 px-4 py-4 font-mono text-sm font-bold uppercase tracking-[0.6px] text-fuscous-gray list-none">
+                    Key ingredients
+                    <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </summary>
+                <div class="border-t border-bright-gray px-4 py-4">
+                    <p class="font-body text-xs leading-[1.7] text-thunder">Organic cane sugar, tapioca syrup, real fruit juice concentrate, pectin (vegan), citric acid, natural flavour, hemp-derived live resin Delta-9 THC.</p>
+                </div>
+            </details>
+            <details data-accordion class="group rounded-xl border border-dusty-gray bg-white">
+                <summary class="flex cursor-pointer flex-row items-center justify-between gap-3 px-4 py-4 font-mono text-sm font-bold uppercase tracking-[0.6px] text-fuscous-gray list-none">
+                    How to use
+                    <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </summary>
+                <div class="border-t border-bright-gray px-4 py-4">
+                    <p class="font-body text-xs leading-[1.7] text-thunder">Start with half a gummy and wait 90 minutes before taking more. Effects last 4&ndash;6 hours. Store in a cool, dry place away from direct sun.</p>
+                </div>
+            </details>
+            <details data-accordion class="group rounded-xl border border-dusty-gray bg-white">
+                <summary class="flex cursor-pointer flex-row items-center justify-between gap-3 px-4 py-4 font-mono text-sm font-bold uppercase tracking-[0.6px] text-fuscous-gray list-none">
+                    Lab results (COA)
+                    <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </summary>
+                <div class="border-t border-bright-gray px-4 py-4">
+                    <p class="mb-3 font-body text-xs leading-[1.7] text-thunder">Every batch is third-party tested for potency, pesticides, heavy metals and residual solvents.</p>
+                    <a href="#" class="inline-flex flex-row items-center gap-1.5 rounded-lg border-2 border-dusty-gray bg-white px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">
+                        View batch COA
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </a>
+                </div>
+            </details>
+            <details data-accordion class="group rounded-xl border border-dusty-gray bg-white">
+                <summary class="flex cursor-pointer flex-row items-center justify-between gap-3 px-4 py-4 font-mono text-sm font-bold uppercase tracking-[0.6px] text-fuscous-gray list-none">
+                    Shipping &amp; returns
+                    <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                </summary>
+                <div class="border-t border-bright-gray px-4 py-4">
+                    <p class="font-body text-xs leading-[1.7] text-thunder">Free shipping on orders over $75. Orders placed before 2pm CT ship same day, discreetly packaged. 30-day money-back guarantee &mdash; unopened or not.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- ========================= You may also like ========================= -->
+    <section class="border-t border-bright-gray py-16">
+        <div class="mb-8 flex flex-col gap-1">
+            <p class="font-mono text-xs uppercase tracking-[0.6px] text-thunder">Pairs well with</p>
+            <h2 class="font-mono text-2xl font-bold uppercase leading-[1.12] text-fuscous-gray">You may also like</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+            <div data-product-card class="border border-1 border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
+                <div class="flex basis-[36%] shrink-0 relative">
+                    <div class="flex flex-col absolute gap-1 z-10">
+                        <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-medium font-mono">
+                            Max Potency
+                        </p>
+                        <div class="flex">
+                            <span class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-bold font-mono border border-1 border-dusty-gray">
+                                New
+                            </span>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -bottom-3 -left-3 right-0 rounded-l-[11px] overflow-hidden flex items-center justify-center">
+                        <img class="w-full h-full object-contain" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/001-MECH-MHC-Live-THC-Blend-Pod-Refills-Pouches-1g-render_Georgia_Pie_Web.png?width=400" alt="Live THC Pod Refill 1g" loading="lazy">
+                    </div>
+                </div>
+                <div class="flex flex-1 flex-col gap-2 min-w-0">
+                    <div class="flex flex-col gap-1 w-full">
+                        <p class="text-xs font-mono text-fuscous-gray leading-[1.2]">Pod Refill</p>
+                        <h2 class="text-xl uppercase font-mono font-bold text-fuscous-gray -mt-1 leading-[1.12] truncate">Live THC Pod Refill 1g</h2>
+                        <span class="text-xs font-mono text-thunder leading-[1.2] -mt-1">Modern Herb Co</span>
+                    </div>
+                    <div class="flex flex-col gap-2 mt-1">
+                        <div class="flex flex-row gap-1">
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Happy</div>
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Energy</div>
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Sleep</div>
+                        </div>
+                        <div class="flex flex-row gap-1 invisible" aria-hidden="true">
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono leading-[1.4]">1ct</div>
+                        </div>
+                    </div>
+                    <div class="relative cursor-pointer" data-variant-selector>
+                        <!-- Variant Selector -->
+                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel1" class="cursor-pointer flex flex-row border-2 border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
+                            <span class="flex gap-2 flex-row w-full min-w-0">
+                                <span class="flex gap-2 flex-row min-w-0">
+                                    <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                        <span class="flex justify-center w-4 h-4" data-selected-icon>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path><path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path></svg>
+                                        </span>
+                                    </span>
+                                    <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-selected-title>Georgia Pie</span>
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-selected-price>$15</span>
+                                <span class="flex justify-end w-4 h-4 text-gray-500 self-center transition-transform duration-200" data-variant-chevron>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </span>
+                            </span>
+                        </button>
+                        <ul role="listbox" id="listbox-rel1" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border-2 top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
+                            <li role="presentation" class="w-full justify-between bg-cake-white border-b border-dusty-gray p-0 rounded-t-lg w-full">
+                                <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                                    Happy (Hybrid)
+                                </span>
+                            </li>
+                            <li role="option" aria-selected="true" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 bg-yellow-green group-hover:bg-yellow-green w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path><path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            Georgia Pie
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $15
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                            <li role="presentation" class="w-full justify-between bg-cake-white border-y border-dusty-gray p-0 w-full">
+                                <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                                    Energy (Sativa)
+                                </span>
+                            </li>
+                            <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            Sour Diesel
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $15
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                            <li role="presentation" class="w-full justify-between bg-cake-white border-y border-dusty-gray p-0 w-full">
+                                <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                                    Sleep (Indica)
+                                </span>
+                            </li>
+                            <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            GMO
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $15
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
+                            <span class="flex flex-row gap-2">
+                                <input type="radio" name="plan-rel1" class="peer sr-only">
+                                <span
+                                    class="relative flex h-4 w-4 items-center justify-center
+                                           rounded-full border-2 border-dusty-gray
+                                           peer-checked:border-dusty-gray
+                                           after:h-2 after:w-2
+                                           after:scale-0 after:rounded-full
+                                           after:bg-thunder
+                                           after:transition-transform
+                                           peer-checked:after:scale-100"
+                                ></span>
+                                <span class="font-mono text-xs font-semibold leading-[1.25] text-fuscous-gray">One Time Purchase</span>
+                            </span>
+                            <span class="text-xs font-normal text-thunder" data-price-onetime>$15</span>
+                        </label>
+                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-light-sand has-[:checked]:bg-cake-white" role="radio">
+                            <input type="radio" name="plan-rel1" class="peer sr-only" checked>
+                            <span class="relative shrink-0 flex h-4 w-4 items-center justify-center
+                                        rounded-full border-2 border-dusty-gray
+                                        peer-checked:border-dusty-gray
+                                        after:h-2 after:w-2
+                                        after:scale-0 after:rounded-full
+                                        after:bg-thunder
+                                        after:transition-transform
+                                        peer-checked:after:scale-100"
+                            ></span>
+                            <span class="flex flex-col">
+                                <span class="flex justify-between">
+                                    <span class="font-mono text-xs font-semibold leading-[1.25] text-fuscous-gray">Subscribe &amp; Save</span>
+                                    <span class="text-[11px] font-normal text-thunder" data-price-subscribe>$10.50</span>
+                                </span>
+                                <span class="font-body text-xs font-normal leading-[1.3] text-fuscous-gray">Save 30% on your first order, then 10% on every order after.</span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="flex flex-row gap-2">
+                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border-2 border-dusty-gray rounded-lg cursor-pointer">Details</button>
+                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border-2 border-dusty-gray flex justify-center align-center cursor-pointer">
+                            <span class="h-6 w-6 flex justify-center align-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block;"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="flex flex-row justify-end gap-2">
+                        <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-normal font-mono">
+                            Fast Shipping
+                        </p>
+
+                        <div class="flex flex-row gap-1 justify-end items-center">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true" style="display: block; flex-shrink: 0;"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                            </div>
+                            <div class="text-xs font-body font-semibold text-fuscous-gray">4.8</div>
+                            <div class="text-xs font-body text-thunder">(46)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-product-card class="border border-1 border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
+                <div class="flex basis-[36%] shrink-0 relative">
+                    <div class="flex flex-col absolute gap-1 z-10">
+                        <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-medium font-mono">
+                            Craft Grown
+                        </p>
+                    </div>
+                    <div class="absolute -top-3 -bottom-3 -left-3 right-0 rounded-l-[11px] overflow-hidden flex items-center justify-center">
+                        <img class="w-full h-full object-contain" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/011-MECH-MHC-Flower-1-8-oz-BlueberryMuffin_RENDER_Web_1.png?width=400" alt="THCa Flower 1/8oz Small Batch" loading="lazy">
+                    </div>
+                </div>
+                <div class="flex flex-1 flex-col gap-2 min-w-0">
+                    <div class="flex flex-col gap-1 w-full">
+                        <p class="text-xs font-mono text-fuscous-gray leading-[1.2]">Flower</p>
+                        <h2 class="text-xl uppercase font-mono font-bold text-fuscous-gray -mt-1 leading-[1.12] truncate">THCa Flower 1/8oz Small Batch</h2>
+                        <span class="text-xs font-mono text-thunder leading-[1.2] -mt-1">Modern Herb Co</span>
+                    </div>
+                    <div class="flex flex-col gap-2 mt-1">
+                        <div class="flex flex-row gap-1">
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Sleep</div>
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Happy</div>
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Energy</div>
+                        </div>
+                        <div class="flex flex-row gap-1 invisible" aria-hidden="true">
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono leading-[1.4]">1ct</div>
+                        </div>
+                    </div>
+                    <div class="relative cursor-pointer" data-variant-selector>
+                        <!-- Variant Selector -->
+                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel2" class="cursor-pointer flex flex-row border-2 border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
+                            <span class="flex gap-2 flex-row w-full min-w-0">
+                                <span class="flex gap-2 flex-row min-w-0">
+                                    <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                        <span class="flex justify-center w-4 h-4" data-selected-icon>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg>
+                                        </span>
+                                    </span>
+                                    <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-selected-title>Blueberry Muffin</span>
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-selected-price>$40</span>
+                                <span class="flex justify-end w-4 h-4 text-gray-500 self-center transition-transform duration-200" data-variant-chevron>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </span>
+                            </span>
+                        </button>
+                        <ul role="listbox" id="listbox-rel2" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border-2 top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
+                            <li role="presentation" class="w-full justify-between bg-cake-white border-b border-dusty-gray p-0 rounded-t-lg w-full">
+                                <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                                    Sleep (Indica)
+                                </span>
+                            </li>
+                            <li role="option" aria-selected="true" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 bg-yellow-green group-hover:bg-yellow-green w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            Blueberry Muffin
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $40
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                            <li role="presentation" class="w-full justify-between bg-cake-white border-y border-dusty-gray p-0 w-full">
+                                <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                                    Happy (Hybrid)
+                                </span>
+                            </li>
+                            <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path><path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            Jelly Roll
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $40
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                            <li role="presentation" class="w-full justify-between bg-cake-white border-y border-dusty-gray p-0 w-full">
+                                <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                                    Energy (Sativa)
+                                </span>
+                            </li>
+                            <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            Gushers
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $40
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
+                            <span class="flex flex-row gap-2">
+                                <input type="radio" name="plan-rel2" class="peer sr-only" checked>
+                                <span
+                                    class="relative flex h-4 w-4 items-center justify-center
+                                           rounded-full border-2 border-dusty-gray
+                                           peer-checked:border-dusty-gray
+                                           after:h-2 after:w-2
+                                           after:scale-0 after:rounded-full
+                                           after:bg-thunder
+                                           after:transition-transform
+                                           peer-checked:after:scale-100"
+                                ></span>
+                                <span class="font-mono text-xs font-semibold leading-[1.25] text-fuscous-gray">One Time Purchase</span>
+                            </span>
+                            <span class="text-xs font-normal text-thunder" data-price-onetime>$40</span>
+                        </label>
+                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-light-sand has-[:checked]:bg-cake-white invisible pointer-events-none" role="radio" aria-hidden="true">
+                            <input type="radio" name="plan-rel2" class="peer sr-only" disabled tabindex="-1">
+                            <span class="relative shrink-0 flex h-4 w-4 items-center justify-center
+                                        rounded-full border-2 border-dusty-gray
+                                        peer-checked:border-dusty-gray
+                                        after:h-2 after:w-2
+                                        after:scale-0 after:rounded-full
+                                        after:bg-thunder
+                                        after:transition-transform
+                                        peer-checked:after:scale-100"
+                            ></span>
+                            <span class="flex flex-col">
+                                <span class="flex justify-between">
+                                    <span class="font-mono text-xs font-semibold leading-[1.25] text-fuscous-gray">Subscribe &amp; Save</span>
+                                    <span class="text-[11px] font-normal text-thunder">$28</span>
+                                </span>
+                                <span class="font-body text-xs font-normal leading-[1.3] text-fuscous-gray">Save 30% on your first order, then 10% on every order after.</span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="flex flex-row gap-2">
+                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border-2 border-dusty-gray rounded-lg cursor-pointer">Details</button>
+                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border-2 border-dusty-gray flex justify-center align-center cursor-pointer">
+                            <span class="h-6 w-6 flex justify-center align-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block;"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="flex flex-row justify-end gap-2">
+                        <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-normal font-mono">
+                            Fast Shipping
+                        </p>
+
+                        <div class="flex flex-row gap-1 justify-end items-center">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true" style="display: block; flex-shrink: 0;"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                            </div>
+                            <div class="text-xs font-body font-semibold text-fuscous-gray">4.7</div>
+                            <div class="text-xs font-body text-thunder">(88)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-product-card class="border border-1 border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
+                <div class="flex basis-[36%] shrink-0 relative">
+                    <div class="flex flex-col absolute gap-1 z-10">
+                        <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-medium font-mono">
+                            Small Batch
+                        </p>
+                    </div>
+                    <div class="absolute -top-3 -bottom-3 -left-3 right-0 rounded-l-[11px] overflow-hidden flex items-center justify-center">
+                        <img class="w-full h-full object-contain" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/MHCO_ProductRender_CaramelPouch_4ct-caramel-apple-web.png?width=400" alt="Live THC Caramel: Caramel Apple" loading="lazy">
+                    </div>
+                </div>
+                <div class="flex flex-1 flex-col gap-2 min-w-0">
+                    <div class="flex flex-col gap-1 w-full">
+                        <p class="text-xs font-mono text-fuscous-gray leading-[1.2]">Caramels</p>
+                        <h2 class="text-xl uppercase font-mono font-bold text-fuscous-gray -mt-1 leading-[1.12] truncate">Live THC Caramel: Caramel Apple</h2>
+                        <span class="text-xs font-mono text-thunder leading-[1.2] -mt-1">Modern Herb Co</span>
+                    </div>
+                    <div class="flex flex-col gap-2 mt-1">
+                        <div class="flex flex-row gap-1 invisible" aria-hidden="true">
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Sleep</div>
+                        </div>
+                        <div class="flex flex-row gap-1">
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono leading-[1.4]">1ct</div>
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono leading-[1.4]">4ct</div>
+                            <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono leading-[1.4]">8ct</div>
+                        </div>
+                    </div>
+                    <div class="relative cursor-pointer" data-variant-selector>
+                        <!-- Variant Selector -->
+                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel3" class="cursor-pointer flex flex-row border-2 border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
+                            <span class="flex gap-2 flex-row w-full min-w-0">
+                                <span class="flex gap-2 flex-row min-w-0">
+                                    <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                        <span class="flex justify-center w-4 h-4" data-selected-icon>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z" fill="currentColor" stroke="none"></path></svg>
+                                        </span>
+                                    </span>
+                                    <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-selected-title>Caramel Apple</span>
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-selected-qty>1ct</span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-selected-price>$7</span>
+                                <span class="flex justify-end w-4 h-4 text-gray-500 self-center transition-transform duration-200" data-variant-chevron>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </span>
+                            </span>
+                        </button>
+                        <ul role="listbox" id="listbox-rel3" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border-2 top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
+                            <li role="option" aria-selected="true" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 bg-yellow-green group-hover:bg-yellow-green w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            Caramel Apple
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                            1ct
+                                        </span>
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $7
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                            <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            Caramel Apple
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                            4ct
+                                        </span>
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $24
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                            <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                                <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                                    <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                        <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                            <span class="flex justify-center w-4 h-4" data-option-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z" fill="currentColor" stroke="none"></path></svg>
+                                            </span>
+                                        </span>
+                                        <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                            Caramel Apple
+                                        </span>
+                                    </span>
+                                    <span class="flex gap-2 shrink-0">
+                                        <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                            8ct
+                                        </span>
+                                        <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                            $42
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
+                            <span class="flex flex-row gap-2">
+                                <input type="radio" name="plan-rel3" class="peer sr-only" checked>
+                                <span
+                                    class="relative flex h-4 w-4 items-center justify-center
+                                           rounded-full border-2 border-dusty-gray
+                                           peer-checked:border-dusty-gray
+                                           after:h-2 after:w-2
+                                           after:scale-0 after:rounded-full
+                                           after:bg-thunder
+                                           after:transition-transform
+                                           peer-checked:after:scale-100"
+                                ></span>
+                                <span class="font-mono text-xs font-semibold leading-[1.25] text-fuscous-gray">One Time Purchase</span>
+                            </span>
+                            <span class="text-xs font-normal text-thunder" data-price-onetime>$7</span>
+                        </label>
+                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-light-sand has-[:checked]:bg-cake-white invisible pointer-events-none" role="radio" aria-hidden="true">
+                            <input type="radio" name="plan-rel3" class="peer sr-only" disabled tabindex="-1">
+                            <span class="relative shrink-0 flex h-4 w-4 items-center justify-center
+                                        rounded-full border-2 border-dusty-gray
+                                        peer-checked:border-dusty-gray
+                                        after:h-2 after:w-2
+                                        after:scale-0 after:rounded-full
+                                        after:bg-thunder
+                                        after:transition-transform
+                                        peer-checked:after:scale-100"
+                            ></span>
+                            <span class="flex flex-col">
+                                <span class="flex justify-between">
+                                    <span class="font-mono text-xs font-semibold leading-[1.25] text-fuscous-gray">Subscribe &amp; Save</span>
+                                    <span class="text-[11px] font-normal text-thunder">$4.90</span>
+                                </span>
+                                <span class="font-body text-xs font-normal leading-[1.3] text-fuscous-gray">Save 30% on your first order, then 10% on every order after.</span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="flex flex-row gap-2">
+                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border-2 border-dusty-gray rounded-lg cursor-pointer">Details</button>
+                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border-2 border-dusty-gray flex justify-center align-center cursor-pointer">
+                            <span class="h-6 w-6 flex justify-center align-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block;"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="flex flex-row justify-end gap-2">
+                        <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-normal font-mono">
+                            Fast Shipping
+                        </p>
+
+                        <div class="flex flex-row gap-1 justify-end items-center">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true" style="display: block; flex-shrink: 0;"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                            </div>
+                            <div class="text-xs font-body font-semibold text-fuscous-gray">4.6</div>
+                            <div class="text-xs font-body text-thunder">(31)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================== Loved by you =========================== -->
+    <section id="reviews" class="border-t border-bright-gray py-16">
+        <div class="mb-8 flex flex-col gap-1">
+            <p class="font-mono text-xs uppercase tracking-[0.6px] text-thunder">4.8 &middot; 46 reviews</p>
+            <h2 class="font-mono text-2xl font-bold uppercase leading-[1.12] text-fuscous-gray">Loved by you</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <figure class="flex flex-col gap-3 rounded-xl border border-dusty-gray bg-cake-white p-4">
+                <div class="flex flex-row gap-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                </div>
+                <blockquote class="font-body text-xs leading-[1.6] text-thunder">&ldquo;Two of these and I actually sleep through the night.&rdquo;</blockquote>
+                <figcaption class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Dana R. <span class="font-normal normal-case tracking-normal text-dusty-gray">&middot; Verified buyer</span></figcaption>
+            </figure>
+            <figure class="flex flex-col gap-3 rounded-xl border border-dusty-gray bg-cake-white p-4">
+                <div class="flex flex-row gap-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                </div>
+                <blockquote class="font-body text-xs leading-[1.6] text-thunder">&ldquo;The huckleberry is the only one I reorder.&rdquo;</blockquote>
+                <figcaption class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Marcus T. <span class="font-normal normal-case tracking-normal text-dusty-gray">&middot; Verified buyer</span></figcaption>
+            </figure>
+            <figure class="flex flex-col gap-3 rounded-xl border border-dusty-gray bg-cake-white p-4">
+                <div class="flex flex-row gap-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                </div>
+                <blockquote class="font-body text-xs leading-[1.6] text-thunder">&ldquo;Gentle enough that I take one before a hike.&rdquo;</blockquote>
+                <figcaption class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Priya S. <span class="font-normal normal-case tracking-normal text-dusty-gray">&middot; Verified buyer</span></figcaption>
+            </figure>
+        </div>
+    </section>
+</main>
+
+<!-- ======================= Sticky mobile add-to-cart ======================= -->
+<div class="sticky bottom-0 z-40 border-t border-bright-gray bg-white px-4 py-3 lg:hidden">
+    <div class="flex flex-row items-center gap-3">
+        <div class="flex min-w-0 flex-col">
+            <span class="truncate font-mono text-xs font-bold uppercase leading-[1.2] text-fuscous-gray">Live Resin D9</span>
+            <span class="font-body text-xs text-thunder"><span data-summary-count>20ct</span> &middot; <span data-summary-flavour>Huckleberry</span></span>
+        </div>
+        <button type="button" class="ml-auto flex shrink-0 flex-row items-center gap-2 rounded-xl border-2 border-dusty-gray bg-yellow-green px-5 py-3 font-mono text-sm font-bold uppercase tracking-[0.6px] text-fuscous-gray cursor-pointer hover:brightness-95">
+            <span data-price-total>$28.00</span>
+            <span aria-hidden="true" class="font-normal text-dusty-gray">|</span>
+            Add to cart
+        </button>
+    </div>
+</div>
+
+<!-- ================================ Footer ================================ -->
+<footer class="mt-8 bg-cake-white border-t border-light-sand">
+    <div class="mx-auto max-w-[140rem] px-4 sm:px-6 lg:px-10 py-16">
+        <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
+            <div class="col-span-2 flex flex-col gap-3 lg:col-span-2">
+                <div class="flex flex-row items-center gap-2">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-yellow-green border-2 border-dusty-gray font-mono text-sm font-bold">M</span>
+                    <span class="font-mono text-sm font-bold uppercase leading-[1.1] tracking-[0.6px]">Modern Herb Co</span>
+                </div>
+                <p class="max-w-sm font-body text-xs leading-[1.6] text-thunder">Small-batch hemp, grown and pressed in-house. Lab tested, never synthetic &mdash; shipped fast to all 50 states.</p>
+                <form class="mt-2 flex max-w-sm flex-row gap-2">
+                    <input type="email" placeholder="Email address" class="min-w-0 flex-1 rounded-xl border-2 border-bright-gray bg-white px-3 py-2 font-body text-xs text-fuscous-gray outline-none placeholder:text-dusty-gray focus:border-dusty-gray">
+                    <button type="button" class="shrink-0 rounded-xl border-2 border-dusty-gray bg-yellow-green px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.6px] cursor-pointer hover:brightness-95">Join</button>
+                </form>
+                <p class="font-body text-[11px] text-dusty-gray">Get 15% off your first order. Unsubscribe anytime.</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <p class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Shop</p>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Flower</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Pod Kits &amp; Refills</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Gummies</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Pre-Rolls</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Merch</a>
+            </div>
+            <div class="flex flex-col gap-2">
+                <p class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Support</p>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Track Order</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Shipping</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Returns</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Lab Results</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Contact</a>
+            </div>
+            <div class="flex flex-col gap-2">
+                <p class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Company</p>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Our Story</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Wholesale</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Affiliates</a>
+                <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Blog</a>
+            </div>
+        </div>
+        <div class="mt-10 flex flex-col gap-4 border-t border-light-sand pt-6 md:flex-row md:items-center md:justify-between">
+            <p class="font-body text-[11px] text-dusty-gray">&copy; 2026 Modern Herb Co. All rights reserved.</p>
+            <div class="flex flex-row flex-wrap gap-x-4 gap-y-2">
+                <a href="#" class="font-body text-[11px] text-dusty-gray hover:text-fuscous-gray hover:underline">Privacy</a>
+                <a href="#" class="font-body text-[11px] text-dusty-gray hover:text-fuscous-gray hover:underline">Terms</a>
+                <a href="#" class="font-body text-[11px] text-dusty-gray hover:text-fuscous-gray hover:underline">Accessibility</a>
+                <a href="#" class="font-body text-[11px] text-dusty-gray hover:text-fuscous-gray hover:underline">Do Not Sell My Info</a>
+            </div>
+        </div>
+        <p class="mt-6 font-body text-[11px] leading-[1.6] text-dusty-gray">These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease. Keep out of reach of children and pets. Must be 21 or older to purchase.</p>
+    </div>
+</footer>
+
+<script>
+    // Product page behaviour: gallery, flavour/count/plan selection, quantity and
+    // the prices those feed. Selection *styling* is CSS (has-[:checked]) — the
+    // script only syncs the copy and the numbers.
+    (function () {
+        var SUBSCRIPTION_DISCOUNT = 0.3;
+
+        var product = document.querySelector('[data-product]');
+        if (!product) {
+            return;
+        }
+
+        var hero = product.querySelector('[data-hero]');
+        var thumbs = Array.prototype.slice.call(product.querySelectorAll('[data-thumb]'));
+        var rail = product.querySelector('[data-thumb-rail]');
+        var railNext = product.querySelector('[data-thumb-next]');
+
+        var flavours = Array.prototype.slice.call(product.querySelectorAll('[data-flavour]'));
+        var counts = Array.prototype.slice.call(product.querySelectorAll('[data-count]'));
+        var plans = Array.prototype.slice.call(product.querySelectorAll('[data-plan]'));
+
+        var qtyLabel = product.querySelector('[data-qty]');
+        var qty = 1;
+
+        var specFlavour = product.querySelector('[data-spec-flavor]');
+        var specEffect = product.querySelector('[data-spec-effect]');
+        var specFeel = product.querySelector('[data-spec-feel]');
+
+        // Totals live in both the buy box and the sticky mobile bar.
+        var totals = Array.prototype.slice.call(document.querySelectorAll('[data-price-total]'));
+        var oneTime = product.querySelector('[data-price-onetime]');
+        var subscribe = product.querySelector('[data-price-subscribe]');
+        var subscribeCompare = product.querySelector('[data-price-subscribe-compare]');
+        var summaryCount = document.querySelector('[data-summary-count]');
+        var summaryFlavour = document.querySelector('[data-summary-flavour]');
+
+        function money(value) {
+            return '$' + (Math.round(value * 100) / 100).toFixed(2);
+        }
+
+        function checked(list) {
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].checked) {
+                    return list[i];
+                }
+            }
+            return list[0];
+        }
+
+        // Packshots are letterboxed on the cake-white ground; the campaign
+        // photography has to fill the frame instead, so thumbs opting into
+        // `data-fit="cover"` swap the hero's fit classes as well as its src.
+        function setHero(src, fit) {
+            hero.src = src;
+            hero.classList.toggle('object-cover', fit === 'cover');
+            hero.classList.toggle('object-contain', fit !== 'cover');
+            hero.classList.toggle('p-6', fit !== 'cover');
+            thumbs.forEach(function (thumb) {
+                thumb.setAttribute('aria-current', String(thumb.dataset.src === src));
+            });
+        }
+
+        function render() {
+            var flavour = checked(flavours);
+            var count = checked(counts);
+            var plan = checked(plans);
+
+            specFlavour.textContent = flavour.dataset.name;
+            specEffect.textContent = flavour.dataset.effect;
+            specFeel.textContent = flavour.dataset.feel;
+
+            var unit = parseFloat(count.dataset.price);
+            var line = unit * qty;
+
+            oneTime.textContent = money(line);
+            subscribe.textContent = money(line * (1 - SUBSCRIPTION_DISCOUNT));
+            subscribeCompare.textContent = money(line);
+
+            var total = plan.dataset.plan === 'subscribe' ? line * (1 - SUBSCRIPTION_DISCOUNT) : line;
+            totals.forEach(function (node) {
+                node.textContent = money(total);
+            });
+
+            qtyLabel.textContent = String(qty);
+            summaryCount.textContent = count.dataset.label;
+            summaryFlavour.textContent = flavour.dataset.name;
+        }
+
+        thumbs.forEach(function (thumb) {
+            thumb.addEventListener('click', function () {
+                setHero(thumb.dataset.src, thumb.dataset.fit);
+            });
+        });
+
+        railNext.addEventListener('click', function () {
+            var atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+            rail.scrollTo({ left: atEnd ? 0 : rail.scrollLeft + 84 * 3, behavior: 'smooth' });
+        });
+
+        flavours.forEach(function (input) {
+            input.addEventListener('change', function () {
+                setHero(input.dataset.image);
+                render();
+            });
+        });
+
+        counts.concat(plans).forEach(function (input) {
+            input.addEventListener('change', render);
+        });
+
+        product.querySelector('[data-qty-dec]').addEventListener('click', function () {
+            qty = Math.max(1, qty - 1);
+            render();
+        });
+
+        product.querySelector('[data-qty-inc]').addEventListener('click', function () {
+            qty = Math.min(99, qty + 1);
+            render();
+        });
+
+        render();
+    }());
+
+    // Variant selector: open the listbox, pick an option, and sync the trigger
+    // + purchase-plan prices to the selection. Scoped per card.
+    document.querySelectorAll('[data-variant-selector]').forEach(function (root) {
+        var SUBSCRIPTION_DISCOUNT = 0.3;
+        var SELECTED_CLASSES = ['bg-yellow-green', 'group-hover:bg-yellow-green'];
+
+        var card = root.closest('[data-product-card]') || document;
+        var trigger = root.querySelector('[data-variant-trigger]');
+        var listbox = root.querySelector('[role="listbox"]');
+        var chevron = root.querySelector('[data-variant-chevron]');
+        var options = Array.prototype.slice.call(listbox.querySelectorAll('li[role="option"]'));
+
+        var slots = {
+            icon: root.querySelector('[data-selected-icon]'),
+            title: root.querySelector('[data-selected-title]'),
+            qty: root.querySelector('[data-selected-qty]'),
+            price: root.querySelector('[data-selected-price]')
+        };
+        var oneTimePrice = card.querySelector('[data-price-onetime]');
+        var subscribePrice = card.querySelector('[data-price-subscribe]');
+
+        function parsePrice(text) {
+            var value = parseFloat(String(text).replace(/[^0-9.]/g, ''));
+            return isNaN(value) ? 0 : value;
+        }
+
+        function formatPrice(value) {
+            var rounded = Math.round(value * 100) / 100;
+            return '$' + (rounded % 1 === 0 ? rounded : rounded.toFixed(2));
+        }
+
+        function setOpen(open) {
+            listbox.classList.toggle('hidden', !open);
+            chevron.classList.toggle('rotate-180', open);
+            trigger.setAttribute('aria-expanded', String(open));
+        }
+
+        function isOpen() {
+            return !listbox.classList.contains('hidden');
+        }
+
+        function select(option) {
+            options.forEach(function (item) {
+                var isSelected = item === option;
+                var row = item.querySelector('[data-option-row]');
+                item.setAttribute('aria-selected', String(isSelected));
+                SELECTED_CLASSES.forEach(function (name) {
+                    row.classList.toggle(name, isSelected);
+                });
+            });
+
+            var qtyNode = option.querySelector('[data-option-qty]');
+            var priceText = option.querySelector('[data-option-price]').textContent.trim();
+            var price = parsePrice(priceText);
+
+            slots.icon.innerHTML = option.querySelector('[data-option-icon]').innerHTML;
+            slots.title.textContent = option.querySelector('[data-option-title]').textContent.trim();
+            slots.price.textContent = priceText;
+            if (slots.qty && qtyNode) {
+                slots.qty.textContent = qtyNode.textContent.trim();
+            }
+
+            if (oneTimePrice) {
+                oneTimePrice.textContent = formatPrice(price);
+            }
+            if (subscribePrice) {
+                subscribePrice.textContent = formatPrice(price * (1 - SUBSCRIPTION_DISCOUNT));
+            }
+        }
+
+        // Scroll the listbox itself rather than calling scrollIntoView, which
+        // would also scroll every scrollable ancestor (the page, the carousel).
+        function revealSelected() {
+            var selected = listbox.querySelector('li[aria-selected="true"]');
+            if (!selected) {
+                return;
+            }
+            var top = selected.offsetTop;
+            var bottom = top + selected.offsetHeight;
+            if (top < listbox.scrollTop) {
+                listbox.scrollTop = top;
+            } else if (bottom > listbox.scrollTop + listbox.clientHeight) {
+                listbox.scrollTop = bottom - listbox.clientHeight;
+            }
+        }
+
+        trigger.addEventListener('click', function (event) {
+            event.stopPropagation();
+            setOpen(!isOpen());
+            if (isOpen()) {
+                revealSelected();
+            }
+        });
+
+        options.forEach(function (option) {
+            option.addEventListener('click', function () {
+                select(option);
+                setOpen(false);
+                trigger.focus();
+            });
+        });
+
+        document.addEventListener('click', function (event) {
+            if (isOpen() && !root.contains(event.target)) {
+                setOpen(false);
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && isOpen()) {
+                setOpen(false);
+                trigger.focus();
+            }
+        });
+
+        select(options[0]);
+        setOpen(false);
+    });
+
+    // Accordions: one open at a time.
+    document.querySelectorAll('[data-accordion]').forEach(function (item) {
+        item.addEventListener('toggle', function () {
+            if (!item.open) {
+                return;
+            }
+            document.querySelectorAll('[data-accordion]').forEach(function (other) {
+                if (other !== item) {
+                    other.open = false;
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

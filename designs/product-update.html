@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Card — static template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Static card template. Every value below is plain HTML — edit the text,
+     the image path and the classes by hand. No JavaScript builds this page.
+     Tailwind CSS below is compiled from the classes used on this page;
+     theme + rebuild instructions live in tailwind.config.js. -->
+<style>
+@font-face {
+  font-family: 'BrokenScript';
+  src: url('../fonts/brokenscript_boldcond-webfont.woff2') format('woff2'),
+       url('../fonts/brokenscript_boldcond-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+</style>
+<style id="tw">
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+/*
+! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: Poppins, system-ui, sans-serif;
+  /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-feature-settings: normal;
+  /* 2 */
+  font-variation-settings: normal;
+  /* 3 */
+  font-size: 1em;
+  /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  letter-spacing: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.collapse {
+  visibility: collapse;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.inset-0 {
+  inset: 0px;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.bottom-4 {
+  bottom: 1rem;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.left-4 {
+  left: 1rem;
+}
+
+.left-\[-20px\] {
+  left: -20px;
+}
+
+.left-\[11px\] {
+  left: 11px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.right-1 {
+  right: 0.25rem;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
+.right-\[-20px\] {
+  right: -20px;
+}
+
+.right-\[10px\] {
+  right: 10px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.top-1 {
+  top: 0.25rem;
+}
+
+.top-1\/2 {
+  top: 50%;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
+.top-\[11px\] {
+  top: 11px;
+}
+
+.top-\[44px\] {
+  top: 44px;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.z-\[100\] {
+  z-index: 100;
+}
+
+.z-\[5\] {
+  z-index: 5;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.order-\[-1\] {
+  order: -1;
+}
+
+.order-\[-2\] {
+  order: -2;
+}
+
+.order-\[-3\] {
+  order: -3;
+}
+
+.m-0 {
+  margin: 0px;
+}
+
+.mx-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-\[-6px\] {
+  margin-top: -6px;
+  margin-bottom: -6px;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mb-\[10px\] {
+  margin-bottom: 10px;
+}
+
+.mb-\[3px\] {
+  margin-bottom: 3px;
+}
+
+.mt-0 {
+  margin-top: 0px;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-\[-5px\] {
+  margin-top: -5px;
+}
+
+.mt-\[22px\] {
+  margin-top: 22px;
+}
+
+.mt-\[2px\] {
+  margin-top: 2px;
+}
+
+.mt-\[6px\] {
+  margin-top: 6px;
+}
+
+.box-border {
+  box-sizing: border-box;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.aspect-auto {
+  aspect-ratio: auto;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.\!h-auto {
+  height: auto !important;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-14 {
+  height: 3.5rem;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-20 {
+  height: 5rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-\[15px\] {
+  height: 15px;
+}
+
+.h-\[18px\] {
+  height: 18px;
+}
+
+.h-\[26px\] {
+  height: 26px;
+}
+
+.h-\[320px\] {
+  height: 320px;
+}
+
+.h-\[7px\] {
+  height: 7px;
+}
+
+.h-\[9px\] {
+  height: 9px;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-px {
+  height: 1px;
+}
+
+.max-h-\[184px\] {
+  max-height: 184px;
+}
+
+.max-h-\[90vh\] {
+  max-height: 90vh;
+}
+
+.min-h-\[150px\] {
+  min-height: 150px;
+}
+
+.min-h-\[40px\] {
+  min-height: 40px;
+}
+
+.min-h-\[8px\] {
+  min-height: 8px;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-20 {
+  width: 5rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-\[120px\] {
+  width: 120px;
+}
+
+.w-\[15px\] {
+  width: 15px;
+}
+
+.w-\[18px\] {
+  width: 18px;
+}
+
+.w-\[7px\] {
+  width: 7px;
+}
+
+.w-\[9px\] {
+  width: 9px;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-px {
+  width: 1px;
+}
+
+.min-w-0 {
+  min-width: 0px;
+}
+
+.min-w-\[32px\] {
+  min-width: 32px;
+}
+
+.min-w-\[44px\] {
+  min-width: 44px;
+}
+
+.min-w-\[auto\] {
+  min-width: auto;
+}
+
+.max-w-\[1200px\] {
+  max-width: 1200px;
+}
+
+.max-w-\[1280px\] {
+  max-width: 1280px;
+}
+
+.max-w-\[768px\] {
+  max-width: 768px;
+}
+
+.max-w-none {
+  max-width: none;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-\[0_0_15px\] {
+  flex: 0 0 15px;
+}
+
+.flex-\[0_0_18px\] {
+  flex: 0 0 18px;
+}
+
+.flex-\[0_0_34\%\] {
+  flex: 0 0 34%;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.flex-initial {
+  flex: 0 1 auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.origin-center {
+  transform-origin: center;
+}
+
+.-translate-y-1\/2 {
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-x-\[15\%\] {
+  --tw-translate-x: 15%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.scale-\[1\.55\] {
+  --tw-scale-x: 1.55;
+  --tw-scale-y: 1.55;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.resize {
+  resize: both;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
+
+.list-none {
+  list-style-type: none;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-\[10px\] {
+  gap: 10px;
+}
+
+.gap-\[3px\] {
+  gap: 3px;
+}
+
+.gap-\[5px\] {
+  gap: 5px;
+}
+
+.gap-\[6px\] {
+  gap: 6px;
+}
+
+.gap-\[7px\] {
+  gap: 7px;
+}
+
+.gap-px {
+  gap: 1px;
+}
+
+.self-stretch {
+  align-self: stretch;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.rounded-\[0_0_0_9px\] {
+  border-radius: 0 0 0 9px;
+}
+
+.rounded-\[50\%\] {
+  border-radius: 50%;
+}
+
+.rounded-\[6px\] {
+  border-radius: 6px;
+}
+
+.rounded-\[999px\] {
+  border-radius: 999px;
+}
+
+.rounded-card {
+  border-radius: 14px;
+}
+
+.rounded-ctrl {
+  border-radius: 9px;
+}
+
+.rounded-img {
+  border-radius: 13px 0 0 13px;
+}
+
+.rounded-none {
+  border-radius: 0px;
+}
+
+.rounded-slide {
+  border-radius: 20px;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-0 {
+  border-width: 0px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-\[1\.5px\] {
+  border-width: 1.5px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-t-0 {
+  border-top-width: 0px;
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}
+
+.border-ink {
+  --tw-border-opacity: 1;
+  border-color: rgb(57 56 57 / var(--tw-border-opacity, 1));
+}
+
+.border-stroke-alt {
+  --tw-border-opacity: 1;
+  border-color: rgb(128 126 127 / var(--tw-border-opacity, 1));
+}
+
+.border-sub-stroke {
+  --tw-border-opacity: 1;
+  border-color: rgb(222 221 214 / var(--tw-border-opacity, 1));
+}
+
+.border-surface-container-highest {
+  --tw-border-opacity: 1;
+  border-color: rgb(227 226 223 / var(--tw-border-opacity, 1));
+}
+
+.border-transparent {
+  border-color: transparent;
+}
+
+.border-b-ink {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(57 56 57 / var(--tw-border-opacity, 1));
+}
+
+.border-b-stroke-alt {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(128 126 127 / var(--tw-border-opacity, 1));
+}
+
+.border-b-transparent {
+  border-bottom-color: transparent;
+}
+
+.border-t-stroke-alt {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(128 126 127 / var(--tw-border-opacity, 1));
+}
+
+.bg-\[rgba\(57\2c 56\2c 57\2c \.6\)\] {
+  background-color: rgba(57,56,57,.6);
+}
+
+.bg-accent {
+  --tw-bg-opacity: 1;
+  background-color: rgb(227 232 41 / var(--tw-bg-opacity, 1));
+}
+
+.bg-cream {
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 246 241 / var(--tw-bg-opacity, 1));
+}
+
+.bg-effect-balance {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 234 228 / var(--tw-bg-opacity, 1));
+}
+
+.bg-effect-energy {
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 247 221 / var(--tw-bg-opacity, 1));
+}
+
+.bg-effect-sleep {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 237 236 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+}
+
+.bg-img-well {
+  --tw-bg-opacity: 1;
+  background-color: rgb(246 246 247 / var(--tw-bg-opacity, 1));
+}
+
+.bg-ink {
+  --tw-bg-opacity: 1;
+  background-color: rgb(57 56 57 / var(--tw-bg-opacity, 1));
+}
+
+.bg-surface {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 249 245 / var(--tw-bg-opacity, 1));
+}
+
+.bg-surface-container-highest {
+  --tw-bg-opacity: 1;
+  background-color: rgb(227 226 223 / var(--tw-bg-opacity, 1));
+}
+
+.bg-surface-container-low {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 240 / var(--tw-bg-opacity, 1));
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.p-0 {
+  padding: 0px;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.p-\[11px\] {
+  padding: 11px;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.px-\[10px\] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.px-\[11px\] {
+  padding-left: 11px;
+  padding-right: 11px;
+}
+
+.px-\[6px\] {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.px-\[9px\] {
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.py-\[3px\] {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.py-\[5px\] {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.py-\[6px\] {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.py-\[9px\] {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.py-px {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.\!pb-4 {
+  padding-bottom: 1rem !important;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.pb-\[100px\] {
+  padding-bottom: 100px;
+}
+
+.pb-\[18px\] {
+  padding-bottom: 18px;
+}
+
+.pb-\[env\(safe-area-inset-bottom\)\] {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.pl-5 {
+  padding-left: 1.25rem;
+}
+
+.pl-\[10px\] {
+  padding-left: 10px;
+}
+
+.pl-\[23px\] {
+  padding-left: 23px;
+}
+
+.pr-\[30px\] {
+  padding-right: 30px;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
+}
+
+.pt-\[84px\] {
+  padding-top: 84px;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-\[inherit\] {
+  font-family: inherit;
+}
+
+.font-body {
+  font-family: 'Space Grotesk', Poppins, sans-serif;
+}
+
+.font-title {
+  font-family: 'BrokenScript', 'Space Grotesk', Poppins, sans-serif;
+}
+
+.text-\[11px\] {
+  font-size: 11px;
+}
+
+.text-\[12px\] {
+  font-size: 12px;
+}
+
+.text-\[13\.3333px\] {
+  font-size: 13.3333px;
+}
+
+.text-\[13px\] {
+  font-size: 13px;
+}
+
+.text-\[14px\] {
+  font-size: 14px;
+}
+
+.text-\[15px\] {
+  font-size: 15px;
+}
+
+.text-\[20px\] {
+  font-size: 20px;
+}
+
+.text-\[26px\] {
+  font-size: 26px;
+}
+
+.text-\[9\.5px\] {
+  font-size: 9.5px;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.normal-case {
+  text-transform: none;
+}
+
+.leading-\[1\.12\] {
+  line-height: 1.12;
+}
+
+.leading-\[1\.25\] {
+  line-height: 1.25;
+}
+
+.leading-\[1\.2\] {
+  line-height: 1.2;
+}
+
+.leading-\[1\.3\] {
+  line-height: 1.3;
+}
+
+.leading-\[1\.4\] {
+  line-height: 1.4;
+}
+
+.leading-\[1\.5\] {
+  line-height: 1.5;
+}
+
+.tracking-\[-\.4px\] {
+  letter-spacing: -.4px;
+}
+
+.tracking-\[\.2px\] {
+  letter-spacing: .2px;
+}
+
+.tracking-\[\.3px\] {
+  letter-spacing: .3px;
+}
+
+.tracking-\[\.5px\] {
+  letter-spacing: .5px;
+}
+
+.tracking-\[\.6px\] {
+  letter-spacing: .6px;
+}
+
+.tracking-\[1\.2px\] {
+  letter-spacing: 1.2px;
+}
+
+.tracking-\[1px\] {
+  letter-spacing: 1px;
+}
+
+.tracking-normal {
+  letter-spacing: 0em;
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-text {
+  --tw-text-opacity: 1;
+  color: rgb(102 102 102 / var(--tw-text-opacity, 1));
+}
+
+.text-ink {
+  --tw-text-opacity: 1;
+  color: rgb(57 56 57 / var(--tw-text-opacity, 1));
+}
+
+.text-meta {
+  --tw-text-opacity: 1;
+  color: rgb(74 74 73 / var(--tw-text-opacity, 1));
+}
+
+.text-muted-gray {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+
+.text-stroke-alt {
+  --tw-text-opacity: 1;
+  color: rgb(128 126 127 / var(--tw-text-opacity, 1));
+}
+
+.text-tertiary {
+  --tw-text-opacity: 1;
+  color: rgb(95 94 95 / var(--tw-text-opacity, 1));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.underline {
+  text-decoration-line: underline;
+}
+
+.line-through {
+  text-decoration-line: line-through;
+}
+
+.no-underline {
+  text-decoration-line: none;
+}
+
+.underline-offset-4 {
+  text-underline-offset: 4px;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-60 {
+  opacity: 0.6;
+}
+
+.shadow-card {
+  --tw-shadow: 0 10px 30px rgba(17,24,39,.08);
+  --tw-shadow-colored: 0 10px 30px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-menu {
+  --tw-shadow: 0 8px 28px rgba(0,0,0,.18);
+  --tw-shadow-colored: 0 8px 28px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-nav {
+  --tw-shadow: 0 4px 12px rgba(17,24,39,.10);
+  --tw-shadow-colored: 0 4px 12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-panel {
+  --tw-shadow: 0 24px 60px rgba(17,24,39,.35);
+  --tw-shadow-colored: 0 24px 60px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.backdrop-blur-\[4px\] {
+  --tw-backdrop-blur: blur(4px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.\[-ms-overflow-style\:none\] {
+  -ms-overflow-style: none;
+}
+
+.\[line-height\:normal\] {
+  line-height: normal;
+}
+
+.\[scrollbar-width\:none\] {
+  scrollbar-width: none;
+}
+
+.\[text-wrap\:pretty\] {
+  text-wrap: pretty;
+}
+
+.\[transition\:background_\.15s\] {
+  transition: background .15s;
+}
+
+.\[transition\:border-color_\.15s\] {
+  transition: border-color .15s;
+}
+
+.\[transition\:color_\.15s\2c border-color_\.15s\] {
+  transition: color .15s,border-color .15s;
+}
+
+.\[transition\:transform_\.2s\] {
+  transition: transform .2s;
+}
+
+.hover\:border-stroke-alt:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(128 126 127 / var(--tw-border-opacity, 1));
+}
+
+.hover\:border-b-stroke-alt:hover {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(128 126 127 / var(--tw-border-opacity, 1));
+}
+
+.hover\:bg-menu-hover:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 244 196 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-surface-container-low:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 240 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:text-accent:hover {
+  --tw-text-opacity: 1;
+  color: rgb(227 232 41 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-ink:hover {
+  --tw-text-opacity: 1;
+  color: rgb(57 56 57 / var(--tw-text-opacity, 1));
+}
+
+.hover\:opacity-80:hover {
+  opacity: 0.8;
+}
+
+.hover\:opacity-90:hover {
+  opacity: 0.9;
+}
+
+.active\:scale-95:active {
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group[open] .group-open\:rotate-180 {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@media (min-width: 768px) {
+  .md\:block {
+    display: block;
+  }
+
+  .md\:inline {
+    display: inline;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:inline-flex {
+    display: inline-flex;
+  }
+
+  .md\:grid {
+    display: grid;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-\[1fr_1fr\] {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .md\:items-center {
+    align-items: center;
+  }
+
+  .md\:gap-1 {
+    gap: 0.25rem;
+  }
+
+  .md\:gap-10 {
+    gap: 2.5rem;
+  }
+
+  .md\:p-10 {
+    padding: 2.5rem;
+  }
+
+  .md\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .md\:text-\[14px\] {
+    font-size: 14px;
+  }
+
+  .md\:font-semibold {
+    font-weight: 600;
+  }
+
+  .md\:\[align-items\:start\] {
+    align-items: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.\[\&\.swiper-button-disabled\]\:pointer-events-none.swiper-button-disabled {
+  pointer-events: none;
+}
+
+.\[\&\.swiper-button-disabled\]\:opacity-\[\.35\].swiper-button-disabled {
+  opacity: .35;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:hidden::-webkit-details-marker {
+  display: none;
+}
+
+.\[\&\:\:-webkit-scrollbar-thumb\]\:my-\[10px\]::-webkit-scrollbar-thumb {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.\[\&\:\:-webkit-scrollbar-thumb\]\:rounded-\[3px\]::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+}
+
+.\[\&\:\:-webkit-scrollbar-thumb\]\:bg-ink::-webkit-scrollbar-thumb {
+  --tw-bg-opacity: 1;
+  background-color: rgb(57 56 57 / var(--tw-bg-opacity, 1));
+}
+
+.\[\&\:\:-webkit-scrollbar-track\]\:rounded-\[0_8px_8px_0\]::-webkit-scrollbar-track {
+  border-radius: 0 8px 8px 0;
+}
+
+.\[\&\:\:-webkit-scrollbar-track\]\:border-l::-webkit-scrollbar-track {
+  border-left-width: 1px;
+}
+
+.\[\&\:\:-webkit-scrollbar-track\]\:border-l-sub-stroke::-webkit-scrollbar-track {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(222 221 214 / var(--tw-border-opacity, 1));
+}
+
+.\[\&\:\:-webkit-scrollbar-track\]\:bg-track::-webkit-scrollbar-track {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 236 231 / var(--tw-bg-opacity, 1));
+}
+
+.\[\&\:\:-webkit-scrollbar\]\:hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.\[\&\:\:-webkit-scrollbar\]\:w-\[6px\]::-webkit-scrollbar {
+  width: 6px;
+}
+
+.\[\&\[hidden\]\]\:hidden[hidden] {
+  display: none;
+}
+</style>
+</head>
+<body class="bg-surface text-ink [line-height:normal]">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 h-16 bg-surface border-b border-surface-container-highest flex items-center justify-between px-5 md:px-10">
+  <div class="flex items-center gap-6">
+    <button class="md:hidden text-[13.3333px] bg-transparent border-0 p-0 cursor-pointer text-ink inline-flex items-center gap-1 font-[inherit] hover:opacity-80 active:scale-95" type="button" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    <div class="text-[15px] font-normal tracking-[.5px] uppercase text-ink">Modern Herb Co</div>
+    <nav class="hidden md:flex gap-6 text-[14px] font-semibold">
+      <a class="hover:text-accent" href="#">Shop</a>
+      <a class="hover:text-accent" href="#">Discover</a>
+    </nav>
+  </div>
+  <div class="flex items-center gap-4">
+    <a class="hidden md:inline-flex md:items-center md:gap-1 md:text-[14px] md:font-semibold hover:text-accent" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Account</span></a>
+    <button class="text-[13.3333px] bg-transparent border-0 p-0 cursor-pointer text-ink inline-flex items-center gap-1 font-[inherit] hover:opacity-80 active:scale-95" type="button" aria-label="Cart"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><span class="hidden md:inline md:text-[14px] md:font-semibold">Cart (0)</span></button>
+  </div>
+</header>
+
+<main class="grow pt-[84px] px-5 pb-[100px] max-w-[1280px] mx-auto w-full">
+
+  <div class="pb-[18px] border-b border-surface-container-highest">
+    <h1 class="m-0 text-[26px] font-extrabold text-ink tracking-[-.4px]">Product card — static template</h1>
+    <p class="mt-1 text-[14px] text-gray-500">The proposed card written out as plain HTML. Nothing on this page is generated by JavaScript — every chip, label, price and option row is literal markup you can edit in place. Each editable region is marked with an <b>EDIT</b> comment, and the interactive states (open menu, one-time selected, sold out) are included as commented-out alternates.</p>
+  </div>
+
+  <div class="mt-[22px]">
+    <div class="flex items-center gap-2 mb-[10px]">
+      <span class="inline-block w-[9px] h-[9px] rounded-[50%] bg-accent border-[1.5px] border-ink"></span>
+      <span class="text-[13px] font-extrabold tracking-[1.2px] uppercase text-ink">Card</span>
+    </div>
+
+    <!-- Grid wrapper. Duplicate the whole CARD block below for more cards. -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- ============================ CARD ============================ -->
+      <div class="relative flex flex-row h-full bg-white border border-stroke-alt rounded-card">
+
+        <!-- EDIT: promo label chip. Delete this span for no label. -->
+        <span class="absolute top-[44px] left-[11px] z-[5] box-border inline-block bg-cream text-ink border border-stroke-alt font-body font-bold text-[12px] leading-[1.2] tracking-[.2px] px-[11px] py-[5px] rounded-ctrl whitespace-nowrap">New!</span>
+
+        <!-- EDIT: potency chip. Delete this span for no potency line. -->
+        <span class="absolute top-[11px] left-[11px] z-[5] box-border inline-block whitespace-nowrap font-body text-ink text-[12px] font-medium tracking-normal normal-case bg-cream border-0 rounded-ctrl px-[11px] py-[5px] leading-[1.2]">Max Potency</span>
+
+        <!-- EDIT: product photo. flex-[0_0_34%] is the photo width; the inner
+             div's translate-x-[15%] scale-[1.55] is the sideways crop. -->
+        <a href="#" class="relative block flex-[0_0_34%] self-stretch aspect-auto min-h-[150px] rounded-img overflow-hidden bg-img-well">
+          <div class="absolute inset-0 bg-white">
+            <div class="absolute inset-0 flex items-center justify-center translate-x-[15%] scale-[1.55] origin-center">
+              <img src="../claude-design-update/uploads/003-MHC-THCA-Uncut-Podkit-AT-WeddingCake-Render-Web.jpg" alt="THCA LIQUID DIAMONDS" class="w-full h-full max-w-none object-contain">
+            </div>
+          </div>
+        </a>
+
+        <!-- Info stack -->
+        <div class="flex flex-col flex-auto min-w-0 p-[11px] gap-2">
+
+          <!-- EDIT: sub-line (renders above the title — order-[-3]) -->
+          <div class="order-[-3] flex items-center gap-2 min-w-0">
+            <p class="flex-initial min-w-0 m-0 font-body text-[15px] font-normal text-ink leading-[1.2] whitespace-nowrap overflow-hidden text-ellipsis">Pod Kit</p>
+          </div>
+
+          <!-- EDIT: product name -->
+          <a href="#" class="order-[-2] font-title block mt-[-5px] text-[20px] font-bold text-ink leading-[1.12] whitespace-nowrap overflow-hidden text-ellipsis">THCA LIQUID DIAMONDS</a>
+
+          <!-- EDIT: brand line (renders first — order-[-1]) -->
+          <p class="order-[-1] mt-[-5px] font-body text-[15px] font-normal text-meta leading-[1.12] whitespace-nowrap overflow-hidden text-ellipsis">Modern Herb Co</p>
+
+          <!-- Flexible spacer — keeps the buy controls pinned to the bottom -->
+          <div class="flex-auto min-h-[8px] my-[-6px]"></div>
+
+          <!-- EDIT: effect words + count chips. Delete the whole block if unused. -->
+          <div aria-label="Effects and counts" class="box-border flex flex-col flex-nowrap items-start gap-[6px] overflow-hidden border-0 rounded-ctrl p-0">
+            <!-- Effect words. Order is Sleep (indica) → Happy (hybrid) → Energy (sativa). -->
+            <div class="self-stretch flex flex-nowrap items-center gap-1 min-w-0">
+              <span title="Sleep" class="inline-flex items-center justify-center w-auto h-auto min-w-[auto] flex-none font-body px-[9px] py-1 text-[11px] font-normal tracking-normal rounded-ctrl box-border bg-cream border-0 text-meta">Sleep</span>
+              <span title="Balance" class="inline-flex items-center justify-center w-auto h-auto min-w-[auto] flex-none font-body px-[9px] py-1 text-[11px] font-normal tracking-normal rounded-ctrl box-border bg-cream border-0 text-meta">Happy</span>
+              <!-- <span title="Energy" class="inline-flex items-center justify-center w-auto h-auto min-w-[auto] flex-none font-body px-[9px] py-1 text-[11px] font-normal tracking-normal rounded-ctrl box-border bg-cream border-0 text-meta">Energy</span> -->
+            </div>
+            <!-- Counts / sizes -->
+            <div class="flex flex-nowrap items-center gap-1 min-w-0">
+              <span class="box-border font-body text-[12px] font-normal tracking-[.3px] text-meta bg-cream border-0 rounded-ctrl px-[10px] py-[5px] leading-[1.4] whitespace-nowrap">1ct</span>
+              <span class="box-border font-body text-[12px] font-normal tracking-[.3px] text-meta bg-cream border-0 rounded-ctrl px-[10px] py-[5px] leading-[1.4] whitespace-nowrap">2ct</span>
+            </div>
+          </div>
+
+          <!-- Variant selector.
+               EDIT: the button shows the SELECTED option. The <ul> below it is
+               the drop-down; it carries `hidden`, so remove that attribute to
+               show the open state. -->
+          <div class="relative min-h-[40px]">
+            <button type="button" aria-haspopup="listbox" class="relative w-full flex items-center gap-[6px] font-[inherit] text-[13px] font-semibold text-ink bg-white border-[1.5px] border-stroke-alt rounded-ctrl pt-2 pr-[30px] pb-2 pl-[10px] cursor-pointer text-left opacity-100">
+              <span class="flex items-center gap-[6px] flex-auto min-w-0">
+                <!-- Strain icon. Swap the <path> for the sativa / hybrid glyphs listed in the ICON REFERENCE at the bottom of this file. -->
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-[50%] box-border shrink-0 bg-cream border-0 text-ink"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="block"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg></span>
+                <span class="flex-auto min-w-0 font-body overflow-hidden text-ellipsis whitespace-nowrap no-underline">Wedding Cake</span>
+                <span class="shrink-0 box-border inline-flex items-center justify-center min-w-[32px] h-[26px] px-2 rounded-ctrl bg-cream border-0 text-[12px] font-normal text-ink">1ct</span>
+              </span>
+              <span class="font-normal text-meta shrink-0 no-underline">$38</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="absolute right-[10px] top-1/2 -translate-y-1/2 pointer-events-none text-gray-500"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <!-- Drop-down menu. Remove `hidden` to preview it open. -->
+            <ul role="listbox" hidden class="list-none m-0 absolute top-0 left-0 right-0 z-50 p-0 overflow-x-hidden bg-white border-[1.5px] border-stroke-alt rounded-ctrl shadow-menu max-h-[184px] overflow-y-auto [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar-track]:bg-track [&::-webkit-scrollbar-track]:border-l [&::-webkit-scrollbar-track]:border-l-sub-stroke [&::-webkit-scrollbar-track]:rounded-[0_8px_8px_0] [&::-webkit-scrollbar-thumb]:my-[10px] [&::-webkit-scrollbar-thumb]:bg-ink [&::-webkit-scrollbar-thumb]:rounded-[3px]">
+
+              <!-- Group heading. First group uses `mt-0 border-t-0`; later groups use `mt-[6px] border-t border-t-stroke-alt`. -->
+              <li class="mt-0 mx-0 mb-[3px] px-3 py-[6px] bg-cream text-ink rounded-none border-t-0 border-b border-b-stroke-alt font-body text-[11px] font-bold tracking-[.6px] leading-[1.2]">Sleep (Indica)</li>
+
+              <!-- SELECTED row: bg-accent. Unselected rows: bg-transparent hover:bg-menu-hover. -->
+              <li role="option" class="flex items-center gap-[7px] mt-0 mx-1 mb-1 px-2 py-[9px] box-border rounded-[6px] cursor-pointer text-[13px] opacity-100 bg-accent">
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-[50%] box-border shrink-0 bg-cream border-0 text-ink"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="block"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg></span>
+                <span class="flex-auto min-w-0 font-body font-semibold leading-[1.25] whitespace-nowrap overflow-hidden text-ellipsis no-underline">Wedding Cake</span>
+                <span class="shrink-0 box-border inline-flex items-center justify-center min-w-[32px] h-[26px] px-2 rounded-ctrl bg-cream border-0 text-[12px] font-normal text-ink">1ct</span>
+                <span class="font-normal text-meta shrink-0">$38</span>
+              </li>
+
+              <li role="option" class="flex items-center gap-[7px] mt-0 mx-1 mb-1 px-2 py-[9px] box-border rounded-[6px] cursor-pointer text-[13px] opacity-100 bg-transparent hover:bg-menu-hover">
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-[50%] box-border shrink-0 bg-cream border-0 text-ink"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="block"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg></span>
+                <span class="flex-auto min-w-0 font-body font-semibold leading-[1.25] whitespace-nowrap overflow-hidden text-ellipsis no-underline">Wedding Cake</span>
+                <span class="shrink-0 box-border inline-flex items-center justify-center min-w-[32px] h-[26px] px-2 rounded-ctrl bg-cream border-0 text-[12px] font-normal text-ink">2ct</span>
+                <span class="font-normal text-meta shrink-0">$70</span>
+              </li>
+
+              <!-- Second group: note the mt-[6px] + top hairline. -->
+              <li class="mt-[6px] mx-0 mb-[3px] px-3 py-[6px] bg-cream text-ink rounded-none border-t border-t-stroke-alt border-b border-b-stroke-alt font-body text-[11px] font-bold tracking-[.6px] leading-[1.2]">Happy (Hybrid)</li>
+
+              <li role="option" class="flex items-center gap-[7px] mt-0 mx-1 mb-1 px-2 py-[9px] box-border rounded-[6px] cursor-pointer text-[13px] opacity-100 bg-transparent hover:bg-menu-hover">
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-[50%] box-border shrink-0 bg-cream border-0 text-ink"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="block"><path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path><path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path></svg></span>
+                <span class="flex-auto min-w-0 font-body font-semibold leading-[1.25] whitespace-nowrap overflow-hidden text-ellipsis no-underline">Pineapple Express</span>
+                <span class="shrink-0 box-border inline-flex items-center justify-center min-w-[32px] h-[26px] px-2 rounded-ctrl bg-cream border-0 text-[12px] font-normal text-ink">1ct</span>
+                <span class="font-normal text-meta shrink-0">$38</span>
+              </li>
+
+              <!-- SOLD-OUT row: opacity-50 on the <li>, line-through on the name. -->
+              <li role="option" class="flex items-center gap-[7px] mt-0 mx-1 mb-1 px-2 py-[9px] box-border rounded-[6px] cursor-pointer text-[13px] opacity-50 bg-transparent hover:bg-menu-hover">
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-[50%] box-border shrink-0 bg-cream border-0 text-ink"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="block"><path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path><path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path></svg></span>
+                <span class="flex-auto min-w-0 font-body font-semibold leading-[1.25] whitespace-nowrap overflow-hidden text-ellipsis line-through">Pineapple Express</span>
+                <span class="shrink-0 box-border inline-flex items-center justify-center min-w-[32px] h-[26px] px-2 rounded-ctrl bg-cream border-0 text-[12px] font-normal text-ink">2ct</span>
+                <span class="font-normal text-meta shrink-0">$70</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Purchase type. As written, Subscribe is the selected row.
+               To select One-time instead, swap four classes:
+                 one-time row  border-gray-200  → border-stroke-alt
+                 its dot       bg-transparent   → bg-ink
+                 subscribe row bg-cream border-sub-stroke → bg-white border-gray-200
+                 its dot       bg-ink           → bg-transparent -->
+          <div role="radiogroup" aria-label="Purchase type" class="flex flex-col gap-[6px]">
+            <div role="radio" aria-checked="false" class="box-border flex items-center gap-2 cursor-pointer bg-white border-[1.5px] border-gray-200 rounded-ctrl px-[11px] py-[9px]">
+              <span aria-hidden="true" class="flex-[0_0_15px] box-border inline-flex items-center justify-center w-[15px] h-[15px] rounded-[50%] border-[1.5px] border-stroke-alt bg-white">
+                <span class="block w-[7px] h-[7px] rounded-[50%] bg-transparent"></span>
+              </span>
+              <span class="flex-auto min-w-0 font-body text-[12px] font-semibold text-ink leading-[1.25]">One-time purchase</span>
+              <!-- EDIT: one-time price -->
+              <span class="shrink-0 text-[12px] font-normal text-meta">$38</span>
+            </div>
+            <div role="radio" aria-checked="true" class="box-border flex flex-col gap-[3px] cursor-pointer bg-cream border-[1.5px] border-sub-stroke rounded-ctrl px-[11px] py-[9px]">
+              <span class="flex items-center gap-2">
+                <span aria-hidden="true" class="flex-[0_0_15px] box-border inline-flex items-center justify-center w-[15px] h-[15px] rounded-[50%] border-[1.5px] border-stroke-alt bg-white">
+                  <span class="block w-[7px] h-[7px] rounded-[50%] bg-ink"></span>
+                </span>
+                <span class="flex-auto min-w-0 font-body text-[12px] font-semibold text-ink leading-[1.25]">Subscribe &amp; Save</span>
+                <!-- EDIT: subscribe price (30% off the one-time price) -->
+                <span class="shrink-0 text-[12px] font-normal text-meta">$26.60</span>
+              </span>
+              <span class="pl-[23px] text-[11px] font-normal text-meta leading-[1.3] [text-wrap:pretty]">Save 30% on your first order, then 10% on every order after.</span>
+            </div>
+          </div>
+
+          <!-- Buy row -->
+          <div class="flex flex-wrap items-stretch gap-[6px] mt-0">
+            <!-- Add to cart, buyable state (cart glyph only).
+                 SOLD OUT state: swap bg-accent → bg-gray-200, border-stroke-alt → border-gray-300,
+                 text-ink → text-gray-400, cursor-pointer → cursor-not-allowed, and replace the
+                 <svg> with <span>Sold Out</span>.
+                 ADDED state: replace the <svg> with <span class="text-[15px]">&#10003;</span>. -->
+            <button type="button" class="order-2 flex-auto inline-flex items-center justify-center gap-[6px] border-[1.5px] border-stroke-alt bg-accent text-ink font-[inherit] text-[13px] font-bold rounded-ctrl p-2 min-w-[44px] cursor-pointer" aria-label="Add to cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+            </button>
+            <!-- EDIT: details link target -->
+            <a href="#" title="See details" class="order-1 flex-[0_0_34%] box-border inline-flex items-center justify-center gap-[5px] border-[1.5px] border-stroke-alt bg-ink text-white text-[11px] font-semibold tracking-[.2px] rounded-ctrl p-2 min-w-[44px] no-underline">
+              <span class="font-body text-[13px] font-bold tracking-[.2px]">Details</span>
+            </a>
+          </div>
+
+          <!-- Footer row: shipping note + rating. EDIT or delete either span. -->
+          <div class="flex items-center justify-end gap-[6px] flex-wrap">
+            <span class="box-border font-body text-[12px] font-normal text-ink whitespace-nowrap bg-cream border-0 rounded-ctrl px-[11px] py-[5px] leading-[1.2]">Fast Shipping</span>
+            <span class="inline-flex items-center gap-[3px] text-[13px] font-semibold text-ink whitespace-nowrap">
+              <span class="inline-flex items-center gap-px shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+              </span>
+              <span>4.9</span>
+              <span class="text-meta font-normal">(63)</span>
+            </span>
+          </div>
+
+        </div>
+      </div>
+      <!-- ========================== END CARD ========================== -->
+
+    </div>
+  </div>
+
+</main>
+
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 h-20 bg-surface border-t border-surface-container-highest flex justify-around items-center pb-[env(safe-area-inset-bottom)] md:hidden">
+  <button class="flex-1 h-full py-px px-[6px] bg-transparent border-0 cursor-pointer font-[inherit] flex flex-col items-center justify-center gap-1 text-[9.5px] font-bold leading-[1.3] text-ink hover:bg-surface-container-low active:scale-95" type="button" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M3 9 4.5 4h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"></path></svg><span>Shop</span></button>
+  <button class="flex-1 h-full py-px px-[6px] bg-transparent border-0 cursor-pointer font-[inherit] flex flex-col items-center justify-center gap-1 text-[9.5px] font-bold leading-[1.3] text-tertiary hover:bg-surface-container-low active:scale-95" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><circle cx="12" cy="12" r="9"></circle><polygon points="16 8 10.5 10.5 8 16 13.5 13.5"></polygon></svg><span>Discover</span></button>
+  <button class="flex-1 h-full py-px px-[6px] bg-transparent border-0 cursor-pointer font-[inherit] flex flex-col items-center justify-center gap-1 text-[9.5px] font-bold leading-[1.3] text-tertiary hover:bg-surface-container-low active:scale-95" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Account</span></button>
+  <button class="flex-1 h-full py-px px-[6px] bg-transparent border-0 cursor-pointer font-[inherit] flex flex-col items-center justify-center gap-1 text-[9.5px] font-bold leading-[1.3] text-tertiary hover:bg-surface-container-low active:scale-95" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="block shrink-0"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><span>Cart</span></button>
+</nav>
+
+<!-- Desktop Footer -->
+<footer class="hidden md:block bg-surface border-t border-surface-container-highest py-8 mt-10">
+  <div class="max-w-[1280px] mx-auto px-10 flex justify-between items-center text-[14px] text-gray-text">
+    <p class="m-0">© 2024 Modern Herb Co. All rights reserved.</p>
+    <div class="flex gap-4">
+      <a class="text-ink hover:text-ink" href="#">Terms</a>
+      <a class="text-ink hover:text-ink" href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<!--
+================================ ICON REFERENCE ================================
+Strain glyphs — paste the inner <path> set into the 14x14 "0 0 16 16" <svg>
+used by the selector button and the option rows.
+
+INDICA (Sleep) — moon:
+<path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path>
+
+SATIVA (Energy) — bolt:
+<path d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z" fill="currentColor" stroke="none"></path>
+
+HYBRID (Happy) — arcs:
+<path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path>
+<path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path>
+
+================================ THEME REFERENCE ===============================
+accent  #e3e829   bg-accent          stroke-alt #807E7F   border-stroke-alt
+ink     #393839   text-ink/bg-ink    cream      #F7F6F1   bg-cream
+meta    #4A4A49   text-meta          surface    #FAF9F5   bg-surface
+sub-stroke #DEDDD6 border-sub-stroke menu-hover #F2F4C4   hover:bg-menu-hover
+radii:  rounded-card 14px · rounded-ctrl 9px · rounded-img 13px 0 0 13px
+Any class not already in this file's <style> block will NOT work — the CSS is
+pre-compiled. Rebuild it per tailwind.config.js if you need new utilities.
+================================================================================
+-->
+
+</body>
+</html>

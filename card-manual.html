@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MHC Card Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiper@14/swiper-bundle.min.css" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @theme {
+            --color-cake-white: #f7f6f1;
+            --color-fuscous-gray: #393839;
+            --color-dusty-gray: #807e7f;
+            --color-thunder: #4a4a49;
+            --color-bright-gray: #e5e7eb;
+            --color-light-sand: #deddd6;
+            --color-yellow-green: #e3e829;
+            --color-yellow-green-200: #f2f4c4;
+            --color-gray-500: #6b7280;
+            --font-sans: "Poppins";
+            --font-mono: "Space Grotesk";
+        }
+    </style>
+</head>
+<body class="font-body font-normal flex items-center justify-center h-screen">
+    <!-- Card-->
+    <div class="border border-1 border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full">
+        <div class="flex basis-[36%] shrink-0 relative">
+            <div class="flex flex-col absolute gap-1 z-10">
+                <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-medium font-mono">
+                    Max Potency
+                </p>
+                <div class="flex">
+                    <span class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-bold font-mono border border-1 border-dusty-gray">
+                        B1G1
+                    </span>
+                </div>
+            </div>
+            <div class="absolute -top-3 -bottom-3 -left-3 right-0 rounded-l-[11px] overflow-hidden flex items-center justify-center">
+                <img class="w-full h-full object-contain" src="https://placehold.net/400x400.png" alt="Product Image">
+            </div>
+        </div>
+        <div class="flex flex-1 flex-col gap-2 min-w-0">
+            <div class="flex flex-col gap-1 w-full">
+                <p class="text-xs font-mono text-fuscous-gray leading-[1.2]">Pod Kit</p>
+                <h2 class="text-xl uppercase font-mono font-bold text-fuscous-gray -mt-1 leading-[1.12] truncate">THCA Liquid Diamonds Additional Words</h2>
+                <span class="text-xs font-mono text-thunder leading-[1.2] -mt-1">Modern Herb Co</span>
+            </div>
+            <div class="flex flex-col gap-2 mt-1">
+                <div class="flex flex-row gap-1">
+                    <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-normal font-mono">Sleep</div>
+                    <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Happy</div>
+                    <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono">Energy</div>
+                </div>
+                <div class="flex flex-row gap-1">
+                    <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono leading-[1.4]">1ct</div>
+                    <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono leading-[1.4]">5ct</div>
+                    <div class="text-xs px-2 py-1 rounded-lg bg-cake-white text-thunder font-mono leading-[1.4]">20ct</div>
+                </div>
+            </div>
+            <div class="relative cursor-pointer" data-variant-selector>
+                <!-- Variant Selector -->
+                <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="variant-listbox" class="cursor-pointer flex flex-row border-2 border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
+                    <span class="flex gap-2 flex-row w-full min-w-0">
+                        <span class="flex gap-2 flex-row min-w-0">
+                            <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                <span class="flex justify-center w-4 h-4" data-selected-icon>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg>
+                                </span>
+                            </span>
+                            <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-selected-title>Huckelbery</span>
+                        </span>
+                    </span>
+                    <span class="flex gap-2 shrink-0">
+                        <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-selected-qty>1ct</span>
+                        <span class="font-normal font-body text-sm text-thunder self-center" data-selected-price>$5</span>
+                        <span class="flex justify-end w-4 h-4 text-gray-500 self-center transition-transform duration-200" data-variant-chevron>
+                            <svg data-dc-tpl="101" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline data-dc-tpl="102" points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </span>
+                </button>
+                <ul role="listbox" id="variant-listbox" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border-2 top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
+                    <li role="presentation" class="w-full justify-between bg-cake-white border-b border-dusty-gray p-0 rounded-t-lg w-full">
+                        <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                            Sleep (Indica)
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 bg-yellow-green group-hover:bg-yellow-green w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Huckelbery
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    1ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $5
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Huckelbery
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    5ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $20
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M11.6 4.1 A5 5 0 1 0 11.6 11.9 A3.6 3.6 0 1 1 11.6 4.1 Z" fill="currentColor" stroke="none"></path></svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Huckelbery
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    20ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $50
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li role="presentation" class="w-full justify-between bg-cake-white border-y border-dusty-gray p-0 w-full">
+                        <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                            Happy (Hybrid)
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path><path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path></svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Passionfruit
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    1ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $5
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path><path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path></svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Passionfruit
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    5ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $20
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M0.8 13.2 A7.2 7.2 0 0 1 15.2 13.2 L12.7 13.2 A4.7 4.7 0 0 0 3.3 13.2 Z" fill="currentColor" stroke="none"></path><path d="M4.6 13.2 A3.4 3.4 0 0 1 11.4 13.2 L9 13.2 A1 1 0 0 0 7 13.2 Z" fill="currentColor" stroke="none"></path></svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Passionfruit
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    20ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $50
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li role="presentation" class="w-full justify-between bg-cake-white border-y border-dusty-gray p-0 w-full">
+                        <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
+                            Energy (Sativa)
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="14"
+                                                height="14"
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="1.6"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                style="display: block;"
+                                        >
+                                            <path
+                                                    d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z"
+                                                    fill="currentColor"
+                                                    stroke="none"
+                                            />
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Strawberry Rhubarb
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    1ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $5
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="14"
+                                                height="14"
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="1.6"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                style="display: block;"
+                                        >
+                                            <path
+                                                    d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z"
+                                                    fill="currentColor"
+                                                    stroke="none"
+                                            />
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Strawberry Rhubarb
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    5ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $20
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li role="option" aria-selected="false" class="group cursor-pointer p-1">
+                        <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 w-full justify-between">
+                            <span class="flex flex-row gap-2 flex-1 min-w-0">
+                                <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
+                                    <span class="flex justify-center w-4 h-4" data-option-icon>
+                                        <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="14"
+                                                height="14"
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="1.6"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                style="display: block;"
+                                        >
+                                            <path
+                                                    d="M9.6 1.4 3.3 9.2h3.5l-.7 5.4 6.6-8.1H9.1z"
+                                                    fill="currentColor"
+                                                    stroke="none"
+                                            />
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="text-sm font-semibold font-mono self-center min-w-0 truncate" data-option-title>
+                                    Strawberry Rhubarb
+                                </span>
+                            </span>
+                            <span class="flex gap-2 shrink-0">
+                                <span class="text-xs rounded-lg bg-cake-white text-fuscous-gray py-1 px-2" data-option-qty>
+                                    20ct
+                                </span>
+                                <span class="font-normal font-body text-sm text-thunder self-center" data-option-price>
+                                    $50
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-col gap-2">
+                <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
+                    <span class="flex flex-row gap-2">
+                        <input type="radio" name="plan" class="peer sr-only">
+                        <span
+                            class="relative flex h-4 w-4 items-center justify-center
+                                   rounded-full border-2 border-dusty-gray
+                                   peer-checked:border-dusty-gray
+                                   after:h-2 after:w-2
+                                   after:scale-0 after:rounded-full
+                                   after:bg-thunder
+                                   after:transition-transform
+                                   peer-checked:after:scale-100"
+                        ></span>
+                        <span class="font-mono text-xs font-semibold leading-[1.25] text-fuscous-gray">One Time Purchase</span>
+                    </span>
+                    <span class="text-xs font-normal text-thunder" data-price-onetime>$5</span>
+                </label>
+                <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-light-sand has-[:checked]:bg-cake-white" role="radio">
+                    <input type="radio" name="plan" class="peer sr-only">
+                    <span class="relative shrink-0 flex h-4 w-4 items-center justify-center
+                                rounded-full border-2 border-dusty-gray
+                                peer-checked:border-dusty-gray
+                                after:h-2 after:w-2
+                                after:scale-0 after:rounded-full
+                                after:bg-thunder
+                                after:transition-transform
+                                peer-checked:after:scale-100"
+                    ></span>
+                    <span class="flex flex-col">
+                        <span class="flex justify-between">
+                            <span class="font-mono text-xs font-semibold leading-[1.25] text-fuscous-gray">Subscribe & Save</span>
+                            <span class="text-[11px] font-normal text-thunder" data-price-subscribe>$3.50</span>
+                        </span>
+                        <span class="font-body text-xs font-normal leading-[1.3] text-fuscous-gray">Save 30% on your first order, then 10% on every order after.</span>
+                    </span>
+                </label>
+            </div>
+            <div class="flex flex-row gap-2">
+                <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border-2 border-dusty-gray rounded-lg">Details</button>
+                <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border-2 border-dusty-gray flex justify-center align-center">
+                    <span class="h-6 w-6 flex justify-center align-center">
+                        <svg data-dc-tpl="145" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block;"><circle data-dc-tpl="146" cx="9" cy="23" r="1.4"></circle><circle data-dc-tpl="147" cx="19" cy="23" r="1.4"></circle><path data-dc-tpl="148" d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line data-dc-tpl="149" x1="17" y1="2" x2="17" y2="9"></line><line data-dc-tpl="150" x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
+                    </span>
+                </button>
+            </div>
+            <div class="flex flex-row justify-end gap-2">
+                <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-normal font-mono">
+                    Fast Shipping
+                </p>
+
+                <div class="flex flex-row gap-1 justify-end items-center">
+                    <div class="w-4 h-4 flex items-center justify-center">
+                        <svg data-dc-tpl="167" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e3e829" stroke="#807E7F" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true" style="display: block; flex-shrink: 0;"><path data-dc-tpl="168" d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.42L18 20.5 12 17l-6 3.5 1.25-6.81L2.5 9.27l6.6-1.01z"></path></svg>
+                    </div>
+                    <div class="text-xs font-body font-semibold text-fuscous-gray">4.5</div>
+                    <div class="text-xs font-body text-thunder">(2)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Variant selector: open the listbox, pick an option, and sync the
+        // trigger + purchase-plan prices to the selection.
+        document.querySelectorAll('[data-variant-selector]').forEach(function (root) {
+            var SUBSCRIPTION_DISCOUNT = 0.3;
+            var SELECTED_CLASSES = ['bg-yellow-green', 'group-hover:bg-yellow-green'];
+
+            var trigger = root.querySelector('[data-variant-trigger]');
+            var listbox = root.querySelector('[role="listbox"]');
+            var chevron = root.querySelector('[data-variant-chevron]');
+            var options = Array.prototype.slice.call(listbox.querySelectorAll('li[role="option"]'));
+
+            var slots = {
+                icon: root.querySelector('[data-selected-icon]'),
+                title: root.querySelector('[data-selected-title]'),
+                qty: root.querySelector('[data-selected-qty]'),
+                price: root.querySelector('[data-selected-price]')
+            };
+            var oneTimePrice = document.querySelector('[data-price-onetime]');
+            var subscribePrice = document.querySelector('[data-price-subscribe]');
+
+            function parsePrice(text) {
+                var value = parseFloat(String(text).replace(/[^0-9.]/g, ''));
+                return isNaN(value) ? 0 : value;
+            }
+
+            function formatPrice(value) {
+                var rounded = Math.round(value * 100) / 100;
+                return '$' + (rounded % 1 === 0 ? rounded : rounded.toFixed(2));
+            }
+
+            function setOpen(open) {
+                listbox.classList.toggle('hidden', !open);
+                chevron.classList.toggle('rotate-180', open);
+                trigger.setAttribute('aria-expanded', String(open));
+            }
+
+            function isOpen() {
+                return !listbox.classList.contains('hidden');
+            }
+
+            function select(option) {
+                options.forEach(function (item) {
+                    var isSelected = item === option;
+                    var row = item.querySelector('[data-option-row]');
+                    item.setAttribute('aria-selected', String(isSelected));
+                    SELECTED_CLASSES.forEach(function (name) {
+                        row.classList.toggle(name, isSelected);
+                    });
+                });
+
+                var title = option.querySelector('[data-option-title]').textContent.trim();
+                var qty = option.querySelector('[data-option-qty]').textContent.trim();
+                var priceText = option.querySelector('[data-option-price]').textContent.trim();
+                var price = parsePrice(priceText);
+
+                slots.icon.innerHTML = option.querySelector('[data-option-icon]').innerHTML;
+                slots.title.textContent = title;
+                slots.qty.textContent = qty;
+                slots.price.textContent = priceText;
+
+                if (oneTimePrice) {
+                    oneTimePrice.textContent = formatPrice(price);
+                }
+                if (subscribePrice) {
+                    subscribePrice.textContent = formatPrice(price * (1 - SUBSCRIPTION_DISCOUNT));
+                }
+            }
+
+            // Scroll the listbox itself rather than calling scrollIntoView, which
+            // would also scroll every scrollable ancestor (the page, the carousel).
+            function revealSelected() {
+                var selected = listbox.querySelector('li[aria-selected="true"]');
+                if (!selected) {
+                    return;
+                }
+                var top = selected.offsetTop;
+                var bottom = top + selected.offsetHeight;
+                if (top < listbox.scrollTop) {
+                    listbox.scrollTop = top;
+                } else if (bottom > listbox.scrollTop + listbox.clientHeight) {
+                    listbox.scrollTop = bottom - listbox.clientHeight;
+                }
+            }
+
+            trigger.addEventListener('click', function (event) {
+                event.stopPropagation();
+                setOpen(!isOpen());
+                if (isOpen()) {
+                    revealSelected();
+                }
+            });
+
+            options.forEach(function (option) {
+                option.addEventListener('click', function () {
+                    select(option);
+                    setOpen(false);
+                    trigger.focus();
+                });
+            });
+
+            document.addEventListener('click', function (event) {
+                if (isOpen() && !root.contains(event.target)) {
+                    setOpen(false);
+                }
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && isOpen()) {
+                    setOpen(false);
+                    trigger.focus();
+                }
+            });
+
+            select(options[0]);
+            setOpen(false);
+        });
+    </script>
+</body>
+</html>
