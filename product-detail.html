@@ -55,14 +55,14 @@
 <!-- ================================ Header ================================ -->
 <header class="sticky top-0 z-50">
     <div class="bg-fuscous-gray text-cake-white">
-        <p class="mx-auto max-w-[140rem] px-4 sm:px-6 lg:px-10 py-2 text-center font-mono text-[11px] tracking-[0.6px] uppercase">
+        <p class="mx-auto max-w-[80rem] px-4 sm:px-6 lg:px-10 py-2 text-center font-mono text-[11px] tracking-[0.6px] uppercase">
             Free shipping on orders over $75 &nbsp;&middot;&nbsp; Must be 21+ to purchase
         </p>
     </div>
-    <div class="bg-white border-b border-bright-gray">
-        <div class="mx-auto flex max-w-[1440px] flex-row items-center justify-between gap-4 px-4 py-3">
+    <div class="bg-white border-b border-dusty-gray">
+        <div class="mx-auto flex max-w-[80rem] flex-row items-center justify-between gap-4 px-4 py-3">
             <a href="#" class="flex flex-row items-center gap-2 shrink-0">
-                <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-yellow-green border-2 border-dusty-gray font-mono text-sm font-bold">M</span>
+                <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-yellow-green border border-dusty-gray font-mono text-sm font-bold">M</span>
                 <span class="hidden sm:block font-mono text-sm font-bold uppercase leading-[1.1] tracking-[0.6px]">Modern<br>Herb Co</span>
             </a>
             <nav class="hidden lg:flex flex-row items-center gap-1">
@@ -73,14 +73,10 @@
                 <a href="#" class="rounded-lg px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">Subscribe</a>
             </nav>
             <div class="flex flex-row items-center gap-2">
-                <label class="hidden md:flex flex-row items-center gap-2 rounded-xl border-2 border-bright-gray px-3 py-2 focus-within:border-dusty-gray">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" class="text-dusty-gray shrink-0"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
-                    <input type="search" placeholder="Search strains" class="w-36 bg-transparent font-body text-xs text-fuscous-gray outline-none placeholder:text-dusty-gray">
-                </label>
-                <button class="flex h-9 w-9 items-center justify-center rounded-lg border-2 border-bright-gray hover:border-dusty-gray cursor-pointer" aria-label="Account">
+                <button class="flex h-9 w-9 items-center justify-center rounded-lg border border-dusty-gray hover:border-dusty-gray cursor-pointer" aria-label="Account">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
                 </button>
-                <button class="relative flex h-9 items-center gap-2 rounded-lg border-2 border-dusty-gray bg-yellow-green px-3 cursor-pointer" aria-label="Cart">
+                <button class="relative flex h-9 items-center gap-2 rounded-lg border border-dusty-gray bg-yellow-green px-3 cursor-pointer" aria-label="Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4L21 6H6"></path></svg>
                     <span class="font-mono text-xs font-bold">3</span>
                 </button>
@@ -89,7 +85,13 @@
     </div>
 </header>
 
-<main class="mx-auto max-w-[140rem] px-4 sm:px-6 lg:px-10">
+<main class="mx-auto max-w-[80rem] px-4 sm:px-6 lg:px-10">
+
+    <!-- ============================ Search ============================ -->
+    <label class="flex w-full flex-row items-center gap-2 rounded-xl border border-dusty-gray px-4 py-3 mt-6 focus-within:border-dusty-gray">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" class="text-dusty-gray shrink-0"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+        <input type="search" placeholder="Search strains" class="w-full bg-transparent font-body text-sm text-fuscous-gray outline-none placeholder:text-dusty-gray">
+    </label>
 
     <!-- ============================ Breadcrumb ============================ -->
     <nav aria-label="Breadcrumb" class="flex flex-row flex-wrap items-center gap-2 pt-6 pb-4">
@@ -115,33 +117,33 @@
 
             <div class="relative">
                 <div data-thumb-rail class="flex flex-row gap-2 overflow-x-auto scroll-smooth pr-10">
-                    <button type="button" data-thumb aria-current="true" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/008-MHC_Live_D9_Gummy_Tube_Label-5ct_Huckleberry-Render-Front_Web.png?width=900" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                    <button type="button" data-thumb aria-current="true" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/008-MHC_Live_D9_Gummy_Tube_Label-5ct_Huckleberry-Render-Front_Web.png?width=900" class="aria-[current=true]:border-dusty-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border border-dusty-gray bg-cake-white hover:border-dusty-gray">
                         <img class="h-full w-full object-contain p-1.5" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/008-MHC_Live_D9_Gummy_Tube_Label-5ct_Huckleberry-Render-Front_Web.png?width=200" alt="Huckleberry tube, front" loading="lazy">
                     </button>
-                    <button type="button" data-thumb aria-current="false" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/007-MHC_Live_D9_Gummy_Tube_Label-5ct_Sour-Apple-Render-Front_Web.png?width=900" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                    <button type="button" data-thumb aria-current="false" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/007-MHC_Live_D9_Gummy_Tube_Label-5ct_Sour-Apple-Render-Front_Web.png?width=900" class="aria-[current=true]:border-dusty-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border border-dusty-gray bg-cake-white hover:border-dusty-gray">
                         <img class="h-full w-full object-contain p-1.5" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/007-MHC_Live_D9_Gummy_Tube_Label-5ct_Sour-Apple-Render-Front_Web.png?width=200" alt="Sour Apple tube, front" loading="lazy">
                     </button>
-                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-pile-ct-20.png" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-pile-ct-20.png" class="aria-[current=true]:border-dusty-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border border-dusty-gray bg-cake-white hover:border-dusty-gray">
                         <img class="h-full w-full object-contain p-1.5" src="pdp-mockup/assets/gummies-pile-ct-20.png" alt="Twenty gummies" loading="lazy">
                     </button>
-                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-ct-5.png" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-ct-5.png" class="aria-[current=true]:border-dusty-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border border-dusty-gray bg-cake-white hover:border-dusty-gray">
                         <img class="h-full w-full object-contain p-1.5" src="pdp-mockup/assets/gummies-ct-5.png" alt="Five gummies, top view" loading="lazy">
                     </button>
-                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-real-ct-1.png" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                    <button type="button" data-thumb aria-current="false" data-src="pdp-mockup/assets/gummies-real-ct-1.png" class="aria-[current=true]:border-dusty-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border border-dusty-gray bg-cake-white hover:border-dusty-gray">
                         <img class="h-full w-full object-contain p-1.5" src="pdp-mockup/assets/gummies-real-ct-1.png" alt="Single gummy, macro" loading="lazy">
                     </button>
-                    <button type="button" data-thumb aria-current="false" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/MHCO-Taffy-15CT-Bag-Render-BirthdayCake-Web.png?width=900" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                    <button type="button" data-thumb aria-current="false" data-src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/MHCO-Taffy-15CT-Bag-Render-BirthdayCake-Web.png?width=900" class="aria-[current=true]:border-dusty-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border border-dusty-gray bg-cake-white hover:border-dusty-gray">
                         <img class="h-full w-full object-contain p-1.5" src="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/MHCO-Taffy-15CT-Bag-Render-BirthdayCake-Web.png?width=200" alt="Bag format" loading="lazy">
                     </button>
-                    <button type="button" data-thumb aria-current="false" data-fit="cover" data-src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=1400&amp;height=874&amp;crop=right" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                    <button type="button" data-thumb aria-current="false" data-fit="cover" data-src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=1400&amp;height=874&amp;crop=right" class="aria-[current=true]:border-dusty-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border border-dusty-gray bg-cake-white hover:border-dusty-gray">
                         <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=200&amp;height=125&amp;crop=right" alt="Sharing a gummy at home" loading="lazy">
                     </button>
-                    <button type="button" data-thumb aria-current="false" data-fit="cover" data-src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=900&amp;height=900&amp;crop=right" class="aria-[current=true]:border-fuscous-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border-2 border-bright-gray bg-cake-white hover:border-dusty-gray">
+                    <button type="button" data-thumb aria-current="false" data-fit="cover" data-src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=900&amp;height=900&amp;crop=right" class="aria-[current=true]:border-dusty-gray shrink-0 basis-[76px] w-[76px] aspect-square cursor-pointer overflow-hidden rounded-lg border border-dusty-gray bg-cake-white hover:border-dusty-gray">
                         <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=200&amp;height=200&amp;crop=right" alt="Taking a gummy, close-up" loading="lazy">
                     </button>
                 </div>
                 <span class="pointer-events-none absolute inset-y-0 right-0 w-14 rounded-r-lg bg-linear-to-r from-transparent to-white"></span>
-                <button type="button" data-thumb-next aria-label="More photos" class="absolute right-0 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg border-2 border-dusty-gray bg-yellow-green cursor-pointer hover:brightness-95">
+                <button type="button" data-thumb-next aria-label="More photos" class="absolute right-0 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg border border-dusty-gray bg-yellow-green cursor-pointer hover:brightness-95">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
                 </button>
             </div>
@@ -154,23 +156,23 @@
                  the desktop banner (copy sits left of native x~1500) and crop=top on the
                  mobile banner (copy sits below the top ~46%). Changing those params will
                  pull the type back into shot. -->
-            <div class="mt-3 grid grid-cols-2 gap-4">
-                <figure class="hidden sm:flex flex-col gap-2">
+            <div class="mt-3 grid grid-cols-4 lg:grid-cols-2 gap-4">
+                <figure class="flex flex-col gap-2">
                     <div class="aspect-square overflow-hidden rounded-xl border border-dusty-gray bg-cake-white">
                         <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026MOBILE-no-Promo.png?width=1100&amp;height=622&amp;crop=top" alt="Two people unwinding at home, Live Resin D9 tube in hand" loading="lazy">
                     </div>
                 </figure>
-                <figure class="hidden sm:flex flex-col gap-2">
+                <figure class="flex flex-col gap-2">
                     <div class="flex aspect-square items-center justify-center overflow-hidden rounded-xl border border-dusty-gray bg-cake-white p-4">
                         <img class="h-full w-full object-contain" src="pdp-mockup/assets/gummies-real-ct-1.png" alt="Single Live Resin D9 gummy, macro" loading="lazy">
                     </div>
                 </figure>
-                <figure class="hidden sm:flex flex-col gap-2">
+                <figure class="flex flex-col gap-2">
                     <div class="aspect-square overflow-hidden rounded-xl border border-dusty-gray bg-cake-white">
                         <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=900&amp;height=900&amp;crop=right" alt="Close-up of a gummy being taken by hand" loading="lazy">
                     </div>
                 </figure>
-                <figure class="hidden sm:flex flex-col gap-2">
+                <figure class="flex flex-col gap-2">
                     <div class="aspect-square overflow-hidden rounded-xl border border-dusty-gray bg-cake-white">
                         <img class="h-full w-full object-cover" src="https://thehempcollect.com/cdn/shop/files/001_MHC-Mobile-and-Desktop-Banner-Blue-Razz-D9-Gummies-June2026Desktop-_no_promo.png?width=1400&amp;height=874&amp;crop=right" alt="Open Live Resin D9 tube held while sharing a gummy" loading="lazy">
                     </div>
@@ -211,9 +213,9 @@
             </div>
 
             <!-- Flavour selector -->
-            <div class="mt-6 border-t border-bright-gray pt-6">
+            <div class="mt-6  pt-6">
                 <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border border-dusty-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
                         <input type="radio" name="flavour" class="sr-only" checked data-flavour data-name="Huckleberry" data-effect="Indica" data-feel="relax, unwind" data-image="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/008-MHC_Live_D9_Gummy_Tube_Label-5ct_Huckleberry-Render-Front_Web.png?width=900">
                         <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white">
                             <img class="h-9 w-9" src="pdp-mockup/uploads/icon-flavor-huckleberry.svg" alt="" loading="lazy">
@@ -229,7 +231,7 @@
                         </span>
                     </label>
 
-                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border border-dusty-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
                         <input type="radio" name="flavour" class="sr-only" data-flavour data-name="Passion Fruit" data-effect="Indica" data-feel="calm, easy" data-image="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/MHCO-Taffy-15CT-Bag-Render-BirthdayCake-Web.png?width=900">
                         <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white">
                             <img class="h-9 w-9" src="pdp-mockup/uploads/icon-flavor-passion-fruit.svg" alt="" loading="lazy">
@@ -245,7 +247,7 @@
                         </span>
                     </label>
 
-                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border border-dusty-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
                         <input type="radio" name="flavour" class="sr-only" data-flavour data-name="Sour Apple" data-effect="Hybrid" data-feel="level, clear" data-image="https://cdn.shopify.com/s/files/1/0653/8323/5783/files/007-MHC_Live_D9_Gummy_Tube_Label-5ct_Sour-Apple-Render-Front_Web.png?width=900">
                         <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white">
                             <img class="h-9 w-9" src="pdp-mockup/uploads/icon-flavor-sour-apple.svg" alt="" loading="lazy">
@@ -264,7 +266,7 @@
                         </span>
                     </label>
 
-                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                    <label class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border border-dusty-gray p-2 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
                         <input type="radio" name="flavour" class="sr-only" data-flavour data-name="Strawberry Rhubarb" data-effect="Sativa" data-feel="lift, focus" data-image="pdp-mockup/assets/gummies-real-ct-1.png">
                         <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white">
                             <img class="h-9 w-9" src="pdp-mockup/uploads/icon-flavor-strawberry-rhubarb.svg" alt="" loading="lazy">
@@ -285,7 +287,7 @@
             <!-- Count selector -->
             <div class="mt-3">
                 <div class="grid grid-cols-3 gap-2">
-                    <label class="flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-bright-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                    <label class="flex cursor-pointer flex-col items-center gap-1 rounded-xl border border-dusty-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
                         <input type="radio" name="count" class="sr-only" data-count data-label="1ct" data-price="1.50" data-compare="3.00">
                         <img class="h-11 w-14 object-contain" src="pdp-mockup/assets/gummies-pile-ct-1.png" alt="" loading="lazy">
                         <span class="font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">1ct</span>
@@ -294,13 +296,13 @@
                             <span class="font-body text-xs text-thunder">$1.50</span>
                         </span>
                     </label>
-                    <label class="flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-bright-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                    <label class="flex cursor-pointer flex-col items-center gap-1 rounded-xl border border-dusty-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
                         <input type="radio" name="count" class="sr-only" data-count data-label="5ct" data-price="12.00" data-compare="">
                         <img class="h-11 w-14 object-contain" src="pdp-mockup/assets/gummies-pile-ct-5.png" alt="" loading="lazy">
                         <span class="font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">5ct</span>
                         <span class="font-body text-xs text-thunder">$12.00</span>
                     </label>
-                    <label class="relative flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-bright-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
+                    <label class="relative flex cursor-pointer flex-col items-center gap-1 rounded-xl border border-dusty-gray px-2 py-2.5 has-[:checked]:border-dusty-gray has-[:checked]:bg-yellow-green">
                         <input type="radio" name="count" class="sr-only" checked data-count data-label="20ct" data-price="40.00" data-compare="50.00">
                         <span class="absolute -top-2 right-2 rounded bg-fuscous-gray px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.6px] text-cake-white">Popular</span>
                         <img class="h-11 w-14 object-contain" src="pdp-mockup/assets/gummies-pile-ct-20.png" alt="" loading="lazy">
@@ -317,23 +319,23 @@
             <div class="mt-6 flex flex-col gap-3">
                 <p class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Purchase frequency</p>
 
-                <label data-plan-card="subscribe" class="cursor-pointer overflow-hidden rounded-xl border-2 border-bright-gray">
+                <label data-plan-card="subscribe" class="cursor-pointer overflow-hidden rounded-xl border border-dusty-gray">
                     <input type="radio" name="plan" class="sr-only" checked data-plan="subscribe">
-                    <span class="flex flex-row items-center justify-center gap-1.5 bg-fuscous-gray px-3 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.6px] text-cake-white">🔥 Best value</span>
+                    <span class="flex flex-row items-center justify-center gap-1.5 bg-fuscous-gray px-3 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.6px] text-cake-white">🔥 Best value</span>
                     <span class="flex flex-col gap-2 p-3">
                         <span class="flex flex-row items-center gap-2">
-                            <span data-plan-dot class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-dusty-gray"></span>
+                            <span data-plan-dot class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-dusty-gray"></span>
                             <span class="flex-1 font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">Subscribe &amp; Save</span>
                             <span class="flex flex-col items-end gap-0.5">
                                 <span class="flex flex-row items-center gap-2">
-                                    <span class="rounded-lg bg-fuscous-gray px-3 py-0.5 font-mono text-[11px] font-bold text-cake-white whitespace-nowrap">Save 30%</span>
+                                    <span class="rounded-lg bg-fuscous-gray px-3 py-0.5 font-mono text-xs font-bold text-cake-white whitespace-nowrap">Save 30%</span>
                                     <span class="font-body text-base text-fuscous-gray" data-price-subscribe>$28.00</span>
                                 </span>
                                 <s class="font-body text-xs text-dusty-gray" data-price-subscribe-compare>$40.00</s>
                             </span>
                         </span>
 
-                        <span class="flex flex-col gap-1.5 border-t border-light-sand pt-2">
+                        <span class="flex flex-col gap-1.5 border-t border-dusty-gray pt-2">
                             <span class="flex flex-row items-start gap-2"><span class="mt-px flex h-4 w-4 shrink-0 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="12" cy="12" r="9"></circle><path d="M12 6.6v10.8"></path><path d="M14.7 9.6a2.4 2.4 0 0 0-2.4-1.5h-.5a2.1 2.1 0 0 0-.3 4.2h1.1a2.1 2.1 0 0 1 .1 4.2h-.4a2.4 2.4 0 0 1-2.4-1.6"></path></svg></span><span class="font-body text-[13px] leading-[1.5] text-thunder">Save 30% on your first order</span></span>
                             <span class="flex flex-row items-start gap-2"><span class="mt-px flex h-4 w-4 shrink-0 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M11.6 3H4v7.6l9.4 9.4 7.6-7.6z"></path><circle cx="7.6" cy="7.6" r="1.3" fill="currentColor" stroke="none"></circle></svg></span><span class="font-body text-[13px] leading-[1.5] text-thunder">Then 10% on each subsequent installment</span></span>
                             <span class="flex flex-row items-start gap-2"><span class="mt-px flex h-4 w-4 shrink-0 items-center justify-center text-fuscous-gray"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M20 11a8 8 0 0 0-13.7-5.2L3 9"></path><path d="M3 4v5h5"></path><path d="M4 13a8 8 0 0 0 13.7 5.2L21 15"></path><path d="M21 20v-5h-5"></path></svg></span><span class="font-body text-[13px] leading-[1.5] text-thunder">Swap, pause, or skip anytime</span></span>
@@ -344,7 +346,7 @@
                         <span class="flex flex-col gap-1.5">
                             <span class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Deliver every</span>
                             <span class="relative flex flex-row items-center">
-                                <select class="w-full cursor-pointer appearance-none rounded-xl border-2 border-dusty-gray bg-white px-3 py-2.5 font-body text-xs text-fuscous-gray outline-none">
+                                <select class="w-full cursor-pointer appearance-none rounded-xl border border-dusty-gray bg-white px-3 py-2.5 font-body text-xs text-fuscous-gray outline-none">
                                     <option>2 weeks: save 30%</option>
                                     <option>4 weeks: save 30%</option>
                                     <option selected>6 weeks: save 30%</option>
@@ -358,9 +360,9 @@
                     </span>
                 </label>
 
-                <label data-plan-card="onetime" class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border-2 border-bright-gray px-3 py-3">
+                <label data-plan-card="onetime" class="flex cursor-pointer flex-row items-center gap-2 rounded-xl border border-dusty-gray px-3 py-3">
                     <input type="radio" name="plan" class="sr-only" data-plan="onetime">
-                    <span data-plan-dot class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-dusty-gray"></span>
+                    <span data-plan-dot class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-dusty-gray"></span>
                     <span class="flex-1 font-mono text-sm font-bold leading-[1.2] text-fuscous-gray">One-time purchase</span>
                     <span class="font-body text-base text-fuscous-gray" data-price-onetime>$40.00</span>
                 </label>
@@ -368,16 +370,16 @@
 
             <!-- Quantity + add to cart -->
             <div class="mt-7 flex flex-col gap-4">
-                <div class="mx-auto flex w-3/4 flex-row items-center justify-between gap-2 rounded-xl border-2 border-dusty-gray bg-yellow-green-200 px-2 py-1.5">
-                    <button type="button" data-qty-dec class="flex h-9 w-11 cursor-pointer items-center justify-center rounded-lg border-2 border-dusty-gray bg-white font-mono text-lg leading-none text-fuscous-gray hover:bg-cake-white" aria-label="Decrease quantity">&minus;</button>
+                <div class="mx-auto flex w-3/4 flex-row items-center justify-between gap-2 rounded-xl border border-dusty-gray bg-yellow-green-200 px-2 py-1.5">
+                    <button type="button" data-qty-dec class="flex h-9 w-11 cursor-pointer items-center justify-center rounded-lg border border-dusty-gray bg-white font-mono text-lg leading-none text-fuscous-gray hover:bg-cake-white" aria-label="Decrease quantity">&minus;</button>
                     <span class="flex flex-col items-center leading-[1.15]">
                         <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.6px] text-dusty-gray">Quantity</span>
                         <span class="font-mono text-base font-bold text-fuscous-gray" data-qty>1</span>
                     </span>
-                    <button type="button" data-qty-inc class="flex h-9 w-11 cursor-pointer items-center justify-center rounded-lg border-2 border-dusty-gray bg-yellow-green font-mono text-lg leading-none text-fuscous-gray hover:brightness-95" aria-label="Increase quantity">+</button>
+                    <button type="button" data-qty-inc class="flex h-9 w-11 cursor-pointer items-center justify-center rounded-lg border border-dusty-gray bg-yellow-green font-mono text-lg leading-none text-fuscous-gray hover:brightness-95" aria-label="Increase quantity">+</button>
                 </div>
 
-                <button type="button" class="flex w-full flex-row items-center justify-center gap-3 rounded-xl border-2 border-dusty-gray bg-yellow-green px-4 py-4 font-mono text-lg font-bold uppercase tracking-[0.6px] text-fuscous-gray cursor-pointer hover:brightness-95">
+                <button type="button" class="flex w-full flex-row items-center justify-center gap-3 rounded-xl border border-dusty-gray bg-yellow-green px-4 py-4 font-mono text-lg font-bold uppercase tracking-[0.6px] text-fuscous-gray cursor-pointer hover:brightness-95">
                     <span data-price-total>$28.00</span>
                     <span aria-hidden="true" class="font-normal text-dusty-gray">|</span>
                     <span class="flex flex-row items-center gap-2">
@@ -410,7 +412,7 @@
     </section>
 
     <!-- ============================ Trust bar ============================ -->
-    <section class="flex flex-col items-center gap-5 border-y border-bright-gray py-12">
+    <section class="flex flex-col items-center gap-5 border-y border-dusty-gray py-12">
         <p class="font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray">Trusted by 200k+ customers</p>
         <div class="flex flex-row flex-wrap items-center justify-center gap-x-8 gap-y-3">
             <span class="font-mono text-base font-bold uppercase tracking-[1.2px] text-dusty-gray">Forbes</span>
@@ -424,7 +426,7 @@
     <section class="py-16">
         <div class="flex flex-col gap-4 rounded-xl border border-dusty-gray bg-cake-white p-6 sm:p-8">
             <div class="flex flex-row items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-2 border-dusty-gray bg-yellow-green text-fuscous-gray">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-dusty-gray bg-yellow-green text-fuscous-gray">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                 </span>
                 <div class="flex flex-col gap-0.5">
@@ -433,8 +435,8 @@
                 </div>
             </div>
             <form class="flex flex-col gap-2 sm:flex-row">
-                <input type="text" placeholder="Is this right for me?" class="min-w-0 flex-1 rounded-xl border-2 border-bright-gray bg-white px-3 py-3 font-body text-xs text-fuscous-gray outline-none placeholder:text-dusty-gray focus:border-dusty-gray">
-                <button type="button" class="shrink-0 rounded-xl border-2 border-dusty-gray bg-yellow-green px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.6px] cursor-pointer hover:brightness-95">Ask</button>
+                <input type="text" placeholder="Is this right for me?" class="min-w-0 flex-1 rounded-xl border border-dusty-gray bg-white px-3 py-3 font-body text-xs text-fuscous-gray outline-none placeholder:text-dusty-gray focus:border-dusty-gray">
+                <button type="button" class="shrink-0 rounded-xl border border-dusty-gray bg-yellow-green px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.6px] cursor-pointer hover:brightness-95">Ask</button>
             </form>
             <div class="flex flex-row flex-wrap gap-2">
                 <button type="button" class="rounded-lg border border-dusty-gray bg-white px-3 py-1.5 font-body text-xs text-thunder cursor-pointer hover:bg-yellow-green-200">How much should I take?</button>
@@ -452,7 +454,7 @@
                     Product details
                     <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </summary>
-                <div class="border-t border-bright-gray px-4 py-4">
+                <div class="border-t border-dusty-gray px-4 py-4">
                     <p class="font-body text-xs leading-[1.7] text-thunder">Craft live resin, for real &mdash; a clean craft gummy start to finish. 20mg Delta-9 THC per gummy, pressed from fresh-frozen flower and finished with real fruit juice. No distillate, no synthetic cannabinoids, no corn syrup.</p>
                 </div>
             </details>
@@ -461,7 +463,7 @@
                     Key ingredients
                     <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </summary>
-                <div class="border-t border-bright-gray px-4 py-4">
+                <div class="border-t border-dusty-gray px-4 py-4">
                     <p class="font-body text-xs leading-[1.7] text-thunder">Organic cane sugar, tapioca syrup, real fruit juice concentrate, pectin (vegan), citric acid, natural flavour, hemp-derived live resin Delta-9 THC.</p>
                 </div>
             </details>
@@ -470,7 +472,7 @@
                     How to use
                     <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </summary>
-                <div class="border-t border-bright-gray px-4 py-4">
+                <div class="border-t border-dusty-gray px-4 py-4">
                     <p class="font-body text-xs leading-[1.7] text-thunder">Start with half a gummy and wait 90 minutes before taking more. Effects last 4&ndash;6 hours. Store in a cool, dry place away from direct sun.</p>
                 </div>
             </details>
@@ -479,9 +481,9 @@
                     Lab results (COA)
                     <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </summary>
-                <div class="border-t border-bright-gray px-4 py-4">
+                <div class="border-t border-dusty-gray px-4 py-4">
                     <p class="mb-3 font-body text-xs leading-[1.7] text-thunder">Every batch is third-party tested for potency, pesticides, heavy metals and residual solvents.</p>
-                    <a href="#" class="inline-flex flex-row items-center gap-1.5 rounded-lg border-2 border-dusty-gray bg-white px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">
+                    <a href="#" class="inline-flex flex-row items-center gap-1.5 rounded-lg border border-dusty-gray bg-white px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.6px] text-fuscous-gray hover:bg-cake-white">
                         View batch COA
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                     </a>
@@ -492,7 +494,7 @@
                     Shipping &amp; returns
                     <span class="flex h-4 w-4 shrink-0 items-center justify-center text-gray-500 transition-transform duration-200 group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </summary>
-                <div class="border-t border-bright-gray px-4 py-4">
+                <div class="border-t border-dusty-gray px-4 py-4">
                     <p class="font-body text-xs leading-[1.7] text-thunder">Free shipping on orders over $75. Orders placed before 2pm CT ship same day, discreetly packaged. 30-day money-back guarantee &mdash; unopened or not.</p>
                 </div>
             </details>
@@ -500,20 +502,20 @@
     </section>
 
     <!-- ========================= You may also like ========================= -->
-    <section class="border-t border-bright-gray py-16">
+    <section class="border-t border-dusty-gray py-16">
         <div class="mb-8 flex flex-col gap-1">
             <p class="font-mono text-xs uppercase tracking-[0.6px] text-thunder">Pairs well with</p>
             <h2 class="font-mono text-2xl font-bold uppercase leading-[1.12] text-fuscous-gray">You may also like</h2>
         </div>
         <div class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
-            <div data-product-card class="border border-1 border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
+            <div data-product-card class="border border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
                 <div class="flex basis-[36%] shrink-0 relative">
                     <div class="flex flex-col absolute gap-1 z-10">
                         <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-medium font-mono">
                             Max Potency
                         </p>
                         <div class="flex">
-                            <span class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-bold font-mono border border-1 border-dusty-gray">
+                            <span class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-bold font-mono border border-dusty-gray">
                                 New
                             </span>
                         </div>
@@ -540,7 +542,7 @@
                     </div>
                     <div class="relative cursor-pointer" data-variant-selector>
                         <!-- Variant Selector -->
-                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel1" class="cursor-pointer flex flex-row border-2 border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
+                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel1" class="cursor-pointer flex flex-row border border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
                             <span class="flex gap-2 flex-row w-full min-w-0">
                                 <span class="flex gap-2 flex-row min-w-0">
                                     <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
@@ -558,7 +560,7 @@
                                 </span>
                             </span>
                         </button>
-                        <ul role="listbox" id="listbox-rel1" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border-2 top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
+                        <ul role="listbox" id="listbox-rel1" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
                             <li role="presentation" class="w-full justify-between bg-cake-white border-b border-dusty-gray p-0 rounded-t-lg w-full">
                                 <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
                                     Happy (Hybrid)
@@ -634,12 +636,12 @@
                         </ul>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
+                        <label class="flex flex-row gap-2 px-3 py-2 border border-dusty-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
                             <span class="flex flex-row gap-2">
                                 <input type="radio" name="plan-rel1" class="peer sr-only">
                                 <span
                                     class="relative flex h-4 w-4 items-center justify-center
-                                           rounded-full border-2 border-dusty-gray
+                                           rounded-full border border-dusty-gray
                                            peer-checked:border-dusty-gray
                                            after:h-2 after:w-2
                                            after:scale-0 after:rounded-full
@@ -651,10 +653,10 @@
                             </span>
                             <span class="text-xs font-normal text-thunder" data-price-onetime>$15</span>
                         </label>
-                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-light-sand has-[:checked]:bg-cake-white" role="radio">
+                        <label class="flex flex-row gap-2 px-3 py-2 border border-dusty-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-dusty-gray has-[:checked]:bg-cake-white" role="radio">
                             <input type="radio" name="plan-rel1" class="peer sr-only" checked>
                             <span class="relative shrink-0 flex h-4 w-4 items-center justify-center
-                                        rounded-full border-2 border-dusty-gray
+                                        rounded-full border border-dusty-gray
                                         peer-checked:border-dusty-gray
                                         after:h-2 after:w-2
                                         after:scale-0 after:rounded-full
@@ -672,8 +674,8 @@
                         </label>
                     </div>
                     <div class="flex flex-row gap-2">
-                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border-2 border-dusty-gray rounded-lg cursor-pointer">Details</button>
-                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border-2 border-dusty-gray flex justify-center align-center cursor-pointer">
+                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border border-dusty-gray rounded-lg cursor-pointer">Details</button>
+                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border border-dusty-gray flex justify-center align-center cursor-pointer">
                             <span class="h-6 w-6 flex justify-center align-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block;"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
                             </span>
@@ -694,7 +696,7 @@
                     </div>
                 </div>
             </div>
-            <div data-product-card class="border border-1 border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
+            <div data-product-card class="border border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
                 <div class="flex basis-[36%] shrink-0 relative">
                     <div class="flex flex-col absolute gap-1 z-10">
                         <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-medium font-mono">
@@ -723,7 +725,7 @@
                     </div>
                     <div class="relative cursor-pointer" data-variant-selector>
                         <!-- Variant Selector -->
-                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel2" class="cursor-pointer flex flex-row border-2 border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
+                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel2" class="cursor-pointer flex flex-row border border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
                             <span class="flex gap-2 flex-row w-full min-w-0">
                                 <span class="flex gap-2 flex-row min-w-0">
                                     <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
@@ -741,7 +743,7 @@
                                 </span>
                             </span>
                         </button>
-                        <ul role="listbox" id="listbox-rel2" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border-2 top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
+                        <ul role="listbox" id="listbox-rel2" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
                             <li role="presentation" class="w-full justify-between bg-cake-white border-b border-dusty-gray p-0 rounded-t-lg w-full">
                                 <span class="px-3 py-1.5 font-mono leading-[1.2] tracking-[0.6px] text-xs font-bold text-fuscous-gray">
                                     Sleep (Indica)
@@ -817,12 +819,12 @@
                         </ul>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
+                        <label class="flex flex-row gap-2 px-3 py-2 border border-dusty-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
                             <span class="flex flex-row gap-2">
                                 <input type="radio" name="plan-rel2" class="peer sr-only" checked>
                                 <span
                                     class="relative flex h-4 w-4 items-center justify-center
-                                           rounded-full border-2 border-dusty-gray
+                                           rounded-full border border-dusty-gray
                                            peer-checked:border-dusty-gray
                                            after:h-2 after:w-2
                                            after:scale-0 after:rounded-full
@@ -834,10 +836,10 @@
                             </span>
                             <span class="text-xs font-normal text-thunder" data-price-onetime>$40</span>
                         </label>
-                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-light-sand has-[:checked]:bg-cake-white invisible pointer-events-none" role="radio" aria-hidden="true">
+                        <label class="flex flex-row gap-2 px-3 py-2 border border-dusty-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-dusty-gray has-[:checked]:bg-cake-white invisible pointer-events-none" role="radio" aria-hidden="true">
                             <input type="radio" name="plan-rel2" class="peer sr-only" disabled tabindex="-1">
                             <span class="relative shrink-0 flex h-4 w-4 items-center justify-center
-                                        rounded-full border-2 border-dusty-gray
+                                        rounded-full border border-dusty-gray
                                         peer-checked:border-dusty-gray
                                         after:h-2 after:w-2
                                         after:scale-0 after:rounded-full
@@ -855,8 +857,8 @@
                         </label>
                     </div>
                     <div class="flex flex-row gap-2">
-                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border-2 border-dusty-gray rounded-lg cursor-pointer">Details</button>
-                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border-2 border-dusty-gray flex justify-center align-center cursor-pointer">
+                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border border-dusty-gray rounded-lg cursor-pointer">Details</button>
+                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border border-dusty-gray flex justify-center align-center cursor-pointer">
                             <span class="h-6 w-6 flex justify-center align-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block;"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
                             </span>
@@ -877,7 +879,7 @@
                     </div>
                 </div>
             </div>
-            <div data-product-card class="border border-1 border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
+            <div data-product-card class="border border-dusty-gray flex flex-row max-w-[440px] rounded-xl p-3 gap-3 w-full bg-white">
                 <div class="flex basis-[36%] shrink-0 relative">
                     <div class="flex flex-col absolute gap-1 z-10">
                         <p class="text-xs px-3 py-1 rounded-lg bg-cake-white text-fuscous-gray font-medium font-mono">
@@ -906,7 +908,7 @@
                     </div>
                     <div class="relative cursor-pointer" data-variant-selector>
                         <!-- Variant Selector -->
-                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel3" class="cursor-pointer flex flex-row border-2 border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
+                        <button type="button" data-variant-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="listbox-rel3" class="cursor-pointer flex flex-row border border-dusty-gray gap-2 px-2 py-3 rounded-xl w-full justify-between">
                             <span class="flex gap-2 flex-row w-full min-w-0">
                                 <span class="flex gap-2 flex-row min-w-0">
                                     <span class="rounded-full bg-cake-white text-fuscous-gray p-1 shrink-0">
@@ -925,7 +927,7 @@
                                 </span>
                             </span>
                         </button>
-                        <ul role="listbox" id="listbox-rel3" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border-2 top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
+                        <ul role="listbox" id="listbox-rel3" tabindex="-1" class="hidden w-full gap-1 absolute z-10 bg-white rounded-lg shadow-lg border-dusty-gray border top-0 scrollbar-thumb-fuscous-gray scrollbar-thin overflow-y-auto overflow-x-hidden max-h-56">
                             <li role="option" aria-selected="true" class="group cursor-pointer p-1">
                                 <span data-option-row class="flex flex-row gap-2 px-2 py-3 rounded-xl group-hover:bg-yellow-green-200 bg-yellow-green group-hover:bg-yellow-green w-full justify-between">
                                     <span class="flex flex-row gap-2 flex-1 min-w-0">
@@ -995,12 +997,12 @@
                         </ul>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
+                        <label class="flex flex-row gap-2 px-3 py-2 border border-dusty-gray rounded-xl cursor-pointer items-center justify-between has-[:checked]:border-dusty-gray" role="radio">
                             <span class="flex flex-row gap-2">
                                 <input type="radio" name="plan-rel3" class="peer sr-only" checked>
                                 <span
                                     class="relative flex h-4 w-4 items-center justify-center
-                                           rounded-full border-2 border-dusty-gray
+                                           rounded-full border border-dusty-gray
                                            peer-checked:border-dusty-gray
                                            after:h-2 after:w-2
                                            after:scale-0 after:rounded-full
@@ -1012,10 +1014,10 @@
                             </span>
                             <span class="text-xs font-normal text-thunder" data-price-onetime>$7</span>
                         </label>
-                        <label class="flex flex-row gap-2 px-3 py-2 border-2 border-bright-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-light-sand has-[:checked]:bg-cake-white invisible pointer-events-none" role="radio" aria-hidden="true">
+                        <label class="flex flex-row gap-2 px-3 py-2 border border-dusty-gray rounded-xl cursor-pointer items-start justify-between has-[:checked]:border-dusty-gray has-[:checked]:bg-cake-white invisible pointer-events-none" role="radio" aria-hidden="true">
                             <input type="radio" name="plan-rel3" class="peer sr-only" disabled tabindex="-1">
                             <span class="relative shrink-0 flex h-4 w-4 items-center justify-center
-                                        rounded-full border-2 border-dusty-gray
+                                        rounded-full border border-dusty-gray
                                         peer-checked:border-dusty-gray
                                         after:h-2 after:w-2
                                         after:scale-0 after:rounded-full
@@ -1033,8 +1035,8 @@
                         </label>
                     </div>
                     <div class="flex flex-row gap-2">
-                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border-2 border-dusty-gray rounded-lg cursor-pointer">Details</button>
-                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border-2 border-dusty-gray flex justify-center align-center cursor-pointer">
+                        <button class="flex-1 font-mono p-1.5 font-xs text-white font-bold bg-fuscous-gray border border-dusty-gray rounded-lg cursor-pointer">Details</button>
+                        <button class="flex-[2] p-1.5 bg-yellow-green rounded-lg border border-dusty-gray flex justify-center align-center cursor-pointer">
                             <span class="h-6 w-6 flex justify-center align-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block;"><circle cx="9" cy="23" r="1.4"></circle><circle cx="19" cy="23" r="1.4"></circle><path d="M2 4h3l2.4 12.1a1.8 1.8 0 0 0 1.8 1.4h8.7a1.8 1.8 0 0 0 1.8-1.4l1.1-5.6"></path><line x1="17" y1="2" x2="17" y2="9"></line><line x1="13.5" y1="5.5" x2="20.5" y2="5.5"></line></svg>
                             </span>
@@ -1059,7 +1061,7 @@
     </section>
 
     <!-- =========================== Loved by you =========================== -->
-    <section id="reviews" class="border-t border-bright-gray py-16">
+    <section id="reviews" class="border-t border-dusty-gray py-16">
         <div class="mb-8 flex flex-col gap-1">
             <p class="font-mono text-xs uppercase tracking-[0.6px] text-thunder">4.8 &middot; 46 reviews</p>
             <h2 class="font-mono text-2xl font-bold uppercase leading-[1.12] text-fuscous-gray">Loved by you</h2>
@@ -1103,13 +1105,13 @@
 </main>
 
 <!-- ======================= Sticky mobile add-to-cart ======================= -->
-<div class="sticky bottom-0 z-40 border-t border-bright-gray bg-white px-4 py-3 lg:hidden">
+<div class="sticky bottom-0 z-40 border-t border-dusty-gray bg-white px-4 py-3 lg:hidden">
     <div class="flex flex-row items-center gap-3">
         <div class="flex min-w-0 flex-col">
             <span class="truncate font-mono text-xs font-bold uppercase leading-[1.2] text-fuscous-gray">Live Resin D9</span>
             <span class="font-body text-xs text-thunder"><span data-summary-count>20ct</span> &middot; <span data-summary-flavour>Huckleberry</span></span>
         </div>
-        <button type="button" class="ml-auto flex shrink-0 flex-row items-center gap-2 rounded-xl border-2 border-dusty-gray bg-yellow-green px-5 py-3 font-mono text-sm font-bold uppercase tracking-[0.6px] text-fuscous-gray cursor-pointer hover:brightness-95">
+        <button type="button" class="ml-auto flex shrink-0 flex-row items-center gap-2 rounded-xl border border-dusty-gray bg-yellow-green px-5 py-3 font-mono text-sm font-bold uppercase tracking-[0.6px] text-fuscous-gray cursor-pointer hover:brightness-95">
             <span data-price-total>$28.00</span>
             <span aria-hidden="true" class="font-normal text-dusty-gray">|</span>
             Add to cart
@@ -1118,18 +1120,18 @@
 </div>
 
 <!-- ================================ Footer ================================ -->
-<footer class="mt-8 bg-cake-white border-t border-light-sand">
-    <div class="mx-auto max-w-[140rem] px-4 sm:px-6 lg:px-10 py-16">
+<footer class="mt-8 bg-cake-white border-t border-dusty-gray">
+    <div class="mx-auto max-w-[80rem] px-4 sm:px-6 lg:px-10 py-16">
         <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
             <div class="col-span-2 flex flex-col gap-3 lg:col-span-2">
                 <div class="flex flex-row items-center gap-2">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-yellow-green border-2 border-dusty-gray font-mono text-sm font-bold">M</span>
+                    <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-yellow-green border border-dusty-gray font-mono text-sm font-bold">M</span>
                     <span class="font-mono text-sm font-bold uppercase leading-[1.1] tracking-[0.6px]">Modern Herb Co</span>
                 </div>
                 <p class="max-w-sm font-body text-xs leading-[1.6] text-thunder">Small-batch hemp, grown and pressed in-house. Lab tested, never synthetic &mdash; shipped fast to all 50 states.</p>
                 <form class="mt-2 flex max-w-sm flex-row gap-2">
-                    <input type="email" placeholder="Email address" class="min-w-0 flex-1 rounded-xl border-2 border-bright-gray bg-white px-3 py-2 font-body text-xs text-fuscous-gray outline-none placeholder:text-dusty-gray focus:border-dusty-gray">
-                    <button type="button" class="shrink-0 rounded-xl border-2 border-dusty-gray bg-yellow-green px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.6px] cursor-pointer hover:brightness-95">Join</button>
+                    <input type="email" placeholder="Email address" class="min-w-0 flex-1 rounded-xl border border-dusty-gray bg-white px-3 py-2 font-body text-xs text-fuscous-gray outline-none placeholder:text-dusty-gray focus:border-dusty-gray">
+                    <button type="button" class="shrink-0 rounded-xl border border-dusty-gray bg-yellow-green px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.6px] cursor-pointer hover:brightness-95">Join</button>
                 </form>
                 <p class="font-body text-[11px] text-dusty-gray">Get 15% off your first order. Unsubscribe anytime.</p>
             </div>
@@ -1157,7 +1159,7 @@
                 <a href="#" class="font-body text-xs text-thunder hover:text-fuscous-gray hover:underline">Blog</a>
             </div>
         </div>
-        <div class="mt-10 flex flex-col gap-4 border-t border-light-sand pt-6 md:flex-row md:items-center md:justify-between">
+        <div class="mt-10 flex flex-col gap-4 border-t border-dusty-gray pt-6 md:flex-row md:items-center md:justify-between">
             <p class="font-body text-[11px] text-dusty-gray">&copy; 2026 Modern Herb Co. All rights reserved.</p>
             <div class="flex flex-row flex-wrap gap-x-4 gap-y-2">
                 <a href="#" class="font-body text-[11px] text-dusty-gray hover:text-fuscous-gray hover:underline">Privacy</a>
